@@ -1,0 +1,80 @@
+<div class="form">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+    </button>
+
+    <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div class="container-fluid">
+      <div class="row" *ngIf="showForm">
+
+        <div class="col-sm-3" *ngIf="!formObj.PayDate_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.PayDate_Fld.type" [parentFormGroup]="form" [label]="formObj.PayDate_Fld.headerName"
+            [valueName]="'PayDate_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.PayPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.PayPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.PayPrice_Fld.headerName" [valueName]="'PayPrice_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.PayTypeDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10034'" [parentFormGroup]="form"
+            [label]="formObj.PayType_Fld.headerName" [valueName]="'PayType_Fld'" [descValue]="data.PayTypeDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.PayReasonDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10035'" [parentFormGroup]="form"
+            [label]="formObj.PayReason_Fld.headerName" [valueName]="'PayReason_Fld'"
+            [descValue]="data.PayReasonDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.DocDate_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.DocDate_Fld.type" [parentFormGroup]="form" [label]="formObj.DocDate_Fld.headerName"
+            [valueName]="'DocDate_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.AccountNumber_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.AccountNumber_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.AccountNumber_Fld.headerName" [valueName]="'AccountNumber_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.IsUsed_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.IsUsed_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.IsUsed_Fld.headerName" [valueName]="'IsUsed_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.IsUsedYear_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.IsUsedYear_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.IsUsedYear_Fld.headerName" [valueName]="'IsUsedYear_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.IsUsedMonth_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.IsUsedMonth_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.IsUsedMonth_Fld.headerName" [valueName]="'IsUsedMonth_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.Remain_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.Remain_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.Remain_Fld.headerName" [valueName]="'Remain_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.Desc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Desc_Fld.headerName"
+            [valueName]="'Desc_Fld'"></custom-input>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

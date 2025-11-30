@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.TadrisFractionTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TadrisFractionType'" [parentFormGroup]="form"
+          [label]="formObj.TadrisFractionType_Fld.headerName" [valueName]="'TadrisFractionType_Fld'"
+          [descValue]="data.TadrisFractionTypeDesc_Fld" (changeComboDesc)="ChangeCombo($event)">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Price_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Price_Fld.type" [parentFormGroup]="form" [label]="formObj.Price_Fld.headerName"
+          [valueName]="'Price_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

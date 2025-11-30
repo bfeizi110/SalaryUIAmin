@@ -1,0 +1,45 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+
+<div *ngIf="showForm" class="pre-form">
+  <form-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" 
+    (closed)="closeForm()">
+  </form-form>
+</div>
+
+<mat-card appearance="outlined" *ngIf="showDetail" style="min-height: 372px">
+  <mat-tab-group dir="rtl">
+    <mat-tab dir="rtl" label="جزئیات فرم">
+      <ng-template matTabContent>
+        <div class="mt-2" *ngIf="DynamicFormType != 100954">
+          <form-detailsnew [FormID]="ID" [EntityName]="EntityName" [DynamicFormType]="DynamicFormType" [TabCount]="TabCount"></form-detailsnew>
+        </div>
+        <div class="mt-2" *ngIf="DynamicFormType == 100954">
+          <form-master-details [FormID]="ID" [MasterID]="MasterID" [MasterType]="MasterType"></form-master-details>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" *ngIf="DynamicFormType != 100954" label="تنظیمات مرتبط با فرم">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <form-settings [FormID]="ID" [DynamicFormType]="DynamicFormType" [EntityName]="EntityName"></form-settings>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" *ngIf="DynamicFormType != 100954" label="تنظیمات فیلتر">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <form-setting-filters [FormID]="ID" [DynamicFormType]="DynamicFormType" [EntityName]="EntityName"></form-setting-filters>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <!-- <mat-tab dir="rtl" label="طراحی نمایش فرم">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <form-design [FormID]="ID" [DynamicFormType]="DynamicFormType" [EntityName]="EntityName"></form-design>
+        </div>
+      </ng-template>
+    </mat-tab> -->
+
+  </mat-tab-group>
+</mat-card>

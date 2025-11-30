@@ -1,0 +1,87 @@
+<mat-card appearance="outlined">
+  <mat-tab-group dir="rtl">
+
+    <mat-tab dir="rtl" label="محاسبه">
+      <div class="col-sm-12">
+        <!--filter-->
+        <personnel-filter [controller]="'Salary'" [hideSearchButton]="true" [personObj]="personObj"
+          (onFilter)="onFilter($event)" (onFilterWithoutFilterButton)="onFilter($event)" [personData]="personData"
+          (showPerson)="onShowPerson()" [expanded]="setPID">
+        </personnel-filter>
+        <!--select person-->
+        <div class="f-flex">
+          <button [disabled]="hubConnectionPower" mat-raised-button class="save-button" color="primary"
+            (click)="startSignalR()">محاسبه
+          </button>
+          <ng-container *ngIf="hubConnectionPower">
+            <i class="fa fa-refresh text-warning rotate-button"></i>
+            <p class="d-inline" style="margin-right: 10px;">در حال محاسبه... |{{userName}}|</p>
+          </ng-container>
+          <p class="d-inline" style="margin-right: 10px" *ngIf="sumTime">زمان محاسبه : {{ sumTime }}</p>
+        </div>
+        <div *ngIf="showGridCalcSalary" class=" mt-1">
+          <custom-ag-grid class="salary-grid" [signalRChange]="signalRChange" class="salary-grid" [isModal]="true"
+            [customGridOption]="gridOptionCalcSalary">
+          </custom-ag-grid>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab dir="rtl" label="مشاهده اطلاعات">
+      <!-- <button mat-raised-button class="save-button" color="primary" (click)="calculate()">محاسبه
+      </button> -->
+
+      <button mat-raised-button class="close-button" color="primary" (click)="getAttrGroup()">دریافت</button>
+
+
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div *ngIf="showGridGroup" class="col-md-5">
+            <custom-ag-grid [customGridOption]="gridOptionGroup"></custom-ag-grid>
+          </div>
+
+          <div *ngIf="showGridSalary" class="col-md-7">
+            <custom-ag-grid [customGridOption]="gridOptionSalary"></custom-ag-grid>
+          </div>
+
+          <div *ngIf="showGridDetailPay" class="col-sm-6">
+            <div class="row">
+              <div *ngIf="showGridDetailPay" class="col-lg-12">
+                <p>اطلاعات پرداخت</p>
+                <custom-ag-grid [customGridOption]="gridOptionDetailPay"></custom-ag-grid>
+              </div>
+              <div *ngIf="showGridDetailPayMashmool" class="col-lg-12">
+                <p>اطلاعات مشمول پرداخت</p>
+                <custom-ag-grid [customGridOption]="gridOptionDetailPayMashmool"></custom-ag-grid>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showGridDetailFraction" class="col-sm-6">
+            <div class="row">
+              <div *ngIf="showGridDetailFraction" class="col-lg-12">
+                <p>اطلاعات کسور</p>
+                <custom-ag-grid [customGridOption]="gridOptionDetailFraction"></custom-ag-grid>
+              </div>
+              <div *ngIf="showGridDetailFractionMashmool" class="col-lg-12">
+                <p>اطلاعات مشمول کسور</p>
+                <custom-ag-grid [customGridOption]="gridOptionDetailFractionMashmool"></custom-ag-grid>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>
+
+<select-personnel *ngIf="showPerson" [setPersonPID]="setPID" [isModal]="true" [multiple]="true"
+  (rowSelectedListOnModal)="onSelectMultiplePersonnel($event)" (rowClickedModal)="onSelectPersonnel($event)"
+  [hideFilter]="true" (closed)="showPerson = false">
+</select-personnel>

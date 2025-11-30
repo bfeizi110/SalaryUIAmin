@@ -1,0 +1,40 @@
+.cost-btn {
+    background-color: white;
+    color: black;
+    text-align: right;
+    width: 100%;
+}
+
+.cost-btn {
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.mr-2 {
+    margin-right: 4px;
+}
+
+.fa-filter {
+    font-size: 20px;
+}
+
+::ng-deep .from-date ngb-datepicker {
+  position: unset !important
+}
+
+::ng-deep .to-date ngb-datepicker {
+  position: unset !important
+}
+
+@media (max-width: 992px) {
+  ::ng-deep personnel-filter .mat-expansion-panel-header {
+    display: block !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    display: -webkit-inline-box !important;
+    display: block;
+    margin-top: -2px;
+  }
+}

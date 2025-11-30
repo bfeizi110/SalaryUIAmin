@@ -1,0 +1,97 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6" *ngIf="!formObj.DestinationFieldNameDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="destinationFieldNameList" [parentFormGroup]="form"
+          [label]="formObj.DestinationFieldName_Fld.headerName" [valueName]="'DestinationFieldName_Fld'"
+          [descValue]="data.DestinationFieldNameDesc_Fld" (changeCombo)="changeDestinationFieldName()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SourceTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10070'" [parentFormGroup]="form"
+          [label]="formObj.SourceType_Fld.headerName" [valueName]="'SourceType_Fld'"
+          [descValue]="data.SourceTypeDesc_Fld" (changeCombo)="changeSourceType()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SourceCol_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.SourceCol_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.SourceCol_Fld.headerName" [valueName]="'SourceCol_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SystemTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10043'" [parentFormGroup]="form"
+          [label]="formObj.SystemType_Fld.headerName" [valueName]="'SystemType_Fld'"
+          [descValue]="data.SystemTypeDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SourceFixValue_Fld.ishidden && !sourceFixValueIsCombo">
+        <custom-input  [formObj]="formObj"  [type]="formObj.SourceFixValue_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.SourceFixValue_Fld.headerName" [valueName]="'SourceFixValue_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SourceFixValue_Fld.ishidden && sourceFixValueIsCombo">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="sourceFixValueComboUrl" [parentFormGroup]="form"
+          [label]="formObj.SourceFixValue_Fld.headerName" [valueName]="'SourceFixValue_Fld'"
+          [descValue]="data.SourceFixValue_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.CnvCondNoTransfer_Fld.ishidden">
+        <custom-input [ltr]="true" [formObj]="formObj"  [type]="formObj.CnvCondNoTransfer_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CnvCondNoTransfer_Fld.headerName" [valueName]="'CnvCondNoTransfer_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12">
+
+        <fieldset class="mt-2">
+          <legend>تبدیل مبدا</legend>
+          <div class="row">
+
+            <div class="col-sm-6" *ngIf="!formObj.CnvTypeDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10130'" [parentFormGroup]="form"
+                [label]="formObj.CnvType_Fld.headerName" [valueName]="'CnvType_Fld'"
+                [descValue]="data.CnvTypeDesc_Fld" (changeCombo)="changeCvnType()">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-12" *ngIf="!formObj.CnvCond_Fld.ishidden">
+              <custom-input [ltr]="true" [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form"
+                [label]="formObj.CnvCond_Fld.headerName" [valueName]="'CnvCond_Fld'">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-6" *ngIf="!formObj.CnvTblNameDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Entity/GetComboNew/100921'" [parentFormGroup]="form"
+                [label]="formObj.CnvTblName_Fld.headerName" [valueName]="'CnvTblName_Fld'"
+                [descValue]="data.CnvTblNameDesc_Fld" (changeCombo)="changeCvnTblName()">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-6" *ngIf="!formObj.CnvFldNameDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="entityPropertyUrl" [parentFormGroup]="form"
+                [label]="formObj.CnvFldName_Fld.headerName" [valueName]="'CnvFldName_Fld'"
+                [descValue]="data.CnvFldNameDesc_Fld">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-6" *ngIf="!formObj.CnvFinalFldNameDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="entityPropertyUrl" [parentFormGroup]="form"
+                [label]="formObj.CnvFinalFldName_Fld.headerName" [valueName]="'CnvFinalFldName_Fld'"
+                [descValue]="data.CnvFinalFldNameDesc_Fld">
+              </custom-input>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

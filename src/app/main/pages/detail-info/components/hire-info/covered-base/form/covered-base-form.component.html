@@ -1,0 +1,77 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body">
+
+      <div class="container-fluid">
+        <div [ngClass]="{'disabled-form': formType == 'View'}" class="row" *ngIf="showForm">
+
+          <div class="col-sm-2" *ngIf="!formObj.CoveredTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.CoveredType_Fld.headerName" [valueName]="'CoveredType_Fld'"
+              [descValue]="data.CoveredTypeDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.FormulaBase_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.FormulaBase_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.FormulaBase_Fld.headerName" [valueName]="'FormulaBase_Fld'"
+              (change)="changeFormulaBase($event)"></custom-input>
+          </div>
+
+          <div class="col-sm-4" *ngIf="showFormula && !formObj.FormulaIDDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+              [label]="formObj.FormulaID_Fld.headerName" [valueName]="'FormulaID_Fld'"
+              [descValue]="data.FormulaIDDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-4" *ngIf="!formObj.StringFactor_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.StringFactor_Fld.headerName"
+              [valueName]="'StringFactor_Fld'">
+            </custom-input>
+          </div>
+
+        </div>
+
+        <div *ngIf="showGrids && !form.controls.FormulaBase_Fld.value" class="row">
+          <div class="col-lg">
+            <p class="text-center">پارامترهای غیر مشمول</p>
+            <custom-ag-grid *ngIf="showGridNotIncluded" [formType]="formType"
+              [customGridOption]="gridOptionNotIncluded">
+            </custom-ag-grid>
+          </div>
+          <div *ngIf="formType != 'View'" class="col-lg-1">
+            <div class="buttons">
+              <div>
+                <i class="fa fa-hand-o-left text-success" (click)="addInclude()"></i>
+              </div>
+              <div>
+                <i class="fa fa-hand-o-right text-danger" (click)="removeInclude()"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg">
+            <p class="text-center">پارامترهای مشمول</p>
+            <custom-ag-grid *ngIf="showGridIncluded" [customGridOption]="gridOptionIncluded">
+            </custom-ag-grid>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

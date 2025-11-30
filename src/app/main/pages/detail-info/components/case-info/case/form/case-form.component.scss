@@ -1,0 +1,12 @@
+.buttons {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translateX(-50%);
+    font-size: 45px;
+  }
+
+.disable-icon {
+  pointer-events: none;
+  opacity: .5;
+}

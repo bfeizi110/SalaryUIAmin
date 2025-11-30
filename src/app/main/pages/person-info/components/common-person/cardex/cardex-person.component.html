@@ -1,0 +1,13 @@
+<div class="col-sm-3" *ngIf="option.ComboType">
+  <mat-form-field (click)="clickCombo()" dir="rtl">
+    <mat-label dir="rtl">{{option.ComboTitle}}</mat-label>
+    <mat-select dir="rtl" (selectionChange)="comboChange($event.value)">
+      <mat-option *ngIf="comboList.length == 0">-</mat-option>
+      <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+      </mat-filter>
+      <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>

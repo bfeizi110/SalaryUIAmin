@@ -1,0 +1,75 @@
+<div class="form" style="width: 99%;">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+      (click)="save()">ذخیره</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div *ngIf="showForm" class="container-fluid">
+      <div class="row">
+
+        <div class="col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'CostCenter'" [parentFormGroup]="form"
+            [label]="formObj.Code_Fld.headerName" [valueName]="'Code_Fld'" [descValue]="data.CodeDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.AccNoKarfarmaSaving_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.AccNoKarfarmaSaving_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.AccNoKarfarmaSaving_Fld.headerName" [valueName]="'AccNoKarfarmaSaving_Fld'"></custom-input>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.AccNoKarmandSaving_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.AccNoKarmandSaving_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.AccNoKarmandSaving_Fld.headerName" [valueName]="'AccNoKarmandSaving_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.TaminBaseDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaminBase'" [parentFormGroup]="form"
+            [label]="formObj.TaminBaseCode_Fld.headerName" [valueName]="'TaminBaseCode_Fld'"
+            [descValue]="data.TaminBaseDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.TaxBaseDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'taxBase'" [parentFormGroup]="form"
+            [label]="formObj.TaxBaseCode_Fld.headerName" [valueName]="'TaxBaseCode_Fld'"
+            [descValue]="data.TaxBaseDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.PrsID_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.PrsID_Fld.type" [parentFormGroup]="form" [label]="formObj.PrsID_Fld.headerName"
+            [valueName]="'PrsID_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.ParentId_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.ParentId_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.ParentId_Fld.headerName" [valueName]="'ParentId_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.PayprogramDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'PayProgram'" [parentFormGroup]="form"
+            [label]="formObj.Payprogram_Fld.headerName" [valueName]="'Payprogram_Fld'"
+            [descValue]="data.PayprogramDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.DaraeiSettingDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'DaraeiSetting'" [parentFormGroup]="form"
+            [label]="formObj.DaraeiSetting_Fld.headerName" [valueName]="'DaraeiSetting_Fld'"
+            [descValue]="data.DaraeiSettingDesc_Fld">
+          </custom-input>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

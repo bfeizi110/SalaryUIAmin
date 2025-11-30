@@ -1,0 +1,250 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button mat-raised-button *ngIf="formType != 'View' && form?.controls?.TypeInsure_Fld?.value" class="save-button"
+        color="primary" (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}" *ngIf="form">
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-3" *ngIf="showTypeIns">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10011'" [parentFormGroup]="form"
+              [label]="'نوع بیمه'" [valueName]="'TypeInsure_Fld'" (changeCombo)="TypeInsureChange($event)" [descValue]="data.TypeInsureDesc_Fld"
+              [getCombo]="getInsCombo"></custom-input>
+          </div>
+
+          <ng-container *ngIf="showOtherFields">
+
+            <div class="col-sm-3" *ngIf="formObj.CodeDesc_Fld  && !formObj.CodeDesc_Fld?.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld?.type" [parentFormGroup]="form"
+                [label]="formObj.CodeDesc_Fld?.headerName" [valueName]="'CodeDesc_Fld'">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-3" *ngIf="formObj.NewInsureTypeDesc_Fld  && !formObj.NewInsureTypeDesc_Fld?.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [descValue]="data.NewInsureTypeDesc_Fld" [comboUrl]="'OtherDetail/10012'"
+                [parentFormGroup]="form" [label]="formObj.NewInsureType_Fld?.headerName"
+                [valueName]="'NewInsureType_Fld'"></custom-input>
+            </div>
+
+            <fieldset class="col-xl-7 col-lg-8 col-md-8 col-sm-4">
+              <legend>سهم کارمند و کارفرما</legend>
+
+              <div class="row">
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam1_Fld  && !formObj.InsureParam1_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam1_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam1_Fld?.headerName" [valueName]="'InsureParam1_Fld'"></custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam1_Fld  && !formObj.MashParam1_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam1_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam1_Fld?.headerName" [valueName]="'MashParam1_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.MoafParam1_Fld  && !formObj.MoafParam1_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MoafParam1_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MoafParam1_Fld?.headerName" [valueName]="'MoafParam1_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam2_Fld  && !formObj.InsureParam2_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam2_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam2_Fld?.headerName" [valueName]="'InsureParam2_Fld'"></custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam2_Fld  && !formObj.MashParam2_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam2_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam2_Fld?.headerName" [valueName]="'MashParam2_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.MoafParam2_Fld  && !formObj.MoafParam2_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MoafParam2_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MoafParam2_Fld?.headerName" [valueName]="'MoafParam2_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam3_Fld  && !formObj.InsureParam3_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam3_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam3_Fld?.headerName" [valueName]="'InsureParam3_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam3_Fld  && !formObj.MashParam3_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam3_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam3_Fld?.headerName" [valueName]="'MashParam3_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-2"
+                  *ngIf="formObj.InsureParam3_State_Fld && !formObj.InsureParam3_State_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam3_State_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam3_State_Fld?.headerName" [valueName]="'InsureParam3_State_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-2"
+                  *ngIf="formObj.InsureParam3_Employer_Fld && !formObj.InsureParam3_Employer_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam3_Employer_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam3_Employer_Fld?.headerName" [valueName]="'InsureParam3_Employer_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam4_Fld  && !formObj.InsureParam4_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam4_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam4_Fld?.headerName" [valueName]="'InsureParam4_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam4_Fld  && !formObj.MashParam4_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam4_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam4_Fld?.headerName" [valueName]="'MashParam4_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.MoafParam3_Fld  && !formObj.MoafParam3_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MoafParam3_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MoafParam3_Fld?.headerName" [valueName]="'MoafParam3_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam5_Fld  && !formObj.InsureParam5_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam5_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam5_Fld?.headerName" [valueName]="'InsureParam5_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam5_Fld  && !formObj.MashParam5_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam5_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam5_Fld?.headerName" [valueName]="'MashParam5_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.MoafParam4_Fld  && !formObj.MoafParam4_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MoafParam4_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MoafParam4_Fld?.headerName" [valueName]="'MoafParam4_Fld'">
+                  </custom-input>
+                </div>
+
+                <div *ngIf="typeInsId != 100111" class="col-sm-2"></div>
+
+                <div class="col-md-4" *ngIf="formObj.InsureParam6_Fld  && !formObj.InsureParam6_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.InsureParam6_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.InsureParam6_Fld?.headerName" [valueName]="'InsureParam6_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-md-4" *ngIf="formObj.MashParam6_Fld && !formObj.MashParam6_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MashParam6_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MashParam6_Fld?.headerName" [valueName]="'MashParam6_Fld'">
+                  </custom-input>
+                </div>
+
+              </div>
+
+            </fieldset>
+
+            <div class="col-xl-5 col-lg-4 col-md-4 col-sm-8">
+
+              <div class="row">
+
+                <div class="col-xl-5 col-lg-8 col-md-12"
+                  *ngIf="formObj.MashmoolTypeDesc_Fld  && !formObj.MashmoolTypeDesc_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+                    [label]="formObj.MashmoolType_Fld.headerName" [valueName]="'MashmoolType_Fld'"
+                    [descValue]="data.MashmoolTypeDesc_Fld">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-5 col-lg-6 col-md-12"
+                  *ngIf="formObj.TopPrice_Fld && !formObj.TopPrice_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.TopPrice_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.TopPrice_Fld?.headerName" [valueName]="'TopPrice_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-5 col-lg-6" *ngIf="formObj.DownPrice_Fld && !formObj.DownPrice_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.DownPrice_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.DownPrice_Fld?.headerName" [valueName]="'DownPrice_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-5 col-lg-9 col-md-9"
+                  *ngIf="formObj.NewFormulaIDDesc_Fld && !formObj.NewFormulaIDDesc_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="'combo'" [descValue]="data.NewFormulaIDDesc_Fld" [comboUrl]="'NewFormula'"
+                    [parentFormGroup]="form" [label]="formObj.NewFormulaID_Fld?.headerName"
+                    [valueName]="'NewFormulaID_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-6 col-lg-12" *ngIf="formObj.Vat_Fld && !formObj.Vat_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.Vat_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.Vat_Fld?.headerName" [valueName]="'Vat_Fld'"></custom-input>
+                </div>
+
+                <div class="col-xl-6 col-lg-12" *ngIf="formObj.NoTransfer_Fld  && !formObj.NoTransfer_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.NoTransfer_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.NoTransfer_Fld?.headerName" [valueName]="'NoTransfer_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-6 col-lg-12 ng-star-inserted"
+                  *ngIf="formObj.CalcBackPay_Fld && !formObj.CalcBackPay_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.CalcBackPay_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.CalcBackPay_Fld?.headerName" [valueName]="'CalcBackPay_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-6 col-lg-12 ng-star-inserted"
+                  *ngIf="formObj.AllToDaraei_Fld && !formObj.AllToDaraei_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.AllToDaraei_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.AllToDaraei_Fld?.headerName" [valueName]="'AllToDaraei_Fld'">
+                  </custom-input>
+                </div>
+
+                <div class="col-xl-6 col-lg-12 ng-star-inserted"
+                  *ngIf="formObj.IsBaz_Fld && !formObj.IsBaz_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.IsBaz_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.IsBaz_Fld?.headerName" [valueName]="'IsBaz_Fld'"></custom-input>
+                </div>
+
+                <!-- hide=ture -->
+                <div class="col-sm-3" *ngIf="formObj.MainInsureCode_Fld && !formObj.MainInsureCode_Fld?.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.MainInsureCode_Fld?.type" [parentFormGroup]="form"
+                    [label]="formObj.MainInsureCode_Fld?.headerName" [valueName]="'MainInsureCode_Fld'"></custom-input>
+                </div>
+
+              </div>
+
+            </div>
+
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

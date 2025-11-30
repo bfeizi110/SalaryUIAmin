@@ -1,0 +1,13 @@
+<custom-ag-grid [rowNumber]="10" *ngIf="showGrid" [customGridOption]="gridOption"
+  [disabledForm]="showAccesses">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <group-access-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </group-access-form>
+</div>
+
+<div class="mt-4" *ngIf="showAccesses">
+  <access-grids (closed)="closeAccess()" [option]="option"></access-grids>
+</div>

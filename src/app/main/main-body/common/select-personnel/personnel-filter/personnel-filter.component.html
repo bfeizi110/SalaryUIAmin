@@ -1,0 +1,436 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="expanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <i class="fa fa-filter text-primary"></i>
+        <div class="mr-2">فیلتر پیشرفته</div>
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div class="form">
+
+        <div class="form-buttons">
+
+          <button *ngIf="!hideSearchButton" matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button
+            class="save-button" color="primary" (click)="filter()">
+            <i class="fa fa-search"></i>
+          </button>
+
+          <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button"
+            color="warn" (click)="refresh()">
+            <i class="fa fa-redo-alt"></i>
+          </button>
+
+        </div>
+
+        <div class="form-body">
+
+          <div class="container-fluid">
+            <div class="row" *ngIf="showForm" [formGroup]="form">
+
+              <div class="col-sm-6" *ngIf="formObj.PersonID && !formObj.PersonID.ishidden">
+                <button class="cost-btn " mat-raised-button color="primary"
+                  (click)="onShowPerson()">{{formObj.PersonID.headerName}}
+                  <ng-container *ngIf="form.controls.PersonID.value">
+                    : {{personName}}
+                  </ng-container>
+                </button>
+                <i *ngIf="form.controls.PersonID.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.HireTypeHghID && !formObj.HireTypeHghID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="hireTypeArray" [multiple]="true" (click)="clickFilter('HireType', 'hireTypeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.HireTypeHghID.headerName" [valueName]="'HireTypeHghID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.PayCodeID && !formObj.PayCodeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="payCodeArray" [multiple]="true" (click)="clickFilter('PayProgram', 'payCodeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.PayCodeID.headerName" [valueName]="'PayCodeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-6" *ngIf="formObj.CostCenterID && !formObj.CostCenterID.ishidden">
+                <button [matTooltip]="costCenterIDDesc" matTooltipClass="blue-tooltip" class="cost-btn"
+                  mat-raised-button color="primary"
+                  (click)="onShowCostCenterModal('CostCenterID')">{{formObj.CostCenterID.headerName}}
+                  <ng-container *ngIf="costCenterIDDesc">
+                    : {{costCenterIDDesc}}
+                  </ng-container>
+                </button>
+                <i *ngIf="form.controls.CostCenterID.value" class="fa fa-trash fa-trash-button"
+                  (click)="clearCostCenter()"></i>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.HireGroup && !formObj.HireGroup.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="HireGroupArray" [multiple]="true" (click)="clickFilter('OtherDetail/10109', 'HireGroupArray')" 
+                  [parentFormGroup]="form" [label]="formObj.HireGroup.headerName" [valueName]="'HireGroup'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.BimehTypeID && !formObj.BimehTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="BimeTypeArray" [multiple]="true" (click)="clickFilter('OtherDetail/4037', 'BimeTypeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.BimehTypeID.headerName" [valueName]="'BimehTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.PersonMonthHistoryID && !formObj.PersonMonthHistoryID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="PersonMonthHistoryArray" [multiple]="true" (click)="clickFilter('OtherDetail/10044', 'PersonMonthHistoryArray')" 
+                  [parentFormGroup]="form" [label]="formObj.PersonMonthHistoryID.headerName"
+                  [valueName]="'PersonMonthHistoryID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.JenderID && !formObj.JenderID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="JenderArray" [multiple]="true" (click)="clickFilter('OtherDetail/3946', 'JenderArray')" 
+                  [parentFormGroup]="form" [label]="formObj.JenderID.headerName" [valueName]="'JenderID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.MarriedID && !formObj.MarriedID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="MarriedArray" [multiple]="true" (click)="clickFilter('OtherDetail/3962', 'MarriedArray')" 
+                  [parentFormGroup]="form" [label]="formObj.MarriedID.headerName" [valueName]="'MarriedID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasTadris && !formObj.HasTadris.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasTadris.type" [parentFormGroup]="form" 
+                  [label]="formObj.HasTadris.headerName" [valueName]="'HasTadris'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.OnlyTadris && !formObj.OnlyTadris.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.OnlyTadris.type" [parentFormGroup]="form"
+                  [label]="formObj.OnlyTadris.headerName" [valueName]="'OnlyTadris'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.ListTypeID && !formObj.ListTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10032'" [multiple]="true" [parentFormGroup]="form"
+                  [label]="formObj.ListTypeID.headerName" [valueName]="'ListTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.PayTypeID && !formObj.PayTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="payTypeArray" [multiple]="true" (click)="clickComboPayTypeList()" 
+                  [parentFormGroup]="form" [label]="formObj.PayTypeID.headerName" [valueName]="'PayTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.YearMonthHgh && !formObj.YearMonthHgh.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'YearMonth'" [parentFormGroup]="form" 
+                  [label]="formObj.YearMonthHgh.headerName" [valueName]="'YearMonthHgh'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.CaseCode && !formObj.CaseCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="caseCodeArray" [multiple]="true" (click)="clickFilter('Case', 'caseCodeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.CaseCode.headerName" [valueName]="'CaseCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.BackPayTypeID && !formObj.BackPayTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="BackPayTypeArray" [multiple]="true" (click)="clickFilter('OtherDetail/10020', 'BackPayTypeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.BackPayTypeID.headerName" [valueName]="'BackPayTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.WorkAddingType && !formObj.WorkAddingType.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="workAddingArray" [multiple]="true" (click)="clickFilter('*OtherDetail/GetCombo/10040/100405,100406,100407,100408,100409,1004010,1004011', 'workAddingArray')" 
+                  [parentFormGroup]="form" [label]="formObj.WorkAddingType.headerName" [valueName]="'WorkAddingType'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.TadrisCode && !formObj.TadrisCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="TadrisCodeArray" [multiple]="true" (click)="clickFilter('TadrisPayType', 'TadrisCodeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.TadrisCode.headerName" [valueName]="'TadrisCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.InsureCode && !formObj.InsureCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="insureArray" [multiple]="true" (click)="clickFilter('Insure', 'insureArray')" 
+                  [parentFormGroup]="form" [label]="formObj.InsureCode.headerName" [valueName]="'InsureCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.DebtCode && !formObj.DebtCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="debtArray" [multiple]="true" [parentFormGroup]="form" (click)="clickFilter('Debt', 'debtArray')" 
+                  [label]="formObj.DebtCode.headerName" [valueName]="'DebtCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.AssignDebtCode && !formObj.AssignDebtCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="debtArray" [multiple]="true" [parentFormGroup]="form" (click)="clickFilter('Debt', 'debtArray')" 
+                  [label]="formObj.AssignDebtCode.headerName" [valueName]="'AssignDebtCode'">
+                </custom-input>
+              </div>
+
+              <!-- <div class="col-sm-3" *ngIf="formObj.CostCenter1ID && !formObj.CostCenter1ID.ishidden">
+                <button [matTooltip]="costCenter1IDDesc" matTooltipClass="blue-tooltip" class="cost-btn"
+                  mat-raised-button color="primary"
+                  (click)="onShowCostCenterModal('CostCenter1ID')">{{formObj.CostCenter1ID.headerName}}
+                  <ng-container *ngIf="costCenter1IDDesc">
+                    : {{costCenter1IDDesc}}
+                  </ng-container>
+                </button>
+                <i *ngIf="form.controls.CostCenter1ID.value" class="fa fa-trash fa-trash-button"
+                  (click)="clearCostCenter1()"></i>
+              </div> -->
+
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4" *ngIf="formObj.EmpID && !formObj.EmpID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="empArray" [multiple]="true" [parentFormGroup]="form" (click)="clickFilter('OtherDetail/4037', 'empArray')" 
+                  [label]="formObj.EmpID.headerName" [valueName]="'EmpID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.HasMostamar && !formObj.HasMostamar.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasMostamar.type" [parentFormGroup]="form" 
+                  [label]="formObj.HasMostamar.headerName" [valueName]="'HasMostamar'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasHokm && !formObj.HasHokm.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasHokm.type" [parentFormGroup]="form"
+                  [label]="formObj.HasHokm.headerName" [valueName]="'HasHokm'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4"
+                *ngIf="formObj.NotMostamar && !formObj.NotMostamar.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotMostamar.type" [parentFormGroup]="form"
+                  [label]="formObj.NotMostamar.headerName" [valueName]="'NotMostamar'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.MostamarCode && !formObj.MostamarCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="mostamarArray" [multiple]="true" (click)="clickFilter('Mostamar', 'mostamarArray')" 
+                  [parentFormGroup]="form" [label]="formObj.MostamarCode.headerName" [valueName]="'MostamarCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.HokmStatus && !formObj.HokmStatus.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="hokmStatusArray" [multiple]="true" (click)="clickFilter('OtherDetail/10022', 'hokmStatusArray')" 
+                  [parentFormGroup]="form" [label]="formObj.HokmStatus.headerName" [valueName]="'HokmStatus'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="formObj.HokmID && !formObj.HokmID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="HokmIDArray" [multiple]="true" (click)="clickFilter('Hokm', 'HokmIDArray')" 
+                  [parentFormGroup]="form" [label]="formObj.HokmID.headerName" [valueName]="'HokmID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.SavingCode && !formObj.SavingCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="savingArray" [multiple]="true" (click)="clickFilter('Saving', 'savingArray')" 
+                  [parentFormGroup]="form" [label]="formObj.SavingCode.headerName" [valueName]="'SavingCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.AssignSavingCode && !formObj.AssignSavingCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="savingArray" [multiple]="true" (click)="clickFilter('Saving', 'HokmIDArray')" 
+                  [parentFormGroup]="form" [label]="formObj.AssignSavingCode.headerName" [valueName]="'SavingCode'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasSaving && !formObj.HasSaving.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasSaving.type" [parentFormGroup]="form"
+                  [label]="formObj.HasSaving.headerName" [valueName]="'HasSaving'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.NotHokm && !formObj.NotHokm.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotHokm.type" [parentFormGroup]="form"
+                  [label]="formObj.NotHokm.headerName" [valueName]="'NotHokm'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.NotSaving && !formObj.NotSaving.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotSaving.type" [parentFormGroup]="form"
+                  [label]="formObj.NotSaving.headerName" [valueName]="'NotSaving'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.IncreaseSavingPerson && !formObj.IncreaseSavingPerson.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.IncreaseSavingPerson.type" [parentFormGroup]="form"
+                  [label]="formObj.IncreaseSavingPerson.headerName" [valueName]="'IncreaseSavingPerson'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.SettlePerson && !formObj.SettlePerson.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SettlePerson.type" [parentFormGroup]="form"
+                  [label]="formObj.SettlePerson.headerName" [valueName]="'SettlePerson'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.ShowGuarantor && !formObj.ShowGuarantor.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.ShowGuarantor.type" [parentFormGroup]="form"
+                  [label]="formObj.ShowGuarantor.headerName" [valueName]="'ShowGuarantor'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.ShowHaveGuarantor && !formObj.ShowHaveGuarantor.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.ShowHaveGuarantor.type" [parentFormGroup]="form"
+                  [label]="formObj.ShowHaveGuarantor.headerName" [valueName]="'ShowHaveGuarantor'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="formObj.ViewStatus && !formObj.ViewStatus.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10029'" 
+                  [parentFormGroup]="form" [label]="formObj.ViewStatus.headerName" [valueName]="'ViewStatus'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2 from-date" *ngIf="formObj.Fromdate && !formObj.Fromdate.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.Fromdate.headerName"
+                  [valueName]="'Fromdate'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2 to-date" *ngIf="formObj.ToDate && !formObj.ToDate.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.ToDate.headerName"
+                  [valueName]="'ToDate'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2 from-date" *ngIf="formObj.FromDateExe && !formObj.FromDateExe.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.FromDateExe.headerName"
+                  [valueName]="'FromDateExe'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2 to-date" *ngIf="formObj.ToDateExe && !formObj.ToDateExe.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.ToDateExe.headerName"
+                  [valueName]="'ToDateExe'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.HasBackPaySemi && !formObj.HasBackPaySemi.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasBackPaySemi.type" [parentFormGroup]="form"
+                  [label]="formObj.HasBackPaySemi.headerName" [valueName]="'HasBackPaySemi'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.OtherPerson && !formObj.OtherPerson.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="otherPersonArray" [multiple]="true" (click)="clickFilter('OtherDetail/10066', 'otherPersonArray')" 
+                  [parentFormGroup]="form" [label]="formObj.OtherPerson.headerName" [valueName]="'OtherPerson'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.RuleState && !formObj.RuleState.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="RuleStateArray" [multiple]="true" (click)="clickFilter('OtherDetail/10022', 'RuleStateArray')" 
+                  [parentFormGroup]="form" [label]="formObj.RuleState.headerName" [valueName]="'RuleState'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasMission && !formObj.HasMission.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasMission.type" [parentFormGroup]="form"
+                  [label]="formObj.HasMission.headerName" [valueName]="'HasMission'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.NotMission && !formObj.NotMission.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotMission.type" [parentFormGroup]="form"
+                  [label]="formObj.NotMission.headerName" [valueName]="'NotMission'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4"
+                *ngIf="formObj.WithCutPay && !formObj.WithCutPay.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WithCutPay.type" [parentFormGroup]="form"
+                  [label]="formObj.WithCutPay.headerName" [valueName]="'WithCutPay'" (change)="this.WithCutPay = $event.checked">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="WithCutPay && formObj.CutPayTypeID && !formObj.CutPayTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="CutPayTypeArray" [multiple]="true" (click)="clickFilter('OtherDetail/10018', 'CutPayTypeArray')" 
+                  [parentFormGroup]="form" [label]="formObj.CutPayTypeID.headerName" [valueName]="'CutPayTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.NotInsure && !formObj.NotInsure.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotInsure.type" [parentFormGroup]="form"
+                  [label]="formObj.NotInsure.headerName" [valueName]="'NotInsure'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasInsure && !formObj.HasInsure.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasInsure.type" [parentFormGroup]="form"
+                  [label]="formObj.HasInsure.headerName" [valueName]="'HasInsure'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasDebt && !formObj.HasDebt.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasDebt.type" [parentFormGroup]="form"
+                  [label]="formObj.HasDebt.headerName" [valueName]="'HasDebt'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.NotDebt && !formObj.NotDebt.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotDebt.type" [parentFormGroup]="form"
+                  [label]="formObj.NotDebt.headerName" [valueName]="'NotDebt'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4" *ngIf="formObj.HasCase && !formObj.HasCase.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasCase.type" [parentFormGroup]="form"
+                  [label]="formObj.HasCase.headerName" [valueName]="'HasCase'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4" *ngIf="formObj.NotCase && !formObj.NotCase.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NotCase.type" [parentFormGroup]="form"
+                  [label]="formObj.NotCase.headerName" [valueName]="'NotCase'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasWork && !formObj.HasWork.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasWork.type" [parentFormGroup]="form"
+                  [label]="formObj.HasWork.headerName" [valueName]="'HasWork'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasMov && !formObj.HasMov.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasMov.type" [parentFormGroup]="form" [label]="formObj.HasMov.headerName"
+                  [valueName]="'HasMov'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HasChild && !formObj.HasChild.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasChild.type" [parentFormGroup]="form"
+                  [label]="formObj.HasChild.headerName" [valueName]="'HasChild'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.ListNo && !formObj.ListNo.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="listNoArray" [multiple]="true" (click)="clickFilter('ListNo', 'listNoArray')" 
+                  [parentFormGroup]="form" [label]="formObj.ListNo.headerName" [valueName]="'ListNo'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.PayGroupTypeID && !formObj.PayGroupTypeID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="payGroupTypeList" [multiple]="true" (click)="clickFilter('*OtherDetail/GetAllCurrentPayGroup', 'payGroupTypeList')" 
+                  [parentFormGroup]="form" [label]="formObj.PayGroupTypeID.headerName" [valueName]="'PayGroupTypeID'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.PayDetailID && !formObj.PayDetailID.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="payDetailList" [multiple]="true" (click)="clickFilter('*OtherDetail/GetAllCurrentPay', 'payDetailList')" 
+                  [parentFormGroup]="form" [label]="formObj.PayDetailID.headerName" [valueName]="'PayDetailID'">
+                </custom-input>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<tree-modal *ngIf="showCostCenterModal" [multiple]="true" (nodeSelected)="nodeSelected($event)"
+  [type]="'CostCenterTree'" (closed)="closedCostCenterModal()">
+</tree-modal>

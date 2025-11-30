@@ -1,0 +1,28 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.Code_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Code_Fld.type" [parentFormGroup]="form" [label]="formObj.Code_Fld.headerName"
+          [valueName]="'Code_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CodeDescEnglish_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDescEnglish_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDescEnglish_Fld.headerName" [valueName]="'CodeDescEnglish_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10016'" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld"
+          (changeCombo)="changeType()"></custom-input>
+      </div>
+      <div class="col-sm-12 textArea" *ngIf="!formObj.Query_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Query_Fld.headerName"
+          [valueName]="'Query_Fld'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

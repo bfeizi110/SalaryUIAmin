@@ -1,0 +1,11 @@
+<div style="display: flex">
+  <div class="body">
+    <mat-form-field dir="rtl">
+      <mat-label dir="rtl">جست و جو</mat-label>
+      <input type="text" dir="rtl" matInput placeholder="برای جست و جو بنویسید" [(ngModel)]="filterValue"
+        (ngModelChange)="onKey($event)" (keydown)="$event.stopPropagation()" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <i (click)="clearFilter()" class="fa fa-eraser text-danger erase-icon"></i>
+    <!-- <i *ngIf="type == 'combo' || type == 'multiCombo'" (click)="refreshArray()" class="fa fa-refresh text-primary refresh-icon"></i> -->
+  </div>
+</div>

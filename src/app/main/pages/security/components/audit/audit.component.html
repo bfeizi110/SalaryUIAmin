@@ -1,0 +1,71 @@
+<mat-card appearance="outlined">
+
+  <div class="">
+
+    <div class="form-buttons mt-1">
+
+      <button matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button class="save-button" color="primary"
+        (click)="filter()">
+        <i class="fa fa-search"></i>
+      </button>
+
+      <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button" color="warn"
+        (click)="refresh()">
+        <i class="fa fa-redo-alt"></i>
+      </button>
+
+    </div>
+
+    <div class="form-body">
+
+      <div class="container-fluid">
+
+        <div class="row" *ngIf="showForm" [formGroup]="form">
+
+          <div *ngIf="showSelectPerson" class="col-11 mt-2">
+            <select-personnel [hideFilter]="true" (rowClicked)="onSelectPersonnel($event)">
+            </select-personnel>
+          </div>
+
+          <div *ngIf="this.form.controls.PersonID.value" class="col-1">
+            <i class="fa fa-trash" (click)="clearPerson()"></i>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-2" *ngIf="!formObj.EntitySetName.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [multiple]="true" [comboArray]="entityArray" [parentFormGroup]="form"
+              [label]="formObj.EntitySetName.headerName" [valueName]="'EntitySetName'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-2" *ngIf="!formObj.State.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="stateArray" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.State.headerName" [valueName]="'State'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-2 audit-date" *ngIf="!formObj.FromDate.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.FromDate.headerName"
+              [valueName]="'FromDate'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-2 audit-date" *ngIf="!formObj.ToDate.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'date'" [parentFormGroup]="form" [label]="formObj.ToDate.headerName"
+              [valueName]="'ToDate'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</mat-card>
+
+<div class="mt-1">
+  <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+</div>
+
+<div class="mt-1">
+  <custom-ag-grid *ngIf="showGridProp" class="mt-1" [customGridOption]="gridOptionProp"></custom-ag-grid>
+</div>

@@ -1,0 +1,15 @@
+<mat-card appearance="outlined">
+  <div class="col-sm-2">
+    <custom-input  [type]="'date'" [parentFormGroup]="form" [label]="'تاریخ وقوع خطا'" [valueName]="'date'"
+      (change)="getSelect()">
+    </custom-input>
+  </div>
+  <div class="d-flex mt-1">
+    <button mat-raised-button class="save-button" color="primary" (click)="download()">دریافت فایل خطا</button>
+    <button mat-raised-button class="warning-button" color="accent" (click)="getSelect()">به روز
+      رسانی</button>
+    <button mat-raised-button class="close-button" color="warn" (click)="delete()">حذف</button>
+  </div>
+  <custom-ag-grid [rowNumber]="30" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+  <h3 class="error-detail mt-2" style="direction: ltr" *ngIf="ErrorDetail">{{ErrorDetail}}</h3>
+</mat-card>

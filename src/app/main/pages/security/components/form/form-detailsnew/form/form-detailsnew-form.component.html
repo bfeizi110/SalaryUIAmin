@@ -1,0 +1,160 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- <div class="col-sm-2" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10120'" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld" (changeCombo)="changeType()" >
+        </custom-input>
+      </div> -->
+      <div class="col-sm-3"
+        *ngIf="!formObj.EntityPropertyIDDesc_Fld.ishidden && form.controls.Type_Fld.value == 101201">
+        <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="EntityPropertyUri" [parentFormGroup]="form"
+          (changeCombo)="changeEProperty($event)" [label]="formObj.EntityPropertyID_Fld.headerName"
+          [valueName]="'EntityPropertyID_Fld'" [descValue]="data.EntityPropertyIDDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-2"
+        *ngIf="!formObj.Range_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="formObj.Range_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Range_Fld.headerName" [valueName]="'Range_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-1"
+        *ngIf="!formObj.Ltr_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [ltr]="true" [formObj]="formObj" [type]="formObj.Ltr_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Ltr_Fld.headerName" [valueName]="'Ltr_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-2"
+        *ngIf="!formObj.MultiLineText_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956 && fieldType == 'string'">
+        <custom-input [formObj]="formObj" [type]="formObj.MultiLineText_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.MultiLineText_Fld.headerName" [valueName]="'MultiLineText_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-2"
+        *ngIf="!formObj.MultiLineTextNo_Fld.ishidden && form.controls.MultiLineText_Fld.value && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="formObj.MultiLineTextNo_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.MultiLineTextNo_Fld.headerName" [valueName]="'MultiLineTextNo_Fld'">
+        </custom-input>
+      </div>
+      <!-- <div class="col-sm-3" *ngIf="!formObj.ImageButtonDesc_Fld.ishidden && form.controls.Type_Fld.value == 101202 && DynamicFormType != 10095">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ImageButtonDesc_Fld.type" [parentFormGroup]="form" [label]="formObj.ImageButtonDesc_Fld.headerName"
+          [valueName]="'ImageButtonDesc_Fld'">
+        </custom-input>
+      </div> -->
+      <div class="col-sm-3" *ngIf="!formObj.DisableInput_Fld.ishidden && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="formObj.DisableInput_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DisableInput_Fld.headerName" [valueName]="'DisableInput_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.TabNo_Fld.ishidden && TabCount">
+        <custom-input [formObj]="formObj" [type]="formObj.TabNo_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.TabNo_Fld.headerName" [valueName]="'TabNo_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3"
+        *ngIf="!formObj.HiddenValue_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="formObj.HiddenValue_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.HiddenValue_Fld.headerName" [valueName]="'HiddenValue_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3"
+        *ngIf="!formObj.ShowSize_Fld.ishidden && form.controls.Type_Fld.value == 101201">
+        <custom-input [formObj]="formObj" [type]="formObj.ShowSize_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ShowSize_Fld.headerName" [valueName]="'ShowSize_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3"
+        *ngIf="!formObj.ShowOrder_Fld.ishidden && form.controls.Type_Fld.value == 101201">
+        <custom-input [formObj]="formObj" [type]="formObj.ShowOrder_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ShowOrder_Fld.headerName" [valueName]="'ShowOrder_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-4"
+        *ngIf="ComboUrl && !formObj.DefaultValueDesc_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="ComboUrl" [parentFormGroup]="form"
+          [label]="formObj.DefaultValue_Fld.headerName" [valueName]="'DefaultValue_Fld'"
+          [descValue]="data.DefaultValueDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-12"
+        *ngIf="!ComboUrl && !formObj.DefaultValueDesc_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <custom-input [ltr]="true" [formObj]="formObj" [type]="'string'" [parentFormGroup]="form"
+          [label]="formObj.DefaultValue_Fld.headerName" [valueName]="'DefaultValue_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-1"
+        *ngIf="ComboUrl && !formObj.DefaultValueDesc_Fld.ishidden && form.controls.Type_Fld.value == 101201 && DynamicFormType != 100956">
+        <mat-checkbox [(ngModel)]="isPerson" (change)="ChangePrsValue($event)" dir="rtl">
+          {{'پرسنلی'}}</mat-checkbox>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Group_Fld.ishidden && DynamicFormType != 100956">
+        <custom-input [formObj]="formObj" [type]="formObj.Group_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Group_Fld.headerName" [valueName]="'Group_Fld'">
+        </custom-input>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" *ngIf="!formObj.RequireInRelate_Fld.ishidden && DynamicFormType != 100956">
+          <custom-input [formObj]="formObj" [type]="formObj.RequireInRelate_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.RequireInRelate_Fld.headerName" (change)="changeRelateType('Require')"
+            [valueName]="'RequireInRelate_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-4"
+          *ngIf="!formObj.EntityPropertyRelateIDDescRequireInRelate_Fld.ishidden && form.controls.RequireInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="EntityPropertyUri" [parentFormGroup]="form"
+            [label]="formObj.EntityPropertyRelateIDRequireInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateIDRequireInRelate_Fld'"
+            [descValue]="data.EntityPropertyRelateIDDescRequireInRelate_Fld" (changeCombo)="changeRelate('Require')">
+          </custom-input>
+        </div>
+        <div class="col-sm-5"
+          *ngIf="!formObj.EntityPropertyRelateValueRequireInRelate_Fld.ishidden && form.controls.RequireInRelate_Fld.value && form.controls.EntityPropertyRelateComboRequireInRelate_Fld.value  && form.controls.EntityPropertyRelateIDRequireInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="ComboRelateRequireUrl" [parentFormGroup]="form"
+            [label]="formObj.EntityPropertyRelateValueRequireInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateValueRequireInRelate_Fld'"
+            [descValue]="data.EntityPropertyRelateValueDescRequireInRelate_Fld">
+          </custom-input>
+        </div>
+        <div class="col-sm-5"
+          *ngIf="!formObj.EntityPropertyRelateValueRequireInRelate_Fld.ishidden && form.controls.RequireInRelate_Fld.value && !form.controls.EntityPropertyRelateComboRequireInRelate_Fld.value  && form.controls.EntityPropertyRelateIDRequireInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="form.controls.EntityPropertyRelateTypeRequireInRelate_Fld.value"
+            [parentFormGroup]="form" [label]="formObj.EntityPropertyRelateValueRequireInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateValueRequireInRelate_Fld'">
+          </custom-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" *ngIf="!formObj.HiddenInRelate_Fld.ishidden && DynamicFormType != 100956">
+          <custom-input [formObj]="formObj" [type]="formObj.HiddenInRelate_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.HiddenInRelate_Fld.headerName" (change)="changeRelateType('Hidden')"
+            [valueName]="'HiddenInRelate_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-4"
+          *ngIf="!formObj.EntityPropertyRelateIDDescHiddenInRelate_Fld.ishidden && form.controls.HiddenInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="EntityPropertyUri" [parentFormGroup]="form"
+            [label]="formObj.EntityPropertyRelateIDHiddenInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateIDHiddenInRelate_Fld'"
+            [descValue]="data.EntityPropertyRelateIDDescHiddenInRelate_Fld" (changeCombo)="changeRelate('Hidden')">
+          </custom-input>
+        </div>
+        <div class="col-sm-5"
+          *ngIf="!formObj.EntityPropertyRelateValueHiddenInRelate_Fld.ishidden && form.controls.HiddenInRelate_Fld.value && form.controls.EntityPropertyRelateComboHiddenInRelate_Fld.value  && form.controls.EntityPropertyRelateIDHiddenInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="'combo'" [comboUrl]="ComboRelateHiddenUrl" [parentFormGroup]="form"
+            [label]="formObj.EntityPropertyRelateValueHiddenInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateValueHiddenInRelate_Fld'"
+            [descValue]="data.EntityPropertyRelateValueDescHiddenInRelate_Fld">
+          </custom-input>
+        </div>
+        <div class="col-sm-5"
+          *ngIf="!formObj.EntityPropertyRelateValueHiddenInRelate_Fld.ishidden && form.controls.HiddenInRelate_Fld.value && !form.controls.EntityPropertyRelateComboHiddenInRelate_Fld.value  && form.controls.EntityPropertyRelateIDHiddenInRelate_Fld.value">
+          <custom-input [formObj]="formObj" [type]="form.controls.EntityPropertyRelateTypeHiddenInRelate_Fld.value"
+            [parentFormGroup]="form" [label]="formObj.EntityPropertyRelateValueHiddenInRelate_Fld.headerName"
+            [valueName]="'EntityPropertyRelateValueHiddenInRelate_Fld'">
+          </custom-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</custom-modal>

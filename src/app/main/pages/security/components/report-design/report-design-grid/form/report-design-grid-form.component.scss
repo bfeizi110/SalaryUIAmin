@@ -1,0 +1,15 @@
+:host ::ng-deep textArea mat-form-field {
+   text-align: left;
+  }
+  
+  :host ::ng-deep textarea {
+      text-align: left;
+      overflow-x: hidden;
+      height: 200px !important;
+      line-height: 150%;
+
+  }
+  
+  :host ::ng-deep textArea label {
+      text-align: left
+  }

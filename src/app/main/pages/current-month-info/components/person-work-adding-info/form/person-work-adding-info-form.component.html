@@ -1,0 +1,406 @@
+<div class="form">
+
+  <div class="form-buttons row mt-2">
+
+    <div class="col-sm-4 col-md-4 ">
+      <button mat-raised-button *ngIf="accesses.includes('EditPolicy')" class="save-button" color="primary"
+      (click)="save()">ذخیره</button>
+    </div>
+    <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+      <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+    </div>
+
+  </div>
+
+  <div *ngIf="showForm" class="form-body">
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-----------------------------55555--------------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 5</legend>
+
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding5_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding5_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding5_Fld.headerName" [valueName]="'WorkAdding5_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin5_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin5_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin5_Fld.headerName" [valueName]="'WorkAddingMin5_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding5_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding5_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding5_Fld.headerName" [valueName]="'PriceWorkAdding5_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding5_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding5_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding5_Fld.headerName" [valueName]="'RateWorkAdding5_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc5_Fld.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                    [label]="formObj.WorkAddingList5_Fld.headerName" [valueName]="'WorkAddingList5_Fld'"
+                    [descValue]="data.WorkAddingListDesc5_Fld">
+                  </custom-input>
+                  <div class="dropdown">
+                    <button class="btn" style="border-left:1px ">
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a class="fa fa-eye" (click)="onGetLastList(5)" title="آخرین لیست انتخاب شده"></a>
+                      <a class="fa fa-plus" (click)="onAddList(5)" title="ایجاد لیست جدید"></a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice5_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice5_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice5_Fld.headerName" [valueName]="'WorkAddingFinalPrice5_Fld'">
+                </custom-input>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!--------------------------------6666------------------------------------------------>
+          <fieldset class="mt-2">
+            <legend>نوع 6</legend>
+
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding6_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding6_Fld.headerName" [valueName]="'WorkAdding6_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin6_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin6_Fld.headerName" [valueName]="'WorkAddingMin6_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding6_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding6_Fld.headerName" [valueName]="'PriceWorkAdding6_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding6_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding6_Fld.headerName" [valueName]="'RateWorkAdding6_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList6_Fld.headerName" [valueName]="'WorkAddingList6_Fld'"
+                  [descValue]="data.WorkAddingListDesc6_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(6)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(6)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice6_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice6_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice6_Fld.headerName" [valueName]="'WorkAddingFinalPrice6_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-------------------------------7777------------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 7</legend>
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding7_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding7_Fld.headerName" [valueName]="'WorkAdding7_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin7_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin7_Fld.headerName" [valueName]="'WorkAddingMin7_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding7_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding7_Fld.headerName" [valueName]="'PriceWorkAdding7_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding7_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding7_Fld.headerName" [valueName]="'RateWorkAdding7_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList7_Fld.headerName" [valueName]="'WorkAddingList7_Fld'"
+                  [descValue]="data.WorkAddingListDesc7_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(7)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(7)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice7_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice7_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice7_Fld.headerName" [valueName]="'WorkAddingFinalPrice7_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-----------------------------------8888--------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 8</legend>
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding8_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding8_Fld.headerName" [valueName]="'WorkAdding8_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin8_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin8_Fld.headerName" [valueName]="'WorkAddingMin8_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding8_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding8_Fld.headerName" [valueName]="'PriceWorkAdding8_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding8_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding8_Fld.headerName" [valueName]="'RateWorkAdding8_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList8_Fld.headerName" [valueName]="'WorkAddingList8_Fld'"
+                  [descValue]="data.WorkAddingListDesc8_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(8)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(8)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice8_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice8_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice8_Fld.headerName" [valueName]="'WorkAddingFinalPrice8_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-----------------------------9999--------------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 9</legend>
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding9_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding9_Fld.headerName" [valueName]="'WorkAdding9_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin9_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin9_Fld.headerName" [valueName]="'WorkAddingMin9_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding9_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding9_Fld.headerName" [valueName]="'PriceWorkAdding9_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding9_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding9_Fld.headerName" [valueName]="'RateWorkAdding9_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList9_Fld.headerName" [valueName]="'WorkAddingList9_Fld'"
+                  [descValue]="data.WorkAddingListDesc9_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(9)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(9)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice9_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice9_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice9_Fld.headerName" [valueName]="'WorkAddingFinalPrice9_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-----------------------------10101010--------------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 10</legend>
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding10_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding10_Fld.headerName" [valueName]="'WorkAdding10_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin10_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin10_Fld.headerName" [valueName]="'WorkAddingMin10_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding10_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding10_Fld.headerName" [valueName]="'PriceWorkAdding10_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding10_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding9_Fld.headerName" [valueName]="'RateWorkAdding10_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList10_Fld.headerName" [valueName]="'WorkAddingList10_Fld'"
+                  [descValue]="data.WorkAddingListDesc10_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(10)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(10)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice10_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice10_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice10_Fld.headerName" [valueName]="'WorkAddingFinalPrice10_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <!-----------------------------111111--------------------------------------------------->
+          <fieldset class="mt-2">
+            <legend>نوع 11</legend>
+            <div class="row">
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAdding11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding11_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAdding11_Fld.headerName" [valueName]="'WorkAdding11_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingMin11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin11_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingMin11_Fld.headerName" [valueName]="'WorkAddingMin11_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.PriceWorkAdding11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding11_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.PriceWorkAdding11_Fld.headerName" [valueName]="'PriceWorkAdding11_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.RateWorkAdding11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding11_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.RateWorkAdding11_Fld.headerName" [valueName]="'RateWorkAdding11_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingListDesc11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingList11_Fld.headerName" [valueName]="'WorkAddingList11_Fld'"
+                  [descValue]="data.WorkAddingListDesc11_Fld">
+                </custom-input>
+                <div class="dropdown">
+                  <button class="btn" style="border-left:1px ">
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a class="fa fa-eye" (click)="onGetLastList(11)" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fa fa-plus" (click)="onAddList(11)" title="ایجاد لیست جدید"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12" *ngIf="!formObj.WorkAddingFinalPrice11_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingFinalPrice11_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.WorkAddingFinalPrice11_Fld.headerName" [valueName]="'WorkAddingFinalPrice11_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<list-no-form-direct *ngIf="showListNoForm" (done)="submitedListNo($event)" (closed)="closeFormListNo()">  </list-no-form-direct>

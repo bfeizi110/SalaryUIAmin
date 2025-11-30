@@ -1,0 +1,305 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">نوع وام</mat-label>
+      <mat-select dir="rtl" [(ngModel)]="debtId" (selectionChange)="debtChange($event.value)">
+        <mat-option>-</mat-option>
+        <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</mat-card>
+
+<mat-card appearance="outlined" class="mt-4" *ngIf="showForm">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button mat-raised-button class="save-button" color="primary" (click)="put()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body">
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-3" *ngIf="!formObj.CalcTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'DebtFormula'" [parentFormGroup]="form"
+              [descValue]="data.CalcTypeDesc_Fld" [label]="formObj.CalcType_Fld.headerName"
+              [valueName]="'CalcType_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BenefitPayTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10'" [parentFormGroup]="form"
+              [descValue]="data.BenefitPayTypeDesc_Fld" [label]="formObj.BenefitPayType_Fld.headerName"
+              [valueName]="'BenefitPayType_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.FixedPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.FixedPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.FixedPrice_Fld.headerName" [valueName]="'FixedPrice_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MinSavingPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MinSavingPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MinSavingPrice_Fld.headerName" [valueName]="'MinSavingPrice_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxSavingPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxSavingPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxSavingPrice_Fld.headerName" [valueName]="'MaxSavingPrice_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Rate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Rate_Fld.type" [parentFormGroup]="form" [label]="formObj.Rate_Fld.headerName"
+              [valueName]="'Rate_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.RateSpecial_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.RateSpecial_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.RateSpecial_Fld.headerName" [valueName]="'RateSpecial_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.RateLating_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.RateLating_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.RateLating_Fld.headerName" [valueName]="'RateLating_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxPartNumber_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxPartNumber_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxPartNumber_Fld.headerName" [valueName]="'MaxPartNumber_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxPartNumberSpecial_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxPartNumberSpecial_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxPartNumberSpecial_Fld.headerName" [valueName]="'MaxPartNumberSpecial_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MinPartPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MinPartPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MinPartPrice_Fld.headerName" [valueName]="'MinPartPrice_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.CalcZarib_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcZarib_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcZarib_Fld.headerName" [valueName]="'CalcZarib_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.CalcZaribSpecial_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcZaribSpecial_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcZaribSpecial_Fld.headerName" [valueName]="'CalcZaribSpecial_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.AcceptSubsRecord_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AcceptSubsRecord_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AcceptSubsRecord_Fld.headerName" [valueName]="'AcceptSubsRecord_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.AcceptSubsRecordSpecial_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AcceptSubsRecordSpecial_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AcceptSubsRecordSpecial_Fld.headerName" [valueName]="'AcceptSubsRecordSpecial_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.SavingPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.SavingPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.SavingPrice_Fld.headerName" [valueName]="'SavingPrice_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPriceSpecial_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxDebtPriceSpecial_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxDebtPriceSpecial_Fld.headerName" [valueName]="'MaxDebtPriceSpecial_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MinGapMonthes_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MinGapMonthes_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MinGapMonthes_Fld.headerName" [valueName]="'MinGapMonthes_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.CheckPayPower_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CheckPayPower_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CheckPayPower_Fld.headerName" [valueName]="'CheckPayPower_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Insured_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Insured_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Insured_Fld.headerName" [valueName]="'Insured_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.ForPersons_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.ForPersons_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.ForPersons_Fld.headerName" [valueName]="'ForPersons_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.ForBaznesh_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.ForBaznesh_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.ForBaznesh_Fld.headerName" [valueName]="'ForBaznesh_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Mojaz_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Mojaz_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Mojaz_Fld.headerName" [valueName]="'Mojaz_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.HaveSaving_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.HaveSaving_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.HaveSaving_Fld.headerName" [valueName]="'HaveSaving_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3 mt-2" *ngIf="!formObj.SavingCodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Saving'" [parentFormGroup]="form"
+              [descValue]="data.SavingCodeDesc_Fld" [label]="formObj.SavingCode_Fld.headerName"
+              [valueName]="'SavingCode_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.AddWith_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AddWith_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AddWith_Fld.headerName" [valueName]="'AddWith_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3 mt-2" *ngIf="!formObj.HaveHireCheckDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+              [descValue]="data.HaveHireCheckDesc_Fld" [label]="formObj.HaveHireCheck_Fld.headerName"
+              [valueName]="'HaveHireCheck_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3 mt-2" *ngIf="!formObj.HaveGCheckDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+              [descValue]="data.HaveGCheckDesc_Fld" [label]="formObj.HaveGCheck_Fld.headerName"
+              [valueName]="'HaveGCheck_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.SettleAccountNo_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.SettleAccountNo_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.SettleAccountNo_Fld.headerName" [valueName]="'SettleAccountNo_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.GuarantorNeeded_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.GuarantorNeeded_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.GuarantorNeeded_Fld.headerName" [valueName]="'GuarantorNeeded_Fld'"></custom-input>
+          </div>
+
+          <fieldset class="mt-2">
+            <legend>تعداد ضامنین</legend>
+
+            <div class="row">
+              <div class="col-sm-4" *ngIf="!formObj.FPrice1_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.FPrice1_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.FPrice1_Fld.headerName" [valueName]="'FPrice1_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.TPrice1_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TPrice1_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TPrice1_Fld.headerName" [valueName]="'TPrice1_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.GNumber1_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.GNumber1_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.GNumber1_Fld.headerName" [valueName]="'GNumber1_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.FPrice2_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.FPrice2_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.FPrice2_Fld.headerName" [valueName]="'FPrice2_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.TPrice2_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TPrice2_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TPrice2_Fld.headerName" [valueName]="'TPrice2_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.GNumber2_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.GNumber2_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.GNumber2_Fld.headerName" [valueName]="'GNumber2_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.FPrice3_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.FPrice3_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.FPrice3_Fld.headerName" [valueName]="'FPrice3_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.TPrice3_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TPrice3_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TPrice3_Fld.headerName" [valueName]="'TPrice3_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.GNumber3_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.GNumber3_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.GNumber3_Fld.headerName" [valueName]="'GNumber3_Fld'">
+                </custom-input>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxDebtPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxDebtPrice_Fld.headerName" [valueName]="'MaxDebtPrice_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPrice2_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxDebtPrice2_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxDebtPrice2_Fld.headerName" [valueName]="'MaxDebtPrice2_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPrice3_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaxDebtPrice3_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaxDebtPrice3_Fld.headerName" [valueName]="'MaxDebtPrice3_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPriceEmp1_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="hireTypeList" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.MaxDebtPriceEmp1_Fld.headerName" [valueName]="'MaxDebtPriceEmp1_Fld'"
+              [placeholder]="'انتخاب چندگانه'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MaxDebtPriceEmp2_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="hireTypeList" [multiple]="true" [parentFormGroup]="form "
+              [label]="formObj.MaxDebtPriceEmp2_Fld.headerName" [valueName]="'MaxDebtPriceEmp2_Fld'"
+              [placeholder]="'انتخاب چندگانه'"></custom-input>
+          </div>
+
+          <div class="col-sm-3 " *ngIf="!formObj.MaxDebtPriceEmp3_Fld.ishidden ">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="hireTypeList" [multiple]="true" [parentFormGroup]="form "
+              [label]="formObj.MaxDebtPriceEmp3_Fld.headerName" [valueName]="'MaxDebtPriceEmp3_Fld'"
+              [placeholder]="'انتخاب چندگانه'"></custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

@@ -1,0 +1,6 @@
+<custom-ag-grid [rowNumber]="20" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <menu-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </menu-form>
+</div>

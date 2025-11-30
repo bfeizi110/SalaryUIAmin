@@ -1,0 +1,19 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CalcTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CalcTypeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CalcTypeDesc_Fld.headerName" [valueName]="'CalcTypeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.CalcTypeFormula_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CalcTypeFormula_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CalcTypeFormula_Fld.headerName" [valueName]="'CalcTypeFormula_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.CalcTypeRefahFormula_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CalcTypeRefahFormula_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CalcTypeRefahFormula_Fld.headerName" [valueName]="'CalcTypeRefahFormula_Fld'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

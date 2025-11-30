@@ -1,0 +1,27 @@
+.fa-calculator {
+    margin-right: 5px;
+}
+
+div > mat-checkbox {
+    position: absolute;
+    margin: 16px -3px 0px 0px
+  }
+  
+.small-checkbox {
+  margin: 21px 1px 0px 0px !important
+}
+  
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+mat-checkbox {
+  transform: scale(0.8) !important;
+}
+  
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+.small-checkbox .mat-focused .mat-form-field-ripple, ::ng-deep .small-checkbox.mat-checkbox-checked.mat-accent .mat-checkbox-background, ::ng-deep .small-checkbox .mat-radio-button.mat-warn .mat-radio-inner-circle {
+    background-color: red !important;
+}
+
+.start_end_date {
+    display: inline-block;
+    width: 100%;
+  }

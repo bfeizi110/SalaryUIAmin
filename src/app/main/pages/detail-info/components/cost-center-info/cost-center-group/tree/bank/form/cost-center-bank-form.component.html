@@ -1,0 +1,11 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.BankBranchCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'BankBranch'" [parentFormGroup]="form"
+          [label]="formObj.BankBranchCode_Fld.headerName" [valueName]="'BankBranchCode_Fld'"
+          [descValue]="data.BankBranchCodeDesc_Fld"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

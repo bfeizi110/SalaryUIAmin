@@ -1,0 +1,18 @@
+<custom-modal [customClass]="'pack-modal-custom1650'" [modalOptions]="modalOptions">
+  <div class="container-fluid" *ngIf="isFish">
+    <div class="row">
+      <div class="col-sm-2">
+        <mat-form-field dir="rtl">
+          <mat-label dir="rtl" > وضعیت اطلاعات فیش </mat-label>
+          <mat-select dir="rtl"
+            (selectionChange)="ComboChange($event.value)" >
+            <mat-option dir="rtl" *ngFor="let item of comboData" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+   
+      </div>
+    </div>
+  </div>
+
+  <stimulsoft-viewer-report-renderer *ngIf="showReport" [data]="stimulsoftData"></stimulsoft-viewer-report-renderer>
+</custom-modal>

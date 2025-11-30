@@ -1,0 +1,41 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="row">
+        <div class="col-sm-2" *ngIf="!formObj.TabNo_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.TabNo_Fld.type" [parentFormGroup]="form" [label]="formObj.TabNo_Fld.headerName"
+            [valueName]="'TabNo_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.TabName_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.TabName_Fld.type" [parentFormGroup]="form" [label]="formObj.TabName_Fld.headerName"
+            [valueName]="'TabName_Fld'">
+          </custom-input>
+        </div>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.MasterDetailIDDesc_Fld.ishidden && MasterType == 100954">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'FormMasterDetails/' + MasterID" [parentFormGroup]="form"
+          [label]="formObj.MasterDetailID_Fld.headerName" [valueName]="'MasterDetailID_Fld'" [descValue]="data.MasterDetailIDDesc_Fld"
+          (changeCombo)="getCombosMaster()">
+        </custom-input>
+      </div>
+      <div class="col-lg-6 col-md-6" *ngIf="!formObj.MasterPKeys_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="MasterFieldList" [multiple]="true" [parentFormGroup]="form"
+          [label]="formObj.MasterPKeys_Fld.headerName" [valueName]="'MasterPKeys_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.DetailFormIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="DetailFormUrl" [parentFormGroup]="form"
+          [label]="formObj.DetailFormID_Fld.headerName" [valueName]="'DetailFormID_Fld'" [descValue]="data.DetailFormIDDesc_Fld"
+          (changeCombo)="getCombos()">
+        </custom-input>
+      </div>
+
+      <div class="col-lg-6 col-md-6" *ngIf="!formObj.DetailFKeys_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="DetailFieldList" [multiple]="true" [parentFormGroup]="form"
+          [label]="formObj.DetailFKeys_Fld.headerName" [valueName]="'DetailFKeys_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

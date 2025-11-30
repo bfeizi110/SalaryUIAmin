@@ -1,0 +1,271 @@
+<mat-card appearance="outlined">
+  <button mat-flat-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  <mat-tab-group *ngIf="showForm" class="mt-1" dir="rtl">
+
+    <mat-tab dir="rtl" label="فرم">
+
+      <div class="form">
+
+        <div class="form-buttons">
+
+          <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+            (click)="save()">ذخیره
+          </button>
+        </div>
+
+        <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+          <div class="container-fluid">
+            <div class="row" *ngIf="showForm">
+
+              <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4"
+                *ngIf="formObj.CaseKindDesc_Fld && !formObj.CaseKindDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [descValue]="caseKindDesc" [parentFormGroup]="form"
+                  [label]="formObj.Casekind_Fld.headerName" [valueName]="'Casekind_Fld'" [comboArray]="caseKindList"
+                  (changeCombo)="caseKindChange()">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4"
+                *ngIf="formObj.CodeDesc_Fld && !formObj.CodeDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4"
+                *ngIf="formObj.NewPayTypeDesc_Fld && !formObj.NewPayTypeDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10009'" [descValue]="data.NewPayTypeDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.NewPayTypeDesc_Fld.headerName"
+                  [valueName]="'NewPayType_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6"
+                *ngIf="formObj.TaxPayTypeDesc_Fld && !formObj.TaxPayTypeDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10114'" [descValue]="data.TaxPayType1403Desc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.TaxPayType1403_Fld.headerName" [valueName]="'TaxPayType1403_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6"
+                *ngIf="formObj.TaxPayType1403Desc_Fld && !formObj.TaxPayType1403Desc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10005'" [descValue]="data.TaxPayTypeDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.TaxPayType_Fld.headerName" [valueName]="'TaxPayType_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6"
+                *ngIf="formObj.AccTypeDesc_Fld && !formObj.AccTypeDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="'OtherDetail/10002'"
+                  [label]="formObj.AccType_Fld.headerName" [valueName]="'AccType_Fld'"
+                  [descValue]="data.AccTypeDesc_Fld">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3"
+                *ngIf="formObj.CalcInsure_Fld && !formObj.CalcInsure_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CalcInsure_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CalcInsure_Fld.headerName" [valueName]="'CalcInsure_Fld'"
+                  (change)="changeCalcInsure()">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6"
+                *ngIf="formObj.InsureCode_Fld && !formObj.InsureCode_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="insureCodeList" [multiple]="true"
+                  [parentFormGroup]="form " [label]="formObj.InsureCode_Fld.headerName" [valueName]="'InsureCode_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2"
+                *ngIf="formObj.CalcTax_Fld && !formObj.CalcTax_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CalcTax_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CalcTax_Fld.headerName" [valueName]="'CalcTax_Fld'" (change)="changeCalcTax()">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4"
+                *ngIf="formObj.TaxBaseTableDesc_Fld && !formObj.TaxBaseTableDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaxBaseTable'" [descValue]="data.TaxBaseTableDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.TaxBaseTable_Fld.headerName"
+                  [valueName]="'TaxBaseTable_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5"
+                *ngIf="formObj.SplitPrice_Fld && !formObj.SplitPrice_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SplitPrice_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.SplitPrice_Fld.headerName" [valueName]="'SplitPrice_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6"
+                *ngIf="formObj.OneDayOrHour_Fld && !formObj.OneDayOrHour_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.OneDayOrHour_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.OneDayOrHour_Fld.headerName" [valueName]="'OneDayOrHour_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HokmStatusDesc_Fld && !formObj.HokmStatusDesc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10007'" [descValue]="data.HokmStatusDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.HokmStatus_Fld.headerName" [valueName]="'HokmStatus_Fld'"
+                  (changeCombo)="hokmStatusChange()">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-2" *ngIf="formObj.HokmYear_Fld && !formObj.HokmYear_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HokmYear_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.HokmYear_Fld.headerName" [valueName]="'HokmYear_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-lg-2 col-md-3" *ngIf="formObj.HokmMonth_Fld && !formObj.HokmMonth_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HokmMonth_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.HokmMonth_Fld.headerName" [valueName]="'HokmMonth_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3"
+                *ngIf="formObj.CasePriceMax_Fld && !formObj.CasePriceMax_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CasePriceMax_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CasePriceMax_Fld.headerName" [valueName]="'CasePriceMax_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3"
+                *ngIf="formObj.DayMax_Fld && !formObj.DayMax_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.DayMax_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.DayMax_Fld.headerName" [valueName]="'DayMax_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3"
+                *ngIf="formObj.HourMax_Fld && !formObj.HourMax_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HourMax_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.HourMax_Fld.headerName" [valueName]="'HourMax_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-lg-2 col-md-3"
+                *ngIf="formObj.WorkAddingDesc_Fld && !formObj.WorkAddingDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'WorkAddingDefine'" [descValue]="data.WorkAddingDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.WorkAdding_Fld.headerName" [valueName]="'WorkAdding_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3"
+                *ngIf="formObj.SanavatMax_Fld && !formObj.SanavatMax_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SanavatMax_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.SanavatMax_Fld.headerName" [valueName]="'SanavatMax_Fld'">
+                </custom-input>
+              </div>
+
+              <!-- محاسبه بر اساس -->
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5"
+                *ngIf="formObj.CalcBaseDesc_Fld && !formObj.CalcBaseDesc_Fld?.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10003'" [descValue]="data.CalcBaseDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.CalcBase_Fld.headerName" [valueName]="'CalcBase_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3"
+                *ngIf="formObj.FormulaBase_Fld && !formObj.FormulaBase_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.FormulaBase_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.FormulaBase_Fld.headerName" [valueName]="'FormulaBase_Fld'"
+                  (change)="changeFormulaBase()">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-3" *ngIf="formObj.FormulaDesc_Fld && !formObj.FormulaDesc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+                  [label]="formObj.Formula_Fld.headerName" [valueName]="'Formula_Fld'"
+                  [descValue]="data.FormulaDesc_Fld">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5"
+                *ngIf="formObj.SpeedDisplay_Fld && !formObj.SpeedDisplay_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SpeedDisplay_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.SpeedDisplay_Fld.headerName" [valueName]="'SpeedDisplay_Fld'"
+                  (change)="changeSpeedDisplay()">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3"
+                *ngIf="formObj.SpeedDisplayPrice_Fld && !formObj.SpeedDisplayPrice_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SpeedDisplayPrice_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.SpeedDisplayPrice_Fld.headerName" [valueName]="'SpeedDisplayPrice_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3"
+                *ngIf="formObj.TaxManual_Fld && !formObj.TaxManual_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TaxManual_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TaxManual_Fld.headerName" [valueName]="'TaxManual_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3"
+                *ngIf="formObj.InActive_Fld && !formObj.InActive_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.InActive_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.InActive_Fld.headerName" [valueName]="'InActive_Fld'">
+                </custom-input>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab *ngIf="formObj.HokmStatusDesc_Fld && !formObj.HokmStatusDesc_Fld.ishidden" dir="rtl" label="معرفی پارامترهای استخدام">
+      <ng-template matTabContent>
+        <ng-container>
+          <div class="col-sm-3">
+            <mat-form-field (click)="clickCombo()" dir="rtl">
+              <mat-label dir="rtl">نوع استخدام</mat-label>
+              <mat-select dir="rtl" (selectionChange)="hireTypeChange($event.value)">
+                <mat-option *ngIf="hireTypeList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="hireTypeList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+                </mat-filter>
+                <mat-option dir="rtl" *ngFor="let item of hireTypeList" [value]="item.Id">{{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row mt-1 access-grid" *ngIf="showGridNotAccess">
+            <div class="col-lg">
+              <p class="text-center">کلیه پارامترها</p>
+              <custom-ag-grid *ngIf="showGridNotAccess" [customGridOption]="gridOptionNotAccess">
+              </custom-ag-grid>
+            </div>
+            <div class="col-lg-1">
+              <div class="buttons">
+                <div>
+                  <i class="fa fa-hand-o-left text-success" [class.disable-icon]="selectedNotAcccessList.length == 0"
+                    (click)="addAccess()"></i>
+                </div>
+                <div>
+                  <i class="fa fa-hand-o-right text-danger" [class.disable-icon]="selectedAcccessList.length == 0"
+                    (click)="removeAccess()"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg">
+              <p class="text-center">پارامترهای انتخاب شده</p>
+              <custom-ag-grid *ngIf="showGridAccess" [customGridOption]="gridOptionAccess">
+              </custom-ag-grid>
+            </div>
+          </div>
+
+        </ng-container>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>

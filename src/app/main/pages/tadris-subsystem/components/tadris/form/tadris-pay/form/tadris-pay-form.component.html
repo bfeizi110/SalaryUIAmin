@@ -1,0 +1,28 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.TadrisPayTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TadrisPayType'" [parentFormGroup]="form"
+          [label]="formObj.TadrisPayType_Fld.headerName" [valueName]="'TadrisPayType_Fld'"
+          [descValue]="data.TadrisPayTypeDesc_Fld" (change)="PayTypeChanged($event)">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.Vahed_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Vahed_Fld.type" [parentFormGroup]="form" [label]="formObj.Vahed_Fld.headerName"
+          [valueName]="'Vahed_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.Hour_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Hour_Fld.type" [parentFormGroup]="form" [label]="formObj.Hour_Fld.headerName"
+          [valueName]="'Hour_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-4" *ngIf="!formObj.ManualRate_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ManualRate_Fld.type" [parentFormGroup]="form" [label]="formObj.ManualRate_Fld.headerName"
+          [valueName]="'ManualRate_Fld'" >
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

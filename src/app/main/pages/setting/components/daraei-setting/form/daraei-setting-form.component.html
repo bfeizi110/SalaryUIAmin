@@ -1,0 +1,127 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.DaraiBankIDDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="'BankBranch'"
+              [label]="formObj.DaraiBankID_Fld.headerName" [valueName]="'DaraiBankID_Fld'"
+              [descValue]="data.DaraiBankIDDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.AccountNo_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccountNo_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccountNo_Fld.headerName" [valueName]="'AccountNo_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.EtebarYear_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.EtebarYear_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.EtebarYear_Fld.headerName" [valueName]="'EtebarYear_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.RadifBudget_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.RadifBudget_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.RadifBudget_Fld.headerName" [valueName]="'RadifBudget_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.State_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.State_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.State_Fld.headerName" [valueName]="'State_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.Township_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Township_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Township_Fld.headerName" [valueName]="'Township_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.PayUser_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.PayUser_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.PayUser_Fld.headerName" [valueName]="'PayUser_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.PayManager_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.PayManager_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.PayManager_Fld.headerName" [valueName]="'PayManager_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.MaliManager_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MaliManager_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MaliManager_Fld.headerName" [valueName]="'MaliManager_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.AccTax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccTax_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccTax_Fld.headerName" [valueName]="'AccTax_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.AccBaznesh_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccBaznesh_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccBaznesh_Fld.headerName" [valueName]="'AccBaznesh_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.AccKhadamat_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccKhadamat_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccKhadamat_Fld.headerName" [valueName]="'AccKhadamat_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.AccTamin_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccTamin_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccTamin_Fld.headerName" [valueName]="'AccTamin_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.AccSayer_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccSayer_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccSayer_Fld.headerName" [valueName]="'AccSayer_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.NationalCodeOffice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NationalCodeOffice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NationalCodeOffice_Fld.headerName" [valueName]="'NationalCodeOffice_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.InActive_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.InActive_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.InActive_Fld.headerName" [valueName]="'InActive_Fld'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

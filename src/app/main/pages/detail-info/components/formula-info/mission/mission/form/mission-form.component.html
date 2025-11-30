@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.MissionDefineDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'MissionDefine'" [parentFormGroup]="form"
+          [label]="formObj.MissionDefine_Fld.headerName" [descValue]="data.MissionDefineDesc_Fld"
+          [valueName]="'MissionDefine_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.HireTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'HireType'" [parentFormGroup]="form"
+          [label]="formObj.HireType_Fld.headerName" [descValue]="data.HireTypeDesc_Fld" [valueName]="'HireType_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

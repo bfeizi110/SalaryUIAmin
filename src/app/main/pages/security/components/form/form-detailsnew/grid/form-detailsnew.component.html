@@ -1,0 +1,25 @@
+<button mat-raised-button class="close-button" color="primary" (click)="shDynamicForm()" >نمایش فرم</button>
+<button *ngIf="DynamicFormType != 100954" mat-raised-button class="close-button" color="accent" (click)="CopyDynamicForm()" >کپی جزئیات از سایر فرمها</button>
+
+<custom-ag-grid [rowNumber]="20" *ngIf="showGrid && DynamicFormType != 100954" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <form-detailsnew-form [formObj]="formObj" [EntityName]="EntityName" [FormID]="FormID" [ID]="ID" [DynamicFormType]="DynamicFormType" [TabCount]="TabCount"
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </form-detailsnew-form>
+</div>
+<custom-modal  *ngIf="showDynamicForm" [customClass]="'pack-modal-custom900'" [modalOptions]="modalOptions">
+  <dynamic-form-type1  [FormID]="FormID" [ID]="0" [FormType]="'Add'" (closed)="closeDynamicForm()" ></dynamic-form-type1>
+</custom-modal>
+
+<custom-modal  *ngIf="showCopyForm" [modalOptions]="modalOptionsCopy">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="ComboCopyUrl" [parentFormGroup]="form"
+          [label]="'از فرم'" [valueName]="'ToFormID'" >
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

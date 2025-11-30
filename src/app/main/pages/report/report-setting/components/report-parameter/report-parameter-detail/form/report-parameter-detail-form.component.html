@@ -1,0 +1,20 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6" *ngIf="!formObj.HireTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'HireType'" [parentFormGroup]="form"
+          [label]="formObj.HireType_Fld.headerName" [valueName]="'HireType_Fld'" [descValue]="data.HireTypeDesc_Fld"
+          (changeCombo)="changeHireType()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.ParamIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="paramUrl" [parentFormGroup]="form"
+          [label]="formObj.ParamID_Fld.headerName" [valueName]="'ParamID_Fld'" [descValue]="data.ParamIDDesc_Fld">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

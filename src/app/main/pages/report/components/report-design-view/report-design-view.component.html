@@ -1,0 +1,154 @@
+<mat-card appearance="outlined">
+
+  <div class="container-fluid">
+
+    <div *ngIf="ReportDesignFilterViewDto.length > 0" class="row">
+      <fieldset class="mt-1">
+        <legend>فیلتر</legend>
+        <div class="row">
+          <div *ngFor="let item of ReportDesignFilterViewDto  let i = index" class="col-sm-4 d-flex">
+
+            <mat-form-field  class="mat-combo" [ngStyle]="{'background-color': ReportDesignFilterViewDto[i].BackColor_Fld }"
+              *ngIf="item.FilterID_Fld == 100471 || item.FilterID_Fld == 100478 || item.FilterID_Fld == 100472 || item.FilterID_Fld == 100476"
+              dir="rtl"
+              (click)="clickReportDesignFilter(ReportDesignFilterViewDto[i].Id, i, item.FilterID_Fld,item.FilterFldName_Fld)">
+              <mat-label dir="rtl" [ngStyle]="item.NothingByDefault_Fld ? {'color': '#389728' } : null">{{item.FilterIDDesc_Fld}}</mat-label>
+              <mat-select dir="rtl"  [disabled]="true" [class.disable]="true" [(ngModel)]="model[item.FilterFldName_Fld]" 
+                (ngModelChange)="reportDesignFilterViewChange(item.Id, item.FilterFldName_Fld)"
+                [multiple]="item.MultiSelect_Fld">
+                <ng-container *ngIf="ReportDesignFilterLists[i] && ReportDesignFilterLists[i].length != 0">
+                  <mat-option dir="rtl" *ngFor="let item of ReportDesignFilterLists[i]" [value]="item.Id">
+                    {{item.CodeDesc_Fld}}
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+
+            <i *ngIf="(model[item.FilterFldName_Fld] != {} || model[item.FilterFldName_Fld].length > 0) && item.FilterID_Fld == 100471 || item.FilterID_Fld == 100478 || item.FilterID_Fld == 100472 || item.FilterID_Fld == 100476"
+              class="fa fa-trash fa-trash-button position-relative"
+              (click)="clear(item.FilterFldName_Fld, item.MultiSelect_Fld)">
+            </i>
+
+            <div class="col-sm-10" *ngIf="item.UseFilterID_Fld && item.FilterID_Fld != 100471 && item.FilterID_Fld != 100478 && item.FilterID_Fld != 100472 && item.FilterID_Fld != 100476" >
+              <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [ngStyle]="{'background-color': ReportDesignFilterViewDto[i].BackColor_Fld }"
+                [comboArray]="ReportDesignFilterLists[i]" [parentFormGroup]="form" [multiple]="item.MultiSelect_Fld"
+                [label]="item.FilterIDDesc_Fld" [valueName]="item.FilterFldName_Fld" [descValue]="'CodeDesc_Fld'"
+                [labelColor]="item.NothingByDefault_Fld ? '#389728' : null"
+                (changeCombo)="reportDesignFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                (click)="clickReportDesignFilter(ReportDesignFilterViewDto[i].Id, i, item.FilterID_Fld, item.FilterFldName_Fld)">
+              </custom-input>
+            </div>
+            <div class="col-sm-10" *ngIf="!item.UseFilterID_Fld">
+              <div *ngIf="item.InputType_Fld != 'combo' && item.InputType_Fld != 'multiCombo'">
+                <custom-input  [formObj]="formObj" [type]="item.InputType_Fld" [parentFormGroup]="form" [label]="item.FilterIDDesc_Fld" [ngStyle]="{'background-color': ReportDesignFilterViewDto[i].BackColor_Fld }"
+                [valueName]="item.FilterFldName_Fld" (change)="reportDesignFilterViewDynamicNotComboChange(item.FilterFldName_Fld)">
+                </custom-input>
+              </div>
+              <div *ngIf="item.InputType_Fld == 'combo'">
+                <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="ReportDesignFilterLists[i]" [multiple]="false" [descValue]="'CodeDesc_Fld'" [ngStyle]="{'background-color': ReportDesignFilterViewDto[i].BackColor_Fld }"
+                [parentFormGroup]="form" [label]="item.FilterIDDesc_Fld" [valueName]="item.FilterFldName_Fld" (changeCombo)="reportDesignFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                (click)="clickReportDesignFilter(ReportDesignFilterViewDto[i].Id, i, item.FilterID_Fld, item.FilterFldName_Fld)">
+                </custom-input>
+              </div>
+              <div *ngIf="item.InputType_Fld == 'multiCombo'">
+                <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="ReportDesignFilterLists[i]" [multiple]="true" [descValue]="'CodeDesc_Fld'" [ngStyle]="{'background-color': ReportDesignFilterViewDto[i].BackColor_Fld }"
+                [parentFormGroup]="form" [label]="item.FilterIDDesc_Fld" [valueName]="item.FilterFldName_Fld" (changeCombo)="reportDesignFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                (click)="clickReportDesignFilter(ReportDesignFilterViewDto[i].Id, i, item.FilterID_Fld, item.FilterFldName_Fld)">
+                </custom-input>
+              </div>
+            </div>
+
+
+
+            <!-- <mat-form-field dir="rtl" class="mat-combo"
+              *ngIf="item.FilterID_Fld != 100471 && item.FilterID_Fld != 100478 && item.FilterID_Fld != 100472 && item.FilterID_Fld != 100476"
+              (click)="clickReportDesignFilter(ReportDesignFilterViewDto[i].Id, i, item.FilterID_Fld, item.FilterFldName_Fld)">
+              <mat-label dir="rtl">{{item.FilterIDDesc_Fld}}</mat-label>
+              <mat-select [multiple]="item.MultiSelect_Fld" dir="rtl" [(ngModel)]="model[item.FilterFldName_Fld]"
+                (ngModelChange)="reportDesignFilterViewChange(item.Id, item.FilterFldName_Fld)">
+                <mat-filter [(comboList)]="ReportDesignFilterLists[i]" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option *ngIf="!item.MultiSelect_Fld">-</mat-option>
+                <ng-container *ngIf="!ReportDesignFilterLists[i] || ReportDesignFilterLists[i].length != 0">
+                  <mat-option *ngIf="!ReportDesignFilterLists[i]">-</mat-option>
+                  <mat-option #normal dir="rtl" *ngFor="let item of ReportDesignFilterLists[i]" [value]="item.Id">
+                    {{item.CodeDesc_Fld}}
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field> -->
+
+            <mat-checkbox *ngIf="item.HaveGroup_Fld" class="mt-3 chkbox"
+              (change)="changeTafkik(item.FilterID_Fld)" dir="rtl">
+              تفکیک
+            </mat-checkbox>
+            <i class="fa fa-trash"
+              *ngIf="item.FilterFldName_Fld == 'PersonID' && !item.MultiSelect_Fld && model[item.FilterFldName_Fld]"
+              (click)="clearName(i)">
+            </i>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <fieldset *ngIf="ReportDesignFileDto.length > 0" class="mt-2">
+      <legend>خروجی فایل</legend>
+      <div class="row">
+        <div class="col-sm-3 mt-1" *ngFor="let item of ReportDesignFileDto; index as i">
+          <button (click)="clickFile(item, i)" mat-raised-button matTooltip="{{item.CodeDesc_Fld}}"
+            matTooltipClass="item-tooltip" color="primary" [ngClass]="{'button-file' : !item.Toggle, 'button-toggle-file': item.Toggle}">
+            {{item.CodeDesc_Fld}}
+          </button>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset *ngIf="ReportDesignGridDto.length > 0" class="mt-2">
+      <legend>خروجی جدول</legend>
+      <div class="row">
+        <div class="col-sm-3 mt-1" *ngFor="let item of ReportDesignGridDto; index as i">
+          <button (click)="clickTable(item, i)" mat-raised-button matTooltip="{{item.CodeDesc_Fld}}"
+            matTooltipClass="item-tooltip" [ngClass]="{'button-grid' : !item.Toggle, 'button-toggle-grid': item.Toggle}" >
+            {{item.CodeDesc_Fld}}
+          </button>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset *ngIf="ReportDesignStimulDto.length > 0" class="mt-2">
+      <legend>
+        <div class="form-check form-switch col-sm">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #pdfCheckbox>
+          <label class="form-check-label" for="flexSwitchCheckDefault">خروجی نمایش - خروجی مستقیم PDF</label>
+        </div>
+        </legend>
+      <div class="row">
+        <div class="col-sm-3 mt-1" *ngFor="let item of ReportDesignStimulDto; index as i">
+          <button (click)="clickStimul(item, i)" matTooltip="{{item.CodeDesc_Fld}}" matTooltipClass="item-tooltip"
+            mat-raised-button  [ngClass]="{'button-stimul' : !item.Toggle, 'button-toggle-stimul': item.Toggle}">
+            {{item.CodeDesc_Fld}}
+          </button>
+        </div>
+      </div>
+    </fieldset>
+
+
+    <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [autoResizeAll]="true"></custom-ag-grid>
+
+
+  </div>
+
+</mat-card>
+
+<stimulsoft-viewer-report *ngIf="showReport" [title]="this.modalOptions.modatTitle" [data]="stimulsoftData"></stimulsoft-viewer-report>
+
+<tree-modal *ngIf="showModal && (modalType == 'CostCenterTree' || modalType == 'OrgStructureTree')" [type]="modalType"
+  [multiple]="ReportDesignFilterViewDto[this.activeIndexModal].MultiSelect_Fld" (nodeSelected)="nodeSelected($event)"
+  (closed)="closedModal()">
+</tree-modal>
+
+<select-personnel *ngIf="showModal && modalType == 'Person'" [isModal]="true"
+  (rowSelectedListOnModal)="rowSelectedPersonList($event)" (rowClickedModal)="rowSelectedPerson($event)"
+  [multiple]="ReportDesignFilterViewDto[this.activeIndexModal].MultiSelect_Fld" [hideFilter]="true"
+  (closed)="closedModal()">
+</select-personnel>

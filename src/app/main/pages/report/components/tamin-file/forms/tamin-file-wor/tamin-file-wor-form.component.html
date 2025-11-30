@@ -1,0 +1,217 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_ID.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_ID.type" [parentFormGroup]="form" [label]="formObj.DSW_ID.headerName"
+              [valueName]="'DSW_ID'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_YY.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_YY.type" [parentFormGroup]="form" [label]="formObj.DSW_YY.headerName"
+              [valueName]="'DSW_YY'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_MM.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_MM.type" [parentFormGroup]="form" [label]="formObj.DSW_MM.headerName"
+              [valueName]="'DSW_MM'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_LISTNO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_LISTNO.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_LISTNO.headerName" [valueName]="'DSW_LISTNO'">
+            </custom-input>
+          </div>
+          <div class="col-xl-3 col-md-4" >
+            <div class="col-xl-11 col-md-11" *ngIf="!formObj.DSW_ID1.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.DSW_ID1.type" [parentFormGroup]="form" [label]="formObj.DSW_ID1.headerName"
+                [valueName]="'DSW_ID1'"></custom-input>
+                  <i  class="fa fa-users fa-user-button " (click)="onShowPerson()"></i>
+            </div>
+          </div>    
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_FNAME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_FNAME.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_FNAME.headerName" [valueName]="'DSW_FNAME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_LNAME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_LNAME.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_LNAME.headerName" [valueName]="'DSW_LNAME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_DNAME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_DNAME.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_DNAME.headerName" [valueName]="'DSW_DNAME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_IDNO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_IDNO.type" [parentFormGroup]="form" [label]="formObj.DSW_IDNO.headerName"
+              [valueName]="'DSW_IDNO'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_IDPLC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_IDPLC.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_IDPLC.headerName" [valueName]="'DSW_IDPLC'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_IDATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_IDATE.type" [parentFormGroup]="form" [label]="formObj.DSW_IDATE.headerName"
+              [valueName]="'DSW_IDATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_BDATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_BDATE.type" [parentFormGroup]="form" [label]="formObj.DSW_BDATE.headerName"
+              [valueName]="'DSW_BDATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_SEX.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_SEX.type" [parentFormGroup]="form" [label]="formObj.DSW_SEX.headerName"
+              [valueName]="'DSW_SEX'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_NAT.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_NAT.type" [parentFormGroup]="form" [label]="formObj.DSW_NAT.headerName"
+              [valueName]="'DSW_NAT'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_OCP.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_OCP.type" [parentFormGroup]="form" [label]="formObj.DSW_OCP.headerName"
+              [valueName]="'DSW_OCP'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_SDATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_SDATE.type" [parentFormGroup]="form" [label]="formObj.DSW_SDATE.headerName"
+              [valueName]="'DSW_SDATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_EDATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_EDATE.type" [ltr]="true" [parentFormGroup]="form" [label]="formObj.DSW_EDATE.headerName"
+              [valueName]="'DSW_EDATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_DD.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_DD.type" [parentFormGroup]="form" [label]="formObj.DSW_DD.headerName"
+              [valueName]="'DSW_DD'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_ROOZ.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_ROOZ.type" [parentFormGroup]="form" [label]="formObj.DSW_ROOZ.headerName"
+              [valueName]="'DSW_ROOZ'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_MAH.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_MAH.type" [parentFormGroup]="form" [label]="formObj.DSW_MAH.headerName"
+              [valueName]="'DSW_MAH'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_INC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_INC.type" [parentFormGroup]="form" [label]="formObj.DSW_INC.headerName"
+              [valueName]="'DSW_INC'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_SPOUSE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_SPOUSE.type" [parentFormGroup]="form" [label]="formObj.DSW_SPOUSE.headerName"
+              [valueName]="'DSW_SPOUSE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_MAZ.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_MAZ.type" [parentFormGroup]="form" [label]="formObj.DSW_MAZ.headerName"
+              [valueName]="'DSW_MAZ'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_MASH.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_MASH.type" [parentFormGroup]="form" [label]="formObj.DSW_MASH.headerName"
+              [valueName]="'DSW_MASH'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_TOTL.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_TOTL.type" [parentFormGroup]="form" [label]="formObj.DSW_TOTL.headerName"
+              [valueName]="'DSW_TOTL'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_BIME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_BIME.type" [parentFormGroup]="form" [label]="formObj.DSW_BIME.headerName"
+              [valueName]="'DSW_BIME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_PRATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_PRATE.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_PRATE.headerName" [valueName]="'DSW_PRATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_JOB.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_JOB.type" [parentFormGroup]="form" [label]="formObj.DSW_JOB.headerName"
+              [valueName]="'DSW_JOB'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.PER_NATCOD.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.PER_NATCOD.type" [parentFormGroup]="form"
+              [label]="formObj.PER_NATCOD.headerName" [valueName]="'PER_NATCOD'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_TKOSO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_TKOSO.type" [parentFormGroup]="form"
+              [label]="formObj.DSW_TKOSO.headerName" [valueName]="'DSW_TKOSO'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSW_BIC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSW_BIC.type" [parentFormGroup]="form" [label]="formObj.DSW_BIC.headerName"
+              [valueName]="'DSW_BIC'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>
+
+<select-personnel *ngIf="showPerson" [setPersonPID]="PersonID_Fld" [multiple]="false" [isModal]="true"
+  (rowClickedModal)="onSelectPersonnel($event)" (rowSelectedListOnModal)="rowSelectedList($event)" [hideFilter]="true"
+  (closed)="showPerson = false">
+</select-personnel>

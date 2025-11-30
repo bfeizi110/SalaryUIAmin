@@ -1,0 +1,8 @@
+<custom-ag-grid *ngIf="showGrid" class="mostamar-grid" [isModal]="true" [customGridOption]="gridOption"
+  [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <mostamar-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </mostamar-form>
+</div>

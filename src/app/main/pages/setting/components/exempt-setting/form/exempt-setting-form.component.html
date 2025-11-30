@@ -1,0 +1,56 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.StatusCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10044'" [parentFormGroup]="form"
+          [label]="formObj.StatusCode_Fld.headerName" [valueName]="'StatusCode_Fld'"
+          [descValue]="data.StatusCodeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TypeCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="comboArrayTypeCode" [parentFormGroup]="form"
+          [label]="formObj.TypeCode_Fld.headerName" [valueName]="'TypeCode_Fld'" [descValue]="data.TypeCodeDesc_Fld"
+          (changeCombo)="changeTypeCode()">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ItemCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="itemCodeArray" [parentFormGroup]="form"
+          [label]="formObj.ItemCode_Fld.headerName" [valueName]="'ItemCode_Fld'" [descValue]="data.ItemCodeDesc_Fld"
+          (changeCombo)="changeItemCode()">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ItemSubCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10021'" [parentFormGroup]="form"
+          [label]="formObj.ItemSubCode_Fld.headerName" [valueName]="'ItemSubCode_Fld'"
+          [descValue]="data.ItemSubCodeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CopExempt_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CopExempt_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CopExempt_Fld.headerName" [valueName]="'CopExempt_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Percent_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Percent_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Percent_Fld.headerName" [valueName]="'Percent_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ExemptTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10053'" [parentFormGroup]="form"
+          [label]="formObj.ExemptType_Fld.headerName" [valueName]="'ExemptType_Fld'"
+          [descValue]="data.ExemptTypeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CalcWithStartDay_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CalcWithStartDay_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CalcWithStartDay_Fld.headerName" [valueName]="'CalcWithStartDay_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Desc_Fld.headerName"
+          [valueName]="'Desc_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

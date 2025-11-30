@@ -1,0 +1,8 @@
+<custom-ag-grid class="parameter-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption"
+  [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <parameter-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </parameter-form>
+</div>

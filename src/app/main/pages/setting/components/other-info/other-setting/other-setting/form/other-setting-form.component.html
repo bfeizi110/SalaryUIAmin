@@ -1,0 +1,53 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <!-- string and date bool-->
+      <div class="col-sm-12" *ngIf="showValue">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Value_Fld.type" [parentFormGroup]="form" [label]="formObj.Value_Fld.headerName"
+          [valueName]="'Value_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="showComboValue">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [label]="formObj.Value_Fld.headerName"
+          [valueName]="'Value_Fld'" [comboArray]="data.ComboData" [descValue]="data.ValueDesc_Fld"></custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="showMultiComboValue">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="data.ComboData" [multiple]="true" [parentFormGroup]="form"
+          [label]="formObj.Value_Fld.headerName" [valueName]="'Value_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="showCostCenter">
+        <button class="cost-btn" [class.require]="formObj.Value_Fld.require" mat-raised-button
+          (click)="onShowCostCenterModal()"
+          [disabled]="formObj.Value_Fld.disableInput">{{formObj.Value_Fld.headerName}}:
+          <ng-container *ngIf="form.controls.Value_Fld.value">
+            {{form.controls.ValueDesc_Fld.value}}
+          </ng-container>
+        </button>
+        <i *ngIf="form.controls.Value_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearCostCenter()"></i>
+      </div>
+
+      <ng-container *ngIf="showInputPhoto">
+
+        <label class="upload-button">
+          <input type="file" (change)="imgChange($event)">
+          بارگذاری
+        </label>
+
+        <img class="logo mt-2" *ngIf="form.controls.Photo_Fld.value" [src]="form.controls.Photo_Fld.value">
+
+      </ng-container>
+
+    </div>
+  </div>
+</custom-modal>
+
+<tree-modal [type]="'CostCenterTree'" *ngIf="showCostCenterModal" [multiple]="isMultiCostCenter"
+  (nodeSelected)="nodeSelected($event)" (closed)="closedCostCenterModal()">
+</tree-modal>

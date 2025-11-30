@@ -1,0 +1,7 @@
+<ng-container *ngIf="params.displayName != 'actions'">
+  <input *ngIf="type != 'bool'"  type="text"
+    class="w-100 ag-input-field-input ag-text-field-input" [(ngModel)]="v" (ngModelChange)="checkValueChanged($event)">
+
+  <input *ngIf="type == 'bool'" type="checkbox" [class.bright]="checkboxV === false" [(ngModel)]="checkboxV"
+    (ngModelChange)="chechboxChanged($event)">
+</ng-container>

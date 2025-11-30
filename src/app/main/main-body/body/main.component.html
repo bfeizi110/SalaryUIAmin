@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <div class="app-sidebar">
+    <app-sidebar (menuEmitted)="menuEmitted($event)"></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar (menuEmitted)="menuEmitted($event)"></app-navbar>
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <mat-tab-group *ngIf="tabList.length > 0" [selectedIndex]="activeTabIndex"
+            (selectedTabChange)="onTabChange($event)" dir="rtl">
+            <mat-tab *ngFor="let tab of tabList; let tabIndex = index" dir="rtl">
+              <ng-template mat-tab-label>
+                <i class="{{tab.Icon}}"></i>
+                <div class="tab-label" dir="rtl" mat-raised-button matTooltip="{{tab.CodeDesc_Fld}}"
+                  matTooltipClass="tab-tooltip">
+                  {{tab.CodeDesc_Fld }}
+                </div>
+                <!-- <button mat-icon-button dir="rtl" class="refresh-button" style="width: 18px;"
+                  [disabled]="activeTabIndex != tabIndex || tab.Path.includes('report/report-design-view')"
+                  (click)="reloadTab(tab, tabIndex)">
+                  <i class="fa fa-refresh" matTooltip="به روز رسانی تب" matTooltipClass="green-tooltip"></i>
+                </button> -->
+                <button mat-icon-button class="help-btn" (click)="faqTab(tab)">
+                  <i class="fa fa-question"></i>
+                </button>
+                <button mat-icon-button dir="rtl" class="delete-button" style="width: 18px;"
+                  (click)="closeTab(tabIndex, $event)">
+                  <i class="fa fa-times" matTooltip="حذف کردن تب" matTooltipClass="red-tooltip"></i>
+                </button>
+              </ng-template>
+              <custom-router-outlet [tabUrl]="tab.Path" ></custom-router-outlet>
+            </mat-tab>
+          </mat-tab-group>
+          <!--  <router-outlet></router-outlet> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <faq-grid [ShowControllerName]="ShowControllerName" [ShowData]="ShowData"></faq-grid>
+    </div>
+  </div>
+</custom-modal>

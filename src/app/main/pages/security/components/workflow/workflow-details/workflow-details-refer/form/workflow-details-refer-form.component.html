@@ -1,0 +1,131 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom1500'" [dismissable]="false">
+  <!-- (selectedTabChange)="closeForm()" -->
+  <mat-tab-group dir="rtl" > 
+    <mat-tab dir="rtl" label="اطلاعات ارجاع">
+      <ng-template matTabContent >
+        <div class="container-fluid" [class.disabled-form]="formType == 'View'">
+          <div class="row">
+
+            <div class="col-sm-6" *ngIf="!formObj.ToWorkFlowDetailIDDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="comboUrl" [parentFormGroup]="form" 
+                [label]="formObj.ToWorkFlowDetailID_Fld.headerName" [valueName]="'ToWorkFlowDetailID_Fld'" [descValue]="data.ToWorkFlowDetailIDDesc_Fld">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-6" *ngIf="!formObj.ReferTypeIDDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10107'" [parentFormGroup]="form" (changeCombo)="changeReferType()"
+                [label]="formObj.ReferTypeID_Fld.headerName" [valueName]="'ReferTypeID_Fld'" [descValue]="data.ReferTypeIDDesc_Fld">
+              </custom-input>
+            </div>
+            <div class="col-sm-6" *ngIf="!formObj.AutoReferTypeIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10110'" [parentFormGroup]="form"
+                [label]="formObj.AutoReferTypeID_Fld.headerName" [valueName]="'AutoReferTypeID_Fld'" [descValue]="data.AutoReferTypeIDDesc_Fld">
+              </custom-input>
+            </div>
+            <div class="col-sm-6" *ngIf="!formObj.ReferUserIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101101">
+              <button class="cost-btn" [class.require]="formObj.ReferUserID_Fld.require" mat-raised-button color="primary"
+                (click)="onShowUser()">{{formObj.ReferUserID_Fld.headerName}}
+                <ng-container *ngIf="form.controls.ReferUserID_Fld.value">
+                  : {{personName}}
+                </ng-container>
+              </button>
+              <i *ngIf="form.controls.ReferUserID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+            </div>
+            <div class="col-sm-6" *ngIf="!formObj.ReferOrgIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101102">
+              <button class="cost-btn" [class.require]="formObj.ReferOrgIDDesc_Fld.require" mat-raised-button color="primary"
+                (click)="onShowCostCenterModal()">{{formObj.ReferOrgIDDesc_Fld.headerName}}
+                <ng-container *ngIf="form.controls.ReferOrgIDDesc_Fld.value">
+                  : {{form.controls.ReferOrgIDDesc_Fld.value}}
+                </ng-container>
+              </button>
+              <i *ngIf="form.controls.ReferOrgID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearOrg()"></i>
+            </div>
+
+            <div class="col-sm-6" *ngIf="!formObj.ReferPostIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101102">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="postUrl" [parentFormGroup]="form"
+                [label]="formObj.ReferPostID_Fld.headerName" [valueName]="'ReferPostID_Fld'" [descValue]="data.ReferPostIDDesc_Fld">
+              </custom-input>
+            </div>
+
+            
+            <div class="col-sm-6" *ngIf="!formObj.ReferPostIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101103">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'PostType/'" [parentFormGroup]="form"
+              [label]="formObj.ReferPostTypeID_Fld.headerName"  [valueName]="'ReferPostTypeID_Fld'" [descValue]="data.ReferPostTypeIDDesc_Fld">
+              </custom-input>
+            </div>
+
+            <div class="row mt-4" *ngIf="form.controls.ReferTypeID_Fld.value == 101072">
+              <ng-container >
+                <div class="col-lg">
+                  <p class="text-center">کاربران فاقد دسترسی</p>
+                  <custom-ag-grid *ngIf="showGridUserNotAccess" [customGridOption]="gridOptionUserNotAccess">
+                  </custom-ag-grid>
+                </div>
+                <div class="col-lg-1">
+                  <div class="buttons btn1">
+                    <div>
+                      <i class="fa fa-hand-o-left text-success" (click)="addUserAccess()" [class.disable-icon]="selectedUserNotAcccessList.length == 0"></i>
+                    </div>
+                    <div>
+                      <i class="fa fa-hand-o-right text-danger" (click)="removeUserAccess()" [class.disable-icon]="selectedUserAcccessList.length == 0"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg">
+                  <p class="text-center">کاربران دارای دسترسی</p>
+                  <custom-ag-grid *ngIf="showGridUserAccess" [customGridOption]="gridOptionUserAccess">
+                  </custom-ag-grid>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="row mt-4" *ngIf="form.controls.ReferTypeID_Fld.value == 101072">
+              <ng-container >
+                <div class="col-lg">
+                  <p class="text-center">گروه کاربران فاقد دسترسی</p>
+                  <custom-ag-grid *ngIf="showGridRoleNotAccess" [customGridOption]="gridOptionRoleNotAccess">
+                  </custom-ag-grid>
+                </div>
+                <div class="col-lg-1">
+                  <div class="buttons btn2">
+                    <div>
+                      <i class="fa fa-hand-o-left text-success" (click)="addRoleAccess()" [class.disable-icon]="selectedRoleNotAcccessList.length == 0"></i>
+                    </div>
+                    <div>
+                      <i class="fa fa-hand-o-right text-danger" (click)="removeRoleAccess()" [class.disable-icon]="selectedRoleAcccessList.length == 0"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg">
+                  <p class="text-center">گروه کاربران دارای دسترسی</p>
+                  <custom-ag-grid *ngIf="showGridRoleAccess" [customGridOption]="gridOptionRoleAccess">
+                  </custom-ag-grid>
+                </div>
+              </ng-container>
+            </div>
+
+
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" label="شروط ارجاع">
+      <ng-template matTabContent >
+        <div  class="col-sm-12" [class.disabled-form]="formType == 'View'">
+          <where [FilterID_Fld]="" [formType]="formType"
+            (entityFrameListChange)="whereChange($event)" [entityFrameList]="data.WorkFlowDetailsReferWheres"
+             [entityList]="filterList">
+          </where>
+        </div>
+      </ng-template>
+    </mat-tab>  
+  </mat-tab-group>
+</custom-modal>
+
+<tree-modal *ngIf="showTreeModal" [type]="'OrgStructureTree'" (nodeSelected)="nodeSelected($event)"
+  (closed)="closedTreeModal()">
+</tree-modal>
+
+<select-user *ngIf="showUser" [setUserID]="data.ReferUserID_Fld"
+  (rowClicked)="onSelectPersonnel($event)" (selectedUserTitle)="personName = $event"  (closed)="showUser = false">
+</select-user>

@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <DashboardViewerSettings>ShowRefreshButton, ShowEditButton</DashboardViewerSettings>
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <Dt Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>Dt</Alias>
+        <Key />
+        <Name>Dt</Name>
+        <PathData />
+      </Dt>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <Root Ref="3" type="DataTableSource" isKey="true">
+        <Alias>Root</Alias>
+        <Columns isList="true" count="10">
+          <value>Year_Fld,System.Double</value>
+          <value>Month_Fld,System.String</value>
+          <value>PersonID_Fld,System.Double</value>
+          <value>Name_Fld,System.String</value>
+          <value>Family_Fld,System.String</value>
+          <value>HireTypeDesc_Fld,System.String</value>
+          <value>CostCenterDesc_Fld,System.String</value>
+          <value>PayCodeDesc_Fld,System.String</value>
+          <value>ListType_Fld,System.String</value>
+          <value>FinalPrice_Fld,System.UInt64</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>Root</Name>
+        <NameInSource>Dt.Root</NameInSource>
+      </Root>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="3">
+      <value>,StrYear,StrYear,,System.Int32,Cbo_Year,False,False,False,False,,_x0033_ef8d1f6b6b246919f456f6a5b5cb22c,True</value>
+      <value>,StrMonth,StrMonth,,System.Int32,Cbo_Month,False,False,False,False,,a5d37aca25a14df5ab8c5d79fae128f2,True</value>
+      <value>,UserID,UserID,,System.Int32,_x0033_,False,False,False,False,,_x0037_62bf0cde80744f4994c3a2de1c8ab4c,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>c696d7c8a4b94b7d83a9607b9c90becb</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <DashboardCostOverview Ref="4" type="Stimulsoft.Dashboard.Components.StiDashboard" isKey="true">
+      <Alias>وضعیت هزینه</Alias>
+      <BackColor>Transparent</BackColor>
+      <Components isList="true" count="5">
+        <Text1 Ref="5" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+          <BackColor>Transparent</BackColor>
+          <ClientRectangle>-9.33,-10.67,744,60</ClientRectangle>
+          <ForeColor>Transparent</ForeColor>
+          <Guid>84e2272b0d504119acfba327e8f3fa10</Guid>
+          <Margin>3,3,3,3</Margin>
+          <Name>Text1</Name>
+          <Padding>0,0,0,0</Padding>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Text>&lt;font face="B Titr" size="20"&gt;&lt;text-align="Center"&gt;وضعیت هزینه&lt;/text-align&gt;&lt;/font&gt;</Text>
+          <Title Ref="6" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+            <BackColor>Transparent</BackColor>
+            <Font>Arial,11</Font>
+            <ForeColor>Transparent</ForeColor>
+          </Title>
+        </Text1>
+        <Panel1 Ref="7" type="Stimulsoft.Dashboard.Components.Panel.StiPanelElement" isKey="true">
+          <BackColor>54, 96, 146</BackColor>
+          <ClientRectangle>730.86,-11.46,560,220</ClientRectangle>
+          <Components isList="true" count="10">
+            <Text4 Ref="8" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+              <BackColor>54, 96, 146</BackColor>
+              <Border>None;Gray;0;None</Border>
+              <ClientRectangle>433.03,87.89,115.56,40</ClientRectangle>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>a92038def2da4fae9e79a5d667e66d8b</Guid>
+              <Margin>3,3,3,3</Margin>
+              <Name>Text4</Name>
+              <Padding>0,0,0,0</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>&lt;font face="B Nazanin" size="16"&gt;&lt;text-align="Left"&gt;: گروه پرداخت &lt;/text-align&gt;&lt;/font&gt;</Text>
+              <Title Ref="9" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+                <BackColor>Transparent</BackColor>
+                <Font>B Nazanin,11,Bold</Font>
+                <ForeColor>Transparent</ForeColor>
+                <Text>Text</Text>
+                <Visible>False</Visible>
+              </Title>
+            </Text4>
+            <Cbo_PayCode Ref="10" type="Stimulsoft.Dashboard.Components.ComboBox.StiComboBoxElement" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <ClientRectangle>22.47,87.17,408.4,40</ClientRectangle>
+              <DataFilters isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>e96bfb2c244a49a0aebfbfb1cff3e9e6</Guid>
+              <KeyMeter Ref="11" type="Stimulsoft.Dashboard.Components.ComboBox.StiKeyComboBoxMeter" isKey="true">
+                <Expression>Root.PayCodeDesc_Fld</Expression>
+                <Key>fa908036aa244502a6a909b48f394c94</Key>
+                <Label>PayCodeDesc_Fld</Label>
+              </KeyMeter>
+              <Margin>3,3,3,3</Margin>
+              <Name>Cbo_PayCode</Name>
+              <NameMeter Ref="12" type="Stimulsoft.Dashboard.Components.ComboBox.StiNameComboBoxMeter" isKey="true">
+                <Expression>Root.PayCodeDesc_Fld</Expression>
+                <Key>5982bb3ce62244f58d087dd23676e2e4</Key>
+                <Label>PayCodeDesc_Fld</Label>
+              </NameMeter>
+              <Padding>5,5,5,5</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <ParentKey>8ca38142d8e5407cbdd924b5c2a5cee7</ParentKey>
+              <SelectionMode>Multi</SelectionMode>
+              <ShowAllValue>True</ShowAllValue>
+              <TransformActions isList="true" count="0" />
+              <TransformFilters isList="true" count="0" />
+              <TransformSorts isList="true" count="0" />
+            </Cbo_PayCode>
+            <Text2 Ref="13" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+              <BackColor>54, 96, 146</BackColor>
+              <Border>None;Gray;1;None</Border>
+              <ClientRectangle>433.07,3.46,60,40</ClientRectangle>
+              <ForeColor>White</ForeColor>
+              <Guid>1cf1e1173176469e842841f4799e6d8b</Guid>
+              <Margin>3,3,3,3</Margin>
+              <Name>Text2</Name>
+              <Padding>0,0,0,0</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>&lt;font face="B Nazanin" size="16"&gt;&lt;text-align="Left"&gt;: سال &lt;/text-align&gt;&lt;/font&gt;</Text>
+              <Title Ref="14" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+                <BackColor>Transparent</BackColor>
+                <Font>B Nazanin,12,Bold</Font>
+                <ForeColor>Transparent</ForeColor>
+                <Text>Text</Text>
+                <Visible>False</Visible>
+              </Title>
+            </Text2>
+            <Cbo_Year Ref="15" type="Stimulsoft.Dashboard.Components.ComboBox.StiComboBoxElement" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <ClientRectangle>345.02,3.46,86.34,40</ClientRectangle>
+              <DataFilters isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>414b77aca3b946779e629d03a831e540</Guid>
+              <KeyMeter Ref="16" type="Stimulsoft.Dashboard.Components.ComboBox.StiKeyComboBoxMeter" isKey="true">
+                <Expression>Root.Year_Fld</Expression>
+                <Key>011914e082784f5981c9c5470f312176</Key>
+                <Label>Year_Fld</Label>
+              </KeyMeter>
+              <Margin>3,3,3,3</Margin>
+              <Name>Cbo_Year</Name>
+              <NameMeter Ref="17" type="Stimulsoft.Dashboard.Components.ComboBox.StiNameComboBoxMeter" isKey="true">
+                <Expression>Root.Year_Fld</Expression>
+                <Key>0d8bc14fab7643dd9453e0d91955760d</Key>
+                <Label>Year_Fld</Label>
+              </NameMeter>
+              <Padding>5,5,5,5</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <TransformActions isList="true" count="0" />
+              <TransformFilters isList="true" count="0" />
+              <TransformSorts isList="true" count="2">
+                <Item10 Ref="18" type="Stimulsoft.Data.Engine.StiDataSortRule" isKey="true">
+                  <Direction>Descending</Direction>
+                  <Key>Year_Fld</Key>
+                </Item10>
+                <Item11 Ref="19" type="Stimulsoft.Data.Engine.StiDataSortRule" isKey="true">
+                  <Direction>Descending</Direction>
+                  <Key>Year_Fld2</Key>
+                </Item11>
+              </TransformSorts>
+            </Cbo_Year>
+            <Cbo_Month Ref="20" type="Stimulsoft.Dashboard.Components.ComboBox.StiComboBoxElement" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <ClientRectangle>266.17,45.93,165.19,40</ClientRectangle>
+              <CustomStyleName isNull="true" />
+              <DataFilters isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>8ca38142d8e5407cbdd924b5c2a5cee7</Guid>
+              <KeyMeter Ref="21" type="Stimulsoft.Dashboard.Components.ComboBox.StiKeyComboBoxMeter" isKey="true">
+                <Expression>Root.Month_Fld</Expression>
+                <Key>17aede9cf77442b8b069859a194c0be1</Key>
+                <Label>Month_Fld</Label>
+              </KeyMeter>
+              <Margin>3,3,3,3</Margin>
+              <Name>Cbo_Month</Name>
+              <NameMeter Ref="22" type="Stimulsoft.Dashboard.Components.ComboBox.StiNameComboBoxMeter" isKey="true">
+                <Expression>Root.Month_Fld</Expression>
+                <Key>6ce3f19c1f904250b501dd67fc46f1a8</Key>
+                <Label>Month_Fld</Label>
+              </NameMeter>
+              <Padding>5,5,5,5</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <ParentKey>414b77aca3b946779e629d03a831e540</ParentKey>
+              <TransformActions isList="true" count="0" />
+              <TransformFilters isList="true" count="0" />
+              <TransformSorts isList="true" count="2">
+                <Item13 Ref="23" type="Stimulsoft.Data.Engine.StiDataSortRule" isKey="true">
+                  <Direction>Descending</Direction>
+                  <Key>Month_Fld</Key>
+                </Item13>
+                <Item14 Ref="24" type="Stimulsoft.Data.Engine.StiDataSortRule" isKey="true">
+                  <Direction>Descending</Direction>
+                  <Key>Month_Fld2</Key>
+                </Item14>
+              </TransformSorts>
+            </Cbo_Month>
+            <Text3 Ref="25" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+              <BackColor>54, 96, 146</BackColor>
+              <Border>None;Gray;0;None</Border>
+              <ClientRectangle>433.03,47.15,60,40</ClientRectangle>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>c378fd8dd0b04e0e890323ffc500220b</Guid>
+              <Margin>3,3,3,3</Margin>
+              <Name>Text3</Name>
+              <Padding>0,0,0,0</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>&lt;font face="B Nazanin" size="16"&gt;&lt;text-align="Left"&gt;: ماه &lt;/text-align&gt;&lt;/font&gt;</Text>
+              <Title Ref="26" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+                <BackColor>Transparent</BackColor>
+                <Font>B Nazanin,11,Bold</Font>
+                <ForeColor>Transparent</ForeColor>
+                <Text>Text</Text>
+                <Visible>False</Visible>
+              </Title>
+            </Text3>
+            <Text5 Ref="27" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+              <BackColor>54, 96, 146</BackColor>
+              <Border>None;Gray;0;None</Border>
+              <ClientRectangle>433.03,127.89,115.56,40</ClientRectangle>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>6af6ccb02fd34c508cb16b573bf41257</Guid>
+              <Margin>3,3,3,3</Margin>
+              <Name>Text5</Name>
+              <Padding>0,0,0,0</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>&lt;font face="B Nazanin" size="16"&gt;&lt;text-align="Left"&gt;: استخدام&lt;/text-align&gt;&lt;/font&gt;</Text>
+              <Title Ref="28" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+                <BackColor>Transparent</BackColor>
+                <Font>B Nazanin,11,Bold</Font>
+                <ForeColor>Transparent</ForeColor>
+                <Text>Text</Text>
+                <Visible>False</Visible>
+              </Title>
+            </Text5>
+            <Cbo_HireType Ref="29" type="Stimulsoft.Dashboard.Components.ComboBox.StiComboBoxElement" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <ClientRectangle>22.47,127.17,408.4,40</ClientRectangle>
+              <DataFilters isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>bec022086de14952a3251005ccc1821c</Guid>
+              <KeyMeter Ref="30" type="Stimulsoft.Dashboard.Components.ComboBox.StiKeyComboBoxMeter" isKey="true">
+                <Expression>Root.HireTypeDesc_Fld</Expression>
+                <Key>f6d6e9da4bd54f198559f797ed8d57f2</Key>
+                <Label>HireTypeDesc_Fld</Label>
+              </KeyMeter>
+              <Margin>3,3,3,3</Margin>
+              <Name>Cbo_HireType</Name>
+              <NameMeter Ref="31" type="Stimulsoft.Dashboard.Components.ComboBox.StiNameComboBoxMeter" isKey="true">
+                <Expression>Root.HireTypeDesc_Fld</Expression>
+                <Key>a874c2f7257a4331af9b7ecf951355c5</Key>
+                <Label>HireTypeDesc_Fld</Label>
+              </NameMeter>
+              <Padding>5,5,5,5</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <ParentKey>e96bfb2c244a49a0aebfbfb1cff3e9e6</ParentKey>
+              <SelectionMode>Multi</SelectionMode>
+              <ShowAllValue>True</ShowAllValue>
+              <TransformActions isList="true" count="0" />
+              <TransformFilters isList="true" count="0" />
+              <TransformSorts isList="true" count="0" />
+            </Cbo_HireType>
+            <Text6 Ref="32" type="Stimulsoft.Dashboard.Components.Text.StiTextElement" isKey="true">
+              <BackColor>54, 96, 146</BackColor>
+              <Border>None;Gray;0;None</Border>
+              <ClientRectangle>433.03,167.89,115.56,40</ClientRectangle>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>10e48ae3207245099414a7595ee0833b</Guid>
+              <Margin>3,3,3,3</Margin>
+              <Name>Text6</Name>
+              <Padding>0,0,0,0</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <Text>&lt;font face="B Nazanin" size="16"&gt;&lt;text-align="Left"&gt;: نوع لیست&lt;/text-align&gt;&lt;/font&gt;</Text>
+              <Title Ref="33" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+                <BackColor>Transparent</BackColor>
+                <Font>B Nazanin,11,Bold</Font>
+                <ForeColor>Transparent</ForeColor>
+                <Text>Text</Text>
+                <Visible>False</Visible>
+              </Title>
+            </Text6>
+            <ComboBox2 Ref="34" type="Stimulsoft.Dashboard.Components.ComboBox.StiComboBoxElement" isKey="true">
+              <BackColor>Transparent</BackColor>
+              <ClientRectangle>202.47,167.17,228.4,40</ClientRectangle>
+              <DataFilters isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <ForeColor>Transparent</ForeColor>
+              <Guid>b66e28d6a367401a940554cf54e8244c</Guid>
+              <KeyMeter Ref="35" type="Stimulsoft.Dashboard.Components.ComboBox.StiKeyComboBoxMeter" isKey="true">
+                <Expression>Root.ListType_Fld</Expression>
+                <Key>c1976a34bdcb4925875e1f84071aec7c</Key>
+                <Label>ListType_Fld</Label>
+              </KeyMeter>
+              <Margin>3,3,3,3</Margin>
+              <Name>ComboBox2</Name>
+              <NameMeter Ref="36" type="Stimulsoft.Dashboard.Components.ComboBox.StiNameComboBoxMeter" isKey="true">
+                <Expression>Root.ListType_Fld</Expression>
+                <Key>0455c32357bf4933a3af40e9e815d01e</Key>
+                <Label>ListType_Fld</Label>
+              </NameMeter>
+              <Padding>5,5,5,5</Padding>
+              <Page isRef="4" />
+              <Parent isRef="7" />
+              <ParentKey>bec022086de14952a3251005ccc1821c</ParentKey>
+              <ShowAllValue>True</ShowAllValue>
+              <TransformActions isList="true" count="0" />
+              <TransformFilters isList="true" count="0" />
+              <TransformSorts isList="true" count="0" />
+            </ComboBox2>
+          </Components>
+          <Guid>5028e5e35b5e412fbb2eaa8dc4a67401</Guid>
+          <Margin>3,3,3,3</Margin>
+          <Name>Panel1</Name>
+          <Padding>0,0,0,0</Padding>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </Panel1>
+        <Chart1 Ref="37" type="Stimulsoft.Dashboard.Components.Chart.StiChartElement" isKey="true">
+          <Area Ref="38" type="Stimulsoft.Dashboard.Components.Chart.StiChartArea" isKey="true">
+            <InterlacingHor Ref="39" type="Stimulsoft.Dashboard.Components.Chart.StiHorChartInterlacing" isKey="true">
+              <Color>Transparent</Color>
+            </InterlacingHor>
+            <InterlacingVert Ref="40" type="Stimulsoft.Dashboard.Components.Chart.StiVertChartInterlacing" isKey="true">
+              <Color>Transparent</Color>
+            </InterlacingVert>
+            <ReverseHor>True</ReverseHor>
+          </Area>
+          <Arguments isList="true" count="1">
+            <Item21 Ref="41" type="Stimulsoft.Dashboard.Components.Chart.StiArgumentChartMeter" isKey="true">
+              <Expression>Root.PayCodeDesc_Fld</Expression>
+              <Key>8a3d0fb91cc842a5a4bab8f1dc4404d2</Key>
+              <Label>گروه پرداخت</Label>
+            </Item21>
+          </Arguments>
+          <BackColor>Transparent</BackColor>
+          <ClientRectangle>-9.33,664,1300,542.66</ClientRectangle>
+          <CloseValues isList="true" count="0" />
+          <DataFilters isList="true" count="0" />
+          <EndValues isList="true" count="0" />
+          <Guid>4fe2306df6474ddfb129d012467ea054</Guid>
+          <HighValues isList="true" count="0" />
+          <Labels Ref="42" type="Stimulsoft.Dashboard.Components.Chart.StiChartLabels" isKey="true">
+            <Font>Arial,8</Font>
+            <ForeColor>Transparent</ForeColor>
+          </Labels>
+          <Layout Ref="43" type="Stimulsoft.Report.Dashboard.StiElementLayout" isKey="true" />
+          <Legend Ref="44" type="Stimulsoft.Dashboard.Components.Chart.StiChartLegend" isKey="true">
+            <Labels Ref="45" type="Stimulsoft.Dashboard.Components.Chart.StiChartLegendLabels" isKey="true">
+              <Color>Transparent</Color>
+              <Font>Arial,8</Font>
+            </Labels>
+            <Title Ref="46" type="Stimulsoft.Dashboard.Components.Chart.StiChartLegendTitle" isKey="true">
+              <Color>Transparent</Color>
+              <Font>Arial,12,Bold</Font>
+            </Title>
+          </Legend>
+          <LowValues isList="true" count="0" />
+          <Margin>3,3,3,3</Margin>
+          <Name>Chart1</Name>
+          <NegativeSeriesColors />
+          <Padding>5,5,5,5</Padding>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Series Ref="47" type="Stimulsoft.Dashboard.Components.Chart.StiSeriesChartMeter" isKey="true">
+            <Expression>Root.HireTypeDesc_Fld</Expression>
+            <Key>71a5176d852a40a0a4875b6abaf9ca88</Key>
+            <Label>استخدام</Label>
+          </Series>
+          <SeriesColors />
+          <Title Ref="48" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+            <BackColor>Transparent</BackColor>
+            <Font>Segoe UI,15.75,Regular,Point,False,204</Font>
+            <ForeColor>Transparent</ForeColor>
+            <HorAlignment>Center</HorAlignment>
+            <Text>گروه پرداخت</Text>
+          </Title>
+          <TopN Ref="49" type="Stimulsoft.Data.Engine.StiDataTopN" isKey="true" />
+          <TransformActions isList="true" count="0" />
+          <TransformFilters isList="true" count="0" />
+          <TransformSorts isList="true" count="0" />
+          <ValueFormat Ref="50" type="NumberFormat" isKey="true">
+            <DecimalDigits>0</DecimalDigits>
+            <GroupSeparator>,</GroupSeparator>
+            <NegativePattern>1</NegativePattern>
+            <State>DecimalDigits</State>
+          </ValueFormat>
+          <Values isList="true" count="1">
+            <Item22 Ref="51" type="Stimulsoft.Dashboard.Components.Chart.StiValueChartMeter" isKey="true">
+              <Expression>Sum(Root.FinalPrice_Fld)</Expression>
+              <Key>62efc0db3e824b3c8ef9e856b37a4579</Key>
+              <Label>مبلغ</Label>
+            </Item22>
+          </Values>
+          <Weights isList="true" count="0" />
+        </Chart1>
+        <Table2 Ref="52" type="Stimulsoft.Dashboard.Components.Table.StiTableElement" isKey="true">
+          <BackColor>Transparent</BackColor>
+          <ClientRectangle>730.67,204,560,464</ClientRectangle>
+          <Columns isList="true" count="4">
+            <Item24 Ref="53" type="Stimulsoft.Dashboard.Components.Table.StiMeasureColumn" isKey="true">
+              <Expression>Sum(Root.FinalPrice_Fld)/DistinctCount(Root.PersonID_Fld)</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <Key>b03eb83e0e864269a92658eb35147225</Key>
+              <Label>میانگین</Label>
+              <TextFormat Ref="54" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+            </Item24>
+            <Item25 Ref="55" type="Stimulsoft.Dashboard.Components.Table.StiMeasureColumn" isKey="true">
+              <Expression>DistinctCount(Root.PersonID_Fld)</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <Key>fd008f65f16a4fe584a83c0799357b79</Key>
+              <Label>تعداد</Label>
+              <TextFormat Ref="56" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+            </Item25>
+            <Item26 Ref="57" type="Stimulsoft.Dashboard.Components.Table.StiMeasureColumn" isKey="true">
+              <Expression>Sum(Root.FinalPrice_Fld)</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <Key>0601f40db6f74dce8e9586923d2e7bc9</Key>
+              <Label>مبلغ</Label>
+              <TextFormat Ref="58" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <GroupSeparator>,</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+            </Item26>
+            <Item27 Ref="59" type="Stimulsoft.Dashboard.Components.Table.StiDimensionColumn" isKey="true">
+              <Expression>Root.HireTypeDesc_Fld</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>5fa5b877b4c84665bc285c61bd2e4785</Key>
+              <Label>استخدام</Label>
+            </Item27>
+          </Columns>
+          <DataFilters isList="true" count="0" />
+          <Font>B Nazanin,10,Bold</Font>
+          <ForeColor>Transparent</ForeColor>
+          <Guid>71a37ba6f1724955adbc77ccf243698d</Guid>
+          <HeaderFont>B Titr,10,Bold</HeaderFont>
+          <HeaderForeColor>Transparent</HeaderForeColor>
+          <Layout Ref="60" type="Stimulsoft.Report.Dashboard.StiElementLayout" isKey="true" />
+          <Margin>3,3,3,3</Margin>
+          <Name>Table2</Name>
+          <Padding>5,5,5,5</Padding>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <SizeMode>Fit</SizeMode>
+          <Title Ref="61" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+            <BackColor>Transparent</BackColor>
+            <Font>Segoe UI,15.75</Font>
+            <ForeColor>Transparent</ForeColor>
+            <HorAlignment>Center</HorAlignment>
+            <Text>انواع استخدام</Text>
+          </Title>
+          <TransformActions isList="true" count="0" />
+          <TransformFilters isList="true" count="0" />
+          <TransformSorts isList="true" count="0" />
+          <UserFilters isList="true" count="0" />
+          <UserSorts isList="true" count="0" />
+        </Table2>
+        <Table1 Ref="62" type="Stimulsoft.Dashboard.Components.Table.StiTableElement" isKey="true">
+          <BackColor>Transparent</BackColor>
+          <ClientRectangle>-10.67,46.67,725.33,621.33</ClientRectangle>
+          <Columns isList="true" count="5">
+            <Item29 Ref="63" type="Stimulsoft.Dashboard.Components.Table.StiMeasureColumn" isKey="true">
+              <Expression>Sum(Root.FinalPrice_Fld)</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>430e2ff64c6a428493cf8f434432ccfa</Key>
+              <Label>مبلغ</Label>
+            </Item29>
+            <Item30 Ref="64" type="Stimulsoft.Dashboard.Components.Table.StiDimensionColumn" isKey="true">
+              <Expression>Root.PayCodeDesc_Fld</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>b75e900aefd74d859b8743eebb7b35ae</Key>
+              <Label>گروه پرداخت</Label>
+            </Item30>
+            <Item31 Ref="65" type="Stimulsoft.Dashboard.Components.Table.StiDimensionColumn" isKey="true">
+              <Expression>Root.CostCenterDesc_Fld</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>0d640ec146ab482da2cf0a26e087bea3</Key>
+              <Label>مرکز هزینه</Label>
+            </Item31>
+            <Item32 Ref="66" type="Stimulsoft.Dashboard.Components.Table.StiDimensionColumn" isKey="true">
+              <Expression>Root.Family_Fld</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>1be4e6f5c3b8472b84d7ecd148229fdf</Key>
+              <Label>نام خانوادگی</Label>
+            </Item32>
+            <Item33 Ref="67" type="Stimulsoft.Dashboard.Components.Table.StiDimensionColumn" isKey="true">
+              <Expression>Root.Name_Fld</Expression>
+              <ForeColor>Transparent</ForeColor>
+              <HorAlignment>Right</HorAlignment>
+              <Key>e51f1201be4e45b4ba1119a30a4a8665</Key>
+              <Label>نام</Label>
+            </Item33>
+          </Columns>
+          <DataFilters isList="true" count="0" />
+          <Font>B Nazanin,10,Bold</Font>
+          <ForeColor>Transparent</ForeColor>
+          <Guid>f92a8018bf7b42beb23d60e549bee8e5</Guid>
+          <HeaderFont>B Titr,10,Bold</HeaderFont>
+          <HeaderForeColor>Transparent</HeaderForeColor>
+          <Layout Ref="68" type="Stimulsoft.Report.Dashboard.StiElementLayout" isKey="true" />
+          <Margin>3,3,3,3</Margin>
+          <Name>Table1</Name>
+          <Padding>5,5,5,5</Padding>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <SizeMode>Fit</SizeMode>
+          <Title Ref="69" type="Stimulsoft.Dashboard.Components.StiTitle" isKey="true">
+            <BackColor>Transparent</BackColor>
+            <Font>Segoe UI,15.75</Font>
+            <ForeColor>Transparent</ForeColor>
+            <HorAlignment>Center</HorAlignment>
+            <Text>پرسنل</Text>
+          </Title>
+          <TransformActions isList="true" count="0" />
+          <TransformFilters isList="true" count="0" />
+          <TransformSorts isList="true" count="0" />
+          <UserFilters isList="true" count="0" />
+          <UserSorts isList="true" count="1">
+            <Item34 Ref="70" type="Stimulsoft.Data.Engine.StiDataSortRule" isKey="true">
+              <Key>1be4e6f5c3b8472b84d7ecd148229fdf</Key>
+            </Item34>
+          </UserSorts>
+        </Table1>
+      </Components>
+      <Guid>52526df5e0134deb966e868de15e46b1</Guid>
+      <Height>1200</Height>
+      <Name>DashboardCostOverview</Name>
+      <Report isRef="0" />
+      <Style>DarkBlue</Style>
+      <Width>1280</Width>
+    </DashboardCostOverview>
+  </Pages>
+  <PreviewSettings>25108991</PreviewSettings>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>DashboradCostOverview</ReportAlias>
+  <ReportAuthor>Bam Pardazesh</ReportAuthor>
+  <ReportChanged>9/1/2024 9:47:25 AM</ReportChanged>
+  <ReportCreated>9/5/2018 8:19:11 AM</ReportCreated>
+  <ReportFile>D:\0000-Source\SalaryUI\src\assets\dashboard\CostOverview.mrt</ReportFile>
+  <ReportGuid>571dce8be9ae42698b6eb3aacdb1f0b6</ReportGuid>
+  <ReportName>DashboradCostOverview</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2019.2.1.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class DashboradCostOverview : Stimulsoft.Report.StiReport
+    {
+        public DashboradCostOverview()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

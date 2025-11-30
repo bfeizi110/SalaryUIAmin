@@ -1,0 +1,23 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+
+<!--select person-->
+<div *ngIf="showSelectPerson" class=" mt-1">
+  <select-personnel [personData]="personData" [controller]="controller" [setPersonPID]="setPID" [hideFilter]="true" [multiple]="canAdd"
+    (rowClicked)="onSelectPersonnel($event)" (onSelectPersonnelDetail)="onSelectPersonnelDetail($event)"  (rowSelectedList)="rowSelectedList($event)" 
+    (selectedPersonelNF)="selectedPersonelNF = $event">
+  </select-personnel>
+</div>
+
+<div *ngIf="showGrid" class="mt-1">
+  <custom-ag-grid [masterDetail]="false" class="commission-grid" *ngIf="showGrid" [customGridOption]="gridOption">
+  </custom-ag-grid>
+</div>
+
+<div class="pre-form" *ngIf="showForm">
+  <commission-form [formObj]="formObj" [ID]="ID" [PID]="PID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()" (commissionStateChange)="getSelect()" [controller]="controller" 
+    [selectedPersonelNF]="selectedPersonelNF" [personList]="selectedPersonList">
+  </commission-form>
+</div>

@@ -1,0 +1,68 @@
+<div class="form">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+    </button>
+
+    <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div class="container-fluid">
+      <div class="row" *ngIf="showForm">
+
+        <div class="col-sm-3" *ngIf="!formObj.GuarantorPersonIDDesc_Fld.ishidden">
+          <button matTooltipClass="blue-tooltip" class="cost-btn" mat-raised-button color="primary"
+            (click)="onShowSelectPersonnelModal()">{{formObj.GuarantorPersonID_Fld.headerName}}
+            <ng-container *ngIf="form.controls.GuarantorPersonIDDesc_Fld.value">
+              : {{form.controls.GuarantorPersonIDDesc_Fld.value}}
+            </ng-container>
+          </button>
+          <i *ngIf="form.controls.GuarantorPersonID_Fld.value" class="fa fa-trash fa-trash-button"
+            (click)="clearPerson()"></i>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.GuaranteeDate_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.GuaranteeDate_Fld.type" [parentFormGroup]="form" [label]="formObj.GuaranteeDate_Fld.headerName"
+            [valueName]="'GuaranteeDate_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.RelationDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10036'" [parentFormGroup]="form"
+            [label]="formObj.Relation_Fld.headerName" [valueName]="'Relation_Fld'" [descValue]="data.RelationDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.Amount_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.Amount_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.Amount_Fld.headerName" [valueName]="'Amount_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.Active_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.Active_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.Active_Fld.headerName" [valueName]="'Active_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.IsImport_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.IsImport_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.IsImport_Fld.headerName" [valueName]="'IsImport_Fld'"></custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!formObj.IsAutoDebt_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.IsAutoDebt_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.IsAutoDebt_Fld.headerName" [valueName]="'IsAutoDebt_Fld'"></custom-input>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<select-personnel *ngIf="showPersonnelModal" [isModal]="true" (closed)="closeSelectPersonnelModal()"
+  (rowClickedModal)="onSelectPersonnel($event)">
+</select-personnel>

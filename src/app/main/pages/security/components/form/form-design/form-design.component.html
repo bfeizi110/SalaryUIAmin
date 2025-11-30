@@ -1,0 +1,35 @@
+<<<<<<< HEAD
+<div #boxContainer class="box-container" [ngStyle]="{ height: containerHeight + 'px' }">
+=======
+<!-- <div #boxContainer class="box-container" [ngStyle]="{ height: containerHeight + 'px' }">
+>>>>>>> 49b80a6a (commit)
+  <div *ngFor="let box of showBoxes; let i = index" [ngStyle]="{
+        top: box.top + 'px',
+        left: box.left + 'px',
+        width: box.width + 'px',
+        height: box.height + 'px'
+      }" class="created-box">
+    <span class="item-show">نام فرم : {{ box.title }}</span>
+    <div class="resize-handle" (mousedown)="startResizing($event, box)">
+    </div>
+    <div class="resize-location" (mousedown)="startDragging($event, box)">
+    </div>
+  </div>
+  <div class="resize-handle-container" (mousedown)="startResizingContainer($event)"
+    (mouseup)="SetcontainerHeight($event)"></div>
+</div>
+
+<div class="button-container">
+  <div *ngIf="isEditingBox" class="btn-group">
+    <button class="btn save-btn" (click)="save()">
+      <i class="fas fa-save"></i> ذخیره
+    </button>
+    <button class="btn cancel-btn" (click)="cancel()">
+      انصراف
+    </button>
+  </div>
+<<<<<<< HEAD
+</div>
+=======
+</div> -->
+>>>>>>> 49b80a6a (commit)

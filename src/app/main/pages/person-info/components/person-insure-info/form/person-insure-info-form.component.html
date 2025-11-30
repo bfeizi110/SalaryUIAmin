@@ -1,0 +1,132 @@
+<mat-card appearance="outlined">
+
+  <div #myElem class="form">
+
+    <div class="row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View'" class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+
+    </div>
+
+    <div *ngIf="showForm" class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-3" *ngIf="form">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="insureCodeList" [parentFormGroup]="form"
+              [label]="formObj.InsureCode_Fld?.headerName" [valueName]="'InsureCode_Fld'"
+              (changeCombo)="insureChange($event)" [getCombo]="true"></custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.InsureCode_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'InsureCode_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.NonFreeQuantity_Fld && !formObj.NonFreeQuantity_Fld?.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NonFreeQuantity_Fld?.type" [parentFormGroup]="form"
+              [label]="formObj.NonFreeQuantity_Fld?.headerName" [valueName]="'NonFreeQuantity_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.NonFreeQuantity_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'NonFreeQuantity_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.FreeQuantity_Fld && !formObj.FreeQuantity_Fld?.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.FreeQuantity_Fld?.type" [parentFormGroup]="form"
+              [label]="formObj.FreeQuantity_Fld?.headerName" [valueName]="'FreeQuantity_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.FreeQuantity_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'FreeQuantity_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.ParentsQuantity_Fld && !formObj.ParentsQuantity_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.ParentsQuantity_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.ParentsQuantity_Fld.headerName" [valueName]="'ParentsQuantity_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.ParentsQuantity_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'ParentsQuantity_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.Janbaz && !formObj.Janbaz.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Janbaz.type" [parentFormGroup]="form" [label]="formObj.Janbaz.headerName"
+              [valueName]="'Janbaz'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Janbaz.disableInput"
+              (change)="changeCheckbox($event.checked, 'Janbaz')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.Mazad3 && !formObj.Mazad3.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Mazad3.type" [parentFormGroup]="form" [label]="formObj.Mazad3.headerName"
+              [valueName]="'Mazad3'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Mazad3.disableInput"
+              (change)="changeCheckbox($event.checked, 'Mazad3')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.Startdate_Fld && !formObj.Startdate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.Startdate_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Startdate_Fld.headerName" [valueName]="'Startdate_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Startdate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'Startdate_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.Enddate_Fld && !formObj.Enddate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.Enddate_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Enddate_Fld.headerName" [valueName]="'Enddate_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Enddate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'Enddate_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4"
+            *ngIf="formObj.StopCalculate_Fld && !formObj.StopCalculate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.StopCalculate_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.StopCalculate_Fld.headerName" [valueName]="'StopCalculate_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.StopCalculate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'StopCalculate_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4"
+            *ngIf="formObj.NotCalcMain_Fld && !formObj.NotCalcMain_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NotCalcMain_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NotCalcMain_Fld.headerName" [valueName]="'NotCalcMain_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.NotCalcMain_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'NotCalcMain_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.Desc_Fld && !formObj.Desc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Desc_Fld.headerName"
+              [valueName]="'Desc_Fld'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Desc_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'Desc_Fld')">
+            </mat-checkbox>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

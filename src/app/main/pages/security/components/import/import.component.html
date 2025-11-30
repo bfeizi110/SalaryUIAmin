@@ -1,0 +1,119 @@
+<mat-card appearance="outlined">
+
+  <!-- <ng-wizard [dir]="'rtl'" [config]="config" (stepChanged)="stepChanged($event)">
+
+    <ng-wizard-step [dir]="'rtl'" [title]="'مرحله اول'" [description]="'انتخاب فایل'" [canEnter]="isValidTypeBoolean"
+      [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+
+      <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+      <div *ngIf="form" class="div-file">
+
+        <label class="mt-2 upload-button">
+          <input type="file" [(ngModel)]="inputvalue" #upload name="upload" (change)="inputChange($event)">
+          انتخاب فایل
+        </label>
+
+      </div>
+
+      <div *ngIf="form" class="mt-2 d-flex">
+        <p *ngIf="model.FileContent">
+          نام فایل:
+        </p>
+        <p class="file-name">
+          {{ model.FileName }}
+        </p>
+      </div>
+      <div style="direction: ltr;" *ngIf="showWSParam">
+        <div  class="col-sm-12" *ngFor="let item of ParameterList let i = index">
+          <mat-form-field dir="ltr">
+            <mat-label dir="ltr">{{item.ParameterTitle_Fld}}</mat-label>
+            <input type="text" [type]="'string'" dir="ltr" style="text-align: left;" matInput [(ngModel)]="item.ParameterValue_Fld" [class.require]="true"
+              (ngModelChange)="PropertyChange($event.value,i)">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button class="save-button margin-10" color="primary" (click)="view()">
+            نمایش اطلاعات وب سرویس
+          </button>
+        </div>
+      </div>
+      <div style="direction: ltr;" *ngIf="showViewTable">
+        <div class="col-2">
+          <button mat-raised-button class="save-button margin-10" color="primary" (click)="view()">
+            نمایش اطلاعات ویو/جدول
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="showGrid2" class="mt-1">
+        <custom-ag-grid [customGridOption]="gridOption2"></custom-ag-grid>
+      </div>
+
+    </ng-wizard-step>
+
+    <ng-wizard-step [dir]="'rtl'" [title]="'مرحله دوم'" [description]="'ثبت موقت'" [state]="stepStatesTab2.disabled">
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-12" style="text-align: right;" dir="rtl">
+              <mat-label dir="rtl" *ngIf="UniqueFields && UniqueFields != ''">ستونهای یکتا: </mat-label>
+              <mat-label dir="rtl" style="color: red;" *ngIf="UniqueFields && UniqueFields != ''">{{UniqueFields}}</mat-label>
+              <mat-label style="padding-right: 10px; ">
+                <input [(ngModel)]="NotCheckUniqueField"  type="checkbox" data-toggle="toggle">عدم بررسی ستونهای یکتا
+              </mat-label>              
+
+            </div>
+          </div>
+          <div class="col-sm-3" *ngFor="let item of dynamicList let index = index">
+              <custom-input  [formObj]="formObj"  [type]="item.Type_Fld" [parentFormGroup]="formG"
+                [label]="item.InputFldNameCaption_Fld" [valueName]="item.InputFldName_Fld" [comboArray]="item.Combo"
+                (changeCombo)="termporaryFieldChange($event.value, item.InputFldName_Fld, index)">
+              </custom-input>
+          </div>
+
+          <div class="d-flex text-right ">
+            <div class="col-sm-6">
+              <button mat-raised-button class="save-button margin-10" color="primary" (click)="insertAndShowFileTemp()">
+                نمایش اطلاعات موقت
+              </button>
+              <mat-label style="padding-right: 10px; ">
+                <input [(ngModel)]="CanDuplicate"  type="checkbox" data-toggle="toggle">عدم بررسی اطلاعات موجود(ایجاد کلیه اطلاعات)
+              </mat-label>              
+            </div>
+      
+          </div>
+
+          <div *ngIf="showGrid3" class="mt-2">
+            <custom-ag-grid [customGridOption]="gridOption3"></custom-ag-grid>
+          </div>
+
+        </div>
+
+      </div>
+
+    </ng-wizard-step>
+
+    <ng-wizard-step [dir]="'rtl'" [title]="'مرحله سوم'" [description]="'ثبت نهایی'" [state]="stepStatesTab3.disabled">
+
+      <div class="text-right mt-2">
+        <div class="col-sm-3">
+          <div class="col-sm-3">
+            <button mat-raised-button class="save-button" color="primary" (click)="insertFileFinal()">
+              تایید نهایی
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showGrid4" class="mt-2">
+        <custom-ag-grid [customGridOption]="gridOption4"></custom-ag-grid>
+      </div>
+
+    </ng-wizard-step>
+
+  </ng-wizard> -->
+
+</mat-card>

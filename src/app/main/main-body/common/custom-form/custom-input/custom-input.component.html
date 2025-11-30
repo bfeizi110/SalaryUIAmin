@@ -1,0 +1,160 @@
+<ng-container [ngSwitch]="type">
+
+  <ng-container *ngSwitchCase="'string'" [formGroup]="parentFormGroup">
+    <mat-form-field [dir]="direction" >
+      <mat-label [dir]="direction"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <input [attr.disabled]="disabled" [class.require]="required" style="height: 20px;" [type]="type" [dir]="direction" [(ngModel)]="control.value" matInput [ngClass]="{'number-input' : direction === 'ltr'}"
+        placeholder="{{placeholder}}" [formControl]="control" (ngModelChange)="changeValue($event)">
+        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+          <mat-icon style="color:blueviolet">×</mat-icon>
+        </button>
+      <control-message  [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngIf="showStringNumber" [formGroup]="parentFormGroup">
+    <mat-form-field dir="ltr">
+      <mat-label dir="ltr"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <input class="number-input" type="text" mask="separator" [allowNegativeNumbers]="true" thousandSeparator="," 
+        [class.require]="required" dir="ltr" matInput placeholder="{{placeholder}}" [formControl]="numberStringControl"
+        (ngModelChange)="changeNumberStringValue($event)" (keyup)="keyUp($event)" [(ngModel)]="control.value">
+        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText(null)">
+          <mat-icon style="color:blueviolet">×</mat-icon>
+        </button>
+      <control-message  [control]="numberStringControl" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+<!-- Time -->
+  <ng-container *ngSwitchCase="'time'" [formGroup]="parentFormGroup">
+    <div style="display: flex; align-items: center;">
+    <mat-form-field dir="direction">
+      <mat-label  dir="ltr" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+          <input  [attr.disabled]="disabled" [class.require]="required" class="number-input"
+      matInput
+      [formControl]="control" [(ngModel)]="control.value"
+      (input)="formattime($event)" placeholder="hh:mm"
+      [format]="24">
+        <ngx-material-timepicker #picker [format]="24"   (timeSet)="updateTime($event, 'selectedTimeFreeInput')"></ngx-material-timepicker>
+        <ngx-material-timepicker-toggle matSuffix [for]="picker" ></ngx-material-timepicker-toggle>
+    </mat-form-field>
+    <button mat-button *ngIf="control.value&& !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+      <mat-icon style="color:blueviolet">×</mat-icon>
+    </button>
+</div>
+  </ng-container>
+  <!-- mask="separator" thousandSeparator="," -->
+  <!-- <ng-container *ngSwitchCase="'int'" [formGroup]="parentFormGroup">
+    <mat-form-field dir="rtl">
+      <mat-label dir="rtl">{{label}}</mat-label>
+      <input type="number" [class.require]="required" dir="rtl" matInput placeholder="{{placeholder}}"
+        [formControl]="control" (ngModelChange)="changeValue($event)">
+      <control-message [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container> -->
+
+  <!-- pattern='[\\A-Z0-9]*' -->
+  <ng-container *ngSwitchCase="'decimal'" [formGroup]="parentFormGroup">
+    <mat-form-field dir="rtl" >
+      <mat-label dir="rtl"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <input pattern="^\d*\.?\d+$" [attr.disabled]="disabled" [class.require]="required" type="text" dir="rtl" matInput style="height: 20px;"
+        placeholder="{{placeholder}}" [formControl]="control" (ngModelChange)="changeValue($event)">
+        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+          <mat-icon style="color:blueviolet">×</mat-icon>
+        </button>
+        <control-message [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'textArea'" [formGroup]="parentFormGroup">
+    <mat-form-field [dir]="direction">
+      <mat-label  [dir]="direction" [ngStyle]="labelColor ? {'color': labelColor } : null ">{{label}}</mat-label>
+      <textarea  [ngStyle]="{'text-align': direction === 'ltr' ? 'left' : '', 'height': (23 * multilineno) + 'px'}" [class.require]="required" [type]="type" [dir]="direction" matInput placeholder="{{placeholder}}"
+        [formControl]="control" (ngModelChange)="changeValue($event)" [(ngModel)]="control.value">
+      </textarea>
+      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+        <mat-icon style="color:blueviolet">×</mat-icon>
+      </button>
+    <control-message [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'password'" [formGroup]="parentFormGroup">
+    <mat-form-field dir="rtl">
+      <mat-label dir="rtl"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <input  [class.require]="required" type="password" dir="rtl" matInput placeholder="{{placeholder}}"
+        [formControl]="control" (ngModelChange)="changeValue($event)">
+      <control-message [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'bool'" [formGroup]="parentFormGroup">
+    <!-- <section dir="rtl"> -->
+      <mat-checkbox  [class.require]="required" [formControl]="control" (change)="changeCheckbox($event)" dir="rtl">
+        {{label}}</mat-checkbox>
+      <control-message  [control]="control" [label]="label"></control-message>
+    <!-- </section> -->
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'radio'" [formGroup]="parentFormGroup">
+    <mat-radio-group  [class.require]="required" (ngModelChange)="changeValue($event)" dir="rtl" [formControl]="control">
+      <mat-radio-button value="1" dir="rtl">Option 1</mat-radio-button>
+      <mat-radio-button value="2" dir="rtl">Option 2</mat-radio-button>
+      <control-message [control]="control" [label]="label"></control-message>
+    </mat-radio-group>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'combo'" [formGroup]="parentFormGroup">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label  style="font-size: 14px !important;" dir="rtl" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <!-- <input type="text" matInput [formControl]="control" [matAutocomplete]="auto"> -->
+      <mat-select   style="font-size: 14px !important;" #selectPanel panelClass="custom-panel" [disableOptionCentering]="true" [multiple]="false" [class.require]="required" dir="rtl"
+        [formControl]="control" (selectionChange)="changeComboByUser($event)" (ngModelChange)="changeValue($event)" [(ngModel)]="control.value">
+        <mat-filter style="font-size: 14px !important;" [type]="type" [(comboList)]="comboList" [(control)]="control" [valueLabel]="'CodeDesc_Fld'"
+          (refreshChange)="refreshArray()">
+        </mat-filter>
+        <mat-option style="font-size: 14px !important;" *ngIf="control.value" [value]="null">-</mat-option>
+        <mat-option style="font-size: 14px !important;"  *ngIf="descValue && showFirstItem && (!comboList || comboList.length == 0)" [value]="control.value"
+          dir="rtl">
+          {{descValue}}
+        </mat-option>
+        <mat-option style="font-size: 14px !important;" dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+      <!-- <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of filteredComboList" [value]="item.Id">
+          {{ item.CodeDesc_Fld }}
+        </mat-option>
+      </mat-autocomplete>       -->
+      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearCombo()">
+        <mat-icon style="color:blueviolet">×</mat-icon>
+      </button>
+      <control-message  [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'multiCombo'" [formGroup]="parentFormGroup">
+    <mat-form-field (click)="clickCombo()" dir="rtl" class="mat-combo">
+      <mat-label  style="font-size: 14px !important;" dir="rtl" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <mat-select style="font-size: 14px !important;" [multiple]="multiple" [class.require]="required" dir="rtl" [formControl]="control" [(ngModel)]="control.value"
+        (selectionChange)="changeComboByUser($event)" (ngModelChange)="changeValue($event)" >
+        <mat-filter style="font-size: 14px !important;" [type]="type" [(comboList)]="comboArray" [(control)]="control" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshArray()" (comboListChange)="ComboListChaged($event)"> </mat-filter>
+        <mat-option style="font-size: 14px !important;" *ngIf="!multiple" [value]="null">-</mat-option>
+        <mat-option style="font-size: 14px !important;" *ngIf="multiple" dir="rtl" style="color: brown;" #allSelected (click)="toggleAllSelection()" [value]="0">همه موارد</mat-option>
+        <mat-option style="font-size: 14px !important;" dir="rtl" *ngFor="let filters of comboArray" [value]="filters.Id" (click)="togglePerOne(allSelected.viewValue)"> {{filters.CodeDesc_Fld}} </mat-option>
+      </mat-select>
+      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearCombo()">
+        <mat-icon style="color:blueviolet">×</mat-icon>
+      </button>
+      <control-message  [control]="control" [label]="label"></control-message>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'date'" [formGroup]="parentFormGroup">
+    <div [class.disabled-datepicker-wrapper]="dateDisabled || disabled">
+      <date-picker  [label]="label" [position]="position" [required]="required" [parentFormGroup]="parentFormGroup" 
+        [labelColor]="labelColor"  [control]="control" [label]="label" [placeholder]="placeholder" (dateChanged)="changeDate($event)" [disabled]="dateDisabled || disabled" [formtype]="formtype">
+        <control-message  [control]="control" [label]="label"></control-message>
+      </date-picker>
+    </div>
+  </ng-container>
+
+</ng-container>

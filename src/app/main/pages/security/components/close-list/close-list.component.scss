@@ -1,0 +1,63 @@
+.buttons {
+    font-size: 45px;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.btn1 {
+    top: 25%;
+}
+
+.btn2 {
+    top: 55%;
+}
+
+.btn3 {
+    top: 86%;
+}
+
+.type-button {
+   // top: 18%;
+   // left: 36.5%;
+}
+
+.cost-center-button {
+    top: 49%;
+    left: 36.5%;
+}
+
+.pay-program-button {
+    top: 81%;
+    left: 36.5%;
+}
+
+.grid-width {
+  //  width: 95%;
+}
+
+.col-1 {
+    position: relative;
+}
+
+.disabled {
+    opacity: .6;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 982px) {
+    .col-lg-1 {
+        margin-top: 90px;
+    }
+    .buttons {
+        position: unset;
+    }
+    .fa-arrow-circle-right {
+        transform: rotate(-90deg);
+    }
+    .fa-arrow-circle-left {
+        transform: rotate(-90deg);
+    }
+}

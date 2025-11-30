@@ -1,0 +1,28 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OrgChart'" [parentFormGroup]="form"
+          [label]="formObj.Code_Fld.headerName" [valueName]="'Code_Fld'" [descValue]="data.CodeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.IsPayroll.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form" [label]="formObj.IsPayroll.headerName"
+          [valueName]="'IsPayroll'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.PostParentIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="postParentUrl" [parentFormGroup]="form"
+          [label]="formObj.PostParentID.headerName" [valueName]="'PostParentID'" [descValue]="data.PostParentIDDesc">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="formType == 'Add'">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="levelStateArray" [parentFormGroup]="form"
+          [label]="'وضعیت'" [valueName]="'LevelState'" >
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

@@ -1,0 +1,22 @@
+input {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 6px;
+  border: 2px solid rgb(218 218 218);
+  height: 17px;
+}
+
+::ng-deep .ag-floating-filter-button[ref="eButtonWrapper"] {
+  display: none;
+}
+
+.bright {
+  filter: blur(1px);
+}
+
+::ng-deep .ag-header-row-floating-filter {
+  top: 24px;
+}

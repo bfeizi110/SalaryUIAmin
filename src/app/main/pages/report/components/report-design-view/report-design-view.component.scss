@@ -1,0 +1,85 @@
+.cost-btn {
+    background-color: white;
+    color: black;
+    text-align: right;
+    width: 100% !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+}
+
+// ::ng-deep .mat-mdc-checkbox .mdc-form-field label {
+//   font-size: 10px !important;     // سایز دلخواهت
+// }
+
+button {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 10px;
+}
+
+.item-tooltip {
+    font-family: iransans !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.button-grid {
+    width: 100%;
+    background: #298729 !important;
+    color: white !important;
+}
+
+.button-toggle-grid {
+    width: 100%;
+    background: #298729 !important;
+    color: black !important;
+}
+.button-file {
+    width: 100%;
+    background: #d53636  !important;
+    color: white !important;
+}
+
+.button-toggle-file {
+    width: 100%;
+    background: #d53636 !important;
+    color: black !important;
+}
+
+.button-stimul {
+    width: 100%;
+    background: #2a60f7 !important;
+    color: white !important;
+}
+
+.button-toggle-stimul {
+    width: 100%;
+    background: #2a60f7 !important;
+    color: black !important;
+}
+
+.disable {
+    background-color: unset !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: black !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
+:host ::ng-deep .mat-select-disabled .mat-select-value {
+    color: black !important;
+}
+
+.fa-trash {
+    margin-top: 22px;
+    color: red;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
+::ng-deep .mat-combo .mat-select-value-text {
+    color: #004fb1;
+}

@@ -1,0 +1,76 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="expanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <i class="fa fa-filter text-primary"></i>
+        <div class="mr-2">فیلتر پیشرفته</div>
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div class="form">
+
+        <div class="form-buttons">
+
+          <button *ngIf="!hideSearchButton" matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button
+            class="save-button" color="primary" (click)="filter()">
+            <i class="fa fa-search"></i>
+          </button>
+
+          <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button"
+            color="warn" (click)="refresh()">
+            <i class="fa fa-redo-alt"></i>
+          </button>
+
+        </div>
+
+        <div class="form-body">
+
+          <div class="container-fluid">
+
+            <div *ngIf="FormFilterViewDto.length > 0" class="row">
+              <fieldset class="mt-1">
+                <legend>فیلتر</legend>
+                <div class="row">
+                  <div *ngFor="let item of FormFilterViewDto  let i = index" class="col-sm-4 d-flex">
+
+                    <!-- <div class="col-sm-10"  >
+                      <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [ngStyle]="{'background-color': FormFilterViewDto[i].BackColor_Fld }"
+                        [comboArray]="FormFilterViewLists[i]" [parentFormGroup]="form" [multiple]="item.MultiSelect_Fld"
+                        [label]="item.EntityPropertyIDDesc_Fld" [valueName]="item.FilterFldName_Fld" [descValue]="'CodeDesc_Fld'"
+                        (changeCombo)="formFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                        (click)="clickformFilter(FormFilterViewDto[i].Id, i, item.EntityPropertyID_Fld, item.FilterFldName_Fld)">
+                      </custom-input>
+                    </div> -->
+                    <div class="col-sm-10">
+                      <div *ngIf="item.InputTypeDesc_Fld != 'combo' && item.InputTypeDesc_Fld != 'multiCombo'">
+                        <custom-input  [formObj]="formObj" [type]="item.InputTypeDesc_Fld" [parentFormGroup]="form" [label]="item.EntityPropertyIDDesc_Fld" [ngStyle]="{'background-color': FormFilterViewDto[i].BackColor_Fld }"
+                        [valueName]="item.FilterFldName_Fld" (change)="formFilterViewDynamicNotComboChange(item.FilterFldName_Fld)">
+                        </custom-input>
+                      </div>
+                      <div *ngIf="item.InputTypeDesc_Fld == 'combo'">
+                        <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="FormFilterViewLists[i]" [multiple]="false" [descValue]="'CodeDesc_Fld'" [ngStyle]="{'background-color': FormFilterViewDto[i].BackColor_Fld }"
+                        [parentFormGroup]="form" [label]="item.EntityPropertyIDDesc_Fld" [valueName]="item.FilterFldName_Fld" (changeCombo)="formFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                        (click)="clickformFilter(FormFilterViewDto[i].Id, i, item.EntityPropertyID_Fld, item.FilterFldName_Fld)">
+                        </custom-input>
+                      </div>
+                      <div *ngIf="item.InputTypeDesc_Fld == 'multiCombo'">
+                        <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="FormFilterViewLists[i]" [multiple]="true" [descValue]="'CodeDesc_Fld'" [ngStyle]="{'background-color': FormFilterViewDto[i].BackColor_Fld }"
+                        [parentFormGroup]="form" [label]="item.EntityPropertyIDDesc_Fld" [valueName]="item.FilterFldName_Fld" (changeCombo)="formFilterViewChange($event,item.Id, item.FilterFldName_Fld)"
+                        (click)="clickformFilter(FormFilterViewDto[i].Id, i, item.EntityPropertyID_Fld, item.FilterFldName_Fld)">
+                        </custom-input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>            
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+  </mat-expansion-panel>
+</mat-accordion>

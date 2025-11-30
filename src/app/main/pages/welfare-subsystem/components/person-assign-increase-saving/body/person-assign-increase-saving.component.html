@@ -1,0 +1,44 @@
+<!--filter-->
+<personnel-filter [controller]="Controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+
+<!--select person-->
+<div *ngIf="showSelectPerson" class=" mt-1">
+  <select-personnel [setPersonPID]="setPID" [personData]="personData" [hideFilter]="true" [multiple]="false"
+    (rowClicked)="onSelectPersonnel($event)">
+  </select-personnel>
+</div>
+
+<div class="person-assign-increase-saving mt-1" *ngIf="showGrid">
+  <custom-ag-grid [customGridOption]="gridOption"></custom-ag-grid>
+</div>
+
+<mat-card appearance="outlined" class="mt-1" *ngIf="showTab">
+
+  <div class="form" style="min-height: 395px">
+
+    <div class="form-buttons">
+      <button mat-raised-button class="close-button" color="warn" (click)="closeTab()">بستن</button>
+    </div>
+
+    <mat-tab-group class="mt-1" dir="rtl">
+
+      <mat-tab dir="rtl" label="سرمایه">
+        <ng-template matTabContent>
+          <person-assign-saving-form [formObj]="formObj" [ID]="ID" [PID]="PID" [formType]="formType"
+            (done)="submited($event)" (closed)="closeForm()">
+          </person-assign-saving-form>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="افزایش/کاهش سرمایه">
+        <ng-template matTabContent>
+          <increase-saving [ParentID]="ID"></increase-saving>
+        </ng-template>
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </div>
+
+</mat-card>

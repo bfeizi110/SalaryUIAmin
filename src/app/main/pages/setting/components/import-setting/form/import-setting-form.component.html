@@ -1,0 +1,193 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.TblNameDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Entity/GetComboNewImport/100921'" [parentFormGroup]="form"
+          [label]="formObj.TblName_Fld.headerName" [valueName]="'TblName_Fld'" [descValue]="data.TblNameDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-8" *ngIf="!formObj.FileTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10049'" [parentFormGroup]="form"
+          [label]="formObj.FileType_Fld.headerName" [valueName]="'FileType_Fld'" [descValue]="data.FileTypeDesc_Fld"
+          (changeCombo)="changeFileType()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-3"  *ngIf="!formObj.IdentityInsert_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100495">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="formObj.IdentityInsert_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IdentityInsert_Fld.headerName" [valueName]="'IdentityInsert_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-4" *ngIf="!formObj.WSMethodTypeDesc_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10101'" [parentFormGroup]="form"
+          [label]="formObj.WSMethodType_Fld.headerName" [valueName]="'WSMethodType_Fld'"
+          [descValue]="data.WSMethodTypeDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12 textArea" *ngIf="!formObj.ConnectionString_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100495">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [multilineno]="4"
+          [label]="formObj.ConnectionString_Fld.headerName" [valueName]="'ConnectionString_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" style="text-align: left" *ngIf="!formObj.ViewOrTblName_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100495">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="formObj.ViewOrTblName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ViewOrTblName_Fld.headerName" [valueName]="'ViewOrTblName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-3" *ngIf="!formObj.RowSkip_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100492">
+        <custom-input  [formObj]="formObj"  [type]="formObj.RowSkip_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.RowSkip_Fld.headerName" [valueName]="'RowSkip_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.WSDataName_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="formObj.WSDataName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.WSDataName_Fld.headerName" [valueName]="'WSDataName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-4" *ngIf="!formObj.WSTypeDesc_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10128'" [parentFormGroup]="form"
+          [label]="formObj.WSType_Fld.headerName" [valueName]="'WSType_Fld'"
+          [descValue]="data.WSTypeDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12 textArea" *ngIf="!formObj.SoapBody_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494 && form.controls.WSType_Fld.value && form.controls.WSType_Fld.value == 101281">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [multilineno]="9"
+          [label]="formObj.SoapBody_Fld.headerName" [valueName]="'SoapBody_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12">
+
+        <fieldset *ngIf="form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100491" class="mt-2">
+          <legend>وضعیت فایل متنی</legend>
+          <div class="row">
+            <div class="col-sm-4" *ngIf="!formObj.CodepageDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10068'" [parentFormGroup]="form"
+                [label]="formObj.Codepage_Fld.headerName" [valueName]="'Codepage_Fld'"
+                [descValue]="data.CodepageDesc_Fld">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-4" *ngIf="!formObj.RowDelimiterDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10069'" [parentFormGroup]="form"
+                [label]="formObj.RowDelimiter_Fld.headerName" [valueName]="'RowDelimiter_Fld'"
+                [descValue]="data.RowDelimiterDesc_Fld">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-4" *ngIf="!formObj.ColDelimiterDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10069'" [parentFormGroup]="form"
+                [label]="formObj.ColDelimiter_Fld.headerName" [valueName]="'ColDelimiter_Fld'"
+                [descValue]="data.ColDelimiterDesc_Fld">
+              </custom-input>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="col-sm-12" *ngIf="!formObj.WSUrl_Fld.ishidden && form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494">
+          <custom-input  [formObj]="formObj"   [type]="formObj.WSUrl_Fld.type" [parentFormGroup]="form" [ltr]="true"
+            [label]="formObj.WSUrl_Fld.headerName" [valueName]="'WSUrl_Fld'">
+          </custom-input>
+        </div>
+
+        <fieldset *ngIf="form.controls.FileType_Fld.value && form.controls.FileType_Fld.value == 100494" class="mt-2">
+          <legend>پارامترهای ورودی</legend>
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-sm-1">
+                <button mat-raised-button class="save-button" color="primary" (click)="addDetail()">اضافه</button>
+              </div>
+        
+              <div class="col-sm-12" *ngFor="let item of ParameterList let i = index">
+        
+                <div class="row" >
+        
+                  <div  class="col-sm-3">
+                    <mat-form-field dir="ltr">
+                      <mat-label dir="ltr">{{formObj.ParameterTitle_Fld.headerName}}</mat-label>
+                      <input type="text" dir="rtl" matInput [(ngModel)]="item.ParameterTitle_Fld" [class.require]="true"
+                        (ngModelChange)="PropertyChange($event.value,i)">
+                    </mat-form-field>
+                  </div>
+
+                  <div  class="col-sm-2">
+                    <mat-form-field dir="ltr">
+                      <mat-label dir="ltr">{{formObj.ParameterName_Fld.headerName}}</mat-label>
+                      <input type="text" dir="ltr" style="text-align: left;" matInput [(ngModel)]="item.ParameterName_Fld" [class.require]="true"
+                        (ngModelChange)="PropertyChange($event.value,i)">
+                    </mat-form-field>
+                  </div>
+
+                  <div  class="col-sm-2">
+                    <mat-form-field dir="ltr">
+                      <mat-label dir="ltr">{{formObj.ParameterValue_Fld.headerName}}</mat-label>
+                      <input type="text" dir="ltr" style="text-align: left;" matInput [(ngModel)]="item.ParameterValue_Fld" [class.require]="false"
+                        (ngModelChange)="PropertyChange($event.value,i)">
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-2" *ngIf="!form.controls.WSType_Fld.value || form.controls.WSType_Fld.value != 101281">
+                    <mat-form-field dir="rtl">
+                      <mat-label dir="rtl">{{formObj.InputParameterType_Fld.headerName}}</mat-label>
+                      <mat-select [(ngModel)]="item.InputParameterType_Fld" [multiple]="false" dir="rtl"
+                        [class.require]="true"
+                        (selectionChange)="PropertyChange($event.value, i)">
+                        <mat-option *ngIf="InputParameterTypeComboDto.length == 0">-</mat-option>
+                        <mat-filter [(comboList)]="InputParameterTypeComboDto" [valueLabel]="'CodeDesc_Fld'">
+                        </mat-filter>
+                        <mat-option dir="rtl" *ngFor="let item of InputParameterTypeComboDto" [value]="item.Id">{{item.CodeDesc_Fld}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+        
+                  <div class="col-sm-2" *ngIf="!form.controls.WSType_Fld.value || form.controls.WSType_Fld.value != 101281">
+                    <mat-form-field dir="rtl">
+                      <mat-label dir="rtl">{{formObj.InputType_Fld.headerName}}</mat-label>
+                      <mat-select [(ngModel)]="item.InputType_Fld" [multiple]="false" dir="rtl"
+                        [class.require]="true"
+                        (selectionChange)="PropertyChange($event.value, i)">
+                        <mat-option *ngIf="InputTypeComboDto.length == 0">-</mat-option>
+                        <mat-filter [(comboList)]="InputTypeComboDto" [valueLabel]="'CodeDesc_Fld'">
+                        </mat-filter>
+                        <mat-option dir="rtl" *ngFor="let item of InputTypeComboDto" [value]="item.Id">{{item.CodeDesc_Fld}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-1"><i class="fa fa-trash mt-3 text-danger" (click)="deleteRow(i)"></i></div>
+        
+                </div>
+        
+              </div>
+            </div>
+        
+          </div>
+
+        </fieldset>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</custom-modal>

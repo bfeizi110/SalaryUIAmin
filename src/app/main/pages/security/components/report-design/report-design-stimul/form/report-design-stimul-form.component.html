@@ -1,0 +1,104 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-lg-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-lg-12" *ngIf="!formObj.FileName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.FileName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.FileName_Fld.headerName" [valueName]="'FileName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FormulaBeforeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.FormulaBefore_Fld.headerName" [valueName]="'FormulaBefore_Fld'"
+          [descValue]="data.FormulaBeforeDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.IsJson_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsJson_Fld.type" [parentFormGroup]="form" [label]="formObj.IsJson_Fld.headerName"
+          [valueName]="'IsJson_Fld'" (change)="changeIsJson()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.VarName1_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.VarName1_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.VarName1_Fld.headerName" [valueName]="'VarName1_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.VarValue1_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.VarValue1_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.VarValue1_Fld.headerName" [valueName]="'VarValue1_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.VarName2_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.VarName2_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.VarName2_Fld.headerName" [valueName]="'VarName2_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.VarValue2_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.VarValue2_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.VarValue2_Fld.headerName" [valueName]="'VarValue2_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.DtName1_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DtName1_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DtName1_Fld.headerName" [valueName]="'DtName1_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Formula1Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.Formula1_Fld.headerName" [valueName]="'Formula1_Fld'" [descValue]="data.Formula1Desc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.DtName2_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DtName2_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DtName2_Fld.headerName" [valueName]="'DtName2_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Formula2Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.Formula2_Fld.headerName" [valueName]="'Formula2_Fld'" [descValue]="data.Formula2Desc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.DtName3_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DtName3_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DtName3_Fld.headerName" [valueName]="'DtName3_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Formula3Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.Formula3_Fld.headerName" [valueName]="'Formula3_Fld'" [descValue]="data.Formula3Desc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.DtName4_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DtName4_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DtName4_Fld.headerName" [valueName]="'DtName4_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Formula4Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.Formula4_Fld.headerName" [valueName]="'Formula4_Fld'" [descValue]="data.Formula4Desc_Fld">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

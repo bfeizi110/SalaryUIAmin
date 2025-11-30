@@ -1,0 +1,76 @@
+<mat-card appearance="outlined">
+
+  <mat-tab-group dir="rtl" (selectedTabChange)="selectedParentTabChange($event)">
+    <mat-tab dir="rtl" label="مدیریت ارسال پیامک">
+      <ng-template matTabContent>
+        <!--filter-->
+        <personnel-filter [expanded]="true" [controller]="Controller" [hideSearchButton]="false" [personObj]="personObj"
+          (onFilter)="onFilter($event)" [personData]="personData"
+          (showPerson)="onShowPerson()">
+          <!-- (onFilterWithoutFilterButton)="onFilter($event)" -->
+        </personnel-filter>
+
+        <mat-tab-group dir="rtl" [tabIndex]="tabIndexChild" (selectedTabChange)="selectedChildTabChange($event)">
+          <mat-tab dir="rtl" label="آماده سازی پیامک">
+            <div class="d-flex mt-2">
+              <div class="col-sm-3">
+                <mat-form-field (click)="clickCombo()" dir="rtl">
+                  <mat-label dir="rtl">متن پیامک</mat-label>
+                  <mat-select [(ngModel)]="smsId" dir="rtl" > 
+                    <!-- (selectionChange)="getSelectSend()" -->
+                    <mat-option *ngIf="smsList.length == 0">-</mat-option>
+                    <mat-filter [(comboList)]="smsList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+                    </mat-filter>
+                    <mat-option dir="rtl" *ngFor="let item of smsList" [value]="item.Id">{{item.CodeDesc_Fld}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-2">
+                                
+                <button *ngIf="smsId && selectedSendSms.length !=0" mat-raised-button class="save-button margin-10" color="primary"
+                  (click)="save()">آماده جهت ارسال</button>
+                  <span class="margin-10 fa fa-refresh" color="green"
+                  (click)="getSelectSend()"></span>
+              </div>
+            </div>
+            <custom-ag-grid *ngIf="showGridSend" [rowNumber]="20" [customGridOption]="gridOptionSend"></custom-ag-grid>
+          </mat-tab>
+          <mat-tab dir="rtl" label="پیامک های آماده جهت ارسال">
+            <div class="d-flex mt-2">
+              <button *ngIf="selectedReady.length !=0" mat-raised-button class="mt-4  margin-10" color="primary"
+                (click)="send()">ارسال</button>
+                <button class="mt-4  margin-10" *ngIf="selectedReady.length != 0" mat-raised-button color="warn"
+                (click)="delete()">حذف</button>
+              </div>
+            <custom-ag-grid *ngIf="showGridReady" [rowNumber]="20" [customGridOption]="gridOptionReady"></custom-ag-grid>
+          </mat-tab>
+          <mat-tab dir="rtl" label="پیامک های ارسال شده ماه جاری">
+            <div class="d-flex mt-2">
+              <button mat-raised-button class="mt-4 margin-10" [disabled]="checkSms" color="primary" (click)="checkSmsStatus()">
+                <i *ngIf="checkSms " class="fas fa-spinner fa-pulse button-hyper-link"></i>
+                {{!checkSms ? "بررسی وضعیت پیامک های ارسال شده" : "در حال بروز رسانی"}}
+              </button>
+              <button *ngIf="selectedSentSms.length != 0" mat-raised-button class="mt-4 margin-10" color="accent"
+              (click)="reSend()">ارسال مجدد
+              </button>
+            </div>
+            <custom-ag-grid *ngIf="showGridSent" [rowNumber]="20" [customGridOption]="gridOptionSent"></custom-ag-grid>
+          </mat-tab>
+        </mat-tab-group>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir=" rtl" label="کاردکس پیامک">
+      <ng-template matTabContent>
+        <select-personnel (rowClicked)="rowClickedPerson($event)" [wantToCollapse]="false" [hideFilter]="true">
+        </select-personnel>
+        <cardex-person *ngIf="cardexOptions && cardexOptions.PID" [option]="cardexOptions"></cardex-person>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>
+
+<select-personnel *ngIf="showPerson" [isModal]="true" [multiple]="true"
+  (rowSelectedListOnModal)="onSelectPersonnel($event)" [hideFilter]="true" (closed)="showPerson = false">
+</select-personnel>

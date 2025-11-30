@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.TaxBaseTableDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaxBaseTable'" [parentFormGroup]="form"
+          [label]="formObj.TaxBaseTable_Fld.headerName" [valueName]="'TaxBaseTable_Fld'"
+          [descValue]="data.TaxBaseTableDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.HireTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'HireType'" [parentFormGroup]="form"
+          [label]="formObj.HireType_Fld.headerName" [valueName]="'HireType_Fld'" [descValue]="data.HireTypeDesc_Fld">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

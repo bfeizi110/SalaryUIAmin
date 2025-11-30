@@ -1,0 +1,14 @@
+<country *ngIf="showCountry" [formObj]="formObj" (changeCountry)="changeCountry($event)"></country>
+
+<div class="state mt-2" *ngIf="showState">
+  <state [countryId]="countryId" [formObj]="formObj" (changeState)="changeState($event)">
+  </state>
+</div>
+
+<div class="city mt-2" *ngIf="showGrid">
+  <custom-ag-grid [customGridOption]="gridOption" [disabledForm]="formType != ''"></custom-ag-grid>
+</div>
+
+<city-form *ngIf="showForm" [cityType]="3" [parentId]="stateId" [formObj]="formObj" [ID]="ID" [formType]="formType"
+  (done)="submited($event)" (closed)="closeForm()">
+</city-form>

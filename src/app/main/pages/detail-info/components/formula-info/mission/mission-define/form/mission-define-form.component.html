@@ -1,0 +1,123 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.Code_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Code_Fld.type" [parentFormGroup]="form" [label]="formObj.Code_Fld.headerName"
+              [valueName]="'Code_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionMax.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionMax.type" [parentFormGroup]="form"
+              [label]="formObj.MissionMax.headerName" [valueName]="'MissionMax'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionMaxParamNo.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionMaxParamNo.type" [parentFormGroup]="form"
+              [label]="formObj.MissionMaxParamNo.headerName" [valueName]="'MissionMaxParamNo'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionMaxHour.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionMaxHour.type" [parentFormGroup]="form"
+              [label]="formObj.MissionMaxHour.headerName" [valueName]="'MissionMaxHour'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionMaxDay.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionMaxDay.type" [parentFormGroup]="form"
+              [label]="formObj.MissionMaxDay.headerName" [valueName]="'MissionMaxDay'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionParamDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MissionParam_Fld.headerName" [descValue]="data.MissionParamDesc_Fld"
+              [valueName]="'MissionParam_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionParam_T1Divideby_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionParam_T1Divideby_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MissionParam_T1Divideby_Fld.headerName" [valueName]="'MissionParam_T1Divideby_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionParamNoDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MissionParamNo_Fld.headerName" [descValue]="data.MissionParamNoDesc_Fld"
+              [valueName]="'MissionParamNo_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionParamNo_T1Divideby_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionParamNo_T1Divideby_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MissionParamNo_T1Divideby_Fld.headerName" [valueName]="'MissionParamNo_T1Divideby_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionParamHourDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MissionParamHour_Fld.headerName" [descValue]="data.MissionParamHourDesc_Fld"
+              [valueName]="'MissionParamHour_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionHour_T1Divideby_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionHour_T1Divideby_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MissionHour_T1Divideby_Fld.headerName" [valueName]="'MissionHour_T1Divideby_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionWaterParamDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MissionWaterParam_Fld.headerName" [descValue]="data.MissionWaterParamDesc_Fld"
+              [valueName]="'MissionWaterParam_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionWaterParam_T1Divideby_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionWaterParam_T1Divideby_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MissionWaterParam_T1Divideby_Fld.headerName"
+              [valueName]="'MissionWaterParam_T1Divideby_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionWaterParamNoDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MissionWaterParamNo_Fld.headerName" [descValue]="data.MissionWaterParamNoDesc_Fld"
+              [valueName]="'MissionWaterParamNo_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-md-4" *ngIf="!formObj.MissionWaterParamNo_T1Divideby_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MissionWaterParamNo_T1Divideby_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MissionWaterParamNo_T1Divideby_Fld.headerName"
+              [valueName]="'MissionWaterParamNo_T1Divideby_Fld'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

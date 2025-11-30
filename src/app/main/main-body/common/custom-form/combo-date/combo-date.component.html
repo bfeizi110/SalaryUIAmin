@@ -1,0 +1,17 @@
+<div class="body">
+    <button type="button" value="insert date" (click)="showgrid()">show</button>
+    <div class="container" *ngIf="ShowItem">
+        <div class="row">
+            <div class="col-6">
+                <select name="year"  [(ngModel)]="finaldateyear">
+                    <option *ngFor="let item of countingyear">{{item}}</option>
+                </select>
+            </div>
+            <div class="col-6">
+                    <select name="month"  [(ngModel)]="finaldatemonth">
+                        <option *ngFor="let item of countingmonth">{{item}}</option>
+                    </select>
+            </div>
+        </div>
+    </div>
+</div>

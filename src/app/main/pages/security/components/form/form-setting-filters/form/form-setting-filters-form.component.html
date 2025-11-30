@@ -1,0 +1,81 @@
+<div class="form">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+    </button>
+
+    <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div class="container-fluid">
+      <div class="row" *ngIf="showForm">
+
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5" *ngIf="!formObj.UseField_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.UseField_Fld.type" [parentFormGroup]="form" [label]="formObj.UseField_Fld.headerName"
+            [valueName]="'UseField_Fld'" (change)="changeUseField()">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!(form.controls.UseField_Fld && form.controls.UseField_Fld.value) &&  !formObj.FilterInputTypeTitle_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.FilterInputTypeTitle_Fld.type" [parentFormGroup]="form" [label]="formObj.FilterInputTypeTitle_Fld.headerName"
+            [valueName]="'FilterInputTypeTitle_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!(form.controls.UseField_Fld && form.controls.UseField_Fld.value) && !formObj.InputType_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10129'" [parentFormGroup]="form"
+            [label]="formObj.InputType_Fld.headerName" [valueName]="'InputType_Fld'" [descValue]="data.InputTypeDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="(form.controls.UseField_Fld && form.controls.UseField_Fld.value)">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*EntityProperty/GetComboNew/' + EntityName" [parentFormGroup]="form"
+            [label]="formObj.EntityPropertyID_Fld.headerName" [valueName]="'EntityPropertyID_Fld'" [descValue]="data.EntityPropertyIDDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-2" *ngIf="(form.controls.UseField_Fld && form.controls.UseField_Fld.value) && !formObj.Operator_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10046'" [parentFormGroup]="form"
+            [label]="formObj.Operator_Fld.headerName" [valueName]="'Operator_Fld'" [descValue]="data.OperatorDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-1" *ngIf="!formObj.Order_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.Order_Fld.type" [parentFormGroup]="form" [label]="formObj.Order_Fld.headerName"
+            [valueName]="'Order_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-2" *ngIf="(form.controls.UseField_Fld && form.controls.UseField_Fld.value) && !formObj.MultiSelect_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.MultiSelect_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.MultiSelect_Fld.headerName" [valueName]="'MultiSelect_Fld'">
+          </custom-input>
+        </div>
+
+        <div class=" col-sm-2" *ngIf="!formObj.BackColor_Fld.ishidden">
+          <p>انتخاب رنگ</p>
+          <span style="margin-top: 1px; margin-right: 21px;border: 1px solid black;"
+          class="d-block rounded-circle span-circle" [style.background]="selectedItemColor"
+           [(colorPicker)]="selectedItemColor" [cpOutputFormat]="'hex'" (colorPickerChange)="changeElementColor(selectedItemColor)">
+          </span>
+        </div>
+
+        <div class="col-12 text-area" *ngIf="!form.controls.UseField_Fld.value && !formObj.Query_Fld.ishidden && (form.controls.InputType_Fld.value == 101296 || form.controls.InputType_Fld.value == 101297)">
+          <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Query_Fld.headerName"
+            [valueName]="'Query_Fld'" [ltr]="true">
+          </custom-input>
+        </div>
+
+        <div class="col-12 text-area" *ngIf="!form.controls.UseField_Fld.value && !formObj.Query_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Condition_Fld.headerName"
+            [valueName]="'Condition_Fld'" [ltr]="true">
+          </custom-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

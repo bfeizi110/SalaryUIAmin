@@ -1,0 +1,76 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.ParentId.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Menu'" [parentFormGroup]="form"
+              [label]="formObj.ParentId.headerName" [valueName]="'ParentId'" [descValue]="data.ParentIdDesc">
+            </custom-input>
+          </div>
+
+          <!-- <div class="col-sm-3" *ngIf="!formObj.Level.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Level.type" [parentFormGroup]="form" [label]="formObj.Level.headerName"
+              [valueName]="'Level'">
+            </custom-input>
+          </div> -->
+
+          <div class="col-sm-1" *ngIf="!formObj.Order.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Order.type" [parentFormGroup]="form" [label]="formObj.Order.headerName"
+              [valueName]="'Order'"></custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.UseManualForm_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.UseManualForm_Fld.type" [parentFormGroup]="form" [label]="formObj.UseManualForm_Fld.headerName"
+              [valueName]="'UseManualForm_Fld'"></custom-input>
+          </div> 
+
+          <div class="col-sm-3" *ngIf="!formObj.FormID_Fld.ishidden && form.controls.UseManualForm_Fld.value">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Form'" [parentFormGroup]="form"
+              [label]="formObj.FormID_Fld.headerName" [valueName]="'FormID_Fld'" [descValue]="data.FormIDDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-5" *ngIf="!formObj.Path.ishidden  && !form.controls.UseManualForm_Fld.value">
+            <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.Path.type" [parentFormGroup]="form" [label]="formObj.Path.headerName"
+              [valueName]="'Path'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Icon.ishidden">
+            <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.Icon.type" [parentFormGroup]="form" [label]="formObj.Icon.headerName"
+              [valueName]="'Icon'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Controller.ishidden  && !form.controls.UseManualForm_Fld.value">
+            <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.Controller.type" [parentFormGroup]="form"
+              [label]="formObj.Controller.headerName" [valueName]="'Controller'">
+            </custom-input>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

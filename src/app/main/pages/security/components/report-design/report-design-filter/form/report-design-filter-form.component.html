@@ -1,0 +1,100 @@
+<div class="form">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+    </button>
+
+    <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div class="container-fluid">
+      <div class="row" *ngIf="showForm">
+
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5" *ngIf="!formObj.UseFilterID_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.UseFilterID_Fld.type" [parentFormGroup]="form" [label]="formObj.UseFilterID_Fld.headerName"
+            [valueName]="'UseFilterID_Fld'" (change)="changeUseFilter()">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!(form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value) &&  !formObj.FilterInputTypeTitle_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.FilterInputTypeTitle_Fld.type" [parentFormGroup]="form" [label]="formObj.FilterInputTypeTitle_Fld.headerName"
+            [valueName]="'FilterInputTypeTitle_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="!(form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value) && !formObj.InputType_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10129'" [parentFormGroup]="form"
+            [label]="formObj.InputType_Fld.headerName" [valueName]="'InputType_Fld'" [descValue]="data.InputTypeDesc_Fld">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3" *ngIf="form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value">
+          <mat-form-field [class.require]="formObj.FilterID_Fld.required" dir="rtl">
+            <mat-label dir="rtl">جداول</mat-label>
+            <mat-select dir="rtl" [(ngModel)]="filtelValue" [multiple]="true"
+              (selectionChange)="changeFilter($event.value)">
+              <mat-option *ngIf="filterList.length == 0">-</mat-option>
+              <mat-filter [(comboList)]="filterList" [valueLabel]="'CodeDesc_Fld'">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of filterList" [value]="item">
+                {{item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-1" *ngIf="!formObj.Order_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.Order_Fld.type" [parentFormGroup]="form" [label]="formObj.Order_Fld.headerName"
+            [valueName]="'Order_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-2" *ngIf="(form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value) && !formObj.HaveGroup_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.HaveGroup_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.HaveGroup_Fld.headerName" [valueName]="'HaveGroup_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-2" *ngIf="(form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value) && !formObj.MultiSelect_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.MultiSelect_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.MultiSelect_Fld.headerName" [valueName]="'MultiSelect_Fld'">
+          </custom-input>
+        </div>
+
+        <div class=" col-sm-2" *ngIf="!formObj.BackColor_Fld.ishidden">
+          <p>انتخاب رنگ</p>
+          <span style="margin-top: 1px; margin-right: 21px;border: 1px solid black;"
+          class="d-block rounded-circle span-circle" [style.background]="selectedItemColor"
+           [(colorPicker)]="selectedItemColor" [cpOutputFormat]="'hex'" (colorPickerChange)="changeElementColor(selectedItemColor)">
+          </span>
+        </div>
+
+        <div class="col-sm-2" *ngIf="(form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value) && !formObj.NothingByDefault_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.NothingByDefault_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.NothingByDefault_Fld.headerName" [valueName]="'NothingByDefault_Fld'">
+          </custom-input>
+        </div>
+
+        <div class="col-12 text-area" *ngIf="!form.controls.UseFilterID_Fld.value 
+        && !formObj.Query_Fld.ishidden && (form.controls.InputType_Fld.value == 101296 || form.controls.InputType_Fld.value == 101297)">
+          <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Query_Fld.headerName"
+            [valueName]="'Query_Fld'" [ltr]="true"></custom-input>
+        </div>
+
+        <div *ngIf="showWhereFrame && (form.controls.UseFilterID_Fld && form.controls.UseFilterID_Fld.value)" class="col-sm-12">
+          <where [controller]="'reportFilter'" [FilterID_Fld]="form.controls.FilterID_Fld.value" [formType]="formType"
+            (entityFrameListChange)="whereChange($event)" [entityFrameList]="data.ReportDesignFilterWhereDto"
+            [filterValue]="filtelValue" [entityList]="filterList">
+          </where>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

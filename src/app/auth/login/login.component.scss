@@ -1,0 +1,231 @@
+.separator {
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  z-index: 99;
+  position: relative;
+  margin: -10px auto 0;
+  font-size: 12px;
+  width: 95%;
+  color: black;
+
+  margin: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #000;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.body {
+  // background: linear-gradient(198deg, rgba(131,58,180,1) 0%, rgba(29,253,198,1) 52%, rgba(252,176,69,1) 100%);
+  background: linear-gradient(198deg, #151e59 0%, rgb(81, 109, 165) 52%, rgb(255, 255, 255) 100%);
+  // background-color: #151e59;
+  text-align: center;
+  position: relative;
+  height: 100vh;
+}
+
+:host .mat-mdc-form-field {
+   text-align: right !important
+}
+
+.sides {
+  width: calc(100% - 40px);
+  max-width: 440px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  height: 50%;
+}
+
+.right-side {
+  // background-image: url('../../assets/img/auth/auth-background-1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+.left-side {
+  width: 85%;
+}
+
+h1,
+h2,
+img {
+  margin: 0 auto;
+}
+
+p {
+  position: absolute;
+  bottom: 0;
+}
+
+form {}
+
+.uni-name {
+  color: rgb(153, 153, 153);
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+}
+
+input {
+  text-align: left !important;
+  font-size: 20px;
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+:host ::ng-deep mat-label {
+  color: rgb(0, 0, 0);
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+:host ::ng-deep .mat-form-field-underline {
+  color: rgb(0, 0, 0);
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+:host ::ng-deep .mat-form-field-ripple {
+  background: rgb(0, 0, 0);
+}
+
+:host ::ng-deep .mat-focused .form-field-label .form-form-field-label .mat-focused {
+  color: rgb(0, 0, 0) !important;
+}
+
+:host ::ng-deep .mat-mdc-input-element {
+  caret-color: rgb(0, 0, 0) !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+mat-form-field {
+  display: block;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.603);
+}
+
+.button-hyper-link {
+  text-decoration: none;
+  float: right;
+  border: none;
+  background-color: white;
+  color:  dodgerblue;
+  margin-bottom: 10px;
+}
+
+// .btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)}
+.btn-grad {
+  background-image: linear-gradient(to right,#014d77,#00a99d);
+  width: 100%;
+  padding: 5px 36px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 7px;
+  display: block;
+ }
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.right-col {
+  min-height: 505px
+}
+
+@media (max-width: 992px) {
+  .right-col {
+    display: none;
+  }
+}
+
+input {
+  direction: ltr !important;
+}
+
+.logo {
+  max-height: 120px !important;
+  max-width: 90px;
+}
+
+.code-img {
+  height: 44px;
+}
+
+.fa-refresh {
+  margin-right: 4px;
+}
+
+.fa-spinner {
+  font-size: 55px;
+  color: #170095;
+}
+
+.btn-grad-central {
+  // background-image: linear-gradient(to right, #d743d9 0%, #260c25 51%, #ebebeb 100%)
+  background-color: #0dc1b4 ;
+}
+
+.btn-grad-central {
+  width: 100%;
+  padding: 5px 36px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 7px;
+  display: block;
+ }
+ .btn-grad-central:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+ .inputCode {
+  width: 30px;
+  margin-right: 10px;
+  text-align: center;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: 28px;
+
+}
+
+input.inputCode:focus-visible {
+  outline: none;
+}

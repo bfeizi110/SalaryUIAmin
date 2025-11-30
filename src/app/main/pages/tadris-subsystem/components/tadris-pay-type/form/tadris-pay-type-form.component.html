@@ -1,0 +1,93 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.TaxPayType1403Desc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10114'" [parentFormGroup]="form"
+              [label]="formObj.TaxPayType1403_Fld.headerName" [valueName]="'TaxPayType1403_Fld'"
+              [descValue]="data.TaxPayType1403Desc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.LicenseLevelDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10060'" [parentFormGroup]="form"
+              [label]="formObj.LicenseLevel_Fld.headerName" [valueName]="'LicenseLevel_Fld'"
+              [descValue]="data.LicenseLevelDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10061'" [parentFormGroup]="form"
+              [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.CalcTax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcTax_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcTax_Fld.headerName" [valueName]="'CalcTax_Fld'" (change)="changeCalcTax()">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.TaxBaseTableDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaxBaseTable'" [parentFormGroup]="form"
+              [label]="formObj.TaxBaseTable_Fld.headerName" [valueName]="'TaxBaseTable_Fld'"
+              [descValue]="data.TaxBaseTableDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.NotTadil_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NotTadil_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NotTadil_Fld.headerName" [valueName]="'NotTadil_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3" *ngIf="!formObj.CalcInsure_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcInsure_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcInsure_Fld.headerName" [valueName]="'CalcInsure_Fld'" (change)="changeCalcInsure()">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.InsureCode_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="insureList" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.InsureCode_Fld.headerName" [valueName]="'InsureCode_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.HourMax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.HourMax_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.HourMax_Fld.headerName" [valueName]="'HourMax_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="!formObj.CalcFactor_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcFactor_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcFactor_Fld.headerName" [valueName]="'CalcFactor_Fld'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

@@ -1,0 +1,40 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <button class="cost-btn" [class.require]="formObj.PersonID_Fld.require" mat-raised-button color="primary"
+          (click)="onShowPerson()">{{formObj.PersonID_Fld.headerName}}
+          <ng-container *ngIf="personName">
+            : {{personName}}
+          </ng-container>
+        </button>
+        <i *ngIf="form.controls.PersonID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.StartDateBList_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.StartDateBList_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.StartDateBList_Fld.headerName" [valueName]="'StartDateBList_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FinishDateBList_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.FinishDateBList_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.FinishDateBList_Fld.headerName" [valueName]="'FinishDateBList_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [ltr]="true" [type]="'textArea'" [parentFormGroup]="form"
+          [label]="formObj.Desc_Fld.headerName" [valueName]="'Desc_Fld'">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>
+
+<select-personnel *ngIf="showPerson" [setPersonPID]="data.PersonID_Fld" [multiple]="true" [isModal]="true"
+  (rowClickedModal)="onSelectPersonnel($event)" (rowSelectedListOnModal)="rowSelectedList($event)" [hideFilter]="true"
+  (closed)="showPerson = false">
+</select-personnel>

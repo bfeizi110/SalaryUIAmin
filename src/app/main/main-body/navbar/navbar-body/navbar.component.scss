@@ -1,0 +1,197 @@
+.fa-sort-down {
+  margin-right: 4px;
+  position: absolute;
+}
+
+.button-hyper-link {
+  text-decoration: none;
+  float: left;
+  margin-top: 12px;
+  margin-right: 10px;
+  border: none;
+  margin-left: 10px;
+}
+.drop-btn {
+  direction: rtl;
+  text-align: right;
+}
+
+.span-btn {
+  margin-right: 8px;
+}
+
+.notification {
+  font-size: 9px;
+}
+
+.navbar {
+  height: 18px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.customizer {
+  width: 400px;
+  right: -400px;
+  padding: 0;
+  background-color: #FFF;
+  z-index: 1051;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+  backface-visibility: hidden;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  &.open {
+    left: 0;
+  }
+  .customizer-content {
+    position: relative;
+    height: 100%;
+  }
+  a.customizer-close {
+    color: #000;
+  }
+}
+
+.customizer-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 7px;
+  width: auto;
+  z-index: 10;
+}
+
+.color-options {
+  a {
+    white-space: pre;
+  }
+}
+
+.cz-bg-color {
+  margin: 0 auto;
+  span {
+    &:hover {
+      cursor: pointer;
+    }
+    &.white {
+      color: #ddd !important;
+    }
+  }
+  .selected {
+    border: 3px solid #314fe5;
+  }
+}
+
+.cz-bg-image {
+  &:hover {
+    cursor: pointer;
+  }
+  img.rounded {
+    border-radius: 1rem !important;
+    border: 2px solid #e6e6e6;
+    &.selected {
+      border: 2px solid #FF586B;
+    }
+  }
+}
+
+.header-text {
+  margin-right: 18px;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of slide-toggle that may no longer apply for the MDC version. */
+::ng-deep .mat-slide-toggle-content {
+  font-family: iransans;
+  margin-right: 7px;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+::ng-deep .mat-radio-label-content {
+  font-family: iransans;
+  margin-right: 7px;
+}
+
+::ng-deep .mat-mdc-radio-group {
+  margin-right: 18px;
+}
+
+.collapse {
+  display: unset !important;
+}
+
+.navbar-expand-lg,
+.navbar-nav {
+  flex-direction: row !important;
+}
+
+.navbar-container {
+  margin-left: 12px;
+}  
+
+.navbar-container {
+  width: 100% !important;
+}
+
+.navbar-nav,
+.nav-link {
+  padding-right: 0.5rem !important;
+  padding-left: 0.5re m!important;
+  margin-top: 2px
+}
+
+.header-title {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.form-group {
+  float: left;
+  margin-top: 12px;
+  margin-right: 20px;
+  height: 12px;
+  position: relative;
+}
+
+.form-group i {
+  position: absolute;
+  right: 0px;
+}
+
+.icon {
+  padding: 10px 0px;
+  color: grey;
+  min-width: 5px;
+  text-align: center;
+}
+.help-box {
+  width: 100%;
+  background-color: rgb(253, 253, 215);
+  padding-right: 25px;
+  background: class fa fa-question no-repeat right;
+  background-size: 20px;
+  border-radius: 8px;
+  border-color: solid lightgray;  
+}
+@media (max-width: 992px) {
+  .header-title {
+    display: none !important;
+  }
+}
+
+.navbar-expand-lg {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+li a {
+  padding-right: unset !important;
+  padding-left: unset !important;
+}
+
+.nav-item {
+  margin-left: 10px !important;
+}

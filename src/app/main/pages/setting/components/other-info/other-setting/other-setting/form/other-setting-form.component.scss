@@ -1,0 +1,20 @@
+input[type="file"] {
+    display: none;
+}
+
+.upload-button {
+    background-color: #ff8d00;
+    color: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logo {
+    max-height: 120px !important;
+    max-width: 90px;
+    margin: 0 auto;
+}

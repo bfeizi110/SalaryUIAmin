@@ -1,0 +1,7 @@
+<custom-ag-grid class="increase-saving" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <increase-saving-form [formObj]="formObj" [ID]="ID" [ParentID]="ParentID" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </increase-saving-form>
+</div>

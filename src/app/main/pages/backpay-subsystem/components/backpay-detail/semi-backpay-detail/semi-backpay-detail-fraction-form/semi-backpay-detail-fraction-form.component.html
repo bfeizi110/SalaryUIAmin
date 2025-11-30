@@ -1,0 +1,53 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <ng-container *ngFor="let form of formArray">
+      <div [class.border]="formArray.length != 1" class="row">
+        <div class="col-sm-12" *ngIf="!formObj.ParamDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.ParamDesc_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.ParamDesc_Fld.headerName" [valueName]="'ParamDesc_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.JariMPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.JariMPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.JariMPrice_Fld.headerName" [valueName]="'JariMPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.DaraeiMPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.DaraeiMPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.DaraeiMPrice_Fld.headerName" [valueName]="'DaraeiMPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.JariCopPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.JariCopPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.JariCopPrice_Fld.headerName" [valueName]="'JariCopPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.DaraeiCopPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.DaraeiCopPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.DaraeiCopPrice_Fld.headerName" [valueName]="'DaraeiCopPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.JariEmpPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.JariEmpPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.JariEmpPrice_Fld.headerName" [valueName]="'JariEmpPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.DaraeiEmpPrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.DaraeiEmpPrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.DaraeiEmpPrice_Fld.headerName" [valueName]="'DaraeiEmpPrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.JariStatePrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.JariStatePrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.JariStatePrice_Fld.headerName" [valueName]="'JariStatePrice_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-6" *ngIf="!formObj.DaraeiStatePrice_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.DaraeiStatePrice_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.DaraeiStatePrice_Fld.headerName" [valueName]="'DaraeiStatePrice_Fld'">
+          </custom-input>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</custom-modal>

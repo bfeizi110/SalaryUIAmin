@@ -1,0 +1,110 @@
+<mat-card appearance="outlined">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div *ngIf="showGrids" class="col-12">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ShowOnTopRequest_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ShowOnTopRequest_Fld.headerName" [valueName]="'ShowOnTopRequest_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-lg-6">
+        <div class="box">
+          <p>کلیه منوها</p>
+          <custom-ag-grid *ngIf="showGrids" [customGridOption]="gridOptionMenuNotShow">
+          </custom-ag-grid>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 buttons menu-button">
+        <div>
+          <i [class.disabled]="!selectedMenuShow" class="fa fa-arrow-up text-success" (click)="upMenu()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedMenuShow" class="fa fa-arrow-down text-danger" (click)="downMenu()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedMenuNotShow" class="fa fa-arrow-left text-success" (click)="addMenu()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedMenuShow" class="fa fa-arrow-right text-danger" (click)="removeMenu()"></i>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="box">
+          <p>منوهای میانبر</p>
+          <custom-ag-grid *ngIf="showGrids" [customGridOption]="gridOptionMenuShow">
+          </custom-ag-grid>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <button mat-raised-button class="save-button w-25 m-auto" color="primary" (click)="save()">ذخیره</button>
+    </div>
+
+    <div class="row report">
+      <div class="col-lg-6">
+        <div class="box">
+          <p>کلید گزارشات</p>
+          <custom-ag-grid *ngIf="showGrids" [customGridOption]="gridOptionReportNotShow">
+          </custom-ag-grid>
+        </div>
+      </div>
+
+      <div class="col-lg-2 buttons report-button">
+        <div>
+          <i [class.disabled]="!selectedReportShow" class="fa fa-arrow-up text-success" (click)="upReport()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedReportShow" class="fa fa-arrow-down text-danger" (click)="downReport()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedReportNotShow" class="fa fa-arrow-left text-success" (click)="addReport()"></i>
+        </div>
+        <div>
+          <i [class.disabled]="!selectedReportShow" class="fa fa-arrow-right text-danger" (click)="removeReport()"></i>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="box">
+          <p>گزارشات داشبورد</p>
+          <custom-ag-grid *ngIf="showGrids" [customGridOption]="gridOptionReportShow">
+          </custom-ag-grid>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</mat-card>
+
+<!-- <div class="row" style="margin-top:10px;margin-bottom: 24px;">
+    <div class="col-sm-12 btn btn-success">
+      How To create Dynamic Progress Bar with timer In Angular Application
+    </div>
+  </div>
+  
+  <div class="container">
+    <div style="position: relative">
+      <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+      <span style="position: absolute; top: 0.5em;" [ngStyle]="{'left': progress + '%'}"></span>
+    </div>
+  
+    <div class="d-flex justify-content-end">
+      <span class="completed_progress_bar">{{progress}}% completed (<span id="countdown"></span> Seconds to
+        complete)</span>
+    </div>
+  
+    <button class="btn btn-success" (click)="Showprogressbar()">Show Progress Bar</button>
+  </div>
+  
+  <button (click)="showChart = true"></button>
+  
+  <div *ngIf="showChart" class="mt-4">
+    <custom-chart [option]="option"></custom-chart>
+  </div> -->

@@ -1,0 +1,19 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TaxTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10108'" [parentFormGroup]="form"
+          [label]="formObj.TaxType_Fld.headerName" [valueName]="'TaxType_Fld'" [descValue]="data.TaxTypeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Code_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Code_Fld.type" [parentFormGroup]="form" [label]="formObj.Code_Fld.headerName"
+          [valueName]="'Code_Fld'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

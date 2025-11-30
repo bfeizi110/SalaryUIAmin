@@ -1,0 +1,278 @@
+<div class="body">
+
+  <div class="sides" style=" height: calc(100% - 40px); max-height: 480px;">
+
+    <div class="container">
+      <div class="row">
+
+        <div *ngIf="formType == 1" style=" height: calc(100% - 40px);" class=" p-0 m-auto">
+          <div class="left-side m-auto">
+
+            <h3 class="mt-3" style="color: black;">{{SystemName}}</h3>
+            <h1 class="mt-3" style="color: black;">{{ AppTitle }}</h1>
+            <i *ngIf="!logoSrc" class="fas fa-spinner fa-pulse"></i>
+            <div class="">
+              <img class="logo mt-2" *ngIf="logoSrc" [src]="logoSrc" alt="image logo">
+            </div>
+
+            <form class="mt-2"  [formGroup]="form">
+              <div *ngIf="AuthenticationType.includes('100731')">
+                <mat-form-field dir="rtl">
+                  <mat-label>نام کاربری</mat-label>
+                  <input placeholder="admin" matInput type="text" formControlName="username">
+                  <!-- <mat-error *ngIf="control.username">{{getErrorMessage('username')}}</mat-error> -->
+                </mat-form-field>
+
+                <mat-form-field class="mt-2" dir="rtl">
+                  <mat-label>رمز عبور</mat-label>
+                  <input  type="password" placeholder="********" matInput type="password" formControlName="password">
+                  <!-- <mat-error *ngIf="control.password">{{getErrorMessage('password')}}</mat-error> -->
+                </mat-form-field>
+
+                <div *ngIf="HasCaptcha" class="row justify-content-right">
+                  <div class="col-xl-4" style="display: flex">
+                    <img class="w-100 code-img" [src]="'data:image/png;base64,'+ CaptchaImage" alt="Captcha Image">
+                    <i class="fa fa-refresh text-primary mt-3" (click)="getNewCaptcha(1)"></i>
+                  </div>
+                  <div class="col-xl-4">
+                    <input type="text" class="form-control" placeholder="کد امنیتی" maxlength="6"
+                      formControlName="CaptchaData">
+                  </div>
+                </div>
+                <button class="d-block btn btn-grad-central mt-2" type="submit" (click)="login('False', 0)">ورود</button>
+              </div>
+              <div *ngIf="AuthenticationType.includes('100732')" class="central-login">
+                <div class="button">
+                  <button class="d-block btn btn-grad mt-2" (click)="loginWithBamSystem()">{{AutButtonTitleBam}}</button>
+                </div>
+              </div>
+  
+              <div *ngIf="AuthenticationType.includes('100733')" class="central-login">
+                <div class="button">
+                  <button class="d-block btn btn-grad mt-2" (click)="loginWithLocalSystem()">{{AutButtonTitleCenter}}</button>
+                </div>
+              </div>
+              <button class="button-hyper-link" *ngIf="AuthenticationType.includes('100731')" (click)="onShowForgetPassForm()">بازیابی رمز عبور</button>
+  
+            </form>
+          </div>
+        </div>
+        <!-- ارسال کد برای تغییر کلمه عبور -->
+        <div *ngIf="formType == 2" style=" height: calc(100% - 40px);" class=" mt-3 p-0 m-auto"  [formGroup]="formpwd">
+            <div style="text-align: center;">
+              <i class="fa fa-lock" aria-hidden="true" style="color: bisque; font-size: 60px;"></i>
+            </div>
+
+            <h1 style="text-align: center; color: #000000;">در ورود به سیستم مشکل دارید؟</h1>
+            <h4 style="text-align: center; color: #000000;">شماره تلفن خود را وارد کنید و ما یک کد برای شما ارسال می
+              کنیم تا
+              دوباره وارد حساب خود شوید.</h4>
+
+            <div class="row" style="margin: 22px 0;">
+              <div class="col-12 form-group">
+
+                <div class="d-flex flex-row" style="margin-bottom: 5px;">
+        
+                  <input type="text" name="username" id="username" required
+                    class="form-control"
+                    style="direction: ltr; text-align: left; display: inline-block; width: 80%; height: 40px; font-size: 16px !important; color: #006B88;"
+                    min="8" maxlength="20" formControlName="username">
+                    <label for="username" class="form-control"
+                    style=" direction: ltr; padding: 10px 2px; height: 40px; width: 45%; font-size: 15px !important; color: #006B88;">
+                    نام کاربری
+                  </label>
+
+                  </div>
+
+                <div class="d-flex flex-row" style="margin-bottom: 5px;">
+                  <input type="text" name="Phone" id="Phone" appBlockCopyPasteDirective required
+                    placeholder="لطفا شماره تلفن را بدون صفر وارد کنید" class="form-control"
+                    style="direction: ltr; text-align: left; display: inline-block; width: 80%; height: 40px; font-size: 16px !important; color: #006B88;"
+                    min="8" maxlength="10" pattern="\d{10}" (keypress)="preventInvalidPhone($event)"
+                    (keyup.enter)="onEnterPhone()" formControlName="phone">
+
+                    <label for="Phone" class="form-control"
+                    style=" direction: ltr; padding: 8px 2px; font-size: 18px; height: 40px; width: 20%; font-size: 18px !important; color: #006B88;">
+                    +98
+                  </label>
+                </div>
+
+                <div class="row justify-content-left">
+                  <div class="col-xl-4" style="display: flex">
+                    <img class="w-100 code-img" [src]="'data:image/png;base64,'+ CaptchaImageSms" alt="Captcha Image">
+                    <i class="fa fa-refresh text-primary mt-3" (click)="getNewCaptcha(2)"></i>
+                  </div>
+                  <div class="col-xl-4">
+                    <input type="text" class="form-control" placeholder="کد امنیتی" maxlength="6"
+                    formControlName="CaptchaData">
+                  </div>
+                </div>
+    
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-sm btn-block btn-primary" style="text-align: center;" (click)="sendCodeToPhone()"
+                  [disabled]="isDisabeSendCodeToPhone()">
+                  ارسال
+                </button>
+
+              </div>
+              <div class="col-6">
+                <button class="btn btn-sm btn-block btn-danger " style="text-align: center;"
+                  (click)="backToLoginForm()">
+                  بازگشت
+                </button>
+              </div>
+            </div>
+        </div>
+        <!-- دریافت کد برای تغییر کلمه عبور -->
+        <div *ngIf="formType == 3" style=" height: calc(100% - 40px);" class=" p-0 m-auto">
+            <div>
+                <h5 class ="m-auto" style="width: fit-content; font-weight: 600; position: relative; top: -35px; font-size: x-large; color: tomato;">{{counterdisplay}}</h5>
+            </div>
+
+            <h1 style="text-align: center; color: #000000;">کد تایید را وارد کنید</h1>
+            <h4 style="text-align: center; color: #000000;">در صورت صحت اطلاعات وارد شده، کد شش رقمی به شماره همراه زیر ارسال می گردد</h4>
+            <h4 for="" style="display: inline-block; direction: ltr; text-align: center; color: #006B88;">+98{{formpwd.controls.phone.value}}
+            </h4>
+
+            <div class="m-auto P-0 col-lg-12" style="direction: ltr; ">
+
+              <input type="text" #c1ChgP name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c1Ref [(ngModel)]="c1"
+                (keyup)="keyupCode($event, 1)">
+
+              <input type="text" name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c2Ref [(ngModel)]="c2"
+                (keyup)="keyupCode($event, 2)">
+
+              <input type="text" name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c3Ref [(ngModel)]="c3"
+                (keyup)="keyupCode($event, 3)">
+
+              <input type="text" name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c4Ref [(ngModel)]="c4"
+                (keyup)="keyupCode($event, 4)">
+
+              <input type="text" name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c5Ref [(ngModel)]="c5"
+                (keyup)="keyupCode($event, 5)">
+
+              <input type="text" name="" id="" class="inputCode" maxlength="1"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c6Ref [(ngModel)]="c6"
+                (keyup)="keyupCode($event, 6)">
+
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <div class="col-lg-6">
+                <button class="btn btn-sm btn-block btn-primary" (click)="sendCodeToPhone()" [disabled]="counter != 0">
+                  ارسال مجدد
+                </button>
+
+              </div>
+              <div class="col-lg-6">
+                <button class="btn btn-sm btn-block btn-danger" (click)="backToLoginForm()">
+                  بازگشت
+                </button>
+              </div>
+            </div>
+        </div>
+
+        <!-- دریافت کد برای ورود دو عاملی -->
+        <div *ngIf="formType == 6" style=" height: calc(100% - 40px);" class=" p-0 m-auto">
+          <div class="mt-3">
+              <h5 class ="m-auto" style="width: fit-content; font-weight: 600; position: relative; font-size: x-large; color: tomato;">{{counterdisplayFA}}</h5>
+          </div>
+
+          <h1 class="mt-3" style="text-align: center; color: #000000;">کد تایید را وارد کنید</h1>
+          <h4 class="mt-3" style="text-align: center; color: #000000;">کد شش رقمی به شماره همراه ارسال شد</h4>
+
+          <div class="m-auto P-0 col-lg-12 mt-3 " style="direction: ltr; ">
+
+            <input type="text" #c12FA id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c1Ref [(ngModel)]="c1"
+              (keyup)="keyupCode($event, 1)">
+
+            <input type="text" name="" id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c2Ref [(ngModel)]="c2"
+              (keyup)="keyupCode($event, 2)">
+
+            <input type="text" name="" id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c3Ref [(ngModel)]="c3"
+              (keyup)="keyupCode($event, 3)">
+
+            <input type="text" name="" id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c4Ref [(ngModel)]="c4"
+              (keyup)="keyupCode($event, 4)">
+
+            <input type="text" name="" id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c5Ref [(ngModel)]="c5"
+              (keyup)="keyupCode($event, 5)">
+
+            <input type="text" name="" id="" class="inputCode" maxlength="1"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'');" #c6Ref [(ngModel)]="c6"
+              (keyup)="keyupCode($event, 6)">
+
+          </div>
+          <div class="row" style="margin-top: 200px;">
+            <div style="align-items: center;">
+              <button class="btn btn-sm btn-block btn-danger " (click)="backToLoginForm()">
+                بازگشت
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- تغییر کلمه عبور -->
+        <div *ngIf="formType == 4 || formType == 5" style=" height: calc(100% - 40px);" class=" p-0 m-auto">
+            <div style="text-align: center;">
+              <i class="fa fa-unlock" aria-hidden="true"
+                style="color: rgb(210, 255, 196); font-size: 60px; color: rgb(50, 135, 205);"></i>
+            </div>
+
+            <h1 style="text-align: center; color: #000000;">کلمه عبور جدید را وارد کنید</h1>
+
+            <div class="row" style="padding: 0 30px;">
+              <div class="form-group col-lg-12">
+                <label for="power" style="font-size: initial;">کلمه عبور</label>
+                <input type="password" name="Password" id="Password" class="form-control" style="font-size: 18px !important;" required
+                  [(ngModel)]="modeltopost.Password" (ngModelChange)="resetError()">
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label for="power" style="font-size: initial;">تکرار کلمه عبور</label>
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" style="font-size: 18px !important;"
+                  required [(ngModel)]="modeltopost.ConfirmPassword" (ngModelChange)="resetError()">
+              </div>
+            </div>
+
+            <div class="row" style="padding: 10px;">
+              <div class="col-lg-6">
+                <button type="submit" style="text-align: center;" class="btn btn-sm btn-block btn-primary" (click)="changePass()">
+                  تغییر کلمه عبور
+                  <i class="fa fa-paper-plane-o" aria-hidden="true" style="font-size: 14px; padding: 0 2px;"></i>
+                </button>
+              </div>
+              <div class="col-lg-6">
+                <button style="text-align: center;" class=" btn btn-sm btn-block btn-danger" (click)="backToLoginForm()">
+                  بازگشت
+                  <i class="fa fa-arrow-circle-o-left" aria-hidden="true"
+                    style="font-size: 14px; padding: 0 2px; position: relative; top: 1px;"></i>
+                </button>
+              </div>
+              <h4 style="padding: 20px; text-align: center; color: #8f0f84;">جهت ورود به سامانه بایستی کلمه عبور خود را تغییر دهید</h4>
+            </div>
+        </div>
+
+        <!-- <div class="col-7 p-0 m-0 right-col">
+          <div class="right-side">
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer [AppVersionBackend]="AppVersionBackend"></app-footer>

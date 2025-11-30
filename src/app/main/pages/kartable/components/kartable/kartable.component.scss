@@ -1,0 +1,12 @@
+::ng-deep .kartable-grid ag-grid-angular {
+    height: calc(100vh - 160px) !important
+}
+
+.change-tree{
+padding: 0;
+width: 30%;
+}
+.change-grid{
+  width: 70%;
+  padding-left: 0;
+}

@@ -1,0 +1,109 @@
+<mat-card appearance="outlined" >
+  <div class="form">
+
+    <div class="form-buttons" *ngIf="DynamicFormType != 100951 && showForm">
+      <button *ngIf="FormType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="closeForm()">بستن</button>
+      <button *ngFor="let Button of ButtonList " mat-raised-button [ngClass]="Button.class" style="margin-right: 2px" [ngStyle]="{'background-color': Button.bgcolor, 'color': Button.color }" (click)="clickButtonList(Button.code)">{{Button.codeDesc}}</button>
+    </div>
+    <ng-container *ngIf="haveTab">
+      <mat-tab-group *ngIf="showForm" class="mt-2" dir="rtl">
+        <div *ngFor="let tab of maxTab">
+          <mat-tab  dir="rtl">
+            <ng-template mat-tab-label>
+              {{ tab.TabName }}
+            </ng-template>            
+            <div class="form-body">
+              <div class="container-fluid">
+                <div class="row" >
+                  <ng-container *ngTemplateOutlet="FieldGroupBlock; context: { maxGroup: getVisibleGroups(tab.maxGroup)}">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </div>
+      </mat-tab-group>
+    </ng-container>
+    <ng-container *ngIf="!haveTab ">
+      <div class="form-body" *ngIf="showForm">
+        <div class="container-fluid">
+          <div class="row" >
+            <ng-container *ngTemplateOutlet="FieldGroupBlock; context: { maxGroup: getVisibleGroups(maxTab[0].maxGroup)}">
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <form-comments  *ngIf="haveComment" [ID]="ID" [DynamicFormType]="DynamicFormType" [FormID]="FormID"
+      [FormType]="FormType" (getdone)="commentgetDone()">
+    </form-comments>  
+  </div>
+</mat-card>
+<select-personnel *ngIf="showPerson" [setPersonPID]="data.PersonID_Fld" [isModal]="true"
+  (rowClickedModal)="onSelectPersonnel($event)" (rowSelectedListOnModal)="rowSelectedList($event)" [hideFilter]="true"
+  (closed)="showPerson = false">
+</select-personnel>
+
+<ng-template #FieldGroupBlock let-maxGroup="maxGroup">
+  <div *ngFor="let group of maxGroup">
+    <ng-container *ngIf="group.groupname != '' else WithoutGroupName">
+      <fieldset class="mt-2">
+        <legend>{{group.groupname}}</legend>
+        <div class="row">
+          <ng-container *ngFor="let field of group.fields" >
+            <ng-container *ngTemplateOutlet="FieldBlock; context: { field: field }">
+            </ng-container>
+          </ng-container>
+        </div>
+      </fieldset>
+    </ng-container>
+    <ng-container *ngIf="group.groupname == '' " #WithoutGroupName>
+        <div class="row mt-2">
+          <ng-container *ngFor="let field of group.fields" >
+            <ng-container *ngTemplateOutlet="FieldBlock; context: { field: field }">
+            </ng-container>
+          </ng-container>
+        </div>
+    </ng-container>
+  </div>  
+</ng-template>
+
+<ng-template #FieldBlock let-field="field">
+  <div [ngClass]="['col-sm-' + this.formObj[field].controlwidth, {'disabled-form': FormType == 'View'}]" *ngIf=" field == 'PersonID_Fld' && (this.formObj[field].type == 'combo' || this.formObj[field].type == 'multiCombo') 
+    && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
+    <button class="cost-btn" [class.require]="formObj.PersonID_Fld.require" mat-raised-button color="primary"
+      (click)="onShowPerson()">{{formObj.PersonID_Fld.headerName}}
+      <ng-container *ngIf="personName">
+      : {{personName}}
+      </ng-container>
+    </button>
+    <i *ngIf="form.controls.PersonID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+  </div>
+  <div [ngClass]="['col-sm-12']" *ngIf="this.formObj[field] && this.formObj[field].type == 'image' && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
+    <file-upload  [disabled]="this.formObj[field].disableInput || FormType == 'View'" [required]="this.formObj[field].require" [label]="this.formObj[field].headerName" [ltr]="this.formObj[field].ltr" 
+      [control]="this.datafiles ? getFileData(this.formObj[field].formdetailID) : null" (filesChanged)="filesChanged(field, $event)" >
+    </file-upload>
+  </div>
+
+  <div [ngClass]="['col-sm-' + this.formObj[field].controlwidth, FormType == 'View' ? 'disabled-form': '']" *ngIf="this.formObj[field].type != 'combo' && this.formObj[field].type != 'multiCombo' && this.formObj[field].type != 'image' 
+       && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
+    <custom-input  [formObj]="formObj"  [ltr]="this.formObj[field].ltr" [multilineno]="this.formObj[field].multilineno" [type]="this.formObj[field].type" [parentFormGroup]="form" [label]="this.formObj[field].headerName"
+    [valueName]="field" (change)="changeValue(field)">
+    </custom-input>
+  </div>
+  <div [ngClass]="['col-sm-' + this.formObj[field].controlwidth, FormType == 'View' ? 'disabled-form': '']" *ngIf="field != 'PersonID_Fld' && this.formObj[field].type == 'combo' 
+    && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
+    <custom-input  [formObj]="formObj"  [ltr]="this.formObj[field].ltr" [type]="this.formObj[field].type" [comboUrl]="'*DynamicForm/GetCombo/' + this.formObj[field].formdetailID" [descValue]="data[field+'Desc']" 
+    [parentFormGroup]="form" [label]="this.formObj[field].headerName" [valueName]="field" (changeCombo)="changeValue(field)">
+    </custom-input>
+  </div>
+  <div [ngClass]="['col-sm-' + this.formObj[field].controlwidth, FormType == 'View' ? 'disabled-form': '']" *ngIf="field != 'PersonID_Fld' && this.formObj[field].type == 'multiCombo' 
+    && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
+    <custom-input  [formObj]="formObj" [ltr]="this.formObj[field].ltr" [type]="this.formObj[field].type" [comboArray]="multiComboArray[field]" [multiple]="true"
+    [parentFormGroup]="form" [label]="this.formObj[field].headerName" [valueName]="field" (changeCombo)="changeValue(field)">
+    </custom-input>
+  </div>     
+</ng-template>

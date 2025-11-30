@@ -1,0 +1,128 @@
+<mat-card appearance="outlined" style="min-height: 305px">
+
+  <div class="form">
+
+    <div class="form-buttons row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View'" class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+
+    </div>
+    
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.MostamarCodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Mostamar'" [parentFormGroup]="form"
+              [label]="formObj.MostamarCode_Fld.headerName" [valueName]="'MostamarCode_Fld'"
+              [descValue]="data.MostamarCodeDesc_Fld">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.MostamarCode_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'MostamarCode_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-8" *ngIf="!formObj.NoDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+              [label]="formObj.No_Fld.headerName" [valueName]="'No_Fld'" [descValue]="data.NoDesc_Fld">
+            </custom-input>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px ">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+              </div>
+            </div>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.No_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'No_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.StartDate_fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [position]="'top'" [type]="formObj.StartDate_fld.type" [parentFormGroup]="form"
+              [label]="formObj.StartDate_fld.headerName" [valueName]="'StartDate_fld'" [dateDisabled]="form.controls.StartDate_fld.disabled">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.StartDate_fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'StartDate_fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.EndDate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [position]="'top'" [type]="formObj.EndDate_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.EndDate_Fld.headerName" [valueName]="'EndDate_Fld'" [dateDisabled]="form.controls.EndDate_Fld.disabled">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.EndDate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'EndDate_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Price_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Price_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Price_Fld.headerName" [valueName]="'Price_Fld'" ></custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Price_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'Price_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.PriceOfThisMonth_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.PriceOfThisMonth_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.PriceOfThisMonth_Fld.headerName" [valueName]="'PriceOfThisMonth_Fld'" ></custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.PriceOfThisMonth_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'PriceOfThisMonth_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.DayOfThisMonth_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DayOfThisMonth_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.DayOfThisMonth_Fld.headerName" [valueName]="'DayOfThisMonth_Fld'" ></custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.DayOfThisMonth_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'DayOfThisMonth_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.DayOfMonthInfo_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DayOfMonthInfo_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.DayOfMonthInfo_Fld.headerName" [valueName]="'DayOfMonthInfo_Fld'" >
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.DayOfMonthInfo_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'DayOfMonthInfo_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.NoActive_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NoActive_Fld.type" [parentFormGroup]="form" 
+              [label]="formObj.NoActive_Fld.headerName" [valueName]="'NoActive_Fld'" >
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.NoActive_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'NoActive_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.NoActiveSystem_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NoActiveSystem_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NoActiveSystem_Fld.headerName" [valueName]="'NoActiveSystem_Fld'" >
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.NoActiveSystem_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'NoActiveSystem_Fld')">
+            </mat-checkbox>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</mat-card>
+
+<list-no-form-direct *ngIf="showListNoForm" (done)="submitedListNo($event)" (closed)="closeFormListNo()">  </list-no-form-direct>

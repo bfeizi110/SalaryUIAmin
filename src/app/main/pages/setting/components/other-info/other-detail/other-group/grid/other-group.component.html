@@ -1,0 +1,8 @@
+<custom-ag-grid class="other-group-grid" *ngIf="showGrid" [rowNumber]="20" [isModal]="true" [customGridOption]="gridOption" [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <other-group-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </other-group-form>
+</div>

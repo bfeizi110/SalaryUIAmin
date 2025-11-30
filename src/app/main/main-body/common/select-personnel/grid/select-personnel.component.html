@@ -1,0 +1,42 @@
+<mat-accordion *ngIf="!isModal" dir="rtl">
+  <mat-expansion-panel [disabled]="disabledForm" dir="rtl" [expanded]="expand">
+    <mat-expansion-panel-header dir="rtl">
+      <mat-panel-title dir="rtl">
+        <i class="fa fa-user-check text-primary"></i>
+        <div class="mr-2">انتخاب پرسنل</div>
+      </mat-panel-title>
+      <mat-panel-description dir="rtl">
+        <ng-container *ngIf="selectedPersonel">{{selectedPersonel}}</ng-container>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="col-sm-3" *ngIf="isBazForm">
+      <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="comboAray" [parentFormGroup]="form"
+        [label]="'نوع نمایش اطلاعات پرسنل'" [valueName]="'BazCombo_Fld'" (changeCombo)="changeComboBazMov($event)">
+      </custom-input>
+    </div>
+    <personnel-filter *ngIf="!hideFilter" [controller]="controller" (onFilter)="onFilter($event)">
+    </personnel-filter>
+    <custom-ag-grid *ngIf="showGrid" [focusField]="focusField" [customGridOption]="gridOption"
+      [disabledForm]="disabledForm" [rowSelectedForScroll]="true">
+    </custom-ag-grid>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<custom-modal *ngIf="isModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <mat-accordion dir="rtl">
+    <mat-expansion-panel [disabled]="disabledForm" dir="rtl" [expanded]="expand">
+      <mat-expansion-panel-header dir="rtl">
+        <mat-panel-title dir="rtl">
+          <i class="fa fa-user-check text-primary"></i>
+          انتخاب پرسنل
+        </mat-panel-title>
+        <mat-panel-description dir="rtl">
+          <ng-container *ngIf="selectedPersonel">{{selectedPersonel}}</ng-container>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <personnel-filter *ngIf="!hideFilter" [controller]="controller" (onFilter)="onFilter($event)">
+      </personnel-filter>
+      <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [disabledForm]="disabledForm"></custom-ag-grid>
+    </mat-expansion-panel>
+  </mat-accordion>
+</custom-modal>

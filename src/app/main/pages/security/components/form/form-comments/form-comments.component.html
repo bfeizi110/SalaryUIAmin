@@ -1,0 +1,42 @@
+<div *ngIf="showRequestComment">
+  <button *ngIf="!showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = true" title="اضافه کردن توضیحات"><i class="fa fa-plus"></i></button>
+  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="addComment(-1)"><i class="fa fa-save"></i></button>
+  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = false"><i class="fa fa-times"></i></button>
+  <div *ngIf="showNewCommentForm">
+      <textarea [(ngModel)]="NewCommentDesc" [ngStyle]="{'height': (85 * 1) + 'px'}" matInput placeholder="توضیح را وارد کنید"></textarea>                            
+  </div>
+  <div *ngFor="let RComment of RequestsComment">
+      <mat-accordion >
+          <mat-expansion-panel class="mt-2" [expanded]="true">
+              <mat-expansion-panel-header>
+                  <mat-panel-title style="font-size: 10px;">{{RComment.CreateUserIDDesc_Fld}}</mat-panel-title>
+                  <mat-panel-title *ngIf="RComment.LastUpdateUserIDDesc_Fld" style="font-size: 10px;">آخرین ویرایش: {{RComment.LastUpdateUserIDDesc_Fld}}</mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                  <div class="col-sm-10">
+                      <p *ngIf="!RComment.isEditMode">{{RComment.Desc_Fld}}</p>
+                      <textarea *ngIf="RComment.isEditMode" [(ngModel)]="RComment.Desc_Fld" [ngStyle]="{'height': (85 * 1) + 'px'}" matInput placeholder="توضیح"></textarea>                            
+                  </div>
+                  <!-- <div class="col-sm-2">
+                      <p *ngIf="!RComment.isEditMode">{{RComment.Desc_Fld}}</p>
+                      <textarea *ngIf="RComment.isEditMode" [(ngModel)]="RComment.Desc_Fld" [ngStyle]="{'height': (85 * 1) + 'px'}" matInput placeholder="توضیح"></textarea>                            
+                  </div> -->
+                  <div class="col-sm-2" style="text-align: -webkit-left">
+                      <button *ngIf="RComment.CanEdit_Fld && !RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Edit" (click)="editComment(RComment)">
+                          <i class="fa fa-edit"></i>
+                      </button>
+                      <button *ngIf="RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Cancel" (click)="cancelEdit(RComment)">
+                          <i class="fa fa-times"></i>
+                      </button>
+                      <button *ngIf="RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Save" (click)="saveComment(RComment, RComment.Desc_Fld)">
+                          <i class="fa fa-save"></i>
+                      </button>
+                      <button *ngIf="RComment.CanDelete_Fld" mat-button matSuffix mat-icon-button aria-label="Delete" (click)="deleteComment(RComment.Id)">
+                          <i class="fa fa-trash"></i>
+                      </button>
+                  </div>
+              </div>
+          </mat-expansion-panel>
+      </mat-accordion>
+  </div>
+</div>

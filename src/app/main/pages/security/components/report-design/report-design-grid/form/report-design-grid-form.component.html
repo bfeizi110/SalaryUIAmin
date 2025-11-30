@@ -1,0 +1,31 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-4" *ngIf="!formObj.IsFormula_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsFormula_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IsFormula_Fld.headerName" [valueName]="'IsFormula_Fld'" (change)="changeIsFormula()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-8" *ngIf="!formObj.FormulaIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+          [label]="formObj.FormulaID_Fld.headerName" [valueName]="'FormulaID_Fld'" [descValue]="data.FormulaIDDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12 textArea" *ngIf="!formObj.Query_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [ltr]="true" [parentFormGroup]="form" [label]="formObj.Query_Fld.headerName"
+          [valueName]="'Query_Fld'">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

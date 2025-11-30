@@ -1,0 +1,16 @@
+<button *ngIf="canSetValue && showValueButton" mat-raised-button class="save-button" color="primary"
+  (click)="openOtherSetting()">مقداردهی</button>
+<custom-ag-grid [rowNumber]="20" class="custom-aggrid" *ngIf="showGrid" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <other-setting-define-form [otherSettingGroupId]="otherSettingGroupId" [formObj]="formObj" [ID]="ID"
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </other-setting-define-form>
+</div>
+
+<div class="pre-form" *ngIf="showOtherSettingForm">
+  <other-setting-form [formObj]="otherSettingFormObj" [parentId]="parentId" [ID]="ID" [formType]="'Edit'"
+    (done)="submited($event)" (closed)="closeForm()">
+  </other-setting-form>
+</div>

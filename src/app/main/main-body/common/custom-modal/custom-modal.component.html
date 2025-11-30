@@ -1,0 +1,33 @@
+<ngx-smart-modal [customClass]="customClass" id="modal-to-drag" #modal [identifier]="modalId"
+  [closable]="false" [dismissable]="dismissable" (onOpenFinished)="onOpenFinished()"
+  (onAnyCloseEvent)="onAnyCloseEvent(modalOptions.hideCallback)" >
+
+  <div class="modal-header" id="modal-header">
+
+    <div class="close-button">
+      <i class="fa fa-close" (click)="closeModal(modalOptions.hideCallback)"></i>
+    </div>
+
+    <div class="modal-header-title">
+      <h3>{{title}}</h3>
+    </div>
+
+  </div>
+  <hr>
+
+  <div class="body-and-footer">
+
+    <div class="modal-body" [class.disabled-form]="modalOptions.formType == 'View' && modalOptions.notDisabledInViewMode == false">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="modal-footer">
+      <button *ngIf="modalOptions.saveCallback && modalOptions.formType != 'View'" mat-raised-button class="save-btn"
+        color="primary" (click)="saveMethod(modalOptions.saveCallback)">{{buttonCaption}}</button>
+      <button *ngIf="!modalOptions.hideButton && !modalOptions.hideCloseButton" mat-raised-button color="warn"
+        (click)="closeModal(modalOptions.hideCallback)">بستن</button>
+    </div>
+
+  </div>
+
+</ngx-smart-modal>

@@ -1,0 +1,118 @@
+<mat-card appearance="outlined">
+
+  <mat-tab-group class="semibackpay-detail-tab" *ngIf="showTab" dir="rtl" (selectedTabChange)="changeTab($event.index)">
+
+    <mat-tab dir="rtl" label="پارامترهای حقوق">
+      <ng-template matTabContent>
+
+        <div *ngIf="!isManual" class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">نوع</mat-label>
+            <mat-select dir="rtl" [(ngModel)]="paramTypeId" (selectionChange)="comboChange($event.value, 'param')">
+              <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+              <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="case-fraction row">
+          <div *ngIf="showGridParam" class="col-sm-6">
+            <p>پرداخت ها</p>
+            <button *ngIf="canEditParam && isManual" mat-flat-button class="close-button" color="accent"
+              (click)="editAllParams()">ویرایش کلی
+            </button>
+            <custom-ag-grid [customGridOption]="gridOptionParam">
+            </custom-ag-grid>
+          </div>
+          <div *ngIf="showGridFraction" class="col-sm-6">
+            <p>کسورات</p>
+            <button *ngIf="canEditFraction && isManual" mat-flat-button class="close-button" color="accent"
+              (click)="editAllFraction()">ویرایش کلی
+            </button>
+            <custom-ag-grid [customGridOption]="gridOptionFraction">
+            </custom-ag-grid>
+          </div>
+        </div>
+
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" *ngIf="!IsMultiple" label="اضافه کار های نوع 1 تا 4">
+      <ng-template matTabContent>
+
+        <div *ngIf="!isManual" class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">نوع</mat-label>
+            <mat-select dir="rtl" [(ngModel)]="workAddingTypeId"
+              (selectionChange)="comboChange($event.value, 'workaddingtype')">
+              <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+              <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div *ngIf="showGridParam" class="col-sm-6">
+            <p>اضافه کار</p>
+            <custom-ag-grid [customGridOption]="gridOptionParam">
+            </custom-ag-grid>
+          </div>
+          <div *ngIf="showGridFraction" class="col-sm-6">
+            <p>کسورات</p>
+            <custom-ag-grid [customGridOption]="gridOptionFraction">
+            </custom-ag-grid>
+          </div>
+        </div>
+
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" *ngIf="!IsMultiple" label="اضافه کار های مستقل">
+      <ng-template matTabContent>
+
+        <div *ngIf="!isManual" class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">نوع</mat-label>
+            <mat-select dir="rtl" [(ngModel)]="workAddingId"
+              (selectionChange)="comboChange($event.value, 'workadding')">
+              <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+              <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div *ngIf="showGridParam" class="col-sm-6">
+            <p>اضافه کار</p>
+            <custom-ag-grid [customGridOption]="gridOptionParam">
+            </custom-ag-grid>
+          </div>
+          <div *ngIf="showGridFraction" class="col-sm-6">
+            <p>کسورات</p>
+            <custom-ag-grid [customGridOption]="gridOptionFraction">
+            </custom-ag-grid>
+          </div>
+        </div>
+
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>
+
+<custom-modal *ngIf="showModalMashmool" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <custom-ag-grid [customGridOption]="gridOptionMashmool"></custom-ag-grid>
+</custom-modal>
+
+<semi-backpay-detail-param-form *ngIf="showFormParam" [PID]="PID" [data]="data" [parentId]="Id" [formObj]="formObjParam"
+  (done)="submitedParam($event)" (closed)="closeFormParam()" [IsMultiple]="IsMultiple">
+</semi-backpay-detail-param-form>
+
+<semi-backpay-detail-work-adding-form *ngIf="showFormParamWorkAdding" [PID]="PID" [data]="data" [parentId]="Id"
+  [formObj]="formObjParam" (done)="submitedWorkAdding($event)" (closed)="closeFormParamWorkAdding()" [IsMultiple]="IsMultiple">
+</semi-backpay-detail-work-adding-form>
+
+<semi-backpay-detail-fraction-form *ngIf="showFormFraction" [PID]="PID" [data]="data" [parentId]="Id"
+  [formObj]="formObjFraction" (done)="submitedFraction($event)" (closed)="closeFormFraction()" [IsMultiple]="IsMultiple">
+</semi-backpay-detail-fraction-form>

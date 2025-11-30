@@ -1,0 +1,6 @@
+<custom-ag-grid *ngIf="showGrid" [rowNumber]="30" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <hghwitnessblist-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </hghwitnessblist-form>
+</div>

@@ -1,0 +1,21 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10044'" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-4" *ngIf="!formObj.StartDate_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.StartDate_Fld.type" [parentFormGroup]="form" [label]="formObj.StartDate_Fld.headerName"
+          [valueName]="'StartDate_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-4" *ngIf="!formObj.EndDate_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.EndDate_Fld.type" [parentFormGroup]="form" [label]="formObj.EndDate_Fld.headerName"
+          [valueName]="'EndDate_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

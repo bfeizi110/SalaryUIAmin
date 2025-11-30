@@ -1,0 +1,9 @@
+<custom-ag-grid [rowNumber]="13" class="new-formula-detail" *ngIf="showGrid" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+    <report-parameter-detail-form [formObj]="formObj" [reportParameterCode]="reportParameterCode"
+        [reportParameterId]="reportParameterId" [ID]="ID" [formType]="formType" (done)="submited($event)"
+        (closed)="closeForm()">
+    </report-parameter-detail-form>
+</div>

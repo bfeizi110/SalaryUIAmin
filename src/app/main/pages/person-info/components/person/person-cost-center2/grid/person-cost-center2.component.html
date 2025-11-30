@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <person-cost-center2-form [formObj]="formObj" [ID]="ID" [personId]="personId" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </person-cost-center2-form>
+</div>

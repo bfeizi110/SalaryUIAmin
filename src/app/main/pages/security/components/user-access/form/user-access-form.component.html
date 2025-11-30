@@ -1,0 +1,136 @@
+<!-- <custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'"> -->
+  <mat-card appearance="outlined">
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <mat-tab-group dir="rtl">
+
+            <mat-tab dir="rtl" label="فرم">
+              <div [class.disabled-form2]="formType == 'View'" class="container-fluid">
+                <div class="row mt-1">
+
+                  <div class="col-sm-3" *ngIf="!formObj.HasntAnyPersonID_Fld.ishidden && !multiEdit">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.HasntAnyPersonID_Fld.type" [parentFormGroup]="form" [label]="formObj.HasntAnyPersonID_Fld.headerName"
+                      [valueName]="'HasntAnyPersonID_Fld'" (change)="changeHasntAnyField()">
+                    </custom-input>
+                  </div>                  
+
+                  <div class="col-sm-6" *ngIf="!formObj.UserTitle.ishidden && !multiEdit && form.controls.HasntAnyPersonID_Fld.value">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.UserTitle.type" [parentFormGroup]="form" [label]="formObj.UserTitle.headerName"
+                      [valueName]="'UserTitle'">
+                    </custom-input>
+                  </div>   
+
+                  <div class="col-sm-3" *ngIf="!formObj.PhoneNumber.ishidden && !multiEdit && form.controls.HasntAnyPersonID_Fld.value">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PhoneNumber.type" [parentFormGroup]="form" [label]="formObj.PhoneNumber.headerName"
+                      [valueName]="'PhoneNumber'">
+                    </custom-input>
+                  </div>   
+
+                  <div class="col-sm-3" *ngIf="!formObj.Email.ishidden && !multiEdit && form.controls.HasntAnyPersonID_Fld.value">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Email.type" [parentFormGroup]="form" [label]="formObj.Email.headerName"
+                      [valueName]="'Email'">
+                    </custom-input>
+                  </div>                     
+
+                  <div class="col-sm-3" *ngIf="!formObj.NationalNO.ishidden && !multiEdit && form.controls.HasntAnyPersonID_Fld.value">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.NationalNO.type" [parentFormGroup]="form" [label]="formObj.NationalNO.headerName"
+                      [valueName]="'NationalNO'">
+                    </custom-input>
+                  </div>    
+
+                  <div class="col-sm-6" *ngIf="!multiEdit && !form.controls.HasntAnyPersonID_Fld.value">
+                    <button class="cost-btn" [class.require]="formObj.PersonId.require" mat-raised-button color="primary"
+                      (click)="onShowPerson()">{{formObj.PersonId.headerName}}
+                      <ng-container *ngIf="form.controls.PersonId.value">
+                        : {{personName}}
+                      </ng-container>
+                    </button>
+                    <i *ngIf="form.controls.PersonId.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.UserName.ishidden && !multiEdit">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.UserName.type" [parentFormGroup]="form" [label]="formObj.UserName.headerName"
+                      [valueName]="'UserName'">
+                    </custom-input>
+                  </div>
+                  <div class="col-sm-3" *ngIf="!formObj.PasswordHash.ishidden && !multiEdit">
+                    <custom-input  [formObj]="formObj"  [type]="'password'" [parentFormGroup]="form" [label]="formObj.PasswordHash.headerName"
+                      [valueName]="'PasswordHash'">
+                    </custom-input>
+                  </div>
+                  <div class="col-sm-9" *ngIf="!formObj.RoleId.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [parentFormGroup]="form" [label]="formObj.RoleId.headerName"
+                      [valueName]="'RoleId'" [comboArray]="roleList" [multiple]="true">
+                    </custom-input>
+                    <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.RoleId.disableInput"
+                    (change)="changeCheckbox($event.checked, 'RoleId')">
+                    </mat-checkbox>
+                  </div>
+                  <div class="col-sm-3" *ngIf="!formObj.ChangePassImmediate_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.ChangePassImmediate_Fld.type" [parentFormGroup]="form" [label]="formObj.ChangePassImmediate_Fld.headerName"
+                      [valueName]="'ChangePassImmediate_Fld'">
+                    </custom-input>
+                    <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.ChangePassImmediate_Fld.disableInput"
+                    (change)="changeCheckbox($event.checked, 'ChangePassImmediate_Fld')">
+                    </mat-checkbox>
+                  </div>
+                  <div class="col-sm-3" *ngIf="!formObj.TwoFactorEnabled.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.TwoFactorEnabled.type" [parentFormGroup]="form" [label]="formObj.TwoFactorEnabled.headerName"
+                      [valueName]="'TwoFactorEnabled'">
+                    </custom-input>
+                    <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.TwoFactorEnabled.disableInput"
+                    (change)="changeCheckbox($event.checked, 'TwoFactorEnabled')">
+                    </mat-checkbox>
+                  </div>
+                  <div class="col-sm-3" *ngIf="!formObj.InActive.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.InActive.type" [parentFormGroup]="form" [label]="formObj.InActive.headerName"
+                      [valueName]="'InActive'">
+                    </custom-input>
+                    <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.InActive.disableInput"
+                    (change)="changeCheckbox($event.checked, 'InActive')">
+                    </mat-checkbox>
+                  </div>
+                  <div class="col-sm-6" *ngIf="!formObj.AccessIPAddresses_Fld.ishidden && !multiEdit">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.AccessIPAddresses_Fld.type" [parentFormGroup]="form" [label]="formObj.AccessIPAddresses_Fld.headerName"
+                      [valueName]="'AccessIPAddresses_Fld'">
+                    </custom-input>
+                  </div>
+                  <div class="col-sm-12" *ngIf="!formObj.SlackAddress_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.SlackAddress_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.SlackAddress_Fld.headerName" [valueName]="'SlackAddress_Fld'">
+                    </custom-input>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab *ngIf="formType == 'View'" dir="rtl" label="دسترسی">
+
+              <ng-template matTabContent>
+                <filter-user-access [userId]="ID"></filter-user-access>
+              </ng-template>
+
+            </mat-tab>
+
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+</mat-card>
+<!-- </custom-modal> -->
+
+<select-personnel *ngIf="showPerson" [setPersonPID]="data.PersonId" [isModal]="true"
+  (rowClickedModal)="onSelectPersonnel($event)"  (closed)="showPerson = false">
+</select-personnel>

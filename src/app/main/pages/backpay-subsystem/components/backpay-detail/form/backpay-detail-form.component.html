@@ -1,0 +1,290 @@
+<mat-card appearance="outlined">
+
+  <div #myElem class="form">
+
+    <div class="form-buttons row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View'" class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF && this.personList.length == 0">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+
+    </div>
+    
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-2" *ngIf="formObj.BackPayTypeDesc_Fld && !formObj.BackPayTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/0/100202,100203'"
+              [parentFormGroup]="form" [label]="formObj.BackPayType_Fld.headerName" [valueName]="'BackPayType_Fld'"
+              [descValue]="data.BackPayTypeDesc_Fld" (changeCombo)="changeBackpayType()">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.BackPayDesc_Fld && !formObj.BackPayDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.BackPayDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.BackPayDesc_Fld.headerName" [valueName]="'BackPayDesc_Fld'">
+            </custom-input>
+          </div>
+          <div class="col-sm-3" *ngIf="formObj.NoDesc_Fld && !formObj.NoDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+              [label]="formObj.No_Fld.headerName" [valueName]="'No_Fld'" [descValue]="data.NoDesc_Fld">
+            </custom-input>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px ">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+              </div>
+            </div>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.No_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'No_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-2" *ngIf="formObj.FromDate_Fld && !formObj.FromDate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="'date'" [parentFormGroup]="form"
+              [label]="formObj.FromDate_Fld.headerName" [valueName]="'FromDate_Fld'" [position]="'top'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.FromDate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'FromDate_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-2" *ngIf="formObj.UntilDate_Fld && !formObj.UntilDate_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="'date'" [parentFormGroup]="form"
+              [label]="formObj.UntilDate_Fld.headerName" [valueName]="'UntilDate_Fld'" [position]="'top'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.UntilDate_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'UntilDate_Fld')">
+            </mat-checkbox>
+          </div>
+          <ng-container *ngIf="formObj.PrevYearAuto_Fld && !formObj.PrevYearAuto_Fld.ishidden">
+            <div class="col-sm-12">
+              <fieldset>
+                <legend>بر اساس حکم پرداخت شده</legend>
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <fieldset>
+                      <legend>قبلی</legend>
+                      <div class="row">
+
+                        <div class="col-sm-6">
+                          <mat-form-field class="col-sm-2" dir="rtl" (click)="getYear()">
+                            <mat-label dir="rtl">{{formObj.PrevYearAuto_Fld.headerName}}</mat-label>
+                            <mat-select [class.require]="formObj.PrevYearAuto_Fld.require" dir="rtl"
+                              [formControl]="form.controls.PrevYearAuto_Fld"
+                              (selectionChange)="changeYear($event.value, 0)">
+                              <mat-option>-</mat-option>
+                              <mat-option dir="rtl" *ngFor="let item of yearList" [value]="item.Year_Fld">
+                                {{item.Year_Fld}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.PrevYearAuto_Fld.disableInput"
+                            (change)="changeCheckbox($event.checked, 'PrevYearAuto_Fld')">
+                          </mat-checkbox>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <mat-form-field dir="rtl">
+                            <mat-label dir="rtl">{{formObj.PrevMonthAuto_Fld.headerName}}</mat-label>
+                            <mat-select [class.require]="formObj.PrevMonthAuto_Fld.require" dir="rtl"
+                              [formControl]="form.controls.PrevMonthAuto_Fld">
+                              <mat-option>-</mat-option>
+                              <mat-option dir="rtl" *ngFor="let item of monthList" [value]="item.Month_Fld">
+                                {{item.Month_Fld}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.PrevMonthAuto_Fld.disableInput"
+                            (change)="changeCheckbox($event.checked, 'PrevMonthAuto_Fld')">
+                          </mat-checkbox>
+                        </div>
+
+                        <div class="col-sm-4"
+                          *ngIf="formObj.CalcRolesOnNow_Fld && !formObj.CalcRolesOnNow_Fld.ishidden">
+                          <custom-input  [formObj]="formObj"  [type]="formObj.CalcRolesOnNow_Fld.type" [parentFormGroup]="form"
+                            [label]="formObj.CalcRolesOnNow_Fld.headerName" [valueName]="'CalcRolesOnNow_Fld'">
+                          </custom-input>
+                        </div>
+
+                        <div class="col-sm-4" *ngIf="formObj.CalcInfoOnNow_Fld && !formObj.CalcInfoOnNow_Fld.ishidden">
+                          <custom-input  [formObj]="formObj"  [type]="formObj.CalcInfoOnNow_Fld.type" [parentFormGroup]="form"
+                            [label]="formObj.CalcInfoOnNow_Fld.headerName" [valueName]="'CalcInfoOnNow_Fld'">
+                          </custom-input>
+                        </div>
+
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <fieldset>
+                      <legend>جاری</legend>
+                      <div class="row">
+
+                        <div class="col-sm-6">
+                          <mat-form-field dir="rtl" (click)="getYear()">
+                            <mat-label dir="rtl">{{formObj.NowYearAuto_Fld.headerName}}</mat-label>
+                            <mat-select [class.require]="formObj.NowYearAuto_Fld.require" dir="rtl"
+                              [formControl]="form.controls.NowYearAuto_Fld"
+                              (selectionChange)="changeYear($event.value, 1)">
+                              <mat-option dir="rtl" *ngFor="let item of yearList" [value]="item.Year_Fld">
+                                {{item.Year_Fld}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.NowYearAuto_Fld.disableInput"
+                            (change)="changeCheckbox($event.checked, 'NowYearAuto_Fld')">
+                          </mat-checkbox>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <mat-form-field dir="rtl">
+                            <mat-label dir="rtl">{{formObj.NowMonthAuto_Fld.headerName}}</mat-label>
+                            <mat-select [class.require]="formObj.NowMonthAuto_Fld.require" dir="rtl"
+                              [formControl]="form.controls.NowMonthAuto_Fld">
+                              <mat-option dir="rtl" *ngFor="let item of monthList" [value]="item.Month_Fld">
+                                {{item.Month_Fld}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.NowMonthAuto_Fld.disableInput"
+                            (change)="changeCheckbox($event.checked, 'NowMonthAuto_Fld')">
+                          </mat-checkbox>
+                        </div>
+
+                        <div class="col-sm-4"
+                          *ngIf="formObj.CalcRolesOnNow_Fld1 && !formObj.CalcRolesOnNow_Fld1.ishidden">
+                          <custom-input  [formObj]="formObj"  [type]="formObj.CalcRolesOnNow_Fld1.type" [parentFormGroup]="form"
+                            [label]="formObj.CalcRolesOnNow_Fld1.headerName" [valueName]="'CalcRolesOnNow_Fld1'">
+                          </custom-input>
+                        </div>
+
+                        <div class="col-sm-4"
+                          *ngIf="formObj.CalcInfoOnNow_Fld1 && !formObj.CalcInfoOnNow_Fld1.ishidden">
+                          <custom-input  [formObj]="formObj"  [type]="formObj.CalcInfoOnNow_Fld1.type" [parentFormGroup]="form"
+                            [label]="formObj.CalcInfoOnNow_Fld1.headerName" [valueName]="'CalcInfoOnNow_Fld1'">
+                          </custom-input>
+                        </div>
+
+                      </div>
+                    </fieldset>
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
+          </ng-container>
+
+          <!-- <div *ngIf="personList.length > 0" class="col-sm-3"></div> -->
+
+          <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3"
+          *ngIf="formObj.CalcOnMonthDailyEarning_Fld && !formObj.CalcOnMonthDailyEarning_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.CalcOnMonthDailyEarning_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.CalcOnMonthDailyEarning_Fld.headerName"
+            [valueName]="'CalcOnMonthDailyEarning_Fld'">
+          </custom-input>
+          </div>
+
+          <div class="col-sm-5 mt-2" *ngIf="formObj.IdHkmDesc_Fld && !formObj.IdHkmDesc_Fld.ishidden">
+            <button class="cost-btn" [disabled]="form.controls.IdHkm_Fld.disabled"
+              [class.require]="formObj.IdHkm_Fld.require" mat-raised-button
+              (click)="onShowCommissionBackPay(0)">{{formObj.IdHkmDesc_Fld.headerName}}
+              <ng-container *ngIf="form.controls.IdHkmDesc_Fld.value">
+                : {{form.controls.IdHkmDesc_Fld.value}}
+              </ng-container>
+            </button>
+            <i *ngIf="form.controls.IdHkm_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearHkm()"></i>
+          </div>
+
+          <div *ngIf="formObj.IdHkmDesc_Fld && !formObj.IdHkmDesc_Fld.ishidden" style="display: none">
+            <custom-input  [formObj]="formObj"  [type]="formObj.IdHkm_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.IdHkm_Fld.headerName" [valueName]="'IdHkm_Fld'">
+            </custom-input>
+          </div>
+
+          <div *ngIf="formObj.IdHkmDesc_Fld && !formObj.IdHkmDesc_Fld.ishidden" style="padding-right: 0px;" class="col-sm-2 ">
+            <mat-checkbox  (change)="changeIdHokmRules($event.checked)">بدون حکم قبلی
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-5 mt-2" *ngIf="formObj.IdHkmDesc_Fld1 && !formObj.IdHkmDesc_Fld1.ishidden">
+            <button class="cost-btn" [disabled]="form.controls.IdHkm_Fld1.disabled"
+              [class.require]="formObj.IdHkm_Fld1.require" mat-raised-button
+              (click)="onShowCommissionBackPay(1)">{{formObj.IdHkmDesc_Fld1.headerName}}
+              <ng-container *ngIf="form.controls.IdHkmDesc_Fld1.value">
+                : {{form.controls.IdHkmDesc_Fld1.value}}
+              </ng-container>
+            </button>
+            <i *ngIf="form.controls.IdHkm_Fld1.value" class="fa fa-trash fa-trash-button" (click)="clearHkm1()"></i>
+          </div>
+
+          <div *ngIf="formObj.IdHkmDesc_Fld1 && !formObj.IdHkmDesc_Fld1.ishidden" style="display: none">
+            <custom-input  [formObj]="formObj"  [type]="formObj.IdHkm_Fld1.type" [parentFormGroup]="form"
+              [label]="formObj.IdHkm_Fld1.headerName" [valueName]="'IdHkm_Fld1'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3" *ngIf="formObj.CalcHgh_Fld && !formObj.CalcHgh_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcHgh_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcHgh_Fld.headerName" [valueName]="'CalcHgh_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.CalcHgh_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'CalcHgh_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3" *ngIf="formObj.CalcM_Fld && !formObj.CalcM_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcM_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcM_Fld.headerName" [valueName]="'CalcM_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.CalcM_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'CalcM_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3" *ngIf="formObj.CalcNM_Fld && !formObj.CalcNM_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcNM_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcNM_Fld.headerName" [valueName]="'CalcNM_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.CalcNM_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'CalcNM_Fld')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3"
+            *ngIf="formObj.NotCalcMogh_Fld && !formObj.NotCalcMogh_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NotCalcMogh_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NotCalcMogh_Fld.headerName" [valueName]="'NotCalcMogh_Fld'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.NotCalcMogh_Fld.disableInput"
+              (change)="changeCheckbox($event.checked, 'NotCalcMogh_Fld')">
+            </mat-checkbox>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <semi-backpay-detail *ngIf="showDetail" [Id]="semiBackpaySelectedId" [PID]="IsMultiple ? personList : PID" [backPayType]="backPayType" [IsMultiple]="IsMultiple" 
+    (doneParam)="submitedParam($event)" (doneWorkAdding)="submitedWorkAdding($event)" (doneFraction)="submitedFraction($event)">
+    </semi-backpay-detail>
+  
+  </div>
+</mat-card>
+
+<commission-selection *ngIf="showCommissionBackPay" (commissionChanged)="commissionChanged($event)"
+  (closed)="closeCommissionBackPay()" [PID]="PID">
+</commission-selection>
+
+<list-no-form-direct *ngIf="showListNoForm" (done)="submitedListNo($event)" (closed)="closeFormListNo()">  </list-no-form-direct>

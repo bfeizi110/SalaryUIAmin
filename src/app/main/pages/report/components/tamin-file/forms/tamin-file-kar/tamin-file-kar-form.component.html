@@ -1,0 +1,178 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_ID.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_ID.type" [parentFormGroup]="form" [label]="formObj.DSK_ID.headerName"
+              [valueName]="'DSK_ID'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_NAME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_NAME.type" [parentFormGroup]="form" [label]="formObj.DSK_NAME.headerName"
+              [valueName]="'DSK_NAME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_FARM.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_FARM.type" [parentFormGroup]="form" [label]="formObj.DSK_FARM.headerName"
+              [valueName]="'DSK_FARM'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_ADRS.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.DSK_ADRS.headerName"
+              [valueName]="'DSK_ADRS'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_KIND.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_KIND.type" [parentFormGroup]="form" [label]="formObj.DSK_KIND.headerName"
+              [valueName]="'DSK_KIND'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_YY.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_YY.type" [parentFormGroup]="form" [label]="formObj.DSK_YY.headerName"
+              [valueName]="'DSK_YY'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_MM.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_MM.type" [parentFormGroup]="form" [label]="formObj.DSK_MM.headerName"
+              [valueName]="'DSK_MM'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_LISTNO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_LISTNO.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_LISTNO.headerName" [valueName]="'DSK_LISTNO'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_DISC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_DISC.type" [parentFormGroup]="form" [label]="formObj.DSK_DISC.headerName"
+              [valueName]="'DSK_DISC'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_NUM.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_NUM.type" [parentFormGroup]="form" [label]="formObj.DSK_NUM.headerName"
+              [valueName]="'DSK_NUM'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TDD.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TDD.type" [parentFormGroup]="form" [label]="formObj.DSK_TDD.headerName"
+              [valueName]="'DSK_TDD'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TROOZ.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TROOZ.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_TROOZ.headerName" [valueName]="'DSK_TROOZ'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TMAH.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TMAH.type" [parentFormGroup]="form" [label]="formObj.DSK_TMAH.headerName"
+              [valueName]="'DSK_TMAH'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_INC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_INC.type" [parentFormGroup]="form" [label]="formObj.DSK_INC.headerName"
+              [valueName]="'DSK_INC'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_SPOUSE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_SPOUSE.type" [parentFormGroup]="form" [label]="formObj.DSK_SPOUSE.headerName"
+              [valueName]="'DSK_SPOUSE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TMAZ.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TMAZ.type" [parentFormGroup]="form" [label]="formObj.DSK_TMAZ.headerName"
+              [valueName]="'DSK_TMAZ'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TMASH.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TMASH.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_TMASH.headerName" [valueName]="'DSK_TMASH'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TTOTL.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TTOTL.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_TTOTL.headerName" [valueName]="'DSK_TTOTL'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TBIME.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TBIME.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_TBIME.headerName" [valueName]="'DSK_TBIME'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_TKOSO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_TKOSO.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_TKOSO.headerName" [valueName]="'DSK_TKOSO'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_BIC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_BIC.type" [parentFormGroup]="form" [label]="formObj.DSK_BIC.headerName"
+              [valueName]="'DSK_BIC'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_RATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_RATE.type" [parentFormGroup]="form" [label]="formObj.DSK_RATE.headerName"
+              [valueName]="'DSK_RATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_PRATE.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_PRATE.type" [parentFormGroup]="form"
+              [label]="formObj.DSK_PRATE.headerName" [valueName]="'DSK_PRATE'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_BIMH.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_BIMH.type" [parentFormGroup]="form" [label]="formObj.DSK_BIMH.headerName"
+              [valueName]="'DSK_BIMH'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.MON_PYM.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MON_PYM.type" [parentFormGroup]="form" [label]="formObj.MON_PYM.headerName"
+              [valueName]="'MON_PYM'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DSK_BIC.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DSK_BIC.type" [parentFormGroup]="form" [label]="formObj.DSK_BIC.headerName"
+              [valueName]="'DSK_BIC'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

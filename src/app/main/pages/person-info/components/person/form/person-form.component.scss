@@ -1,0 +1,14 @@
+:host ::ng-deep custom-input[ng-reflect-value-name='HomeAddress'] textarea, :host ::ng-deep custom-input[ng-reflect-value-name='KarAddress'] textarea {
+  height: 15px;
+  line-height: 50%;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+:host ::ng-deep .mat-tab-labels div:nth-child(8) {
+  background: blue !important;
+  color: white !important;
+}
+.mat-mdc-select-panel
+{
+ max-height: 171px !important;
+}

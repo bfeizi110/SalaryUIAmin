@@ -1,0 +1,81 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6" *ngIf="!formObj.PropertyName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.PropertyName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.PropertyName_Fld.headerName" [valueName]="'PropertyName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.HeaderName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.HeaderName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.HeaderName_Fld.headerName" [valueName]="'HeaderName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Type_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Type_Fld.type" [comboArray]="TypeToArray" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'"  [descValue]="data.Type_Fld" (changeCombo)="TypeChange($event)"
+          >
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.StringLength_Fld.ishidden && form.controls.Type_Fld.value == 'string'">
+        <custom-input  [formObj]="formObj"  [type]="formObj.StringLength_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.StringLength_Fld.headerName" [valueName]="'StringLength_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Require_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Require_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Require_Fld.headerName" [valueName]="'Require_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.RelationToDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.RelationTo_Fld.type" [comboArray]="RelationToArray" [parentFormGroup]="form" 
+          [label]="formObj.RelationTo_Fld.headerName" [valueName]="'RelationTo_Fld'" [descValue]="data.RelationToDesc_Fld" (changeCombo)="RelationToChange($event)">
+        </custom-input>
+      </div>
+      <div class="col-sm-12 textArea" *ngIf="!formObj.Query_Fld.ishidden && form.controls.RelationTo_Fld.value">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [ltr]="true" [parentFormGroup]="form" 
+          [label]="formObj.Query_Fld.headerName" [valueName]="'Query_Fld'" >
+        </custom-input>
+      </div>
+
+      <fieldset *ngIf="form.controls.RelationTo_Fld.value && !formObj.RelationToDesc_Fld.ishidden && pKeyArray && pKeyArray.length != 0 && form.controls.HeaderName_Fld.value " [(ngModel)]="form.controls.HeaderName_Fld.value" class="mt-2">
+        <legend [ngClass]="{'myOwnColor': !this.data.IsExistFK_Fld && formType != 'Add'}">{{this.data.IsExistFK_Fld || formType == 'Add' ? 'برقراری ارتباط': 'ارتباط فیزیکی وجود ندارد!'}}</legend>
+        <div class="col-sm-12" *ngFor="let item of pKeyArray let i = index">
+          <div class="row" >
+
+            <div class="col-sm-6">
+              <mat-form-field dir="rtl">
+                <mat-label dir="rtl">کلید</mat-label>
+                <mat-select [disabled]="true" [(ngModel)]="item.FieldName_Fld" dir="rtl">
+                  <mat-option *ngIf="pKeyArray.length == 0">-</mat-option>
+                  <mat-option [value]="item.FieldName_Fld" dir="rtl">
+                    {{item.HeaderName_Fld}}&nbsp;({{item.FieldType_Fld}})
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-6">
+              <mat-form-field dir="rtl">
+                <mat-label dir="rtl">ارتباط با ...</mat-label>
+                <mat-select  dir="rtl" [(ngModel)]="FieldFrameList[i].FieldName_Fld"> 
+                  <mat-filter [(comboList)]="FieldArray" [valueLabel]="'FieldName_Fld'" ></mat-filter>
+                  <mat-option dir="rtl" *ngFor="let item of FieldArray" [value]="item.FieldName_Fld">
+                    {{item.HeaderName_Fld}}&nbsp;({{item.FieldType_Fld ? item.FieldType_Fld : form.controls.Type_Fld.value}})
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>  
+        </div>  
+      </fieldset> 
+      
+    </div>
+  </div>
+</custom-modal>

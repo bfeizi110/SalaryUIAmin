@@ -1,0 +1,83 @@
+<!-- Sidebar Header starts -->
+<div class="sidebar-header">
+  <div class="toggle-icon">
+    <i *ngIf="reportMode" style="z-index: 9999999999999 !important;" (click)="returnToNormal()"
+      class="d-lg-block fa fa-arrow-circle-right">
+    </i>
+    <!-- toggle-icon -->
+    <!-- <i class="fa fa-toggle-on nav-toggle " data-toggle="expanded"></i> -->
+    <a [ngStyle]="{'visibility': !reportMode ? 'unset' : 'hidden'}" class="nav-toggle d-lg-block"
+      style="z-index: 9999999999999 !important">
+      <i class="fa fa-toggle-on toggle-icon" data-toggle="expanded"></i>
+    </a>
+  </div>
+  <!-- <a class="nav-toggle d-none d-sm-none d-md-none d-lg-block" id="sidebarToggle" href="javascript:;">
+  </a> -->
+  <a class="nav-close d-block d-md-block d-lg-none d-xl-none" id="sidebarClose" href="javascript:;">
+    <i class="ft-x"></i>
+  </a>
+  <div class="filter-input">
+    <input type="text" class="form-control" placeholder="جست و جو" (keyup)="onKey($event.target.value)">
+  </div>
+</div>
+
+<!-- Sidebar Content starts -->
+<div class="sidebar-content mt-1">
+  <div class="nav-container">
+    <ul class="navigation">
+      <!-- First level menu -->
+       <span class="menu-title">آخرین ورود</span>
+       <br>
+       <span class="menu-title">{{LastSuccessLoginDate}} ساعت {{LastSuccessLoginTime}}</span>
+       <hr>
+
+      <li *ngFor="let menuItem of menuItems" [class.has-sub]="menuItem.HasChild"
+        [routerLinkActive]="menuItem.HasChild ? '' : 'active'" [routerLinkActiveOptions]="{exact: true}">
+        <a [class.active-item]="!menuItem.HasChild && activeUrl == menuItem.Path" (click)="openTab(menuItem)">
+          <img *ngIf="!reportMode" style="width: 23px"
+            [src]="'../../../../assets/img/menu-icons/' + menuItem.Icon + '.png'">
+          <div class="menu-title">
+            {{menuItem.CodeDesc_Fld}}</div>
+          <i *ngIf="menuItem.HasChild" class="fa fa-angle-left"></i>
+        </a>
+        <ul class="second-ul" *ngIf="menuItem.children?.length > 0">
+          <!-- [routerLinkActive]="menuSubItem.children.length > 0 ? '' : 'active'"
+            [routerLinkActiveOptions]="{exact: true}" -->
+          <li *ngFor="let menuSubItem of menuItem.children" [class.has-sub]="menuSubItem.HasChild">
+            <!-- [routerLink]="menuSubItem.Path ? menuSubItem.Path : null" -->
+            <a [class.active-item]="!menuSubItem.HasChild && activeUrl == menuSubItem.Path"
+              (click)="openTab(menuSubItem)">
+              <img style="width: 23px" [src]="'../../../../assets/img/menu-icons/' + menuSubItem.Icon + '.png'">
+              <span class="menu-title">{{menuSubItem.CodeDesc_Fld}}</span>
+              <i *ngIf="menuSubItem.HasChild" class="fa fa-angle-left"></i>
+            </a>
+            <!-- Third level menu -->
+            <ul class="third-ul" *ngIf="menuSubItem.children?.length > 0">
+              <!-- [routerLinkActive]="menuSubsubItem.children.length > 0 ? '' : 'active'" -->
+              <li *ngFor="let menuSubsubItem of menuSubItem.children">
+                <ng-container *ngIf="!menuSubsubItem.children">
+                  <!-- [routerLink]="menuSubsubItem.Path" -->
+                  <a (click)="openTab(menuSubsubItem)">
+                    <div class="mr-6">
+                      <img style="width: 23px"
+                        [src]="'../../../../assets/img/menu-icons/' + menuSubsubItem.Icon + '.png'">
+                      <span class="menu-title">{{menuSubsubItem.CodeDesc_Fld}}</span>
+                    </div>
+                  </a>
+                </ng-container>
+                <!-- [routerLink]="menuSubsubItem.Path" -->
+                <a [class.active-item]="activeUrl == menuSubsubItem.Path" (click)="openTab(menuSubsubItem)">
+                  <div class="mr-12">
+                    <img style="width: 23px"
+                      [src]="'../../../../assets/img/menu-icons/' + menuSubsubItem.Icon + '.png'">
+                    <span class="menu-title">{{menuSubsubItem.CodeDesc_Fld}}</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

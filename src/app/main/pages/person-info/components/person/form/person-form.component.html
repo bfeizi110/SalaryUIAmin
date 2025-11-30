@@ -1,0 +1,849 @@
+<mat-card appearance="outlined">
+  <div class="form" style="min-height: 612px;">
+    <div class="row mt-2">
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View'" class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+    </div>
+
+    <mat-tab-group *ngIf="showForm" class="mt-2" dir="rtl">
+
+      <mat-tab *ngIf="showForm" dir="rtl" label="اطلاعات شخصی">
+
+        <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+          <div *ngIf="formObj" class="container-fluid">
+            <div class="row">
+
+              <!--شماره پرسنلی-->
+              <div class="col-sm-3" *ngIf="!formObj.PID.ishidden">
+                <custom-input  [formObj]="formObj" [type]="formObj.PID.type" [parentFormGroup]="form" [label]="formObj.PID.headerName"
+                  [valueName]="'PID'">
+                </custom-input>
+              </div>
+
+              <!--شماره مستخدمی-->
+              <div class="col-sm-3" *ngIf="!formObj.Mostakhdemi.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Mostakhdemi.type" [parentFormGroup]="form"
+                  [label]="formObj.Mostakhdemi.headerName" [valueName]="'Mostakhdemi'">
+                </custom-input>
+              </div>
+
+              <!--شناسه کارمندی-->
+              <div class="col-sm-3" *ngIf="!formObj.Kid.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Kid.type" [parentFormGroup]="form" [label]="formObj.Kid.headerName"
+                  [valueName]="'Kid'">
+                </custom-input>
+              </div>
+
+              <!--کد حقوقی-->
+              <div class="col-sm-3" *ngIf="!formObj.SalaryCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.SalaryCode.type" [parentFormGroup]="form"
+                  [label]="formObj.SalaryCode.headerName" [valueName]="'SalaryCode'">
+                </custom-input>
+              </div>
+
+              <!--نام-->
+              <div class="col-sm-3" *ngIf="!formObj.Name.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Name.type" [parentFormGroup]="form" [label]="formObj.Name.headerName"
+                  [valueName]="'Name'">
+                </custom-input>
+              </div>
+
+              <!--نام لاتین-->
+              <div class="col-sm-3" *ngIf="!formObj.EName.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.EName.type" [parentFormGroup]="form" [label]="formObj.EName.headerName"
+                  [valueName]="'EName'">
+                </custom-input>
+              </div>
+
+              <!--وضعیت نطام وطیفه-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.EnlistIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/3973'" [parentFormGroup]="form"
+                  [label]="formObj.EnlistID.headerName" [valueName]="'EnlistID'" [descValue]="data.EnlistIDDesc">
+                </custom-input>
+              </div>
+
+              <!--شماره پرونده-->
+              <div class="col-sm-3" *ngIf="!formObj.ParvandehNo.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.ParvandehNo.type" [parentFormGroup]="form"
+                  [label]="formObj.ParvandehNo.headerName" [valueName]="'ParvandehNo'">
+                </custom-input>
+              </div>
+
+              <!--نام خانوادگی-->
+              <div class="col-sm-3" *ngIf="!formObj.Family.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Family.type" [parentFormGroup]="form" [label]="formObj.Family.headerName"
+                  [valueName]="'Family'">
+                </custom-input>
+              </div>
+
+              <!--نام خانوادگی لاتین-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.EFamily.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.EFamily.type" [parentFormGroup]="form"
+                  [label]="formObj.EFamily.headerName" [valueName]="'EFamily'">
+                </custom-input>
+              </div>
+
+              <!--محل تولد کشور-->
+              <div class="col-sm-3" *ngIf="!formObj.BirthCountryIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*City/GetComboByType/1'" [parentFormGroup]="form"
+                  [label]="formObj.BirthCountryID.headerName" [valueName]="'BirthCountryID'"
+                  [descValue]="data.BirthCountryIDDesc" (changeCombo)="changeBirthCountry($event)">
+                </custom-input>
+              </div>
+
+              <!--کشور محل صدور-->
+              <div class="col-sm-3" *ngIf="!formObj.RegisterPlace_CountryIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*City/GetComboByType/1'" [parentFormGroup]="form"
+                  [label]="formObj.RegisterPlace_CountryID.headerName" [valueName]="'RegisterPlace_CountryID'"
+                  [descValue]="data.RegisterPlace_CountryIDDesc" (changeCombo)="changeRegisterCountry($event)">
+                </custom-input>
+              </div>
+
+              <!--نام پدر-->
+              <div class="col-sm-3" *ngIf="!formObj.FatherName.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.FatherName.type" [parentFormGroup]="form"
+                  [label]="formObj.FatherName.headerName" [valueName]="'FatherName'">
+                </custom-input>
+              </div>
+
+              <!--جنسیت-->
+              <div class="col-sm-3" *ngIf="!formObj.GenderIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/3946'" [parentFormGroup]="form"
+                  [label]="formObj.GenderID.headerName" [valueName]="'GenderID'" [descValue]="data.GenderIDDesc">
+                </custom-input>
+              </div>
+
+              <!--محل تولد استان-->
+              <div class="col-sm-3" *ngIf="!formObj.BirthOstanIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="birthOstanUrl"
+                  [label]="formObj.BirthOstanID.headerName" [valueName]="'BirthOstanID'"
+                  [descValue]="data.BirthOstanIDDesc" (changeCombo)="changeBirthOstan($event)">
+                </custom-input>
+              </div>
+
+              <!--استان محل صدور-->
+              <div class="col-sm-3" *ngIf="!formObj.RegisterPlace_StateIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="registerOstanUrl"
+                  [label]="formObj.RegisterPlace_StateID.headerName" [valueName]="'RegisterPlace_StateID'"
+                  [descValue]="data.RegisterPlace_StateIDDesc" (changeCombo)="changeRegisterOstan($event)">
+                </custom-input>
+              </div>
+
+              <!--تاریخ تولد-->
+              <div class="col-sm-3" *ngIf="!formObj.BirthDate.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.BirthDate.type" [parentFormGroup]="form" [label]="formObj.BirthDate.headerName"
+                  [valueName]="'BirthDate'">
+                </custom-input>
+              </div>
+
+              <!--تاهل-->
+              <div class="col-sm-3" *ngIf="!formObj.MarriedIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/3962'" [parentFormGroup]="form"
+                  [label]="formObj.MarriedID.headerName" [valueName]="'MarriedID'" [descValue]="data.MarriedIDDesc">
+                </custom-input>
+              </div>
+
+              <!--محل تولد شهر-->
+              <div class="col-sm-3" *ngIf="!formObj.BirthCityIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="birthCityUrl"
+                  [label]="formObj.BirthCityID.headerName" [valueName]="'BirthCityID'"
+                  [descValue]="data.BirthCityIDDesc">
+                </custom-input>
+              </div>
+
+              <!--شهر محل صدور-->
+              <div class="col-sm-3" *ngIf="!formObj.RegisterPlace_CityIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="registerCityUrl"
+                  [label]="formObj.RegisterPlace_CityID.headerName" [valueName]="'RegisterPlace_CityID'"
+                  [descValue]="data.RegisterPlace_CityIDDesc">
+                </custom-input>
+              </div>
+
+              <!--سن-->
+              <div class="col-sm-3" *ngIf="!formObj.Age.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Age.type" [parentFormGroup]="form" [label]="formObj.Age.headerName"
+                  [valueName]="'Age'">
+                </custom-input>
+              </div>
+
+              <!--افراد تحت تکفل-->
+              <div class="col-sm-3" *ngIf="!formObj.InSupports.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.InSupports.type" [parentFormGroup]="form"
+                  [label]="formObj.InSupports.headerName" [valueName]="'InSupports'">
+                </custom-input>
+              </div>
+
+              <!--شماره بیمه-->
+              <div class="col-sm-3" *ngIf="!formObj.BimehNo.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.BimehNo.type" [parentFormGroup]="form"
+                  [label]="formObj.BimehNo.headerName" [valueName]="'BimehNo'">
+                </custom-input>
+              </div>
+
+              <!--عنوان شغل بیمه-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.Job_CodeIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'InsureJob'" [parentFormGroup]="form"
+                  [label]="formObj.Job_CodeID.headerName" [valueName]="'Job_CodeID'" [descValue]="data.Job_CodeIDDesc">
+                </custom-input>
+              </div>
+
+              <!--کد ملی-->
+              <div class="col-sm-3" *ngIf="!formObj.NationalNO.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.NationalNO.type" [parentFormGroup]="form"
+                  [label]="formObj.NationalNO.headerName" [valueName]="'NationalNO'">
+                </custom-input>
+              </div>
+
+              <!--اولاد-->
+              <div class="col-sm-3" *ngIf="!formObj.Children.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Children.type" [parentFormGroup]="form"
+                  [label]="formObj.Children.headerName" [valueName]="'Children'">
+                </custom-input>
+              </div>
+
+              <!--شغل-->
+              <div class="col-sm-3" *ngIf="!formObj.Occupation.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Occupation.type" [parentFormGroup]="form"
+                  [label]="formObj.Occupation.headerName" [valueName]="'Occupation'">
+                </custom-input>
+              </div>
+
+              <!--کد پس انداز-->
+              <div class="col-sm-3" *ngIf="!formObj.PasCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.PasCode.type" [parentFormGroup]="form"
+                  [label]="formObj.PasCode.headerName" [valueName]="'PasCode'">
+                </custom-input>
+              </div>
+
+              <!--شماره شناسنامه-->
+              <div class="col-sm-3" *ngIf="!formObj.CertificateNo.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CertificateNo.type" [parentFormGroup]="form"
+                  [label]="formObj.CertificateNo.headerName" [valueName]="'CertificateNo'">
+                </custom-input>
+              </div>
+
+              <!--اولاد مشمول-->
+              <div class="col-sm-3" *ngIf="!formObj.ChildrenMashmool.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.ChildrenMashmool.type" [parentFormGroup]="form"
+                  [label]="formObj.ChildrenMashmool.headerName" [valueName]="'ChildrenMashmool'">
+                </custom-input>
+              </div>
+
+              <!--مرخصی تا تاریخ-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.MorakhasiDate.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.MorakhasiDate.type" [parentFormGroup]="form" [label]="formObj.MorakhasiDate.headerName"
+                  [valueName]="'MorakhasiDate'">
+                </custom-input>
+              </div>
+
+              <!--سریال شناسنامه-->
+              <div class="col-sm-3" *ngIf="!formObj.CertificateSerial.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CertificateSerial.type" [parentFormGroup]="form"
+                  [label]="formObj.CertificateSerial.headerName" [valueName]="'CertificateSerial'">
+                </custom-input>
+              </div>
+
+              <!--کد ملی همسر-->
+              <div class="col-sm-3" *ngIf="!formObj.ConsortNationalCode.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.ConsortNationalCode.type" [parentFormGroup]="form"
+                  [label]="formObj.ConsortNationalCode.headerName" [valueName]="'ConsortNationalCode'">
+                </custom-input>
+              </div>
+
+              <!--سرپرست خانوار-->
+              <div class="col-sm-3" *ngIf="!formObj.Sar.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Sar.type" [parentFormGroup]="form" [label]="formObj.Sar.headerName"
+                  [valueName]="'Sar'" (change)="changeSar($event)">
+                </custom-input>
+              </div>
+
+              <!--تاریخ سرپرستی-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.DateSar.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.DateSar.type" [parentFormGroup]="form" [label]="formObj.DateSar.headerName"
+                  [valueName]="'DateSar'">
+                </custom-input>
+              </div>
+
+              <!--نوع صندوق-->
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.BimehTypeIDDesc.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4037'" [parentFormGroup]="form"
+                  [label]="formObj.BimehTypeID.headerName" [valueName]="'BimehTypeID'"
+                  [descValue]="data.BimehTypeIDDesc">
+                </custom-input>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.Email.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Email.type" [parentFormGroup]="form" [label]="formObj.Email.headerName"
+                  [valueName]="'Email'" [ltr]="true">
+                </custom-input>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </mat-tab>
+
+      <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="مشخصات خاص">
+        <ng-template matTabContent>
+          <person-month-history [personId]="ID"></person-month-history>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="انتساب مرکز هزینه دوم">
+        <ng-template matTabContent>
+          <person-cost-center2 [personId]="ID"></person-cost-center2>
+        </ng-template>
+      </mat-tab>
+
+      <!-- <mat-tab dir="rtl" label="اطلاعات جانبی 1">
+        <div *ngIf="formObj" class="container-fluid" [ngClass]="{'disabled-form': formType == 'View'}">
+          <div class="row">
+
+
+          </div>
+        </div>
+      </mat-tab> -->
+
+      <mat-tab dir="rtl" label="اطلاعات جانبی">
+        <div *ngIf="formObj" class="container-fluid" [ngClass]="{'disabled-form': formType == 'View'}">
+          <div class="row">
+
+            <!--------------------------------------اطلاعات برنامه پرداخت و مرکز هزینه------------------------------------------>
+            <fieldset class="mt-2">
+              <legend>اطلاعات برنامه پرداخت و مرکز هزینه</legend>
+
+              <div class="row">
+                <!--برنامه پرداخت-->
+                <div class="col-sm-6" *ngIf="!formObj.PayCodeIDDesc.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'PayProgram'" [parentFormGroup]="form"
+                    [label]="formObj.PayCodeID.headerName" [valueName]="'PayCodeID'" [descValue]="data.PayCodeIDDesc">
+                  </custom-input>
+                </div>
+
+                <!--مرکز هزینه-->
+                <div class="col-sm-6" *ngIf="!formObj.CostCenterIDDesc.ishidden">
+                  <button class="cost-btn" [class.require]="formObj.CostCenterIDDesc.require" mat-raised-button
+                    color="primary" (click)="onShowCostCenterModal()"
+                    [disabled]="formObj.CostCenterIDDesc.disableInput">{{formObj.CostCenterIDDesc.headerName}}
+                    <ng-container *ngIf="form.controls.CostCenterIDDesc.value">
+                      : {{form.controls.CostCenterIDDesc.value}}
+                    </ng-container>
+                  </button>
+                  <i *ngIf="form.controls.CostCenterID.value" class="fa fa-trash fa-trash-button"
+                    (click)="clearCostCenter()"></i>
+                </div>
+
+                <div style="display: none">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.CostCenterID.type" [parentFormGroup]="form"
+                    [label]="formObj.CostCenterID.headerName" [valueName]="'CostCenterID'">
+                  </custom-input>
+                </div>
+
+              </div>
+            </fieldset>
+            <!------------------------------------------------------------------------------------------------------>
+
+            <!--مانده مرخصی-روز-->
+            <div class="col-sm-3" *ngIf="!formObj.MorakhasiDay.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.MorakhasiDay.type" [parentFormGroup]="form"
+                [label]="formObj.MorakhasiDay.headerName" [valueName]="'MorakhasiDay'">
+              </custom-input>
+            </div>
+
+            <!--مانده مرخصی-ساعت-->
+            <div class="col-sm-3" *ngIf="!formObj.MorakhasiHour.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.MorakhasiHour.type" [parentFormGroup]="form"
+                [label]="formObj.MorakhasiHour.headerName" [valueName]="'MorakhasiHour'">
+              </custom-input>
+            </div>
+
+            <!--نوع معافیت مالیاتی-->
+            <div class="col-sm-3" *ngIf="!formObj.FreeOfTaxTypeIDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4168'" [parentFormGroup]="form"
+                [label]="formObj.FreeOfTaxTypeID.headerName" [valueName]="'FreeOfTaxTypeID'"
+                [descValue]="data.FreeOfTaxTypeIDDesc">
+              </custom-input>
+            </div>
+
+            <!--نوع استخدام-->
+            <div class="col-sm-3" *ngIf="!formObj.HireTypeHghIDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'HireType'" [parentFormGroup]="form"
+                [label]="formObj.HireTypeHghID.headerName" [valueName]="'HireTypeHghID'"
+                [descValue]="data.HireTypeHghIDDesc">
+              </custom-input>
+            </div>
+
+            <!--تاریخ شروع بکار-->
+            <div class="col-sm-3" *ngIf="!formObj.EntranceDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.EntranceDate.type" [parentFormGroup]="form" [label]="formObj.EntranceDate.headerName"
+                [valueName]="'EntranceDate'">
+              </custom-input>
+            </div>
+            <div class="col-sm-3" *ngIf="!formObj.AzmayeshDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.AzmayeshDate.type" [parentFormGroup]="form" [label]="formObj.AzmayeshDate.headerName"
+                [valueName]="'AzmayeshDate'">
+              </custom-input>
+            </div>
+
+            <!--سنوات غیر رسمی-->
+            <div class="col-sm-3" *ngIf="!formObj.WorkHistoryNotRasmi.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.WorkHistoryNotRasmi.type" [parentFormGroup]="form"
+                [label]="formObj.WorkHistoryNotRasmi.headerName" [valueName]="'WorkHistoryNotRasmi'">
+              </custom-input>
+            </div>
+
+            <!--سند حقوق-->
+            <div class="col-sm-3" *ngIf="!formObj.SanadHgh.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.SanadHgh.type" [parentFormGroup]="form"
+                [label]="formObj.SanadHgh.headerName" [valueName]="'SanadHgh'">
+              </custom-input>
+            </div>
+
+            <!--تاریخ تغییر صندوق-->
+            <div class="col-sm-3" *ngIf="!formObj.ChgEmpDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.ChgEmpDate.type" [parentFormGroup]="form" [label]="formObj.ChgEmpDate.headerName"
+                [valueName]="'ChgEmpDate'">
+              </custom-input>
+            </div>
+
+            <!--سنوات سربازی-->
+            <div class="col-sm-3" *ngIf="!formObj.EnListDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.EnListDate.type" [parentFormGroup]="form"
+                [label]="formObj.EnListDate.headerName" [valueName]="'EnListDate'">
+              </custom-input>
+            </div>
+
+            <!--تلفن همراه-->
+            <div class="col-sm-3" *ngIf="!formObj.Mobile.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Mobile.type" [parentFormGroup]="form" [label]="formObj.Mobile.headerName"
+                [valueName]="'Mobile'">
+              </custom-input>
+            </div>
+
+            <!--تاریخ قطع حقوق در سازمان-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.CutPayDateAtOffice.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.CutPayDateAtOffice.type" [parentFormGroup]="form" [label]="formObj.CutPayDateAtOffice.headerName"
+                [valueName]="'CutPayDateAtOffice'">
+              </custom-input>
+            </div>
+
+            <!--شعبه تامین اجتماعی-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.BaseInsureDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaminBase'" [parentFormGroup]="form"
+                [label]="formObj.BaseInsure.headerName" [valueName]="'BaseInsure'" [descValue]="data.BaseInsureDesc">
+              </custom-input>
+            </div>
+
+            <!--تلفن منزل-->
+            <div class="col-sm-3" *ngIf="!formObj.HomeTel.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.HomeTel.type" [parentFormGroup]="form" [label]="formObj.HomeTel.headerName"
+                [valueName]="'HomeTel'">
+              </custom-input>
+            </div>
+
+            <!--کد پستی منزل-->
+            <div class="col-sm-3" *ngIf="!formObj.PostCode.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.PostCode.type" [parentFormGroup]="form"
+                [label]="formObj.PostCode.headerName" [valueName]="'PostCode'">
+              </custom-input>
+            </div>
+
+            <!--تلفن محل کار-->
+            <div class="col-sm-3" *ngIf="!formObj.KarTel.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.KarTel.type" [parentFormGroup]="form" [label]="formObj.KarTel.headerName"
+                [valueName]="'KarTel'">
+              </custom-input>
+            </div>
+
+            <!--آدرس منزل-->
+            <div class="col-sm-6" *ngIf="!formObj.HomeAddress.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.HomeAddress.headerName"
+                [valueName]="'HomeAddress'">
+              </custom-input>
+            </div>
+
+            <!--آدرس محل کار-->
+            <div class="col-sm-6" *ngIf="!formObj.KarAddress.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.KarAddress.headerName"
+                [valueName]="'KarAddress'">
+              </custom-input>
+            </div>
+
+            <!--دریافت اخطار از بانک-->
+            <!-- <div class="col-sm-3" *ngIf="!formObj.Nowitness.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Nowitness.type" [parentFormGroup]="form"
+                [label]="formObj.Nowitness.headerName" [valueName]="'Nowitness'">
+              </custom-input>
+            </div> -->
+
+            <!--محدودیت تعداد و سقف وام چک نشود-->
+            <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" *ngIf="!formObj.NoCheckLoan.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.NoCheckLoan.type" [parentFormGroup]="form"
+                [label]="formObj.NoCheckLoan.headerName" [valueName]="'NoCheckLoan'">
+              </custom-input>
+            </div> -->
+
+            <!--مشمول مالیات-->
+            <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4" *ngIf="!formObj.F1AgentFrom_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.F1AgentFrom_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.F1AgentFrom_Fld.headerName" [valueName]="'F1AgentFrom_Fld'">
+              </custom-input>
+            </div> -->
+
+            <!--مالیات حقوق-->
+            <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4" *ngIf="!formObj.TaxAgentFrom_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.TaxAgentFrom_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.TaxAgentFrom_Fld.headerName" [valueName]="'TaxAgentFrom_Fld'">
+              </custom-input>
+            </div> -->
+
+            <!--تدریس-->
+            <div class="col-sm-3" *ngIf="!formObj.IsTadris.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.IsTadris.type" [parentFormGroup]="form"
+                [label]="formObj.IsTadris.headerName" [valueName]="'IsTadris'">
+              </custom-input>
+            </div>
+
+            <!--نوع قطع حقوق-->
+            <div class="col-sm-3" *ngIf="!formObj.Type_cutpayDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10018'" [parentFormGroup]="form"
+                [label]="formObj.Type_cutpay.headerName" [valueName]="'Type_cutpay'" [descValue]="data.Type_cutpayDesc">
+              </custom-input>
+            </div>
+
+            <!--تاریخ پایان قطع حقوق-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.CutPayToDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.CutPayToDate.type" [parentFormGroup]="form" [label]="formObj.CutPayToDate.headerName"
+                [valueName]="'CutPayToDate'">
+              </custom-input>
+            </div>
+
+            <!--معرفی شده در حقوق-->
+            <div class="col-sm-3" *ngIf="!formObj.IsPayroll.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form"
+                [label]="formObj.IsPayroll.headerName" [valueName]="'IsPayroll'">
+              </custom-input>
+            </div>
+
+            <!--پیام ماه-->
+            <div class="col-sm-6" *ngIf="!formObj.Message.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Message.headerName"
+                [valueName]="'Message'">
+              </custom-input>
+            </div>
+
+            <!--جدول مالیاتی-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.TaxBaseTableDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaxBaseTable'" [parentFormGroup]="form"
+                [label]="formObj.TaxBaseTable_Fld.headerName" [valueName]="'TaxBaseTable_Fld'" [descValue]="data.TaxBaseTableDesc_Fld">
+              </custom-input>
+            </div>
+
+            <!--گروه استخدامی-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.HireGroupDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10109'" [parentFormGroup]="form"
+                [label]="formObj.HireGroup_Fld.headerName" [valueName]="'HireGroup_Fld'" [descValue]="data.HireGroupDesc_Fld">
+              </custom-input>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab dir="rtl" label="اطلاعات بازنشستگی">
+        <div *ngIf="formObj" class="container-fluid" [ngClass]="{'disabled-form': formType == 'View'}">
+          <div class="row" >
+
+            <!--دفتر کل-->
+            <div class="col-sm-3" *ngIf="!formObj.KolDaftar.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.KolDaftar.type" [parentFormGroup]="form"
+                [label]="formObj.KolDaftar.headerName" [valueName]="'KolDaftar'">
+              </custom-input>
+            </div>
+
+            <!--نسبت سهم حقوق-->
+            <div class="col-sm-3" *ngIf="!formObj.HghRate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.HghRate.type" [parentFormGroup]="form" [label]="formObj.HghRate.headerName"
+                [valueName]="'HghRate'">
+              </custom-input>
+            </div>
+
+            <!--ردیف ورثه-->
+            <div class="col-sm-3" *ngIf="!formObj.HghRadif.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.HghRadif.type" [parentFormGroup]="form"
+                [label]="formObj.HghRadif.headerName" [valueName]="'HghRadif'">
+              </custom-input>
+            </div>
+
+            <!--کد بانک-->
+            <div class="col-sm-3" *ngIf="!formObj.BazBankCode.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BazBankCode.type" [parentFormGroup]="form"
+                [label]="formObj.BazBankCode.headerName" [valueName]="'BazBankCode'">
+              </custom-input>
+            </div>
+
+            <!--نام بانک-->
+            <div class="col-sm-3" *ngIf="!formObj.BazBankDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BazBankDesc.type" [parentFormGroup]="form"
+                [label]="formObj.BazBankDesc.headerName" [valueName]="'BazBankDesc'">
+              </custom-input>
+            </div>
+
+            <!--تاریخ بازنشستگی-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" *ngIf="!formObj.BazDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BazDate.type" [parentFormGroup]="form" [label]="formObj.BazDate.headerName"
+                [valueName]="'BazDate'">
+              </custom-input>
+            </div>
+
+            <!--تاریخ فوت-->
+            <div class="col-sm-3" *ngIf="!formObj.DieDate.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.DieDate.type" [parentFormGroup]="form" [label]="formObj.DieDate.headerName"
+                [valueName]="'DieDate'">
+              </custom-input>
+            </div>
+
+            <!--نسبت ورثه با مرحوم-->
+            <div class="col-sm-3" *ngIf="!formObj.HghNesbatDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4555'" [parentFormGroup]="form"
+                [label]="formObj.HghNesbat.headerName" [valueName]="'HghNesbat'" [descValue]="data.HghNesbatDesc">
+              </custom-input>
+            </div>
+
+            <!--نام مرحوم-->
+            <div class="col-sm-3" *ngIf="!formObj.DiePIDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="dieArray" [parentFormGroup]="form"
+                [label]="formObj.DiePID.headerName" [valueName]="'DiePID'" [descValue]="data.DiePIDDesc">
+              </custom-input>
+            </div>
+
+            <!--شماره حساب-->
+            <div class="col-sm-3" *ngIf="!formObj.BazAccountNumber.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BazAccountNumber.type" [parentFormGroup]="form"
+                [label]="formObj.BazAccountNumber.headerName" [valueName]="'BazAccountNumber'">
+              </custom-input>
+            </div>
+
+            <div class="col-sm-3" *ngIf="!formObj.IsBaz.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.IsBaz.type" [parentFormGroup]="form" [label]="formObj.IsBaz.headerName"
+                [valueName]="'IsBaz'">
+              </custom-input>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab dir="rtl" label="اطلاعات بانکی">
+        <div *ngIf="formObj" class="container-fluid" [ngClass]="{'disabled-form': formType == 'View'}">
+          <div class="row">
+            <!-------------------------------------------اطلاعات بانکی----------------------------------->
+            <!--شماره حساب اول-->
+            <div class="col-sm-3" *ngIf="!formObj.AccountNumber.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.AccountNumber.type" [parentFormGroup]="form"
+                [label]="formObj.AccountNumber.headerName" [valueName]="'AccountNumber'">
+              </custom-input>
+            </div>
+
+            <!--شماره حساب دوم-->
+            <div class="col-sm-3" *ngIf="!formObj.NationalAccountNumber.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.NationalAccountNumber.type" [parentFormGroup]="form"
+                [label]="formObj.NationalAccountNumber.headerName" [valueName]="'NationalAccountNumber'">
+              </custom-input>
+            </div>
+
+            <!--شماره حساب سوم-->
+            <div class="col-sm-3" *ngIf="!formObj.ShabaAccountNumber.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.ShabaAccountNumber.type" [parentFormGroup]="form"
+                [label]="formObj.ShabaAccountNumber.headerName" [valueName]="'ShabaAccountNumber'">
+              </custom-input>
+            </div>
+
+            <!--شماره حساب چهارم-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.ShabaNew.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.ShabaNew.type" [parentFormGroup]="form"
+                [label]="formObj.ShabaNew.headerName" [valueName]="'ShabaNew'">
+              </custom-input>
+            </div>
+
+            <!--بانک اول-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5" *ngIf="!formObj.Bank1IDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'BankBranch'" [parentFormGroup]="form"
+                [label]="formObj.Bank1ID.headerName" [valueName]="'Bank1ID'" [descValue]="data.Bank1IDDesc">
+              </custom-input>
+            </div>
+
+            <!--بانک دوم-->
+            <div class="col-sm-3" *ngIf="!formObj.Bank2IDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'BankBranch'" [parentFormGroup]="form"
+                [label]="formObj.Bank2ID.headerName" [valueName]="'Bank2ID'" [descValue]="data.Bank2IDDesc">
+              </custom-input>
+            </div>
+
+            <!--بانک سوم-->
+            <div class="col-sm-3" *ngIf="!formObj.Bank3IDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'BankBranch'" [parentFormGroup]="form"
+                [label]="formObj.Bank3ID.headerName" [valueName]="'Bank3ID'" [descValue]="data.Bank3IDDesc">
+              </custom-input>
+            </div>
+
+            <!--بانک چهارم-->
+            <div class="col-sm-3" *ngIf="!formObj.Bank4IDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'BankBranch'" [parentFormGroup]="form"
+                [label]="formObj.Bank4ID.headerName" [valueName]="'Bank4ID'" [descValue]="data.Bank4IDDesc">
+              </custom-input>
+            </div>
+
+            <!--شماره شبای اول-->
+            <div class="col-sm-3" *ngIf="!formObj.Shaba1.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Shaba1.type" [parentFormGroup]="form" [label]="formObj.Shaba1.headerName"
+                [valueName]="'Shaba1'">
+              </custom-input>
+            </div>
+
+            <!--شماره شبای دوم-->
+            <div class="col-sm-3" *ngIf="!formObj.Shaba2.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Shaba2.type" [parentFormGroup]="form" [label]="formObj.Shaba2.headerName"
+                [valueName]="'Shaba2'">
+              </custom-input>
+            </div>
+
+            <!--شماره شبای سوم-->
+            <div class="col-sm-3" *ngIf="!formObj.Shaba3.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Shaba3.type" [parentFormGroup]="form" [label]="formObj.Shaba3.headerName"
+                [valueName]="'Shaba3'">
+              </custom-input>
+            </div>
+
+            <!--شماره شبای چهارم-->
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4" *ngIf="!formObj.Shaba4.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.Shaba4.type" [parentFormGroup]="form" [label]="formObj.Shaba4.headerName"
+                [valueName]="'Shaba4'">
+              </custom-input>
+            </div>
+
+            <!--شماره حساب فعال-->
+            <div class="col-sm-3" *ngIf="!formObj.ActiveAcntIDDesc.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10002'" [parentFormGroup]="form"
+                [label]="formObj.ActiveAcntID.headerName" [valueName]="'ActiveAcntID'"
+                [descValue]="data.ActiveAcntIDDesc">
+              </custom-input>
+            </div>
+
+            <!--رقم کنترل بانکی-->
+            <div class="col-sm-3" *ngIf="!formObj.BankCtrl.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BankCtrl.type" [parentFormGroup]="form"
+                [label]="formObj.BankCtrl.headerName" [valueName]="'BankCtrl'">
+              </custom-input>
+            </div>
+            <!------------------------------------------------------------------------------------------->
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab dir="rtl" label="رزمنده-جانباز-ایثارگری">
+        <div *ngIf="formObj" class="container-fluid" [ngClass]="{'disabled-form': formType == 'View'}">
+          <div class="row">
+            <!--------------------------------------------------ایثارگری------------------------------------------>
+            <!--وضعیت ایثارگری-->
+            <div class="col-sm-5" *ngIf="!formObj.IsarStatusID.ishidden">
+              <custom-input  [formObj]="formObj"  [parentFormGroup]="form"
+                [label]="formObj.IsarStatusID.headerName" [valueName]="'IsarStatusID'"
+                [type]="'multiCombo'" [comboArray]="IsarStatusList" [multiple]="true">
+              </custom-input>
+            </div>
+
+            <!--نسبت با ایثارگر-->
+            <div class="col-sm-5" *ngIf="!formObj.IsarRelateID.ishidden">
+              <custom-input  [formObj]="formObj" [parentFormGroup]="form"
+                [label]="formObj.IsarRelateID.headerName" [valueName]="'IsarRelateID'"
+                [type]="'multiCombo'" [comboArray]="IsarRelateList" [multiple]="true">
+              </custom-input>
+            </div>
+
+            <!--درصد جانبازی-->
+            <div class="col-sm-2" *ngIf="!formObj.JanbazPercent.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.JanbazPercent.type" [parentFormGroup]="form"
+                [label]="formObj.JanbazPercent.headerName" [valueName]="'JanbazPercent'">
+              </custom-input>
+            </div>
+
+            <fieldset class="mt-2">
+              <legend>اسارت</legend>
+              <div class="row">
+                <!--ماه اسارت-->
+                <div class="col-sm-3" *ngIf="!formObj.AzadehPeriodMon.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.AzadehPeriodMon.type" [parentFormGroup]="form"
+                    [label]="formObj.AzadehPeriodMon.headerName" [valueName]="'AzadehPeriodMon'">
+                  </custom-input>
+                </div>
+                <!--روز اسارت-->
+                <div class="col-sm-3" *ngIf="!formObj.AzadehPeriodDay.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.AzadehPeriodDay.type" [parentFormGroup]="form"
+                    [label]="formObj.AzadehPeriodDay.headerName" [valueName]="'AzadehPeriodDay'">
+                  </custom-input>
+                </div>
+              </div>
+            </fieldset>  
+            <fieldset class="mt-2">
+              <legend>مدت حضور داوطلبانه</legend>
+              <div class="row">
+                <!--مدت حضور در جبهه-ماه-->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4" *ngIf="!formObj.RazmandehPeriodMon.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.RazmandehPeriodMon.type" [parentFormGroup]="form"
+                    [label]="formObj.RazmandehPeriodMon.headerName" [valueName]="'RazmandehPeriodMon'">
+                  </custom-input>
+                </div>
+                <!--مدت حضور در جبهه-روز-->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4" *ngIf="!formObj.RazmandehPeriodDay.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.RazmandehPeriodDay.type" [parentFormGroup]="form"
+                    [label]="formObj.RazmandehPeriodDay.headerName" [valueName]="'RazmandehPeriodDay'">
+                  </custom-input>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="mt-2">
+              <legend>مدت حضور غیر داوطلبانه</legend>
+              <div class="row">
+                <!--مدت حضور در جبهه-ماه-->
+                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-5" *ngIf="!formObj.RazmandehPeriodMonTotal.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.RazmandehPeriodMonTotal.type" [parentFormGroup]="form"
+                    [label]="formObj.RazmandehPeriodMonTotal.headerName" [valueName]="'RazmandehPeriodMonTotal'">
+                  </custom-input>
+                </div>
+                <!--مدت حضور در جبهه-روز-->
+                <div class="col-xl-4 col-lg-4 col-md-5 col-sm-5" *ngIf="!formObj.RazmandehPeriodDayTotal.ishidden">
+                  <custom-input  [formObj]="formObj"  [type]="formObj.RazmandehPeriodDayTotal.type" [parentFormGroup]="form"
+                    [label]="formObj.RazmandehPeriodDayTotal.headerName" [valueName]="'RazmandehPeriodDayTotal'">
+                  </custom-input>
+                </div>
+              </div>
+            </fieldset>
+            <!-------------------------------------------------------------------------------------------->
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab *ngIf="formType != 'Add'" class="last-tab" dir="rtl" label="خلاصه وضعیت گذشته">
+        <ng-template matTabContent>
+          <summary-of-the-past-situation [Id]="ID"></summary-of-the-past-situation>
+        </ng-template>
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </div>
+
+</mat-card>
+
+<tree-modal [type]="'CostCenterTree'" *ngIf="showCostCenterModal" (nodeSelected)="nodeSelected($event)"
+  (closed)="closedCostCenterModal()">
+</tree-modal>

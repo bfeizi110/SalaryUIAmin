@@ -1,0 +1,155 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-9">
+
+            <div class="row">
+
+              <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.KasrOrder_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.KasrOrder_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.KasrOrder_Fld.headerName" [valueName]="'KasrOrder_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.Group_Debt.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Group_Debt.type" [parentFormGroup]="form"
+                  [label]="formObj.Group_Debt.headerName" [valueName]="'Group_Debt'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.Debttype_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.Debttype_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.Debttype_Fld.headerName" [valueName]="'Debttype_Fld'" (change)="changeDebtType()">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.DKarmand_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'string'" [parentFormGroup]="form" [label]="formObj.DKarmand_Fld.headerName"
+                  [valueName]="'DKarmand_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-4" *ngIf="!formObj.MashmoolTypeDesc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+                  [descValue]="data.MashmoolTypeDesc_Fld" [label]="formObj.MashmoolType_Fld.headerName"
+                  [valueName]="'MashmoolType_Fld'">
+                </custom-input>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-md-3" *ngIf="!formObj.Description_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Description_Fld.headerName"
+              [valueName]="'Description_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.KasrDigit_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.KasrDigit_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.KasrDigit_Fld.headerName" [valueName]="'KasrDigit_Fld'" (change)="changeKasrDigit()">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.NoDigit_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NoDigit_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NoDigit_Fld.headerName" [valueName]="'NoDigit_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.ContinueslyFlag_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.ContinueslyFlag_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.ContinueslyFlag_Fld.headerName" [valueName]="'ContinueslyFlag_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-5 col-md-6" *ngIf="!formObj.NoTax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NoTax_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NoTax_Fld.headerName" [valueName]="'NoTax_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.NoTaxTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10078'" [parentFormGroup]="form"
+              [descValue]="data.NoTaxTypeDesc_Fld" [label]="formObj.NoTaxType_Fld.headerName"
+              [valueName]="'NoTaxType_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.DebtPlace_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'DebtPlace'" [parentFormGroup]="form"
+              [descValue]="data.DebtPlaces_Fld" [label]="formObj.DebtPlaceDesc_Fld.headerName"
+              [valueName]="'DebtPlaceDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.Baz_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Baz_Fld.type" [parentFormGroup]="form" [label]="formObj.Baz_Fld.headerName"
+              [valueName]="'Baz_Fld'"></custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.Bazneshastegi_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Bazneshastegi_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Bazneshastegi_Fld.headerName" [valueName]="'Bazneshastegi_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.FirstMonth_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.FirstMonth_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.FirstMonth_Fld.headerName" [valueName]="'FirstMonth_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.Tax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Tax_Fld.type" [parentFormGroup]="form" [label]="formObj.Tax_Fld.headerName"
+              [valueName]="'Tax_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.RefahDebt_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.RefahDebt_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.RefahDebt_Fld.headerName" [valueName]="'RefahDebt_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.CalcDebt_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CalcDebt_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CalcDebt_Fld.headerName" [valueName]="'CalcDebt_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-md-3" *ngIf="!formObj.NewFormulaIDDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form"
+              [descValue]="data.NewFormulaIDDesc_Fld" [label]="formObj.NewFormulaID_Fld.headerName"
+              [valueName]="'NewFormulaID_Fld'">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>

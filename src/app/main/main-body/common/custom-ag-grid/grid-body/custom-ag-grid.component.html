@@ -1,0 +1,39 @@
+<div style="overflow-y: hidden !important; overflow-x: hidden;">
+  <div  style="direction: ltr; text-align: left !important" class="row-12">
+    <select *ngIf="!isModal" [disabled]="disabledForm" [ngModel]="rowNumber"
+      (ngModelChange)="onPageSizeChanged($event)">
+      <option [value]="5" selected="">5</option>
+      <option [value]="10" selected="">10</option>
+      <!-- <option [value]="20" [disabled]="gridOption && gridOption.rowData && gridLen < 20">20</option>
+      <option [value]="30" [disabled]="gridOption && gridOption.rowData && gridLen < 30">30</option>
+      <option [value]="50" [disabled]="gridOption && gridOption.rowData && gridLen < 50">50</option>
+      <option [value]="100" [disabled]="gridOption && gridOption.rowData && gridLen < 100">100</option> -->
+      <option [value]="20" >20</option>
+      <option [value]="30" >30</option>
+      <option [value]="50" >50</option>
+      <option [value]="100">100</option>
+      <option [value]="200">200</option>
+      <option [value]="300">300</option>
+      <option [value]="500">500</option>
+    </select>
+    <label>
+      تعداد کل :
+      <span>
+        {{ (gridOption && gridOption.rowData && gridLen > 0) ? gridLen : 0 }}  
+        {{ (gridOption && gridOption.rowData && selectedgridLen > 0) ? "/" : "" }}
+        {{ (gridOption && gridOption.rowData && selectedgridLen > 0) ? selectedgridLen : "" }}
+      </span>
+      <ng-container *ngIf="!isModal">
+        | تعداد سطر ها
+      </ng-container>
+    </label>
+  </div>
+  <div #divGrid>
+    <ag-grid-angular #grid class="ag-theme-material" [accentedSort]="true" 
+    [class.disabled-form]="disabledForm" [gridOptions]="gridOption" (cellKeyPress)="onCellKeyPress($event)" >
+    </ag-grid-angular>
+  </div>
+</div>
+
+<stimulsoft-viewer-report *ngIf="showReport" (closeChange)="showReport = false" [url]="reportUrl" [isFish]="true">
+</stimulsoft-viewer-report>

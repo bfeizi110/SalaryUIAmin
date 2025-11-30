@@ -1,0 +1,34 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<mat-card appearance="outlined" *ngIf="showDetail" style="min-height: 372px">
+  <mat-tab-group dir="rtl" (selectedTabChange)="changeTab($event.index)">
+    <mat-tab dir="rtl" label="فیلدهای جدول">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <entitym-property *ngIf="showDetailField" [EntityName]="EntityName" ></entitym-property>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" label="ایندکس های جدول">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <entity-property-index *ngIf="showDetailIndex" [EntityName]="EntityName" ></entity-property-index>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" label="نمایش محتوای جدول">
+      <ng-template matTabContent>
+        <div class="mt-2">
+          <custom-ag-grid *ngIf="showGridContent" [customGridOption]="gridOptionContent"></custom-ag-grid>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+
+<div *ngIf="showForm" class="pre-form">
+  <entity-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" 
+    (closed)="closeForm()">
+  </entity-form>
+</div>

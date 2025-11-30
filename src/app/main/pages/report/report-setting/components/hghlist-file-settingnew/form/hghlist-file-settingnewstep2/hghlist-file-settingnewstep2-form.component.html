@@ -1,0 +1,20 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngIf="!formObj.ColName_Fld.ishidden && formType !='MEdit'">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ColName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ColName_Fld.headerName" [valueName]="'ColName_Fld'">
+        </custom-input>
+      </div>
+      <div *ngIf="!formObj.PayFractionGroupDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="EmpGroupCodeList" [descValue]="data.PayFractionGroupDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.PayFractionGroup_Fld.headerName" [valueName]="'PayFractionGroup_Fld'"></custom-input>
+      </div>
+      <div *ngIf="!formObj.NotShow_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.NotShow_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.NotShow_Fld.headerName" [valueName]="'NotShow_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

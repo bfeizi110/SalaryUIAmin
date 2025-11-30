@@ -1,0 +1,9 @@
+<p>کسورات</p>
+
+<custom-ag-grid [rowNumber]="5" [hideLogs]="true" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <tadris-fraction-form [formObj]="formObj" [data]="data" [parentId]="parentId" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </tadris-fraction-form>
+</div>

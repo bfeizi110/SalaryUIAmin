@@ -1,0 +1,108 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)" >
+</personnel-filter>
+
+<mat-card appearance="outlined" style="min-height: 372px" *ngIf="showSelectPerson">
+  <mat-tab-group dir="rtl" (selectedTabChange)="closeForm($event)">
+
+    <mat-tab dir="rtl" label="اطلاعات پرداخت پرسنل" >
+      <ng-template matTabContent>
+        <!--select person-->
+        <select-personnel [personData]="personData" [controller]="controller" [setPersonPID]="setPID"
+          [hideFilter]="true" (rowClicked)="onSelectPersonnel($event)"
+          (onSelectPersonnelDetail)="onSelectPersonnelDetail($event)" 
+          (selectedPersonelNF)="selectedPersonelNF = $event">
+        </select-personnel>
+        <div class="person-pay-info-tab" *ngIf="showGrid" style="min-height: 329px">
+          <div  class="row">
+              <div  class="col-sm-5">
+                <mat-form-field dir="rtl">
+                  <mat-label dir="rtl">ماه</mat-label>
+                  <mat-select [multiple]="true" dir="rtl"  (openedChange)="comboChangeMonth($event)" [formControl]="toppings">
+                    <mat-option *ngIf="comboMonth.length == 0">-</mat-option>
+                    <mat-option dir="rtl" *ngFor="let item of comboMonth" [value]="item.Month_Fld" >{{item.MonthDesc_Fld}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            <div  class="col-sm-2">
+              <mat-form-field dir="rtl">
+                <mat-label dir="rtl">نوع</mat-label>
+                <mat-select dir="rtl" [(ngModel)]="CatType" (selectionChange)="comboChangeCat($event.value)" >
+                  <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+                  <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>  
+
+          <custom-ag-grid *ngIf="showGeneralPerson" [masterDetail]="false" [customGridOption]="gridOption">
+          </custom-ag-grid>
+
+          <div class="row person-pay-fraction" >
+            <div class="col-sm-6" *ngIf="showDetailGridPay">
+              <custom-ag-grid  [masterDetail]="false" [customGridOption]="gridOptionPay">
+              </custom-ag-grid>
+            </div>
+            <div class="col-sm-6" *ngIf="showDetailGridFraction">
+              <custom-ag-grid  [masterDetail]="false" [customGridOption]="gridOptionFraction">
+              </custom-ag-grid>
+            </div>
+          </div>
+
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" style="min-height: 372px" label="کلیه اطلاعات پرداخت">
+      <ng-template matTabContent>
+        <!--general-->
+        <div  class="row">
+          <div  class="col-sm-5">
+            <mat-form-field dir="rtl" class="mat-combo">
+              <mat-label dir="rtl">ماه</mat-label>
+              <mat-select [multiple]="true" dir="rtl" (openedChange)="comboChangeMonthSelectAll($event)" [formControl]="toppingsAll">
+                <mat-option *ngIf="comboMonth.length == 0">-</mat-option>
+                <mat-option dir="rtl" *ngFor="let item of comboMonth" [value]="item.Month_Fld">{{item.MonthDesc_Fld}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div  class="col-sm-2">
+            <mat-form-field dir="rtl" >
+              <mat-label dir="rtl">نوع</mat-label>
+              <mat-select  dir="rtl" [(ngModel)]="CatTypeSelectAll" (selectionChange)="comboChangeCatSelectAll($event.value)">
+                <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+                <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <general-person-info *ngIf="showGridSelectAll" [filterData]="filterDto" [type]="controller" [rowNumber]="20"></general-person-info>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" style="min-height: 372px" label="کلیه اطلاعات تعدیل">
+      <ng-template matTabContent>
+        <!--general-->
+        <div  class="row">
+          <div  class="col-sm-5">
+            <mat-form-field dir="rtl" class="mat-combo">
+              <mat-label dir="rtl">ماه</mat-label>
+              <mat-select [multiple]="false" dir="rtl" (openedChange)="comboChangeMonthTadilSelectAll($event)" [formControl]="toppingsTadilAll">
+                <mat-option *ngIf="comboMonth.length == 0">-</mat-option>
+                <mat-option dir="rtl" *ngFor="let item of comboMonth" [value]="item.Month_Fld">{{item.MonthDesc_Fld}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <general-person-info  *ngIf="showGridTadilSelectAll" [filterData]="filterDto" [type]="'PersonTaxTadil'" [SelectUrl]="'PersonPayInfo/GetSelectTadilAll'" 
+            [attrUrl]="'PersonPayInfo/GetAttributeSelectTadilAll'" [rowNumber]="10" (rSelected)="selectedTadilRow($event)">
+        </general-person-info>
+        <custom-ag-grid *ngIf="showGridTadilSelectDetail" [masterDetail]="false" [customGridOption]="gridOptionTadilDetail">
+        </custom-ag-grid>
+
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>

@@ -1,0 +1,16 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-customDefault'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form" [label]="formObj.CodeDesc_Fld.headerName"
+          [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.FormIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Form/GetMasterFormCombo/100955'" [parentFormGroup]="form"
+          [label]="formObj.FormID_Fld.headerName" [valueName]="'FormID_Fld'" [descValue]="data.FormIDDesc_Fld">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

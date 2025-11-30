@@ -1,0 +1,57 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.PropertyName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.PropertyName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.PropertyName_Fld.headerName" [valueName]="'PropertyName_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.HeaderName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.HeaderName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.HeaderName_Fld.headerName" [valueName]="'HeaderName_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Require_Fld.ishidden" [dis]>
+        <custom-input  [formObj]="formObj"  [type]="formObj.Require_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Require_Fld.headerName" [valueName]="'Require_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.DisableInput_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DisableInput_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DisableInput_Fld.headerName" [valueName]="'DisableInput_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.HiddenValue_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.HiddenValue_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.HiddenValue_Fld.headerName" [valueName]="'HiddenValue_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.IsHidden_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsHidden_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IsHidden_Fld.headerName" [valueName]="'IsHidden_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Range_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Range_Fld.type" [parentFormGroup]="form" [label]="formObj.Range_Fld.headerName"
+          [valueName]="'Range_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.Width_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Width_Fld.type" [parentFormGroup]="form" [label]="formObj.Width_Fld.headerName"
+          [valueName]="'Width_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-9" *ngIf="data.Query_Fld != '' && data.Query_Fld != null && !formObj.DefaultValueDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="ComboUrl" [parentFormGroup]="form"
+          [label]="formObj.DefaultValue_Fld.headerName" [valueName]="'DefaultValue_Fld'" [descValue]="data.DefaultValueDesc_Fld" >
+        </custom-input>
+      </div>
+      <div class="col-sm-9" *ngIf="data.Query_Fld == null && !formObj.DefaultValueDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="data.Type_Fld" [parentFormGroup]="form"
+          [label]="formObj.DefaultValue_Fld.headerName" [valueName]="'DefaultValue_Fld'"  >
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

@@ -1,0 +1,24 @@
+footer {
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #152d2c,green, #87e89c)
+}
+
+.copy-text {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-family: iransans;
+}
+
+.site-link,
+.versions {
+  text-decoration: none !important;
+  display: inline;
+  color: rgb(245, 238, 139);
+}
+
+p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

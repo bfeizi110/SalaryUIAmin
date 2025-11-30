@@ -1,0 +1,11 @@
+::ng-deep td > div > div br {
+  display: none !important;
+}
+
+::ng-deep .stiJsViewerMainPanel {
+  height: 93vh !important;
+}
+
+::ng-deep #StiViewer {
+  position: unset !important;
+}

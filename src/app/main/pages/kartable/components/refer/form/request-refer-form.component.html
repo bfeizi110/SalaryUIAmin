@@ -1,0 +1,16 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12" *ngIf="!formObj.ToUserIDDesc_Fld.ishidden && !this.RequestReject">
+          <custom-input  [formObj]="formObj"  [type]="'combo'" [descValue]="''" [comboArray]="comboArray"
+            [parentFormGroup]="form" [label]="formObj.ToUserID_Fld.headerName" [valueName]="'ToUserID_Fld'">
+          </custom-input>
+        </div>
+        <div class="col-sm-12" >
+          <custom-input  [formObj]="formObj"  [type]="formObj.Desc_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.Desc_Fld.headerName" [valueName]="'Desc_Fld'">
+          </custom-input>
+        </div>
+      </div>
+    </div>
+  </custom-modal>

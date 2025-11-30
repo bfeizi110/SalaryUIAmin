@@ -1,0 +1,72 @@
+<div [class.m-0]="!actions || actions.length == 0" class="row" (mouseover)="hover = true" (mouseleave)="mouseleave()">
+  <div *ngIf="actions" [class.col-10]="!params.column.colDef.hideImproveFilter" class="ag-header-cell-label"
+    [class.col-12]="params.column.colDef.hideImproveFilter" (click)="onSortRequested(sort, $event)">
+
+    <!--This is for checkbox header to select all rows-->
+    <!-- <div *ngIf="
+          params &&
+          (params.column.colId == 'View' || params.column.colId == 'Edit' || params.column.colId == 'Add' || params.column.colId == 'Delete')
+        ">
+        <input style="margin-top: 5px" type="checkbox" (change)="changeCheckbox(params, $event, params.column.colId)" />
+      </div> -->
+    <!-------------------------------------------------->
+
+    <!--For Title grid-->
+    <div *ngIf="actions.length == 0" style="float: right" class="customHeaderLabel ag-header-cell-text">
+      <label class="item-name" matTooltipClass="header-tooltip" matTooltip="{{params.displayName}}">{{
+        params.displayName }}</label>
+    </div>
+    <!------------------>
+
+    <!--Sort Icons-->
+    <ng-container *ngIf="params.enableSorting">
+      <div style="float: right; width: 16px; text-align: center" *ngIf="_sortingUp" [ngClass]="descSort"
+        class="customSortUpLabel">
+        <i class="ag-icon ag-icon-asc" aria-hidden="true"></i>
+      </div>
+      <div style="float: right; width: 16px; text-align: center" *ngIf="_sortingDown" [ngClass]="ascSort"
+        class="customSortDownLabel">
+        <i class="ag-icon ag-icon-desc" aria-hidden="true"></i>
+      </div>
+    </ng-container>
+    <!-------------->
+
+  </div>
+
+
+  <!--This Is Form Header Action Buttons-->
+  <div style="padding: 0px" [class.col-2]="!actions || actions.length == 0"
+    [class.col-10]="params.displayName == 'actions'">
+
+    <!--Filter Button Grid-->
+    <span *ngIf="!params.column.colDef.hideImproveFilter && hover && actions.length == 0" #menuButton
+      class="col-1 customHeaderMenuButton" (click)="onMenuClicked($event)">
+      <i class="ag-icon ag-icon-menu" matTooltipClass="header-tooltip" matTooltip="فیلتر پیشرفته"></i>
+    </span>
+    <!---------------------->
+
+    <!--True Actions callback-->
+    <ng-container *ngIf="actions.length > 0">
+      <button mat-icon-button class="dot-btn"  [matMenuTriggerFor]="menu">
+        <i class="fa fa-ellipsis-h "></i>
+      </button>
+      <mat-menu #menu="matMenu" dir="rtl">
+        <button *ngIf="addAction" mat-menu-item (click)="onAddClick(addAction, $event)">
+          <i matTooltipClass="header-tooltip" matTooltip="اضافه کردن" matTooltipClass="blue-tooltip"
+            class="fa fa-plus"></i>
+          <span class="mr-8">ایجاد</span>
+        </button>
+        <button *ngIf="!actions['hideExcel']" mat-menu-item (click)="onExcellClick(params, $event)">
+          <i matTooltipClass="header-tooltip" matTooltipClass="green-tooltip" matTooltip="خروجی گرفتن فایل اکسل"
+            class="fa fa-file-excel-o"></i>
+          <span class="mr-8">خروجی اکسل</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+    <!------------------------>
+
+  </div>
+  <!------------------------------------>
+
+
+</div>

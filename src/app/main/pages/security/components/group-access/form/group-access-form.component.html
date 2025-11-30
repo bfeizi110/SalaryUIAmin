@@ -1,0 +1,43 @@
+<mat-card appearance="outlined">
+  <div class="form">
+    <div class="form-body" >
+      <div class="form-buttons">
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+          <mat-tab-group dir="rtl" (selectedTabChange)="selectedParentTabChange($event)">
+            <mat-tab dir="rtl" label="فرم">
+              <div class="row" >
+
+                <div class="form-buttons1">
+                  <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+                  </button>
+                </div>
+                <div class="row" [ngClass]="{'disabled-form': formType == 'View'}">
+                  <div class="col-sm-9" *ngIf="!formObj.Name.ishidden" >
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Name.type" [parentFormGroup]="form" [label]="formObj.Name.headerName"
+                      [valueName]="'Name'">
+                    </custom-input>
+                  </div>
+                  <div class="col-sm-3" *ngIf="!formObj.InActive.ishidden" >
+                    <custom-input  [formObj]="formObj"  [type]="formObj.InActive.type" [parentFormGroup]="form" [label]="formObj.InActive.headerName"
+                      [valueName]="'InActive'">
+                    </custom-input>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab dir="rtl" label="مشاهده کاربران گروه" >
+              <div class="row">
+                <custom-ag-grid [rowNumber]="10" *ngIf="showGrid" [customGridOption]="gridOption">
+                </custom-ag-grid>
+              </div>
+            </mat-tab>  
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

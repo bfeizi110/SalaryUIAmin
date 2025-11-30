@@ -1,0 +1,6 @@
+<custom-ag-grid [rowNumber]="10" *ngIf="showGrid" [customGridOption]="ShowControllerName ? gridOptionMinimal : gridOption" ></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <faq-form [formObj]="formObj" [ID]="ID" [formType]="formType" [ShowControllerName]="ShowControllerName" (done)="submited($event)" (closed)="closeForm()">
+  </faq-form>
+</div>

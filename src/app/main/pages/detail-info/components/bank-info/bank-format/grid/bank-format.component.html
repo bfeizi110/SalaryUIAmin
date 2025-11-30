@@ -1,0 +1,24 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">بانک</mat-label>
+      <mat-select dir="rtl" (selectionChange)="bankBranchChange($event.value)">
+        <mat-option *ngIf="bankBranchList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="bankBranchList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of bankBranchList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <custom-ag-grid class="bank-format-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption">
+  </custom-ag-grid>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <bank-format-form [formObj]="formObj" [BankId]="bankId" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </bank-format-form>
+</div>

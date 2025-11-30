@@ -1,0 +1,47 @@
+<mat-card appearance="outlined">
+  <div class="form">
+    <div class="form-buttons" *ngIf="!ShowControllerName">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-2" *ngIf="!formObj.Code_Fld.ishidden && !ShowControllerName">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Code_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.Code_Fld.headerName" [valueName]="'Code_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden && !ShowControllerName">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-12" *ngIf="!formObj.Forms_Fld.ishidden && !ShowControllerName">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="formList" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.Forms_Fld.headerName" [valueName]="'Forms_Fld'">
+            </custom-input>
+          </div>
+    
+          <div class="col-sm-12 textArea" *ngIf="!formObj.Desc_Fld.ishidden">
+            <custom-input [formObj]="formObj"  [type]="'textArea'" [ltr]="false" [parentFormGroup]="form" [descValue]="data.Desc_Fld"
+              [label]="formObj.Desc_Fld.headerName" [valueName]="'Desc_Fld'">
+            </custom-input>
+          </div>
+    
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

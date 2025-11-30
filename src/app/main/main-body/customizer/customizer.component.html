@@ -1,0 +1,100 @@
+<!--Theme customizer Starts-->
+<div class="customizer border-left-blue-grey border-left-lighten-4 d-none d-sm-none d-md-block open">
+  <div class="d-inline">
+    <a class="customizer-close" (click)="close()">
+      <i class="fa fa-close font-medium-3"></i>
+    </a>
+  </div>
+  <div class="customizer-content p-3 ps-container ps-theme-dark" data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a">
+    <h4 class="header-text mb-0 text-bold-400">انتخاب تم</h4>
+    <p>طراحی &amp; تغییر قالب به صورت زنده</p>
+    <hr>
+
+    <div class="col-sm-7">
+      <mat-form-field dir="rtl" style="text-align: right;">
+        <mat-label dir="rtl">انتخاب تم</mat-label>
+        <mat-select dir="rtl" [(ngModel)]="selectedTheme" (ngModelChange)="changeTheme()">
+          <mat-option dir="rtl" *ngIf="colorModelDefaultList.length == 0">-</mat-option>
+          <mat-filter [(comboList)]="colorModelDefaultList" [valueLabel]="'perName'">
+          </mat-filter>
+          <mat-optgroup *ngFor="let group of colorModelDefaultList" [label]="group.groupName">
+            <mat-option *ngFor="let item of group.colorModel" [value]="item">
+              {{item.perName}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex" *ngIf="isDefault">
+      <div class="col-sm-7">
+        <mat-form-field dir="rtl" style="text-align: right;">
+          <mat-label dir="rtl">انتخاب المنت</mat-label>
+          <mat-select dir="rtl" [(ngModel)]="selectedItemColor">
+            <mat-option dir="rtl" *ngIf="colorModelList.length == 0">-</mat-option>
+            <mat-filter [(comboList)]="colorModelList" [valueLabel]="'perName'">
+            </mat-filter>
+            <mat-optgroup *ngFor="let group of colorModelList" [label]="group.groupName" [disabled]="group.disabled">
+              <mat-option *ngFor="let item of group.colorModel" [value]="item">
+                {{item.perName}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <span style="margin-top: 16px; margin-right: 21px;border: 1px solid black;"
+        class="d-block rounded-circle span-circle" [style.background]="selectedItemColor.color"
+        *ngIf="selectedItemColor" [(colorPicker)]="selectedItemColor.color"
+        (colorPickerChange)="changeElementColor(selectedItemColor)">
+      </span>
+
+      <i style="margin-top: 16px; margin-right: 21px" class="fa fa-floppy-o text-primary" (click)="saveColorModel()">
+      </i>
+
+    </div>
+
+    <!--Sidebar BG Image Starts-->
+    <h5 class="text-center text-bold-500 mb-3">عکس پس زمینه نوار کناری</h5>
+    <div class="cz-bg-image row">
+      <div *ngFor="let item of bgImages" class="col mb-3">
+        <img [src]="item" class="rounded" [class.selected]="item == bgImage" width="90" (click)="changeBgImage(item)">
+      </div>
+    </div>
+    <!--Sidebar BG Image Ends-->
+    <hr>
+
+    <!--Sidebar BG Image Toggle Starts-->
+    <mat-slide-toggle [color]="'primary'" [(ngModel)]="showSideBarBgImg" (ngModelChange)="changeShowBgImage($event)">
+      عکس پس زمینه برای نوار کناری
+    </mat-slide-toggle>
+    <hr>
+
+    <!--Compact Menu Starts-->
+    <mat-slide-toggle [color]="'accent'" [(ngModel)]="compressSideBar" (ngModelChange)="compressChanged($event)">
+      فشرده کردن نوار کناری
+    </mat-slide-toggle>
+    <!--Compact Menu Ends-->
+    <hr>
+
+    <!--Sidebar Width Starts-->
+    <!--*ngIf="!compressed"-->
+    <div>
+      <label>سایز نوار کناری:</label>
+      <mat-radio-group [(ngModel)]="sideBarSize" (ngModelChange)="sizeChanged($event)" [color]="'warn'">
+        <mat-radio-button class="cz-sidebar-width" value="small">
+          کوچک
+        </mat-radio-button>
+        <mat-radio-button class="cz-sidebar-width" value="medium">
+          متوسط
+        </mat-radio-button>
+        <mat-radio-button class="cz-sidebar-width" value="large">
+          بزرگ
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <!--Sidebar Width Ends-->
+
+  </div>
+</div>
+<!--Theme customizer Ends-->

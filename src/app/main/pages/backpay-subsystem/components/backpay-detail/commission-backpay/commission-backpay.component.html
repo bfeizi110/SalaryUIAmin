@@ -1,0 +1,22 @@
+<custom-modal *ngIf="showGridCommission" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <p class="center">لیست احکام پرسنل</p>
+        <custom-ag-grid [customGridOption]="gridOptionCommission"></custom-ag-grid>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div *ngIf="showGridSalaryCommissionPay" class="col-lg-6">
+            <p class="center">لیست سابقه اجرای حقوق</p>
+            <custom-ag-grid [customGridOption]="gridOptionSalaryCommissionPay"></custom-ag-grid>
+          </div>
+          <div *ngIf="showGridCommissionPay" class="col-lg-6">
+            <p class="center">لیست سابقه اجرای معوقه و تفاوت</p>
+            <custom-ag-grid [customGridOption]="gridOptionCommissionPay"></custom-ag-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</custom-modal>

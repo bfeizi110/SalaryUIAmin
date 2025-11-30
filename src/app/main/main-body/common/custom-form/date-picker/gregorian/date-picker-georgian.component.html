@@ -1,0 +1,39 @@
+<div class="form-group body" (mouseover)="mouseOver = true" (mouseout)="mouseOver = false">
+  <div class="d-block">
+    <input
+      [attr.disabled]="disabled ? '' : null"
+      *ngIf="!control"
+      #inp
+      mask="0000/00/00"
+      (click)="clickInput(dp)"
+      class="form-control w-100 {{ class }}"
+      [class.require]="requireClass"
+      [(ngModel)]="valueInputElement"
+      (keyup)="onKeyup($event, dp)"
+    />
+    <input
+      [attr.disabled]="disabled ? '' : null"
+      *ngIf="control"
+      #inp
+      mask="0000/00/00"
+      (click)="clickInput()"
+      class="form-control w-100 {{ class }}"
+      [class.require]="requireClass"
+      [(ngModel)]="valueInputElement"
+      (keyup)="onKeyup($event, dp)"
+      [formControl]="control"
+    />
+    <ngb-datepicker
+      [ngClass]="{ top: position === 'top', bottom: position === 'buttom' }"
+      (openChange)="onStart($event)"
+      [firstDayOfWeek]="1"
+      (dateSelect)="dateSelect()"
+      (navigate)="monthChanged($event, dp)"
+      #dp
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [(ngModel)]="datePickerValue"
+      [class.unvis]="!showPopup"
+    ></ngb-datepicker>
+  </div>
+</div>

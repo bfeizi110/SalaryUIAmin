@@ -1,0 +1,7 @@
+<custom-modal [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+    <div class="container-fluid">
+      <div class="row" *ngIf="showFlow">
+        <custom-ag-grid [customGridOption]="gridFlowOption" class="other-setting-grid" [isModal]="true"></custom-ag-grid>
+      </div>
+    </div>
+  </custom-modal>

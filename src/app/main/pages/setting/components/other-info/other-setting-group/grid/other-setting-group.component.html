@@ -1,0 +1,11 @@
+<custom-ag-grid [rowNumber]="20" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showOtherSettingDefine" class="other-setting-define mt-1">
+  <other-setting-define [otherSettingGroupId]="otherSettingGroupId"></other-setting-define>
+</div>
+
+<div class="pre-form" *ngIf="showForm">
+  <other-setting-group-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </other-setting-group-form>
+</div>

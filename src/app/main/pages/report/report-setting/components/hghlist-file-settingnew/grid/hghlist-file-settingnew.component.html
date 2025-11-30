@@ -1,0 +1,43 @@
+<mat-card appearance="outlined">
+  <!-- (selectedTabChange)="tabChange($event)" -->
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">گروه استخدامی</mat-label>
+      <mat-select dir="rtl" (selectionChange)="emgGroupChange($event.value)">
+        <mat-option *ngIf="emgGroupList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="emgGroupList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of emgGroupList" [value]="item.Id">{{item.CodeDesc_Fld}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-tab-group class="mt-2" dir="rtl" >
+    <mat-tab dir="rtl" label="معرفی عناوین و ترتیب">
+      <custom-ag-grid class="hghlist-file-settingnew-grid" [isModal]="true" *ngIf="showGridStep1" [customGridOption]="gridOptionStep1" >
+      </custom-ag-grid>
+    </mat-tab>  
+
+    <mat-tab dir="rtl" label="انتساب عناوین به پارامترها">
+      <button *ngIf="accessEditStep2 && selectedRow.length !=0" mat-flat-button class="close-button" color="accent"
+        (click)="editAllRowStep2()">ویرایش کلی
+      </button>
+
+      <custom-ag-grid class="hghlist-file-settingnew-grid" [isModal]="true" *ngIf="showGridStep2" [customGridOption]="gridOptionStep2" >
+      </custom-ag-grid>
+    </mat-tab>
+  </mat-tab-group>      
+</mat-card>
+
+<div class="pre-form" *ngIf="showFormStep2">
+  <hghlist-file-settingnewstep2-form [formObj]="formObjStep2" [IsMadeh29_Fld]="IsMadeh29_Fld" [EmpGroup_Fld]="EmpGroup_Fld" [ID]="IDStep2" [formType]="formTypeStep2"
+    (done)="submitedStep2($event)" (closed)="closeFormStep2()">
+  </hghlist-file-settingnewstep2-form>
+</div>
+
+<div class="pre-form" *ngIf="showFormStep1">
+  <hghlist-file-settingnewstep1-form [formObj]="formObjStep1" [IsMadeh29_Fld]="IsMadeh29_Fld" [EmpGroup_Fld]="EmpGroup_Fld" [ID]="IDStep1" [formType]="formTypeStep1"
+    (done)="submitedStep1($event)" (closed)="closeFormStep1()">
+  </hghlist-file-settingnewstep1-form>
+</div>

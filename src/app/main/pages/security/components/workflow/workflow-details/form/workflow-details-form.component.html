@@ -1,0 +1,182 @@
+<mat-card appearance="outlined">
+
+  <div #myElem class="form">
+
+    <div class="row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View' && tabIndex != 1 " class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+    </div>
+
+    <mat-tab-group *ngIf="showForm" class="mt-2" dir="rtl" (selectedTabChange)="tabChanged($event)">
+
+      <mat-tab dir="rtl" label="اطلاعات مرحله">
+
+        <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form" [label]="formObj.CodeDesc_Fld.headerName"
+                  [valueName]="'CodeDesc_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="!formObj.StartWorkFlow_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.StartWorkFlow_Fld.type" [parentFormGroup]="form" [label]="formObj.StartWorkFlow_Fld.headerName"
+                  [valueName]="'StartWorkFlow_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="!formObj.EndWorkFlow_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.EndWorkFlow_Fld.type" [parentFormGroup]="form" [label]="formObj.EndWorkFlow_Fld.headerName"
+                  [valueName]="'EndWorkFlow_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="!formObj.AllUsersAccess_Fld.ishidden && form.controls.StartWorkFlow_Fld.value == 1">
+                <custom-input  [formObj]="formObj"  [type]="formObj.AllUsersAccess_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.AllUsersAccess_Fld.headerName" [valueName]="'AllUsersAccess_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6" *ngIf="!formObj.RejectToWorkFlowDetailIDDesc_Fld?.ishidden  && form.controls.StartWorkFlow_Fld.value == 0">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="comboUrl" [descValue]="data.RejectToWorkFlowDetailIDDesc_Fld"
+                  [parentFormGroup]="form" [label]="formObj.RejectToWorkFlowDetailID_Fld.headerName" [valueName]="'RejectToWorkFlowDetailID_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="!formObj.CanCancelByCreator_Fld.ishidden && form.controls.StartWorkFlow_Fld.value == 0">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CanCancelByCreator_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CanCancelByCreator_Fld.headerName" [valueName]="'CanCancelByCreator_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-2" *ngIf="!formObj.CanReferBack_Fld.ishidden && form.controls.StartWorkFlow_Fld.value == 0">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CanReferBack_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CanReferBack_Fld.headerName" [valueName]="'CanReferBack_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-4" *ngIf="!formObj.ReferBackToWorkFlowDetailID_Fld.ishidden && form.controls.CanReferBack_Fld.value && form.controls.StartWorkFlow_Fld.value == 0">
+                <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="workflowdetailList" [multiple]="true" [parentFormGroup]="form" [label]="formObj.ReferBackToWorkFlowDetailID_Fld.headerName"
+                  [valueName]="'ReferBackToWorkFlowDetailID_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="!formObj.HasNotification_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.HasNotification_Fld.type" [parentFormGroup]="form" [label]="formObj.HasNotification_Fld.headerName"
+                  [valueName]="'HasNotification_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-3" *ngIf="form.controls.HasNotification_Fld.value && !formObj.NotificationTypes_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="notificationList" [multiple]="true"
+                  [parentFormGroup]="form " [label]="formObj.NotificationTypes_Fld.headerName" [valueName]="'NotificationTypes_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-6" *ngIf="!formObj.SlackGroupID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1">
+                <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="slackList" [parentFormGroup]="form" [label]="formObj.SlackGroupID_Fld.headerName" [multiple]="true"
+                  [valueName]="'SlackGroupID_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-6" *ngIf="!formObj.SlackUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1">
+                <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="slackUserList" [parentFormGroup]="form" [label]="formObj.SlackUserID_Fld.headerName" [multiple]="true"
+                  [valueName]="'SlackUserID_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-6" *ngIf="!formObj.SmsUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101271') !== -1">
+                <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="smsUserList" [parentFormGroup]="form" [label]="formObj.SmsUserID_Fld.headerName" [multiple]="true"
+                  [valueName]="'SmsUserID_Fld'">
+                </custom-input>
+              </div>
+              <div class="col-sm-6" *ngIf="!formObj.EmailUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101272') !== -1">
+                <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="emailUserList" [parentFormGroup]="form" [label]="formObj.EmailUserID_Fld.headerName" [multiple]="true"
+                  [valueName]="'EmailUserID_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab  *ngIf="formType != 'Add' && form.controls.AllUsersAccess_Fld.value != 1 && form.controls.StartWorkFlow_Fld.value == 1" dir="rtl" label="اطلاعات دسترسی شروع فرایند" >
+        <div class="container-fluid">
+
+          <div class="mt-1 row">
+    
+            <div class="col-sm-3">
+              <mat-form-field dir="rtl">
+                <mat-label dir="rtl">انتخاب نوع دسترسی</mat-label>
+                <mat-select dir="rtl" (selectionChange)="comboChange($event.value)">
+                  <mat-option>-</mat-option>
+                  <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'">
+                  </mat-filter>
+                  <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+    
+    
+          <div class="row mt-4">
+            <ng-container *ngIf="showGrids">
+              <div class="col-lg">
+                <p class="text-center">عدم دسترسی</p>
+                <custom-ag-grid *ngIf="showGridNotAccess" [customGridOption]="gridOptionNotAccess">
+                </custom-ag-grid>
+              </div>
+              <div class="col-lg-1">
+                <div class="buttons">
+                  <div>
+                    <i class="fa fa-hand-o-left text-success" (click)="addAccess()" [class.disable-icon]="selectedNotAcccessList.length == 0"></i>
+                  </div>
+                  <div>
+                    <i class="fa fa-hand-o-right text-danger" (click)="removeAccess()" [class.disable-icon]="selectedAcccessList.length == 0"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg">
+                <p class="text-center">دسترسی</p>
+                <custom-ag-grid *ngIf="showGridAccess" [customGridOption]="gridOptionAccess">
+                </custom-ag-grid>
+              </div>
+            </ng-container>
+          </div>
+    
+        </div>        
+      </mat-tab>
+      <mat-tab *ngIf="formType != 'Add' && form.controls.EndWorkFlow_Fld.value != 1" dir="rtl" label="اطلاعات ارجاع">
+        <div class="container-fluid" >
+          <workflow-details-refer [formObj]="formObj" [ID]="ID" [WorkFlowDetailID]="ID" [WorkFlowID]="WorkFlowID"
+            [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+          </workflow-details-refer>
+        </div>
+      </mat-tab>
+
+      <mat-tab  *ngIf="formType != 'Add'" dir="rtl" label="اطلاعات دسترسی اجزای فرم" >
+        <div class="container-fluid">
+          <div class="row mt-4">
+            <ng-container *ngIf="showFDetailGrids">
+              <div class="col-lg">
+                <p class="text-center">عدم دسترسی</p>
+                <custom-ag-grid *ngIf="showFDetailGridNotAccess" [customGridOption]="gridOptionFDetailNotAccess">
+                </custom-ag-grid>
+              </div>
+              <div class="col-lg-1">
+                <div class="buttons">
+                  <div>
+                    <i class="fa fa-hand-o-left text-success" (click)="addFDetailAccess()" [class.disable-icon]="selectedFDetailNotAcccessList.length == 0"></i>
+                  </div>
+                  <div>
+                    <i class="fa fa-hand-o-right text-danger" (click)="removeFDetailAccess()" [class.disable-icon]="selectedFDetailAcccessList.length == 0"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg">
+                <p class="text-center">دسترسی</p>
+                <custom-ag-grid *ngIf="showFDetailGridAccess" [customGridOption]="gridOptionFDetailAccess">
+                </custom-ag-grid>
+              </div>
+            </ng-container>
+          </div>
+    
+        </div>        
+      </mat-tab>      
+    </mat-tab-group>
+  </div>
+</mat-card>

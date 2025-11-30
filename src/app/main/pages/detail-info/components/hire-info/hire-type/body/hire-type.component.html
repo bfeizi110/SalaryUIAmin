@@ -1,0 +1,13 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [rowNumber]="20">
+</custom-ag-grid>
+
+<div class="pre-form">
+  <hire-type-form *ngIf="showForm" [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </hire-type-form>
+</div>
+
+<div class="pre-form">
+  <hire-type-setting-form *ngIf="showFormSetting" [hireTypeId]="ID" (closed)="closeFormSetting()">
+  </hire-type-setting-form>
+</div>

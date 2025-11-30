@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-7" *ngIf="!formObj.PayTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="payTypeList" [parentFormGroup]="form"
+          [label]="formObj.PayType_Fld.headerName" [valueName]="'PayType_Fld'"
+          [descValue]="recordSelected.PayTypeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-5" *ngIf="!formObj.Price_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Price_Fld.type" [parentFormGroup]="form" [label]="formObj.Price_Fld.headerName"
+          [valueName]="'Price_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

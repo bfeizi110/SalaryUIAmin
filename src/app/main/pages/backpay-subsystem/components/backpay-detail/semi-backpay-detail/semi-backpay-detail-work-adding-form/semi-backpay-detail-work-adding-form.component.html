@@ -1,0 +1,21 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.ParamDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ParamDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ParamDesc_Fld.headerName" [valueName]="'ParamDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.JariPrice_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.JariPrice_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.JariPrice_Fld.headerName" [valueName]="'JariPrice_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.DaraeiPrice_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.DaraeiPrice_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.DaraeiPrice_Fld.headerName" [valueName]="'DaraeiPrice_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

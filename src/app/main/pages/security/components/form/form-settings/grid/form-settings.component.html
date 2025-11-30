@@ -1,0 +1,8 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <form-settings-form [formObj]="formObj" [FormID]="FormID" [ID]="ID" [EntityName]="EntityName" [DynamicFormType]="DynamicFormType"
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </form-settings-form>
+</div>
+

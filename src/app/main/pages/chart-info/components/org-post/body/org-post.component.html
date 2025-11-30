@@ -1,0 +1,62 @@
+<mat-card appearance="outlined">
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="row">
+          <div class="col-sm-8">
+            <mat-form-field (click)="clickEmp()" dir="rtl">
+              <mat-label dir="rtl">انتخاب تشکیلات سازمانی</mat-label>
+              <mat-select dir="rtl" [(ngModel)]="chartId" (selectionChange)="getTree()">
+                <mat-option *ngIf="chartArray.length == 0">-</mat-option>
+                <mat-option dir="rtl" *ngFor="let item of chartArray" [value]="item.Id">{{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-12" *ngIf="showTree">
+
+            <mat-tree dir="rtl" [dataSource]="dataSource" [treeControl]="treeControl">
+
+              <mat-tree-node dir="rtl" *matTreeNodeDef="let node" matTreeNodePadding>
+                <mat-label [class.active-node]="activeNode == node.Id" (dblclick)="clickNode(node)" dir="rtl">
+                  {{node.name}}</mat-label>
+              </mat-tree-node>
+
+
+              <mat-tree-node dir="rtl" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                <i matTreeNodeToggle *ngIf="hasChild"
+                  [ngClass]="treeControl.isExpanded(node) ? 'fa fa-angle-down' : 'fa fa-angle-left'"></i>
+                <mat-label [class.active-node]="activeNode == node.Id" (dblclick)="clickNode(node)"
+                  [class.text-danger]="hasChild" dir="rtl" [class.last-child]="!hasChild">
+                  {{node.name}}</mat-label>
+              </mat-tree-node>
+
+            </mat-tree>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-8">
+        <mat-checkbox  *ngIf="chartId != -1" (change)="changeCheckbox($event.checked)">کلیه پستهای تشکیلات
+        </mat-checkbox>
+        <custom-ag-grid *ngIf="showGrid" [rowNumber]="20" [customGridOption]="gridOption"
+          [disabledForm]="formType != ''">
+        </custom-ag-grid>
+      </div>
+
+    </div>
+  </div>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <org-post-form [formObj]="formObj" [nodeId]="activeNode" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </org-post-form>
+</div>

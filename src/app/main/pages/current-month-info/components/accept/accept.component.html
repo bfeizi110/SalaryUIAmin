@@ -1,0 +1,151 @@
+<mat-card appearance="outlined">
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-3" >
+        <custom-input   [type]="'combo'" [comboUrl]="'OtherDetail/10032'" (changeCombo)="listTypeChange($event)"
+          [parentFormGroup]="form" [label]="'نوع لیست'" [valueName]="'ListTypeID'"></custom-input>
+      </div>
+      <div class="col-sm-3" >
+        <custom-input   [type]="'combo'" [comboUrl]="'OtherDetail/10057'" (changeCombo)="listTypeChange($event)"
+          [parentFormGroup]="form" [label]="'وضعیت'" [valueName]="'PayStatusID'"></custom-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12" >
+        <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="payTypeList" (click)="clickComboPayTypeList()" 
+          [parentFormGroup]="form" [label]="'نوع پرداخت'" [valueName]="'PayTypeID'"></custom-input>
+      </div>
+    </div>
+
+    <div *ngIf="showButtons" class="row">
+
+      <div class="col-sm-12 mt-2">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <i class="fa fa-filter text-primary"></i>
+                <div class="mr-2">فیلتر پیشرفته</div>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              <div class="form">
+
+                <div class="form-buttons">
+
+                  <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button"
+                    color="warn" (click)="refresh()">
+                    <i class="fa fa-redo-alt"></i>
+                  </button>
+
+                  <div class="row mt-2">
+                    <div class="col-sm-4">
+                      <button class="cost-btn" mat-raised-button color="primary" (click)="onShowPerson()">نام و نام
+                        خانوادگی:
+                        <ng-container *ngIf="form.controls.PersonID.value">
+                          {{personName}}
+                        </ng-container>
+                      </button>
+                      <i *ngIf="form.controls.PersonID.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="HireTypeList" (click)="clickFilter('HireType', 'HireTypeList')" 
+                        [parentFormGroup]="form" [label]="'نوع استخدام'" [valueName]="'HireTypeHghID'">
+                      </custom-input>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <button class="cost-btn" mat-raised-button color="primary" (click)="onShowCostCenterModal()">مرکز
+                        هزینه:
+                        <ng-container>
+                          {{ costCenterName }}
+                        </ng-container>
+                      </button>
+                      <i *ngIf="form.controls.CostCenterID.value" class="fa fa-trash fa-trash-button" (click)="clearCostCenter()"></i>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="PayProgramList"  (click)="clickFilter('PayProgram', 'PayProgramList')" 
+                        [parentFormGroup]="form" [label]="'برنامه پرداخت'" [valueName]="'PayCodeID'">
+                      </custom-input>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="KhasList"  (click)="clickFilter('OtherDetail/10044', 'KhasList')" 
+                        [parentFormGroup]="form" [label]="'مشخصات خاص'" [valueName]="'PersonMonthHistoryID'">
+                      </custom-input>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="ListNoList"  (click)="clickFilter('ListNo', 'ListNoList')" 
+                        [parentFormGroup]="form" [label]="'شماره لیست'" [valueName]="'ListNo'">
+                      </custom-input>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="KhasCondList"  (click)="clickFilter('OtherDetail/10103', 'KhasCondList')" 
+                        [parentFormGroup]="form" [label]="'شرایط خاص'" [valueName]="'SpecialCondID'">
+                      </custom-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="col-sm-12 mt-3">
+        <div class="col-sm-3" *ngIf="form.controls.PayStatusID.value && form.controls.PayStatusID.value == 100573">
+          <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="YearMonthList"  (click)="clickFilter('YearMonth', 'YearMonthList')" 
+            [parentFormGroup]="form" [label]="'سال و ماه'" [valueName]="'YearMonthHgh'">
+          </custom-input>
+        </div>
+        <div class="col-sm-9" *ngIf="form.controls.PayStatusID.value && form.controls.PayStatusID.value == 100572">
+          <custom-input [type]="'multiCombo'" [multiple]="true" [comboArray]="AcceptList"  (click)="clickFilter('Accept', 'AcceptList')" 
+            [parentFormGroup]="form" [label]="'عنوان لیست تایید'" [valueName]="'AcceptID'">
+          </custom-input>
+        </div>
+
+        <div class="row">
+          <button mat-raised-button class="mt-3 col-sm-2 all-button" color="accent" (click)="openGrid()">نمایش</button>
+          <button mat-raised-button class="mt-3 save-button col-sm-2 all-button" color="primary" (click)="acceptOrReject()">{{ acceptRejectTitle}}</button>
+          <button *ngIf="form.controls.PayStatusID.value == 100572" mat-raised-button class="mt-3 col-sm-3 all-button" color="danger" (click)="taxFileOut()">خروجی فایل مالیاتی اقلام حقوق</button>
+          <label *ngIf="form.controls.PayStatusID.value == 100572" class="mt-3 col-sm-3 upload-button" style="align-content: center">
+            <input type="file" accept=".xls, .xlsx" (click)="$event.target.value=null" (change)="taxFileInp($event)">
+            دریافت فایل مالیاتی محاسبه شده
+          </label>
+  
+          <div class="col-sm-12" *ngIf="acceptID">
+            <mat-form-field >
+              <mat-label dir="rtl">عنوان لیست تایید</mat-label>
+              <input type="text" [type]="'string'" dir="rtl" style="text-align: right;" matInput [(ngModel)]="acceptID.CodeDesc_Fld" [class.require]="true"
+              >
+            </mat-form-field>
+          </div>
+        </div>  
+      </div>
+
+      <div *ngIf="showGrid" class="col-sm-12">
+        <custom-ag-grid [customGridOption]="gridOption"></custom-ag-grid>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>
+
+<select-personnel *ngIf="showPerson" [multiple]="true" [isModal]="true" (rowClickedModal)="onSelectPersonnel($event)"
+  (rowSelectedListOnModal)="rowSelectedList($event)" [hideFilter]="true" (closed)="showPerson = false">
+</select-personnel>
+
+<tree-modal [type]="'CostCenterTree'" *ngIf="showCostCenterModal" (nodeSelected)="nodeSelected($event)"
+  (closed)="closedCostCenterModal()">
+</tree-modal>

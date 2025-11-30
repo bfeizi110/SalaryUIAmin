@@ -1,0 +1,96 @@
+<mat-card appearance="outlined">
+
+  <mat-tab-group class="mt-1" dir="rtl" (selectedTabChange)="tabChange($event.index)">
+
+    <mat-tab dir="rtl" label="وقایع متدهای سامانه">
+
+      <div class="row mt-3">
+
+        <div class="col-sm-2">
+          <custom-input  [type]="'date'" [parentFormGroup]="form" [label]="'تاریخ شروع'" [valueName]="'FromDate'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-2">
+          <custom-input  [type]="'date'" [parentFormGroup]="form" [label]="'تاریخ پایان'" [valueName]="'ToDate'">
+          </custom-input>
+        </div>
+
+        <div class="col-sm-3">
+          <button matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button class="save-button mr2"
+            color="primary" (click)="filter()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="mt-2">
+        <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [rowNumber]="rowNumber">
+        </custom-ag-grid>
+      </div>
+
+      <div *ngIf="showLogDetail" style="direction: ltr" class="row mt-1">
+        <div class="col-sm-6">
+          <fieldset>
+            <legend>Id</legend>
+            <p>{{logDetailObj.Id}}</p>
+          </fieldset>
+        </div>
+        <div class="col-sm-6">
+          <fieldset>
+            <legend>Query String</legend>
+            <p>{{logDetailObj.QueryString}}</p>
+          </fieldset>
+        </div>
+        <div class="col-sm-6">
+          <fieldset>
+            <legend>Request Body</legend>
+            <code>
+              <pre>{{logDetailObj.RequestBody |json}}</pre>
+            </code>            
+            <!-- <p>{{logDetailObj.RequestBody}}</p> -->
+          </fieldset>
+        </div>
+        <div class="col-sm-6">
+          <fieldset class="mt-2">
+            <legend>Response Body</legend>
+            <pre>{{logDetailObj.ResponseBody | json}}</pre>
+            <!-- <p>{{logDetailObj.ResponseBody}}</p> -->
+          </fieldset>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab dir="rtl" label="تغییر وضعیت ثبت وقایع">
+      <ng-template matTabContent>
+
+        <div class="row mt-4">
+          <div class="col-lg">
+            <p class="text-center">عدم دسترسی</p>
+            <custom-ag-grid *ngIf="showGridNotAccess" [customGridOption]="gridOptionNotAccess">
+            </custom-ag-grid>
+          </div>
+          <div class="col-lg-1">
+            <div class="buttons">
+              <div>
+                <i class="fa fa-hand-o-left text-success" (click)="addAccess()"></i>
+              </div>
+              <div>
+                <i class="fa fa-hand-o-right text-danger" (click)="removeAccess()"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg">
+            <p class="text-center">دسترسی</p>
+            <custom-ag-grid *ngIf="showGridAccess" [customGridOption]="gridOptionAccess">
+            </custom-ag-grid>
+          </div>
+        </div>
+      </ng-template>
+
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>

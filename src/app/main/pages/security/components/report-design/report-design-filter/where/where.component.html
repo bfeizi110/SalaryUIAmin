@@ -1,0 +1,149 @@
+<fieldset class="where mt-2">
+  <legend>فیلتر</legend>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-1">
+        <button mat-raised-button class="save-button" color="primary" (click)="add()">اضافه</button>
+      </div>
+
+      <div class="col-sm-12" *ngFor="let item of entityFrameList let i = index">
+
+        <div class="row" *ngIf="showForm">
+
+          <div *ngIf="i != 0" class="col-sm-1">
+            <mat-form-field dir="rtl" (selectionChange)="AndOrChange()">
+              <mat-label dir="rtl">قید</mat-label>
+              <mat-select dir="rtl" [(ngModel)]="item.AndOr_Fld">
+                <mat-option *ngIf="andOrConditionList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="andOrConditionList" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option dir="rtl" *ngFor="let item of andOrConditionList" [value]="item.Id">
+                  {{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <section dir="rtl" class="mt-3">
+              <mat-checkbox [(ngModel)]="item.Open_Fld" (change)="changeCheckbox($event)" dir="rtl">[
+              </mat-checkbox>
+            </section>
+          </div>
+
+          <!-- fOR NOMRAL -->
+          <!-- <div *ngIf="!filterValue" class="col-sm-2">
+            <mat-form-field dir="rtl">
+              <mat-label dir="rtl">جدول</mat-label>
+              <mat-select [disabled]="filterValue && i == 0" [(ngModel)]="item.EntityName_Fld" dir="rtl"
+                (selectionChange)="getEntityProperty(i, true)">
+                <mat-option *ngIf="entityList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="entityList" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option *ngIf="(!entityList || entityList.length == 0)" [value]="item.EntityName_Fld" dir="rtl">
+                  {{item.EntityNameDesc_Fld}}
+                </mat-option>
+                <mat-option dir="rtl" *ngFor="let item of entityList" [value]="item.Id">
+                  {{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+
+          <!-- FOR REPORT -->
+          <div class="col-sm-2">
+            <mat-form-field dir="rtl">
+              <mat-label dir="rtl">جدول</mat-label>
+              <mat-select [disabled]="filterValue" [(ngModel)]="item.EntityName_Fld" dir="rtl"
+                (selectionChange)="getEntityProperty(i, true)">
+                <mat-option *ngIf="entityList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="entityList" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option *ngIf="(!entityList || entityList.length == 0)" [value]="item.EntityName_Fld" dir="rtl">
+                  {{item.EntityNameDesc_Fld}}
+                </mat-option>
+                <mat-option dir="rtl" *ngFor="let item of entityList" [value]="item.CodeDescEn_Fld">
+                  {{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2">
+            <mat-form-field dir="rtl" (click)="clickEntityProperty(i)">
+              <mat-label dir="rtl">مقادیر جدول</mat-label>
+              <mat-select [(ngModel)]="item.EntityPropertyName_Fld" dir="rtl"
+                (selectionChange)="entityPropertyChange(i)">
+                <mat-option *ngIf="entityPropertyList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="entityPropertyList" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option *ngIf="(!entityPropertyList || entityPropertyList.length == 0)"
+                  [value]="item.EntityPropertyName_Fld" dir="rtl">
+                  {{item.EntityPropertyNameDesc_Fld}}
+                </mat-option>
+                <mat-option dir="rtl" *ngFor="let item of entityPropertyList" [value]="item.CodeDescEn_Fld">
+                  {{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="item.EntityPropertyName_Fld" class="col-sm-2">
+            <mat-form-field dir="rtl">
+              <mat-label dir="rtl">شرط</mat-label>
+              <mat-select [(ngModel)]="item.WhereID_Fld" dir="rtl" (click)="entityPropertyChange(i, true)"
+                (selectionChange)="conditionChange($event.value, i)">
+                <mat-option *ngIf="conditionList.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="conditionList[i]" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option *ngIf="(!conditionList || !conditionList[0])" [value]="item.WhereID_Fld" dir="rtl">
+                  {{item.WhereIDDesc_Fld}}
+                </mat-option>
+                <mat-option dir="rtl" *ngFor="let item of conditionList[i]" [value]="item.Id">
+                  {{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="item.WhereID_Fld && !item.comboDto || item.comboDto.length == 0" class="col-sm-2">
+            <mat-form-field dir="rtl">
+              <mat-label dir="rtl">مقدار</mat-label>
+              <input type="text" dir="rtl" matInput [(ngModel)]="item.Value_Fld"
+                (ngModelChange)="changeValue($event, i)">
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="item.WhereID_Fld && item.comboDto && item.comboDto.length && item.comboDto.length > 0"
+            class="col-sm-2">
+            <mat-form-field dir="rtl">
+              <mat-label dir="rtl">مقدار</mat-label>
+              <mat-select [(ngModel)]="item.Value_Fld" [multiple]="true" dir="rtl"
+                (selectionChange)="changeValue($event.value, i)">
+                <mat-option *ngIf="item.comboDto.length == 0">-</mat-option>
+                <mat-filter [(comboList)]="item.comboDto" [valueLabel]="'CodeDesc_Fld'">
+                </mat-filter>
+                <mat-option dir="rtl" *ngFor="let item of item.comboDto" [value]="item.Id">{{item.CodeDesc_Fld}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <section dir="rtl" class="mt-3">
+              <mat-checkbox [(ngModel)]="item.Close_Fld" (change)="changeCheckbox($event)" dir="rtl">]
+              </mat-checkbox>
+            </section>
+          </div>
+
+          <div class="col-sm-1"><i class="fa fa-trash mt-3 text-danger" (click)="deleteRow(i)"></i></div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</fieldset>

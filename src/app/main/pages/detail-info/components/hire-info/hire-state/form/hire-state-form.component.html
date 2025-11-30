@@ -1,0 +1,34 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.IsPayroll.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form" [label]="formObj.IsPayroll.headerName"
+          [valueName]="'IsPayroll'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12">
+
+        <fieldset>
+          <legend>مربوط به فایل سازمان بازنشستگی</legend>
+
+          <div class="row">
+            <div class="col-sm-8" *ngIf="!formObj.BazDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.BazDesc_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.BazDesc_Fld.headerName" [valueName]="'BazDesc_Fld'">
+              </custom-input>
+            </div>
+          </div>
+
+        </fieldset>
+
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

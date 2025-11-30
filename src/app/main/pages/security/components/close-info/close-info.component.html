@@ -1,0 +1,104 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">نوع</mat-label>
+      <mat-select dir="rtl" (selectionChange)="comboChange($event.value)">
+        <mat-option *ngIf="comboList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="showGrids" class="container-fluid">
+    <div class="row">
+      <div class="col-6 text-center">انتخاب شده ها</div>
+      <div class="col-6 text-center">انتخاب نشده ها</div>
+    </div>
+    <div class="row justify-content-md-center">
+      <ng-container *ngIf="showGridType">
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionTypeIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <div class="buttons btn1">
+            <div>
+              <i [class.disabled]="rowSelectedTypeNotInList.length == 0" class="fa fa-arrow-circle-right text-success"
+                (click)="addType()"></i>
+            </div>
+            <div>
+              <i [class.disabled]="rowSelectedTypeInList.length == 0" class="fa fa-arrow-circle-left text-danger"
+                (click)="removeType()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionTypeNotIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showGridCostCenter">
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionCostCenterIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <div class="buttons btn2">
+            <div>
+              <i [class.disabled]="rowSelectedCostCenterNotInList.length == 0"
+                class="fa fa-arrow-circle-right text-success" (click)="addCostCenter()"></i>
+            </div>
+            <div>
+              <i [class.disabled]="rowSelectedCostCenterInList.length == 0" class="fa fa-arrow-circle-left text-danger"
+                (click)="removeCostCenter()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionCostCenterNotIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showGridPayProgram">
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionPayProgramIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <div class="buttons btn3">
+            <div>
+              <i [class.disabled]="rowSelectedPayProgramNotInList.length == 0"
+                class="fa fa-arrow-circle-right text-success" (click)="addPayProgram()"></i>
+            </div>
+            <div>
+              <i [class.disabled]="rowSelectedPayProgramInList.length == 0" class="fa fa-arrow-circle-left text-danger"
+                (click)="removePayProgram()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="grid-width">
+            <custom-ag-grid [customGridOption]="gridOptionPayProgramNotIn">
+            </custom-ag-grid>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+
+</mat-card>

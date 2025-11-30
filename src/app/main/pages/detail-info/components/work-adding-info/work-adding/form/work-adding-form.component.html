@@ -1,0 +1,16 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.WorkAddingDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'WorkAddingDefine'" [descValue]="data.WorkAddingDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.WorkAdding_Fld.headerName" [valueName]="'WorkAdding_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.WorkAddingTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10040'" [descValue]="data.WorkAddingTypeDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.WorkAddingType_Fld.headerName" [valueName]="'WorkAddingType_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

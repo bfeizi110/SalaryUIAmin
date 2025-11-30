@@ -1,0 +1,47 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="EmptyList || activeNode" mat-raised-button class="save-button" color="primary"
+        (click)="addNode()">جدید</button>
+
+      <button *ngIf="activeNode" mat-raised-button class="warning-button" color="accent"
+        (click)="editNode()">ویرایش</button>
+
+      <button *ngIf="activeNode" mat-stroked-button class="close-button" color="warn" (click)="delete()">حذف</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+  </div>
+
+  <div class="form-body" *ngIf="showTree">
+
+    <p *ngIf="EmptyList">درختی برای نمایش وجود ندارد</p>
+
+    <mat-tree dir="rtl" [dataSource]="dataSource" [treeControl]="treeControl">
+
+      <mat-tree-node dir="rtl" *matTreeNodeDef="let node" matTreeNodePadding>
+        <mat-label [class.active-node]="activeNode == node.Id" (click)="clickNode(node)" dir="rtl">{{node.name}}
+        </mat-label>
+      </mat-tree-node>
+
+
+      <mat-tree-node dir="rtl" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+        <i matTreeNodeToggle *ngIf="hasChild"
+          [ngClass]="treeControl.isExpanded(node) ? 'fa fa-angle-down' : 'fa fa-angle-left'"></i>
+        <mat-label [class.active-node]="activeNode == node.Id" (click)="clickNode(node)" [class.text-danger]="hasChild"
+          dir="rtl" [class.last-child]="!hasChild">{{node.name}}</mat-label>
+      </mat-tree-node>
+
+
+    </mat-tree>
+  </div>
+
+</mat-card>
+
+<chart-tree-form *ngIf="showForm" [chartId]="chartId" [ID]="activeNode" [parentId]="parentId" [formType]="formType" [sort]="sort"
+  (done)="submited($event)" (closed)="closeForm()">
+</chart-tree-form>

@@ -1,0 +1,21 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.Address_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [ltr]="true" [type]="formObj.Address_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Address_Fld.headerName" [valueName]="'Address_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Desc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Desc_Fld.headerName" [valueName]="'Desc_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

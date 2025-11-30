@@ -1,0 +1,27 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.ColName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ColName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.ColName_Fld.headerName" [valueName]="'ColName_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Order_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Order_Fld.type" [parentFormGroup]="form" [label]="formObj.Order_Fld.headerName"
+          [valueName]="'Order_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ParamStatusDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10027'" [parentFormGroup]="form"
+          [label]="formObj.ParamStatus_Fld.headerName" [valueName]="'ParamStatus_Fld'"
+          [descValue]="data.ParamStatusDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.NotShow_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.NotShow_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.NotShow_Fld.headerName" [valueName]="'NotShow_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

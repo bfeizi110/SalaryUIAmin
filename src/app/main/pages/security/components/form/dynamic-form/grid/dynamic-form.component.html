@@ -1,0 +1,11 @@
+    <form-filter *ngIf="formFilterAttr && formFilterAttr.length > 0 && DynamicFormType != 100954 && DynamicFormType != 100955" [DynamicFormID]="FormID" [formFilterAttr]="formFilterAttr" (onFilter)="getSelect($event)">
+    </form-filter>
+    <custom-ag-grid [rowNumber]="RowNumber" *ngIf="showGrid" [customGridOption]="DynamicFormType == 100953 ? gridOptionOnlyGrid : gridOption">
+    </custom-ag-grid>
+
+    <div class="pre-form" *ngIf="showForm">
+      <dynamic-showfromtype [formObj]="formObj" [formTabAttr]="formTabAttr"  [ID]="ID" [FormType]="FormType" [FormID]="FormID" [WorkFlowID]="WorkFlowID"  [ButtonList]="ButtonList"
+        [DynamicFormType]="DynamicFormType" [RequestEntryInfo]="RequestEntryInfo" [MasterDetailID]="MasterDetailID"
+        [ParentFormID]="ParentFormID" [ParentID]="ParentID" [MainFormID]="MainFormID"  (done)="submited($event)" (closed)="closeForm()" (buttonListDone)="clickButtonList($event)">
+      </dynamic-showfromtype>
+    </div>

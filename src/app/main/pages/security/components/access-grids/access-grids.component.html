@@ -1,0 +1,71 @@
+<mat-card appearance="outlined" style="min-height: 400px;">
+
+  <div class="form">
+
+    <div class="form-buttons">
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="mt-1 row">
+
+        <div class="col-sm-3">
+          <mat-form-field (click)="clickCombo()" dir="rtl">
+            <mat-label dir="rtl">انتخاب نوع دسترسی</mat-label>
+            <mat-select dir="rtl" (selectionChange)="comboChange($event.value)">
+              <mat-option>-</mat-option>
+              <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshComboCode()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="comboId == 2" class="col-sm-3">
+          <mat-form-field (click)="clickCombocostCenterGroup()" dir="rtl">
+            <mat-label dir="rtl">انتخاب گروه مرکز هزینه</mat-label>
+            <mat-select dir="rtl" (selectionChange)="costCenterGroupChange($event.value)">
+              <mat-option>-</mat-option>
+              <mat-filter [(comboList)]="comboList" [valueLabel]="'costCenterGroupList'"
+                (refreshChange)="refreshComboCode()"></mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of costCenterGroupList" [value]="item.Id">{{item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+      <div class="row mt-4">
+        <ng-container *ngIf="showGrids">
+          <div class="col-lg">
+            <p class="text-center">عدم دسترسی</p>
+            <custom-ag-grid *ngIf="showGridNotAccess" [customGridOption]="gridOptionNotAccess">
+            </custom-ag-grid>
+          </div>
+          <div class="col-lg-1">
+            <div class="buttons">
+              <div>
+                <i class="fa fa-hand-o-left text-success" (click)="addAccess()"></i>
+              </div>
+              <div>
+                <i class="fa fa-hand-o-right text-danger" (click)="removeAccess()"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg">
+            <p class="text-center">دسترسی</p>
+            <custom-ag-grid *ngIf="showGridAccess" [customGridOption]="gridOptionAccess">
+            </custom-ag-grid>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

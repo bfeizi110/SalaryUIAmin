@@ -1,0 +1,52 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form" [label]="formObj.CodeDesc_Fld.headerName"
+          [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.FormTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10095'" [parentFormGroup]="form"
+          [label]="formObj.FormType_Fld.headerName" [valueName]="'FormType_Fld'" [descValue]="data.FormTypeDesc_Fld"
+          (changeCombo)="changeFormType($event, null)">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.RowDefaultCountDesc_Fld.ishidden && (form.controls.FormType_Fld.value != 100954 && form.controls.FormType_Fld.value != 100955 && form.controls.FormType_Fld.value != 100957)">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10119'" [parentFormGroup]="form"
+          [label]="formObj.RowDefaultCount_Fld.headerName" [valueName]="'RowDefaultCount_Fld'" [descValue]="data.RowDefaultCountDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.EntityNameDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Entity/GetComboNew/null'" [parentFormGroup]="form"
+          [label]="formObj.EntityName_Fld.headerName" [valueName]="'EntityName_Fld'" [descValue]="data.EntityNameDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.MasterFormIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Form/GetMasterFormCombo/null'" [parentFormGroup]="form"
+          [label]="formObj.MasterFormID_Fld.headerName" [valueName]="'MasterFormID_Fld'" [descValue]="data.MasterFormIDDesc_Fld"
+          >
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ReportFileName_Fld.ishidden && form.controls.FormType_Fld.value && form.controls.FormType_Fld.value == 100955">
+        <custom-input  [formObj]="formObj" [ltr]="true" [type]="formObj.ReportFileName_Fld.type" [parentFormGroup]="form" [label]="formObj.ReportFileName_Fld.headerName"
+          [valueName]="'ReportFileName_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-3" *ngIf="!formObj.TabCount_Fld.ishidden && form.controls.FormType_Fld.value != 100954">
+        <custom-input  [formObj]="formObj" [ltr]="true" [type]="formObj.TabCount_Fld.type" [parentFormGroup]="form" [label]="formObj.TabCount_Fld.headerName"
+          [valueName]="'TabCount_Fld'">
+        </custom-input>
+      </div>
+      <div class="row" *ngIf="this.form.controls.TabCount_Fld.value && this.form.controls.TabCount_Fld.value != 0 && form.controls.FormType_Fld.value != 100954">
+        <div *ngFor="let item of numbers ">
+          <custom-input  [formObj]="formObj" [type]="formObj.TabNames_Fld.type" [parentFormGroup]="form" [label]="formObj.TabNames_Fld.headerName + '-' + item"
+            [valueName]="'TabName' + item">
+          </custom-input>
+        </div>
+      </div>      
+
+    </div>
+  </div>
+</custom-modal>

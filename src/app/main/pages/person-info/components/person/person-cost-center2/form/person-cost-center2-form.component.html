@@ -1,0 +1,28 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CostCenterIDDesc.ishidden">
+        <button class="cost-btn" [class.require]="formObj.CostCenterIDDesc.require" mat-raised-button color="primary"
+          (click)="onShowCostCenterModal()">{{formObj.CostCenterIDDesc.headerName}}
+          <ng-container *ngIf="form.controls.CostCenterIDDesc.value">
+            : {{form.controls.CostCenterIDDesc.value}}
+          </ng-container>
+        </button>
+      </div>
+      <div class="col-sm-6 mt-1" *ngIf="!formObj.CostCenter_StartDate.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CostCenter_StartDate.type" [parentFormGroup]="form" [label]="formObj.CostCenter_StartDate.headerName"
+          [valueName]="'CostCenter_StartDate'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6 mt-1" *ngIf="!formObj.CostCenter_EndDate.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CostCenter_EndDate.type" [parentFormGroup]="form" [label]="formObj.CostCenter_EndDate.headerName"
+          [valueName]="'CostCenter_EndDate'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>
+
+<tree-modal [type]="'CostCenterTree'" *ngIf="showCostCenterModal" (nodeSelected)="nodeSelected($event)"
+  (closed)="closedCostCenterModal()">
+</tree-modal>

@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <import-detail-form [formObj]="formObj" [tableName]="tableName" [importSettingId]="importSettingId" [ID]="ID" [hireTypeID]="hireTypeID"
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </import-detail-form>
+</div>

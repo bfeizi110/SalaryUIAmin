@@ -1,0 +1,11 @@
+<button *ngIf="selectedItemList.length > 0" mat-flat-button class="close-button" color="warn" (click)="deleteall()">حذف
+</button>
+
+<custom-ag-grid class="pay-fraction-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <jaridaraei-setting-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </jaridaraei-setting-form>
+</div>

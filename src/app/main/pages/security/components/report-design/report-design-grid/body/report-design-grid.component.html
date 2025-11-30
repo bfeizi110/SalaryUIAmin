@@ -1,0 +1,7 @@
+<custom-ag-grid class="report-grid" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showFormc" class="pre-form">
+    <report-design-grid-form [formObj]="formObj" [parentId]="parentId" [ID]="ID" [formType]="formType"
+        (done)="submited($event)" (closed)="closeForm()">
+    </report-design-grid-form>
+</div>

@@ -1,0 +1,8 @@
+<custom-ag-grid class="exempt-setting-grid"  *ngIf="showGrid" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+    <exempt-setting-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+        (closed)="closeForm()">
+    </exempt-setting-form>
+</div>

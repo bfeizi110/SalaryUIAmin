@@ -1,0 +1,16 @@
+<fieldset [ngClass]="required ? 'file-attachment-require' : 'file-attachment'">
+  <legend>{{ label }}</legend>
+  <button (click)="triggerFileInput(fileInput)" style="background: none; border: none;" [attr.disabled]="disabled ? '' : null">
+    <img style="width: 23px" [src]="'../../../../assets/img/menu-icons/a2.png'">
+  </button>
+  <input type="file" #fileInput (change)="onFilesSelected($event)" multiple style="display: none;">
+  <div class="file-list">
+    <div *ngFor="let file of files; let i = index" class="file-item">
+      <button class="remove-button" (click)="removeFile(i)" [attr.disabled]="disabled ? '' : null">x</button>
+      <img [src]="fileUrls[i]" *ngIf="isImage(file)" (click)="openFile(fileUrls[i],file)" style="height: auto;width:32%; display: flex;" />
+      <img *ngIf="!isImage(file)" (click)="openFile(fileUrls[i],file)" src="assets/img/menu-icons/file.png" alt="Not an image icon" style="width: 80px; height: 50%;" />
+      <span (click)="openFile(fileUrls[i],file)">{{ file.name }}</span>
+
+    </div>
+  </div>
+</fieldset>

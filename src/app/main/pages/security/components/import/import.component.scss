@@ -1,0 +1,73 @@
+input[type="file"] {
+    display: none;
+}
+
+.upload-button {
+    background-color: #ff8d00;
+    color: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.div-file {
+    display: -webkit-box;
+}
+
+.file-name {
+    margin-right: 15px;
+}
+
+::ng-deep .ng-wizard-main, ::ng-deep .step-anchor {
+    position: unset !important
+}
+
+::ng-deep .ng-wizard-theme-circles > ul.step-anchor:before {
+    top: 23% !important;
+    background-color: #c3eeff !important
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+::ng-deep #ngwizard > ul {
+    margin-right: -38px;
+}
+
+::ng-deep .ng-wizard-btn-prev {
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+::ng-deep .ng-wizard-btn-next {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0.5rem !important;
+    border-bottom-left-radius: 0.5rem !important;
+}
+
+::ng-deep .ng-wizard-theme-circles > ul.step-anchor > li.active > a {
+    border-color: #5cb85c !important;
+    background: #5cb85c !important;
+}
+
+::ng-deep .ng-wizard-theme-circles > ul.step-anchor > li.done > a {
+    border-color: #5bc0de !important;
+    background: #5bc0de !important;
+}
+
+@media (max-width: 391px) {
+    ::ng-deep .ng-wizard-theme-circles > ul.step-anchor > li {
+        margin-left: 15px !important;
+    }
+
+    ::ng-deep .ng-wizard-theme-circles > ul.step-anchor>  li > a {
+        padding: 25px 5px !important;
+    }
+  }

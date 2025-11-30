@@ -1,0 +1,509 @@
+<div class="form" style="min-height: 519px">
+
+  <div class="form-buttons row mt-2">
+
+    <div class="col-sm-4 col-md-4 ">
+      <button mat-raised-button *ngIf="formType != 'View' && accesses.includes('EditPolicy')" class="save-button" color="primary"
+      (click)="save()">ذخیره</button>
+    </div>
+    <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+      <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+    </div>
+
+  </div>
+
+  <mat-tab-group *ngIf="showForm" dir="rtl">
+
+    <mat-tab dir="rtl" label="فرم اصلی">
+
+      <div class="form-body">
+
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 mt-4" *ngIf="!formObj.DailyEarning_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.DailyEarning_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.DailyEarning_Fld.headerName" [valueName]="'DailyEarning_Fld'">
+              </custom-input>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-4" *ngIf="!formObj.StepDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+                [label]="formObj.Step.headerName" [valueName]="'Step'" [descValue]="data.StepDesc_Fld">
+              </custom-input>
+              <div class="dropdown">
+                <button class="btn" style="border-left:1px ">
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                  <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 mt-4" *ngIf="!formObj.HokmPercent_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.HokmPercent_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.HokmPercent_Fld.headerName" [valueName]="'HokmPercent_Fld'">
+              </custom-input>
+            </div>
+
+
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+
+              <!---------------------------------------------------->
+              <fieldset>
+                <legend>کسر کار</legend>
+
+                <div class="row">
+                  <div class="col-sm-4" *ngIf="!formObj.FractionDay_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.FractionDay_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.FractionDay_Fld.headerName" [valueName]="'FractionDay_Fld'"></custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.Fraction_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Fraction_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.Fraction_Fld.headerName" [valueName]="'Fraction_Fld'"></custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.FractionMin_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.FractionMin_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.FractionMin_Fld.headerName" [valueName]="'FractionMin_Fld'"></custom-input>
+                  </div>
+
+                </div>
+              </fieldset>
+              <!---------------------------------------------------->
+
+            </div>
+
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+              <!---------------------------------------------------->
+              <fieldset class="mt-2">
+                <legend>اضافه کار/شیفت/تعطیل کاری های همراه لیست حقوق</legend>
+
+                <div class="row">
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAdding1_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding1_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAdding1_Fld.headerName" [valueName]="'WorkAdding1_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAddingMin1_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin1_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAddingMin1_Fld.headerName" [valueName]="'WorkAddingMin1_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.PriceWorkAdding1_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding1_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.PriceWorkAdding1_Fld.headerName" [valueName]="'PriceWorkAdding1_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.RateWorkAdding1_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding1_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.RateWorkAdding1_Fld.headerName" [valueName]="'RateWorkAdding1_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAdding2_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding2_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAdding2_Fld.headerName" [valueName]="'WorkAdding2_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAddingMin2_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin2_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAddingMin2_Fld.headerName" [valueName]="'WorkAddingMin2_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.PriceWorkAdding2_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding2_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.PriceWorkAdding2_Fld.headerName" [valueName]="'PriceWorkAdding2_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.RateWorkAdding2_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding2_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.RateWorkAdding2_Fld.headerName" [valueName]="'RateWorkAdding2_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAdding3_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding3_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAdding3_Fld.headerName" [valueName]="'WorkAdding3_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAddingMin3_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin3_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAddingMin3_Fld.headerName" [valueName]="'WorkAddingMin3_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.PriceWorkAdding3_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding3_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.PriceWorkAdding3_Fld.headerName" [valueName]="'PriceWorkAdding3_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.RateWorkAdding3_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding3_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.RateWorkAdding3_Fld.headerName" [valueName]="'RateWorkAdding3_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAdding4_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAdding4_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAdding4_Fld.headerName" [valueName]="'WorkAdding4_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.WorkAddingMin4_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.WorkAddingMin4_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.WorkAddingMin4_Fld.headerName" [valueName]="'WorkAddingMin4_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.PriceWorkAdding4_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PriceWorkAdding4_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.PriceWorkAdding4_Fld.headerName" [valueName]="'PriceWorkAdding4_Fld'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-3" *ngIf="!formObj.RateWorkAdding4_Fld.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.RateWorkAdding4_Fld.type" [parentFormGroup]="form"
+                      [label]="formObj.RateWorkAdding4_Fld.headerName" [valueName]="'RateWorkAdding4_Fld'">
+                    </custom-input>
+                  </div>
+
+                </div>
+              </fieldset>
+              <!--------------------------------------->
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+              <!---------------------------------------------------->
+              <fieldset class="mt-2">
+                <legend>سایر پرداختها</legend>
+
+                <div class="row">
+                  <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12" *ngIf="!formObj.Days1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Days1.type" [parentFormGroup]="form"
+                      [label]="formObj.Days1.headerName" [valueName]="'Days1'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-5 col-lg-8 col-md-6 col-sm-12" *ngIf="!formObj.PayElseDesc1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Case/getcombo/1'" [parentFormGroup]="form"
+                      [label]="formObj.PayElse1.headerName" [valueName]="'PayElse1'" [descValue]="data.PayElseDesc1">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-12 col-md-3 col-sm-12" *ngIf="!formObj.PayElsePrice1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PayElsePrice1.type" [parentFormGroup]="form"
+                      [label]="formObj.PayElsePrice1.headerName" [valueName]="'PayElsePrice1'">
+                    </custom-input>
+                  </div>
+
+
+                  <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12" *ngIf="!formObj.Days2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Days2.type" [parentFormGroup]="form"
+                      [label]="formObj.Days2.headerName" [valueName]="'Days2'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-5 col-lg-8 col-md-6 col-sm-12" *ngIf="!formObj.PayElseDesc2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Case/getcombo/1'" [parentFormGroup]="form"
+                      [label]="formObj.PayElse2.headerName" [valueName]="'PayElse2'" [descValue]="data.PayElseDesc2">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-12 col-md-3 col-sm-12" *ngIf="!formObj.PayElsePrice2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PayElsePrice2.type" [parentFormGroup]="form"
+                      [label]="formObj.PayElsePrice2.headerName" [valueName]="'PayElsePrice2'">
+                    </custom-input>
+                  </div>
+
+
+                  <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12" *ngIf="!formObj.Days3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Days3.type" [parentFormGroup]="form"
+                      [label]="formObj.Days3.headerName" [valueName]="'Days3'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-5 col-lg-8 col-md-6 col-sm-12" *ngIf="!formObj.PayElseDesc3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Case/getcombo/1'" [parentFormGroup]="form"
+                      [label]="formObj.PayElse3.headerName" [valueName]="'PayElse3'" [descValue]="data.PayElseDesc3">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-12 col-md-3 col-sm-12" *ngIf="!formObj.PayElsePrice3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PayElsePrice3.type" [parentFormGroup]="form"
+                      [label]="formObj.PayElsePrice3.headerName" [valueName]="'PayElsePrice3'">
+                    </custom-input>
+                  </div>
+
+
+                  <div class="col-xl-4 col-lg-4 col-md-3 col-sm-12" *ngIf="!formObj.Days4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.Days4.type" [parentFormGroup]="form"
+                      [label]="formObj.Days4.headerName" [valueName]="'Days4'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-5 col-lg-8 col-md-6 col-sm-12" *ngIf="!formObj.PayElseDesc4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Case/getcombo/1'" [parentFormGroup]="form"
+                      [label]="formObj.PayElse4.headerName" [valueName]="'PayElse4'" [descValue]="data.PayElseDesc4">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-12 col-md-3 col-sm-12" *ngIf="!formObj.PayElsePrice4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.PayElsePrice4.type" [parentFormGroup]="form"
+                      [label]="formObj.PayElsePrice4.headerName" [valueName]="'PayElsePrice4'">
+                    </custom-input>
+                  </div>
+                </div>
+
+              </fieldset>
+
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </mat-tab>
+
+    <mat-tab dir="rtl" label="پرداخت ها و کسورات">
+
+      <div class="form-body">
+
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <!---------------------------------------------------->
+              <fieldset class="mt-1">
+                <legend>پرداختها</legend>
+
+                <div class="row">
+                  <div class="col-sm-4" *ngIf="!formObj.P1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P1.type" [parentFormGroup]="form" [label]="formObj.P1.headerName"
+                      [valueName]="'P1'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP1.headerName" [valueName]="'DP1'" [descValue]="data.DPDesc1">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P2.type" [parentFormGroup]="form" [label]="formObj.P2.headerName"
+                      [valueName]="'P2'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP2.headerName" [valueName]="'DP2'" [descValue]="data.DPDesc2">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P3.type" [parentFormGroup]="form" [label]="formObj.P3.headerName"
+                      [valueName]="'P3'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP3.headerName" [valueName]="'DP3'" [descValue]="data.DPDesc3">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P4.type" [parentFormGroup]="form" [label]="formObj.P4.headerName"
+                      [valueName]="'P4'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP4.headerName" [valueName]="'DP4'" [descValue]="data.DPDesc4">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P5.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P5.type" [parentFormGroup]="form" [label]="formObj.P5.headerName"
+                      [valueName]="'P5'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc5.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP5.headerName" [valueName]="'DP5'" [descValue]="data.DPDesc5">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P6.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P6.type" [parentFormGroup]="form" [label]="formObj.P6.headerName"
+                      [valueName]="'P6'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc6.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP6.headerName" [valueName]="'DP6'" [descValue]="data.DPDesc6">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P7.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P7.type" [parentFormGroup]="form" [label]="formObj.P7.headerName"
+                      [valueName]="'P7'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc7.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP7.headerName" [valueName]="'DP7'" [descValue]="data.DPDesc7">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.P8.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.P8.type" [parentFormGroup]="form" [label]="formObj.P8.headerName"
+                      [valueName]="'P8'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DPDesc8.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Case'" [parentFormGroup]="form"
+                      [label]="formObj.DP8.headerName" [valueName]="'DP8'" [descValue]="data.DPDesc8">
+                    </custom-input>
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <!---------------------------------------------------->
+              <fieldset class="mt-1">
+                <legend>کسورات</legend>
+
+                <div class="row">
+                  <div class="col-sm-4" *ngIf="!formObj.K1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K1.type" [parentFormGroup]="form" [label]="formObj.K1.headerName"
+                      [valueName]="'K1'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc1.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK1.headerName" [valueName]="'DK1'" [descValue]="data.DKDesc1">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K2.type" [parentFormGroup]="form" [label]="formObj.K2.headerName"
+                      [valueName]="'K2'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc2.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK2.headerName" [valueName]="'DK2'" [descValue]="data.DKDesc2">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K3.type" [parentFormGroup]="form" [label]="formObj.K3.headerName"
+                      [valueName]="'K3'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc3.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK3.headerName" [valueName]="'DK3'" [descValue]="data.DKDesc3">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K4.type" [parentFormGroup]="form" [label]="formObj.K4.headerName"
+                      [valueName]="'K4'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc4.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK4.headerName" [valueName]="'DK4'" [descValue]="data.DKDesc4">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K5.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K5.type" [parentFormGroup]="form" [label]="formObj.K5.headerName"
+                      [valueName]="'K5'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc5.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK5.headerName" [valueName]="'DK5'" [descValue]="data.DKDesc5">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K6.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K6.type" [parentFormGroup]="form" [label]="formObj.K6.headerName"
+                      [valueName]="'K6'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc6.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK6.headerName" [valueName]="'DK6'" [descValue]="data.DKDesc6">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K7.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K7.type" [parentFormGroup]="form" [label]="formObj.K7.headerName"
+                      [valueName]="'K7'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc7.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK7.headerName" [valueName]="'DK7'" [descValue]="data.DKDesc7">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-4" *ngIf="!formObj.K8.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="formObj.K8.type" [parentFormGroup]="form" [label]="formObj.K8.headerName"
+                      [valueName]="'K8'">
+                    </custom-input>
+                  </div>
+
+                  <div class="col-sm-8" *ngIf="!formObj.DKDesc8.ishidden">
+                    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Fraction'" [parentFormGroup]="form"
+                      [label]="formObj.DK8.headerName" [valueName]="'DK8'" [descValue]="data.DKDesc8">
+                    </custom-input>
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+<list-no-form-direct *ngIf="showListNoForm" (done)="submitedListNo($event)" (closed)="closeFormListNo()">  </list-no-form-direct>

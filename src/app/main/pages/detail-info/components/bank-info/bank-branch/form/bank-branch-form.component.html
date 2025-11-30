@@ -1,0 +1,87 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.BankDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10001'" [parentFormGroup]="form"
+              [label]="formObj.Bank_Fld.headerName" [valueName]="'Bank_Fld'" [descValue]="data.BankDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.BranchCode_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.BranchCode_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.BranchCode_Fld.headerName" [valueName]="'BranchCode_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.DiskCounter_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DiskCounter_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.DiskCounter_Fld.headerName" [valueName]="'DiskCounter_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.OrganBankiCode_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.OrganBankiCode_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.OrganBankiCode_Fld.headerName" [valueName]="'OrganBankiCode_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.AccountLen_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.AccountLen_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.AccountLen_Fld.headerName" [valueName]="'AccountLen_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.TelNo1_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.TelNo1_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.TelNo1_Fld.headerName" [valueName]="'TelNo1_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.TelNo2_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.TelNo2_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.TelNo2_Fld.headerName" [valueName]="'TelNo2_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.MainAccountCode_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.MainAccountCode_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.MainAccountCode_Fld.headerName" [valueName]="'MainAccountCode_Fld'"></custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.InActive_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.InActive_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.InActive_Fld.headerName" [valueName]="'InActive_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-md-4" *ngIf="!formObj.Addr_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Addr_Fld.headerName"
+              [valueName]="'Addr_Fld'"></custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

@@ -1,0 +1,14 @@
+<mat-card appearance="outlined">
+  <div class="form">
+    <div class="col-sm-3">
+        <mat-form-field dir="rtl">
+          <mat-label dir="rtl">نوع</mat-label>
+          <mat-select dir="rtl" [(ngModel)]="paramTypeId" (selectionChange)="comboChange($event.value)">
+            <mat-option *ngIf="comboAray.length == 0">-</mat-option>
+            <mat-option dir="rtl" *ngFor="let item of comboAray" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+  </div>
+</mat-card>

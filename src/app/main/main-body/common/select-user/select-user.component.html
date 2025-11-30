@@ -1,0 +1,16 @@
+<custom-modal [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <mat-accordion dir="rtl">
+    <mat-expansion-panel dir="rtl" [expanded]="true">
+      <mat-expansion-panel-header dir="rtl">
+        <mat-panel-title dir="rtl">
+          <i class="fa fa-user-check text-primary"></i>
+          انتخاب کاربر
+        </mat-panel-title>
+        <!-- <mat-panel-description dir="rtl">
+          <ng-container *ngIf="selectedUser">{{selectedUser}}</ng-container>
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+    </mat-expansion-panel>
+  </mat-accordion>
+</custom-modal>

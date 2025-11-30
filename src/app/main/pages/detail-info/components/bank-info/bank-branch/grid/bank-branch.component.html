@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [rowNumber]="20" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <bank-branch-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </bank-branch-form>
+</div>

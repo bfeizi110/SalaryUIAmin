@@ -1,0 +1,18 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.OrgUnitCodeDesc_Fld.ishidden">
+        <button class="cost-btn" [class.require]="formObj.OrgUnitCodeDesc_Fld.require" mat-raised-button color="primary"
+          (click)="onShowCostCenterModal()">{{formObj.OrgUnitCodeDesc_Fld.headerName}}
+          <ng-container *ngIf="form.controls.OrgUnitCodeDesc_Fld.value">
+            : {{form.controls.OrgUnitCodeDesc_Fld.value}}
+          </ng-container>
+        </button>
+        <i *ngIf="form.controls.OrgUnitCode_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearOrg()"></i>
+      </div>
+    </div>
+  </div>
+</custom-modal>
+
+<tree-modal [type]="'OrgStructureTree'" *ngIf= "showTreeModal"  (nodeSelected)="nodeSelected($event)" (closed)="closedTreeModal()"></tree-modal>
+
