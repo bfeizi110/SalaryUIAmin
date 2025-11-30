@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { GridFormService } from '../../../grid-form.service';
 import { Action } from '../../interfaces/action.interface';
+import { ICellRendererParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-button-renderer',

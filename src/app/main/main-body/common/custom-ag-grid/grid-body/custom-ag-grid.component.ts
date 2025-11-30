@@ -17,8 +17,8 @@ import { debug } from 'console';
   styleUrls: ['./custom-ag-grid.component.scss']
 })
 export class CustomAgGridComponent implements OnInit {
-  private gridColumnApi!: ColumnApi;
-  
+  private gridApi!: GridApi;
+
   @Input() customGridOption: CustomGridOption
   @Input() formType: string
   @Input() disabledForm: boolean
@@ -31,17 +31,33 @@ export class CustomAgGridComponent implements OnInit {
   @Input() rowSelectedForScroll: boolean
   @Input() autoResizeAll: boolean
 
-  gridApi!: GridApi;
   framework: any = {};
+  frameworkComponentsSimple = {
+    buttonRenderer: ButtonRendererComponent,
+    checkboxComponent: CheckboxRendererComponent,
+    agColumnHeader: HeaderRendererComponent,
+    floatfilter: FloatFilterRendererComponent,
+    cellRenderer: CellRendererComponent
+  }
+
+  frameworkComponents = {
+    buttonRenderer: ButtonRendererComponent,
+    agColumnHeader: HeaderRendererComponent,
+    floatfilter: FloatFilterRendererComponent,
+    checkboxComponent: CheckboxRendererComponent,
+    cellRenderer: CellRendererComponent,
+  }
+
   setGridOption() {
+  
     if (!this.isModal) {
       this.gridOption.pivotPanelShow = 'always'
       this.gridOption.rowGroupPanelShow = 'always'
       this.gridOption.sideBar = sideBar
       this.gridOption.defaultColDef = defaultColDef
-      this.framework = frameworkComponents
+      this.framework = this.frameworkComponents
     }
-    else this.framework = frameworkComponentsSimple
+    else this.framework = this.frameworkComponentsSimple
 
   }
 
@@ -77,15 +93,12 @@ export class CustomAgGridComponent implements OnInit {
     rowHeight: 20,
     // overlayLoadingTemplate:
     // '<span class="ag-overlay-loading-center">در حال دریافت اطلاعات</span>',
-      
-    onGridReady: function (params)
-    {
-      this.gridApi = params.api;
-      params.api.showLoadingOverlay();
-  
-      // setTimeout(() => {
-        params.api.setRowData(this.rowData);
-      //  }, 500);
+    
+    onGridReady: (params) => {
+    this.gridApi = params.api;
+
+    // this.gridApi.showLoadingOverlay();
+
     },
     // onFillEnd: this.autoSizeAll.bind(false),
     //onViewportChanged: this.gridSizeChanged.bind(this),
@@ -118,11 +131,11 @@ export class CustomAgGridComponent implements OnInit {
 
   filterChanged() { this.gridApi.setRowData(this.gridOption.rowData) }
 
-gridSizeChanged() {
-  if (this.gridApi) {
-    this.gridApi.sizeColumnsToFit();
+  gridSizeChanged() {
+    if (this.gridApi) {
+      this.gridApi.sizeColumnsToFit();
+    }
   }
-}
 
 
   setGrid() {
@@ -151,7 +164,7 @@ gridSizeChanged() {
         if (a.type == 'int') a.valueFormatter = this.splitFormatter.bind(this)
         a.headerTooltip = a.headerName, 
         a.tooltipField = a.field, 
-        a.floatingFilterComponent = 'floatfilter', 
+        a.floatingFilterComponent = FloatFilterRendererComponent, 
         a.filter = 'agTextColumnFilter'
         a.type == 'bool' ? a.cellRendererFramework = CheckboxRendererComponent :
           ((controller == 'PersonMostamarBaz' || controller == 'PersonSavingInfoBaz' || controller == 'PersonDebtInfoBaz' || controller == 'PersonInsureInfoBaz' || controller == 'CommissionBaz') && a.field == 'PID') ?
@@ -170,7 +183,7 @@ gridSizeChanged() {
           return Math.floor(params.value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); } : null, 
         a.headerTooltip = a.headerName, 
         a.tooltipField = a.field, 
-        a.floatingFilterComponent = 'floatfilter', 
+        a.floatingFilterComponent = FloatFilterRendererComponent, 
         a.filter = 'agTextColumnFilter', 
         a.type == 'bool' ? a.cellRendererFramework = CheckboxRendererComponent : a.cellRendererFramework = CellRendererComponent, 
         a.cellRendererParams = { type: a.type } 
@@ -180,7 +193,7 @@ gridSizeChanged() {
     actions ? this.gridOption.columnDefs.push({
       headerName: 'actions',
       headerComponentParams: { actions: actions, actionAccess: this.customGridOption.columnDefs.EntityAccess },
-      cellRenderer: 'buttonRenderer',
+      cellRenderer: ButtonRendererComponent,
       cellRendererParams: { hideLogs: this.hideLogs, actions: actions, miniLogUrl: this.customGridOption.miniLogUrl, controllerName: this.customGridOption.controllerName, tableName: this.customGridOption.columnDefs.EntityAttribute.EntityName, actionAccess: this.customGridOption.columnDefs.EntityAccess },
       filter: false,
       lockPinned: true,
@@ -226,7 +239,6 @@ gridSizeChanged() {
 
   onGridReady(e) {
   this.gridApi = e.api;
-  this.gridApi = e.columnApi;
 
   setTimeout(() => {
     this.gridSizeChanged(); // الان gridApi حتماً مقدار دارد
@@ -373,8 +385,7 @@ gridSizeChanged() {
   gridLen: number = 0
   selectedgridLen: number = 0
   setRowData() {
-    this.gridApi.setRowData(this.gridOption.rowData)
-    // this.gridOption.api.setDomLayout("autoHeight");
+    // this.gridApi.setRowData(this.gridOption.rowData)
   }
 
   @ViewChild('divGrid', { static: false }) divGrid: ElementRef
@@ -436,7 +447,7 @@ gridSizeChanged() {
 }
 
 function setFirstColumn(params) {
-  var displayedColumns = params.columnApi.getAllDisplayedColumns();
+  var displayedColumns = params.api.getAllDisplayedColumns();
   var thisIsFirstColumn = displayedColumns[0] === params.column;
   return thisIsFirstColumn;
 }
@@ -534,22 +545,6 @@ const localeText = {
   excelExport: 'فایل با فرمت Excel',
   excelXmlExport: 'فایل با فرمت XML',
   pivots: 'برچسب ستون ها'
-}
-
-const frameworkComponentsSimple = {
-  buttonRenderer: ButtonRendererComponent,
-  checkboxComponent: CheckboxRendererComponent,
-  agColumnHeader: HeaderRendererComponent,
-  floatfilter: FloatFilterRendererComponent,
-  cellRenderer: CellRendererComponent
-}
-
-const frameworkComponents = {
-  buttonRenderer: ButtonRendererComponent,
-  agColumnHeader: HeaderRendererComponent,
-  floatfilter: FloatFilterRendererComponent,
-  checkboxComponent: CheckboxRendererComponent,
-  // cellRenderer: CellRendererComponent,
 }
 
 function createFlagImg(flag) { return `<img border="0" width="15" src="../../../../../../assets/img/menu-icons/${flag}.png">` }

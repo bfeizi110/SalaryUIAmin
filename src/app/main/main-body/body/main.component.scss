@@ -3,20 +3,21 @@
 }
 
 /*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
-::ng-deep .mat-tab-body-wrapper {
-  padding: 0px 5px
+::ng-deep .mat-mdc-tab-body-wrapper {
+  padding: 0px 5px !important
 }
 
 @import './main-theme.scss';
 
 /*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
-mat-tab-group {
+.mdc-tab {
   border-right: 1px solid white !important;
   border-bottom: 1px solid white !important;
   border-left: 1px solid white !important;
+  padding-right: 0px;
 }
 
-::ng-deep mat-tab-header {
+::ng-deep mat-mdc-tab-header {
   background: white;
 }
 
@@ -24,7 +25,9 @@ mat-tab-group {
   margin-top: -2px;
   color: rgb(233, 250, 0);
   margin-right: 0px;
-  width: 20px;
+  width: 24px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .refresh-button {
   //margin-right: 10px;
@@ -33,12 +36,22 @@ mat-tab-group {
 
 .delete-button {
   color: red;
+  width: 24px;
+  padding-left: 0px;
+  padding-right: 0px;  
 }
 
 /*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
-:host ::ng-deep .mat-tab-label  {
-  width: 187px !important
+:host ::ng-deep .mat-mdc-tab-labels  {
+  width: 187px !important;
+  height: 25px !important;
 }
+:host ::ng-deep .mat-mdc-tab.mdc-tab{
+  height: 25px !important;
+  // padding-right: 5px !important;  
+  // padding-left: 10px !important;  
+}
+
 
 .tab-label {
   width: 120px;
@@ -54,6 +67,6 @@ mat-tab-group {
 }
 
 /*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
-::ng-deep .mat-tab-label-active {
+::ng-deep .mat-mdc-tab-label-active {
   opacity: 1 !important;
 }
