@@ -48,17 +48,17 @@
     <!--True Actions callback-->
     <ng-container *ngIf="actions.length > 0">
       <button mat-icon-button class="dot-btn"  [matMenuTriggerFor]="menu">
-        <i class="fa fa-ellipsis-h "></i>
+        <i class="fas fa-ellipsis-h "></i>
       </button>
       <mat-menu #menu="matMenu" dir="rtl">
         <button *ngIf="addAction" mat-menu-item (click)="onAddClick(addAction, $event)">
           <i matTooltipClass="header-tooltip" matTooltip="اضافه کردن" matTooltipClass="blue-tooltip"
-            class="fa fa-plus"></i>
+            class="fas fa-plus"></i>
           <span class="mr-8">ایجاد</span>
         </button>
         <button *ngIf="!actions['hideExcel']" mat-menu-item (click)="onExcellClick(params, $event)">
           <i matTooltipClass="header-tooltip" matTooltipClass="green-tooltip" matTooltip="خروجی گرفتن فایل اکسل"
-            class="fa fa-file-excel-o"></i>
+            class="fas fa-file-excel-o"></i>
           <span class="mr-8">خروجی اکسل</span>
         </button>
       </mat-menu>

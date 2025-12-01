@@ -25,7 +25,7 @@
             </mat-form-field>
 
             <i *ngIf="(model[item.FilterFldName_Fld] != {} || model[item.FilterFldName_Fld].length > 0) && item.FilterID_Fld == 100471 || item.FilterID_Fld == 100478 || item.FilterID_Fld == 100472 || item.FilterID_Fld == 100476"
-              class="fa fa-trash fa-trash-button position-relative"
+              class="fas fa-trash fa-trash-button position-relative"
               (click)="clear(item.FilterFldName_Fld, item.MultiSelect_Fld)">
             </i>
 
@@ -82,7 +82,7 @@
               (change)="changeTafkik(item.FilterID_Fld)" dir="rtl">
               تفکیک
             </mat-checkbox>
-            <i class="fa fa-trash"
+            <i class="fas fa-trash"
               *ngIf="item.FilterFldName_Fld == 'PersonID' && !item.MultiSelect_Fld && model[item.FilterFldName_Fld]"
               (click)="clearName(i)">
             </i>

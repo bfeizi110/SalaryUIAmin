@@ -1,7 +1,7 @@
 <div *ngIf="showRequestComment">
-  <button *ngIf="!showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = true" title="اضافه کردن توضیحات"><i class="fa fa-plus"></i></button>
-  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="addComment(-1)"><i class="fa fa-save"></i></button>
-  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = false"><i class="fa fa-times"></i></button>
+  <button *ngIf="!showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = true" title="اضافه کردن توضیحات"><i class="fas fa-plus"></i></button>
+  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="addComment(-1)"><i class="fas fa-save"></i></button>
+  <button *ngIf="showNewCommentForm && this.FormType != 'Add'" mat-button (click)="showNewCommentForm = false"><i class="fas fa-times"></i></button>
   <div *ngIf="showNewCommentForm">
       <textarea [(ngModel)]="NewCommentDesc" [ngStyle]="{'height': (85 * 1) + 'px'}" matInput placeholder="توضیح را وارد کنید"></textarea>                            
   </div>
@@ -23,16 +23,16 @@
                   </div> -->
                   <div class="col-sm-2" style="text-align: -webkit-left">
                       <button *ngIf="RComment.CanEdit_Fld && !RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Edit" (click)="editComment(RComment)">
-                          <i class="fa fa-edit"></i>
+                          <i class="fas fa-edit"></i>
                       </button>
                       <button *ngIf="RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Cancel" (click)="cancelEdit(RComment)">
-                          <i class="fa fa-times"></i>
+                          <i class="fas fa-times"></i>
                       </button>
                       <button *ngIf="RComment.isEditMode" mat-button matSuffix mat-icon-button aria-label="Save" (click)="saveComment(RComment, RComment.Desc_Fld)">
-                          <i class="fa fa-save"></i>
+                          <i class="fas fa-save"></i>
                       </button>
                       <button *ngIf="RComment.CanDelete_Fld" mat-button matSuffix mat-icon-button aria-label="Delete" (click)="deleteComment(RComment.Id)">
-                          <i class="fa fa-trash"></i>
+                          <i class="fas fa-trash"></i>
                       </button>
                   </div>
               </div>

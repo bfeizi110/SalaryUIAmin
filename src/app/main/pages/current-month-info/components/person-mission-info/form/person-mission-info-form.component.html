@@ -205,11 +205,11 @@
                 </custom-input>
                 <div class="dropdown">
                   <button class="btn" style="border-left:1px ">
-                    <i class="fa fa-caret-down"></i>
+                    <i class="fas fa-caret-down"></i>
                   </button>
                   <div class="dropdown-content">
-                    <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
-                    <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+                    <a class="fas fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                    <a class="fas fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
                   </div>
                 </div>
                 <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.No_Fld.disableInput"
@@ -235,7 +235,7 @@
                     : {{form.controls.RuleIDDesc_Fld.value}}
                   </ng-container>
                 </button>
-                <i *ngIf="form.controls.RuleID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearHkm()"></i>
+                <i *ngIf="form.controls.RuleID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearHkm()"></i>
               </div>
 
               <div class="col-sm-11 mt-1" *ngIf="!formObj.PayCodeDesc_Fld.ishidden">
@@ -251,7 +251,7 @@
                     [label]="formObj.PayCode_Fld.headerName" [valueName]="'PayCode_Fld'">
                   </custom-input>
                 </div>
-                <i *ngIf="form.controls.PayCode_Fld.value" class="fa fa-trash fa-trash-button"
+                <i *ngIf="form.controls.PayCode_Fld.value" class="fas fa-trash fa-trash-button"
                   (click)="clearPayCode()"></i>
                 <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.PayCode_Fld.disableInput"
                   (change)="changeCheckbox($event.checked, 'PayCode_Fld')">
@@ -271,7 +271,7 @@
                     [label]="formObj.CostCenter1_Fld.headerName" [valueName]="'CostCenter1_Fld'">
                   </custom-input>
                 </div>
-                <i *ngIf="form.controls.CostCenter1_Fld.value" class="fa fa-trash fa-trash-button"
+                <i *ngIf="form.controls.CostCenter1_Fld.value" class="fas fa-trash fa-trash-button"
                   (click)="clearCostCenter()"></i>
                 <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.CostCenter1_Fld.disableInput"
                   (change)="changeCheckbox($event.checked, 'CostCenter1_Fld')">

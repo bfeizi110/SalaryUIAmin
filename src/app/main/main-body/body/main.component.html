@@ -20,14 +20,14 @@
                 <!-- <button mat-icon-button dir="rtl" class="refresh-button" style="width: 18px;"
                   [disabled]="activeTabIndex != tabIndex || tab.Path.includes('report/report-design-view')"
                   (click)="reloadTab(tab, tabIndex)">
-                  <i class="fa fa-refresh" matTooltip="به روز رسانی تب" matTooltipClass="green-tooltip"></i>
+                  <i class="fas fa-refresh" matTooltip="به روز رسانی تب" matTooltipClass="green-tooltip"></i>
                 </button> -->
                 <button mat-icon-button class="help-btn" (click)="faqTab(tab)">
-                  <i class="fa fa-question"></i>
+                  <i class="fas fa-question"></i>
                 </button>
                 <button mat-icon-button dir="rtl" class="delete-button"
                   (click)="closeTab(tabIndex, $event)">
-                  <i class="fa fa-times" matTooltip="حذف کردن تب" matTooltipClass="red-tooltip"></i>
+                  <i class="fas fa-times" matTooltip="حذف کردن تب" matTooltipClass="red-tooltip"></i>
                 </button>
               </ng-template>
               <custom-router-outlet [tabUrl]="tab.Path" ></custom-router-outlet>

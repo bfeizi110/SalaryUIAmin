@@ -29,7 +29,7 @@
                   : {{personName}}
                 </ng-container>
               </button>
-              <i *ngIf="form.controls.ReferUserID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+              <i *ngIf="form.controls.ReferUserID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearPerson()"></i>
             </div>
             <div class="col-sm-6" *ngIf="!formObj.ReferOrgIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101102">
               <button class="cost-btn" [class.require]="formObj.ReferOrgIDDesc_Fld.require" mat-raised-button color="primary"
@@ -38,7 +38,7 @@
                   : {{form.controls.ReferOrgIDDesc_Fld.value}}
                 </ng-container>
               </button>
-              <i *ngIf="form.controls.ReferOrgID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearOrg()"></i>
+              <i *ngIf="form.controls.ReferOrgID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearOrg()"></i>
             </div>
 
             <div class="col-sm-6" *ngIf="!formObj.ReferPostIDDesc_Fld.ishidden && form.controls.ReferTypeID_Fld.value == 101071 && form.controls.AutoReferTypeID_Fld.value == 101102">
@@ -64,10 +64,10 @@
                 <div class="col-lg-1">
                   <div class="buttons btn1">
                     <div>
-                      <i class="fa fa-hand-o-left text-success" (click)="addUserAccess()" [class.disable-icon]="selectedUserNotAcccessList.length == 0"></i>
+                      <i class="fas fa-hand-o-left text-success" (click)="addUserAccess()" [class.disable-icon]="selectedUserNotAcccessList.length == 0"></i>
                     </div>
                     <div>
-                      <i class="fa fa-hand-o-right text-danger" (click)="removeUserAccess()" [class.disable-icon]="selectedUserAcccessList.length == 0"></i>
+                      <i class="fas fa-hand-o-right text-danger" (click)="removeUserAccess()" [class.disable-icon]="selectedUserAcccessList.length == 0"></i>
                     </div>
                   </div>
                 </div>
@@ -89,10 +89,10 @@
                 <div class="col-lg-1">
                   <div class="buttons btn2">
                     <div>
-                      <i class="fa fa-hand-o-left text-success" (click)="addRoleAccess()" [class.disable-icon]="selectedRoleNotAcccessList.length == 0"></i>
+                      <i class="fas fa-hand-o-left text-success" (click)="addRoleAccess()" [class.disable-icon]="selectedRoleNotAcccessList.length == 0"></i>
                     </div>
                     <div>
-                      <i class="fa fa-hand-o-right text-danger" (click)="removeRoleAccess()" [class.disable-icon]="selectedRoleAcccessList.length == 0"></i>
+                      <i class="fas fa-hand-o-right text-danger" (click)="removeRoleAccess()" [class.disable-icon]="selectedRoleAcccessList.length == 0"></i>
                     </div>
                   </div>
                 </div>

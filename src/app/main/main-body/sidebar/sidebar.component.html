@@ -2,13 +2,13 @@
 <div class="sidebar-header">
   <div class="toggle-icon">
     <i *ngIf="reportMode" style="z-index: 9999999999999 !important;" (click)="returnToNormal()"
-      class="d-lg-block fa fa-arrow-circle-right">
+      class="d-lg-block fas fa-arrow-circle-right">
     </i>
     <!-- toggle-icon -->
-    <!-- <i class="fa fa-toggle-on nav-toggle " data-toggle="expanded"></i> -->
+    <!-- <i class="fas fa-toggle-on nav-toggle " data-toggle="expanded"></i> -->
     <a [ngStyle]="{'visibility': !reportMode ? 'unset' : 'hidden'}" class="nav-toggle d-lg-block"
       style="z-index: 9999999999999 !important">
-      <i class="fa fa-toggle-on toggle-icon" data-toggle="expanded"></i>
+      <i class="fas fa-toggle-on toggle-icon" data-toggle="expanded"></i>
     </a>
   </div>
   <!-- <a class="nav-toggle d-none d-sm-none d-md-none d-lg-block" id="sidebarToggle" href="javascript:;">
@@ -38,7 +38,7 @@
             [src]="'../../../../assets/img/menu-icons/' + menuItem.Icon + '.png'">
           <div class="menu-title">
             {{menuItem.CodeDesc_Fld}}</div>
-          <i *ngIf="menuItem.HasChild" class="fa fa-angle-left"></i>
+          <i *ngIf="menuItem.HasChild" class="fas fa-angle-left"></i>
         </a>
         <ul class="second-ul" *ngIf="menuItem.children?.length > 0">
           <!-- [routerLinkActive]="menuSubItem.children.length > 0 ? '' : 'active'"
@@ -49,7 +49,7 @@
               (click)="openTab(menuSubItem)">
               <img style="width: 23px" [src]="'../../../../assets/img/menu-icons/' + menuSubItem.Icon + '.png'">
               <span class="menu-title">{{menuSubItem.CodeDesc_Fld}}</span>
-              <i *ngIf="menuSubItem.HasChild" class="fa fa-angle-left"></i>
+              <i *ngIf="menuSubItem.HasChild" class="fas fa-angle-left"></i>
             </a>
             <!-- Third level menu -->
             <ul class="third-ul" *ngIf="menuSubItem.children?.length > 0">

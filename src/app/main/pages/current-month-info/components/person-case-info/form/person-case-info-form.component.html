@@ -64,11 +64,11 @@
             </custom-input>
             <div class="dropdown">
               <button class="btn" style="border-left:1px ">
-                <i class="fa fa-caret-down"></i>
+                <i class="fas fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
-                <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+                <a class="fas fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                <a class="fas fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
               </div>
             </div>
             <mat-checkbox *ngIf="multiEdit && !formObj.NoDesc_Fld.ishidden" [disabled]="formObj.No_Fld.disableInput"
@@ -85,7 +85,7 @@
                 : {{form.controls.CostEtebarDesc_Fld.value}}
               </ng-container>
             </button>
-            <i *ngIf="form.controls.CostEtebar_Fld.value" class="fa fa-trash fa-trash-button"
+            <i *ngIf="form.controls.CostEtebar_Fld.value" class="fas fa-trash fa-trash-button"
               (click)="clearCostEtebar()"></i>
             <mat-checkbox *ngIf="multiEdit && !formObj.CostEtebarDesc_Fld.ishidden" [disabled]="formObj.CostEtebar_Fld.disableInput"
               (change)="changeCheckbox($event.checked, 'CostEtebar_Fld')">
@@ -209,7 +209,7 @@
                 : {{form.controls.IdHkmDesc_Fld.value}}
               </ng-container>
             </button>
-            <i *ngIf="form.controls.IdHkm_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearHkm()"></i>
+            <i *ngIf="form.controls.IdHkm_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearHkm()"></i>
             <mat-checkbox *ngIf="multiEdit && !formObj.IdHkmDesc_Fld.ishidden" [disabled]="formObj.IdHkm_Fld.disableInput"
               (change)="changeCheckbox($event.checked, 'IdHkm_Fld')">
             </mat-checkbox>

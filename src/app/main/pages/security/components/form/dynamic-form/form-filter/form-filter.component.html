@@ -2,7 +2,7 @@
   <mat-expansion-panel [expanded]="expanded">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <i class="fa fa-filter text-primary"></i>
+        <i class="fas fa-filter text-primary"></i>
         <div class="mr-2">فیلتر پیشرفته</div>
       </mat-panel-title>
       <mat-panel-description>
@@ -15,12 +15,12 @@
 
           <button *ngIf="!hideSearchButton" matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button
             class="save-button" color="primary" (click)="filter()">
-            <i class="fa fa-search"></i>
+            <i class="fas fa-search"></i>
           </button>
 
           <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button"
             color="warn" (click)="refresh()">
-            <i class="fa fa-redo-alt"></i>
+            <i class="fas fa-redo-alt"></i>
           </button>
 
         </div>

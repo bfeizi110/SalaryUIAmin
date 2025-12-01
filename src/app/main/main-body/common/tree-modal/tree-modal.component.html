@@ -18,7 +18,7 @@
               <input type="text" dir="rtl" matInput placeholder="برای جست و جو بنویسید" [(ngModel)]="filterValue"
                 (ngModelChange)="onKey($event)" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
-            <i (click)="clearFilter()" class="fa fa-eraser text-primary erase-icon"></i>
+            <i (click)="clearFilter()" class="fas fa-eraser text-primary erase-icon"></i>
           </div>
         </div>
 
@@ -43,7 +43,7 @@
               (change)="todoItemSelectionToggle(node)">
             </mat-checkbox>
             <i matTreeNodeToggle *ngIf="hasChild"
-              [ngClass]="treeControl.isExpanded(node) ? 'fa fa-angle-down' : 'fa fa-angle-left'"></i>
+              [ngClass]="treeControl.isExpanded(node) ? 'fas fa-angle-down' : 'fas fa-angle-left'"></i>
             <mat-label (dblclick)="dblclick(node)" [class.text-danger]="hasChild" dir="rtl"
               [class.last-child]="!hasChild">{{node.name}}</mat-label>
           </mat-tree-node>

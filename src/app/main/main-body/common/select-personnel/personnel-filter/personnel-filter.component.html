@@ -2,7 +2,7 @@
   <mat-expansion-panel [expanded]="expanded">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <i class="fa fa-filter text-primary"></i>
+        <i class="fas fa-filter text-primary"></i>
         <div class="mr-2">فیلتر پیشرفته</div>
       </mat-panel-title>
       <mat-panel-description>
@@ -15,12 +15,12 @@
 
           <button *ngIf="!hideSearchButton" matTooltip="فیلتر" matTooltipClass="blue-tooltip" mat-raised-button
             class="save-button" color="primary" (click)="filter()">
-            <i class="fa fa-search"></i>
+            <i class="fas fa-search"></i>
           </button>
 
           <button matTooltip="حالت اولیه" matTooltipClass="blue-tooltip" mat-raised-button class="close-button"
             color="warn" (click)="refresh()">
-            <i class="fa fa-redo-alt"></i>
+            <i class="fas fa-redo-alt"></i>
           </button>
 
         </div>
@@ -37,7 +37,7 @@
                     : {{personName}}
                   </ng-container>
                 </button>
-                <i *ngIf="form.controls.PersonID.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+                <i *ngIf="form.controls.PersonID.value" class="fas fa-trash fa-trash-button" (click)="clearPerson()"></i>
               </div>
 
               <div class="col-sm-3" *ngIf="formObj.HireTypeHghID && !formObj.HireTypeHghID.ishidden">
@@ -60,7 +60,7 @@
                     : {{costCenterIDDesc}}
                   </ng-container>
                 </button>
-                <i *ngIf="form.controls.CostCenterID.value" class="fa fa-trash fa-trash-button"
+                <i *ngIf="form.controls.CostCenterID.value" class="fas fa-trash fa-trash-button"
                   (click)="clearCostCenter()"></i>
               </div>
 
@@ -175,7 +175,7 @@
                     : {{costCenter1IDDesc}}
                   </ng-container>
                 </button>
-                <i *ngIf="form.controls.CostCenter1ID.value" class="fa fa-trash fa-trash-button"
+                <i *ngIf="form.controls.CostCenter1ID.value" class="fas fa-trash fa-trash-button"
                   (click)="clearCostCenter1()"></i>
               </div> -->
 

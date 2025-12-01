@@ -83,7 +83,7 @@
                     : {{form.controls.OrgIDDesc.value}}
                   </ng-container>
                 </button>
-                <i *ngIf="form.controls.OrgID.value" class="fa fa-trash fa-trash-button" (click)="clearOrg()"></i>
+                <i *ngIf="form.controls.OrgID.value" class="fas fa-trash fa-trash-button" (click)="clearOrg()"></i>
                 <mat-checkbox *ngIf="IsMultiple" [disabled]="formObj.OrgID.disableInput"
                   (change)="changeCheckbox($event.checked, 'OrgID')">
                 </mat-checkbox>
