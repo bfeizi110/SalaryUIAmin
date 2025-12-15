@@ -1,0 +1,27 @@
+.buttons {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translateX(-50%);
+    font-size: 45px;
+  }
+
+  @media (max-width: 992px) {
+    .buttons {
+      position: unset;
+    }
+  }
+
+:host ::ng-deep textArea mat-form-field {
+  text-align: left
+}
+   
+:host ::ng-deep textarea {
+  text-align: left;
+  overflow-x: hidden;   
+  line-height: 150%;
+}
+   
+:host ::ng-deep textArea label {
+  text-align: left
+}

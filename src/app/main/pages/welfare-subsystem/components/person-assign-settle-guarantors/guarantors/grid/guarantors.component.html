@@ -1,0 +1,7 @@
+<custom-ag-grid class="guarantors" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <guarantors-form [formObj]="formObj" [ID]="ID" [ParentID]="ParentID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </guarantors-form>
+</div>

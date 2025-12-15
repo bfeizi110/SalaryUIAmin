@@ -1,0 +1,24 @@
+<mat-card appearance="outlined">
+  <personnel-filter [expanded]="true" [controller]="'CommissionStateView'" (onFilter)="onFilter($event)" (onRefresh)="onRefresh($event)">
+  </personnel-filter>
+
+  <div class="mt-1">
+
+    <button [disabled]="!changeAttr?.EntityAccess.includes('EditPolicy')" mat-raised-button class="save-button margin-10"
+      color="primary" (click)="openForm()">تغییر وضعیت(پرسنل انتخابی)
+    </button>
+
+    <!-- <button [disabled]="!changeAttr?.EntityAccess.includes('EditPolicy')" mat-raised-button class="save-button margin-10"
+      color="warn" (click)="autoState()">قطعی کردن آخرین حکم امضاء شده(کلیه پرسنل)
+    </button> -->
+    <button *ngIf="selectedCommissionList.length == 0" mat-raised-button class="btn btn-success  margin-10"  (click)="onPrintView()">مشاهده تصویر حکم</button>
+    <button *ngIf="selectedCommissionList.length != 0" mat-raised-button class="btn btn-success  margin-10"  (click)="onFileHokm()">ذخیره تصویر حکم</button>
+  </div>
+
+  <custom-ag-grid *ngIf="showGrid" [rowNumber]= "20" [customGridOption]="gridOption">
+  </custom-ag-grid>
+
+</mat-card>
+
+<commission-state-form *ngIf="showForm" [ComIDList]="selectedCommissionList" (done)="submited()" (closed)="closeForm()">
+</commission-state-form>

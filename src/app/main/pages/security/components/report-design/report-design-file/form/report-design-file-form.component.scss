@@ -1,0 +1,16 @@
+:host ::ng-deep .file-name mat-form-field {
+    text-align: left
+}
+   
+:host ::ng-deep .file-name {
+    text-align: left;
+    overflow-x: hidden;
+}
+   
+:host ::ng-deep .file-name label {
+    text-align: left
+}
+
+:host ::ng-deep .file-name input {
+    direction: ltr !important
+}

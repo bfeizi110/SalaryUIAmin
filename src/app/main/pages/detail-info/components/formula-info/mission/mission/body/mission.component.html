@@ -1,0 +1,23 @@
+<mat-card appearance="outlined">
+
+  <div class="body">
+    <mat-tab-group dir="rtl" (selectedTabChange)="tabChange($event.index)">
+
+      <mat-tab dir="rtl" label="فرمولها و ضرایب ماموریت">
+        <mission-define></mission-define>
+      </mat-tab>
+
+      <mat-tab label="انتساب ماموریت به استخدام">
+        <custom-ag-grid class="mission-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption">
+        </custom-ag-grid>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <mission-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </mission-form>
+</div>

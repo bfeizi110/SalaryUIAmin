@@ -1,0 +1,111 @@
+<mat-card appearance="outlined">
+
+  <mat-tab-group (selectedTabChange)="onTabChange($event)">
+    <mat-tab dir="rtl" label="ریز اطلاعات پرسنل">
+      <ng-template matTabContent>
+
+        <div class="row mt-3">
+          <div class="col-2">
+            <label class="mt-3 upload-button w-100">
+              <input type="file" accept=".DBF, .txt" (change)="inputChange($event)">
+              انتخاب فایل
+            </label>
+            <div class="col">
+              <button mat-raised-button class="mt-3 close-button " color="warn" (click)="deleteAll()">حذف</button>
+            </div>              
+          </div>
+          <div class="col-5">
+            <fieldset class="mt-2">
+              <legend>خروجی فایل</legend>
+              <div class="row">
+                <div class="col-sm-6 mt-1">
+                  <button  mat-raised-button class="w-100" color="accent" (click)="exportFile(2, 2)">فایل ریز
+                    DBF</button>
+                </div>
+                <div class="col-sm-6 mt-1">
+                  <button mat-raised-button class="blue-color  w-100" (click)="exportFile(1, 2)">فایل ریز
+                    TEXT</button>
+                </div>
+                <div class="col-sm-6 mt-1">
+                  <button class="orange-color  w-100" mat-raised-button (click)="exportFile(2, 1)">فایل خلاصه
+                    DBF</button>
+                </div>
+                <div class="col-sm-6 mt-1">
+                  <button mat-raised-button class="green-color  w-100" (click)="exportFile(1, 1)">فایل خلاصه
+                    TEXT</button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-5">
+            <fieldset class="mt-2">
+              <legend>خروجی گزارش</legend>
+              <div class="row">
+                <div class="col-sm-6 mt-1">
+                  <button  mat-raised-button class="w-100" color="accent" (click)="ShowTaminReport(1)">گزارش تامین اجتماعی
+                    </button>
+                </div>
+                <div class="col-sm-6 mt-1">
+                  <button mat-raised-button class="blue-color  w-100" (click)="ShowTaminReport(2)">خلاصه صورت دستمزد
+                    </button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-12 mt-2">
+            <custom-ag-grid *ngIf="showGridWor"  [customGridOption]="gridOptionWor"></custom-ag-grid>
+          </div>
+
+          <div *ngIf="type == 'wor' && showForm" class="mt-2">
+            <tamin-file-wor-form [formObj]="formObjWor" [ID]="ID" [formType]="formType" (done)="submited($event)"
+              (closed)="closeForm()">
+            </tamin-file-wor-form>
+          </div>
+
+        </div>
+
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" label="خلاصه اطلاعات پرسنل">
+      <div class="row mt-3">
+        <div class="col-3">
+          <label class="mt-3 upload-button w-100">
+            <input type="file" accept=".DBF, .txt" (change)="inputChange($event)">
+            انتخاب فایل
+          </label>
+        </div>
+        <div class="col-6">
+          <fieldset>
+            <legend>خروجی</legend>
+            <div class="row">
+              <div class="col-6">
+                <button class="w-100" mat-raised-button color="accent" (click)="exportFile(2, 1)">فایل خلاصه
+                  DBF</button>
+              </div>
+              <div class="col-6">
+                <button class="w-100" mat-raised-button class="blue-color w-100" (click)="exportFile(1, 1)">فایل خلاصه
+                  TEXT</button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-12 mt-2">
+          <custom-ag-grid *ngIf="showGridKar" [customGridOption]="gridOptionKar"></custom-ag-grid>
+        </div>
+
+        <div *ngIf="type == 'kar' && showForm" class="mt-2">
+          <tamin-file-kar-form [formObj]="formObjKar" [ID]="ID" [formType]="formType" (done)="submited($event)"
+            (closed)="closeForm()">
+          </tamin-file-kar-form>
+        </div>
+
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>
+
+<stimulsoft-viewer-report *ngIf="showReport" [data]="stimulsoftData"></stimulsoft-viewer-report>

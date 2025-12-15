@@ -1,0 +1,90 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms'
+
+import { ControlMessageService } from 'src/app/main/main-body/common/custom-form/control-message/control-message.service'
+import { Validation } from 'src/app/main/main-body/common/custom-form/control-message/Validation'
+import { ModalOptions } from 'src/app/main/main-body/common/custom-modal/modal-options.interface'
+import { GridFormService } from 'src/app/main/main-body/common/grid-form.service'
+import { Month_Fld, Year_Fld } from 'src/app/main/pages/global-attr'
+
+const Controller = 'Fraction'
+
+@Component({
+  selector: 'fraction-form',
+  templateUrl: './fraction-form.component.html',
+  styleUrls: ['./fraction-form.component.scss']
+})
+export class FractionFormComponent implements OnInit {
+
+  @Output() done = new EventEmitter()
+  @Output() closed = new EventEmitter()
+  @Input() ID: number
+  @Input() formType: string
+  @Input() formObj: any
+
+  data: any = {}
+  get() {
+    this.service.getById(Controller, this.ID, this.formType).toPromise().then((res: any) => {
+      if (!res || !res.Data) return this.done.emit(false)
+      else {
+        this.data = res.Data
+        this.setForm()
+      }
+    })
+  }
+
+  post() { this.service.post(`${Controller}/Create`, this.form.getRawValue()).subscribe((res: any) => { res && res.IsSuccess ? this.done.emit(res.Data) : null })}
+
+  put() { this.service.post(`${Controller}/Update`, this.form.getRawValue()).subscribe((res: any) => { res && res.IsSuccess ? this.done.emit(res.Data) : null })}
+
+  form: UntypedFormGroup
+  setForm() {
+    Validation.form = this.formObj
+    this.form = this.formBuilder.group({
+      Id: [0],
+      Code_Fld: [null],
+      Year_Fld: [Year_Fld],
+      Month_Fld: [Month_Fld],
+      CodeDesc_Fld: [{ value: null, disabled: Validation.disable('CodeDesc_Fld') }, Validation.setValidator('CodeDesc_Fld')],
+      FractionKindDesc_Fld: [null],
+      FractionKind_Fld: [{ value: null, disabled: Validation.disable('FractionKind_Fld') }, Validation.setValidator('FractionKind_Fld')],
+      FractionPrice_Fld: [{ value: null, disabled: Validation.disable('FractionPrice_Fld') }, Validation.setValidator('FractionPrice_Fld')],
+      Days_Fld: [{ value: null, disabled: Validation.disable('Days_Fld') }, Validation.setValidator('Days_Fld')],
+      FormulaDesc_Fld: [null],
+      Formula_Fld: [{ value: null, disabled: Validation.disable('Formula_Fld') }, Validation.setValidator('Formula_Fld')],
+      InActive_Fld: [{ value: null, disabled: Validation.disable('InActive_Fld') }, Validation.setValidator('InActive_Fld')],
+      FormType:[{value: this.formType}]
+    })
+    this.formType != 'Add' ? this.form.patchValue(this.data) : null
+    this.showModal = true
+  }
+
+  save() {
+    if (this.form.invalid) return this.controlService.isSubmitted = true
+
+    if (this.formType == 'Add') return this.post()
+
+    if (this.formType == 'Edit') this.put()
+  }
+
+  showModal: boolean = false
+  close() {
+    this.showModal = false
+    this.closed.emit()
+  }
+
+  modalOptions: ModalOptions
+
+  constructor(private controlService: ControlMessageService, private service: GridFormService, private formBuilder: UntypedFormBuilder) { }
+
+  ngOnInit(): void {
+    this.formType != 'Add' ? this.get() : this.setForm()
+    this.modalOptions = {
+      formType: this.formType,
+      modatTitle: 'کسورات موردی',
+      saveCallback: this.save.bind(this),
+      hideCallback: this.close.bind(this),
+    }
+  }
+
+}

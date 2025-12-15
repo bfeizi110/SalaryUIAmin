@@ -1,0 +1,22 @@
+.myOwnColor{
+    color: red;
+}
+
+:host .textArea textarea {
+    height: 70px !important;
+  }
+  
+  :host ::ng-deep textArea mat-form-field {
+    text-align: left
+   }
+   
+   :host ::ng-deep textarea {
+       text-align: left;
+       overflow-x: hidden;
+       height: 70px !important;
+       line-height: 150%;
+   }
+   
+   :host ::ng-deep textArea label {
+       text-align: left
+   }

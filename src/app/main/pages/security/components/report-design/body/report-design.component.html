@@ -1,0 +1,39 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<mat-card appearance="outlined" class="mt-1">
+
+  <mat-tab-group *ngIf="showForm" dir="rtl">
+
+    <mat-tab dir="rtl" label="مشخصات">
+      <report-design-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+        (closed)="closeForm()">
+      </report-design-form>
+    </mat-tab>
+
+    <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="فیلتر">
+      <ng-template matTabContent>
+        <report-design-filter [parentId]="ID"></report-design-filter>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="خروجی فایل">
+      <ng-template matTabContent>
+        <report-design-file [parentId]="ID"></report-design-file>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="خروجی نمایش">
+      <ng-template matTabContent>
+        <report-design-stimul [parentId]="ID"></report-design-stimul>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab *ngIf="formType != 'Add'" dir="rtl" label="خروجی جدول">
+      <ng-template matTabContent>
+        <report-design-grid [parentId]="ID"></report-design-grid>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>

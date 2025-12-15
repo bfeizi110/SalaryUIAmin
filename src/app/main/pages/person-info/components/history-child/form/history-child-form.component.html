@@ -1,0 +1,316 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button *ngIf="formType != 'View'" class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-3" *ngIf="!formObj.Name.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Name.type" [parentFormGroup]="form" [label]="formObj.Name.headerName"
+              [valueName]="'Name'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Name.disableInput"
+              (change)="changeCheckbox($event.checked, 'Name')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Family.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Family.type" [parentFormGroup]="form" [label]="formObj.Family.headerName"
+              [valueName]="'Family'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Family.disableInput"
+              (change)="changeCheckbox($event.checked, 'Family')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.GenderIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/3946'" [parentFormGroup]="form"
+              [label]="formObj.GenderID.headerName" [valueName]="'GenderID'" [descValue]="data.GenderIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.GenderID.disableInput"
+              (change)="changeCheckbox($event.checked, 'GenderID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.CertificateNo.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CertificateNo.type" [parentFormGroup]="form"
+              [label]="formObj.CertificateNo.headerName" [valueName]="'CertificateNo'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.CertificateNo.disableInput"
+              (change)="changeCheckbox($event.checked, 'CertificateNo')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BirthDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="BirthDate" [type]="formObj.BirthDate.type" [parentFormGroup]="form"
+              [label]="formObj.BirthDate.headerName" [valueName]="'BirthDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.BirthDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'BirthDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BimehNo.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.BimehNo.type" [parentFormGroup]="form" [label]="formObj.BimehNo.headerName"
+              [valueName]="'BimehNo'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.BimehNo.disableInput"
+              (change)="changeCheckbox($event.checked, 'BimehNo')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.NationalNO.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NationalNO.type" [parentFormGroup]="form"
+              [label]="formObj.NationalNO.headerName" [valueName]="'NationalNO'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.NationalNO.disableInput"
+              (change)="changeCheckbox($event.checked, 'NationalNO')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BirthPlace_CountryIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*City/GetComboByType/1'" [parentFormGroup]="form"
+              [label]="formObj.BirthPlace_CountryID.headerName" [valueName]="'BirthPlace_CountryID'"
+              [descValue]="data.BirthPlace_CountryIDDesc" (changeCombo)="changeBirthCountry($event)">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.BirthPlace_CountryID.disableInput"
+              (change)="changeCheckbox($event.checked, 'BirthPlace_CountryID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BirthPlace_StateIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="birthOstanUrl" [parentFormGroup]="form"
+              [label]="formObj.BirthPlace_StateID.headerName" [valueName]="'BirthPlace_StateID'"
+              [descValue]="data.BirthPlace_StateIDDesc" (changeCombo)="changeBirthOstan($event)">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.BirthPlace_StateID.disableInput"
+              (change)="changeCheckbox($event.checked, 'BirthPlace_StateID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.BirthPlace_CityIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="birthCityUrl" [parentFormGroup]="form"
+              [label]="formObj.BirthPlace_CityID.headerName" [valueName]="'BirthPlace_CityID'"
+              [descValue]="data.BirthPlace_CityIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.BirthPlace_CityID.disableInput"
+              (change)="changeCheckbox($event.checked, 'BirthPlace_CityID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.RegisterPlace_CountryIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*City/GetComboByType/1'" [parentFormGroup]="form"
+              [label]="formObj.RegisterPlace_CountryID.headerName" [valueName]="'RegisterPlace_CountryID'"
+              [descValue]="data.RegisterPlace_CountryIDDesc" (changeCombo)="changeRegisterCountry($event)">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.RegisterPlace_CountryID.disableInput"
+              (change)="changeCheckbox($event.checked, 'RegisterPlace_CountryID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.RegisterPlace_StateIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="registerOstanUrl" [parentFormGroup]="form"
+              [label]="formObj.RegisterPlace_StateID.headerName" [valueName]="'RegisterPlace_StateID'"
+              [descValue]="data.RegisterPlace_StateIDDesc" (changeCombo)="changeRegisterOstan($event)">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.RegisterPlace_StateID.disableInput"
+              (change)="changeCheckbox($event.checked, 'RegisterPlace_StateID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.RegisterPlace_CityIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="registerCityUrl" [parentFormGroup]="form"
+              [label]="formObj.RegisterPlace_CityID.headerName" [valueName]="'RegisterPlace_CityID'"
+              [descValue]="data.RegisterPlace_CityIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.RegisterPlace_CityID.disableInput"
+              (change)="changeCheckbox($event.checked, 'RegisterPlace_CityID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MarriedIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/3962'" [parentFormGroup]="form"
+              [label]="formObj.MarriedID.headerName" [valueName]="'MarriedID'" [descValue]="data.MarriedIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.MarriedID.disableInput"
+              (change)="changeCheckbox($event.checked, 'MarriedID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MarriedDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.MarriedDate.type" [parentFormGroup]="form"
+              [label]="formObj.MarriedDate.headerName" [valueName]="'MarriedDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.MarriedDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'MarriedDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Age.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Age.type" [parentFormGroup]="form" [label]="formObj.Age.headerName"
+              [valueName]="'Age'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Age.disableInput"
+              (change)="changeCheckbox($event.checked, 'Age')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.Eshteghal.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Eshteghal.type" [parentFormGroup]="form"
+              [label]="formObj.Eshteghal.headerName" [valueName]="'Eshteghal'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.Eshteghal.disableInput"
+              (change)="changeCheckbox($event.checked, 'Eshteghal')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.EduStartDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.EduStartDate.type" [parentFormGroup]="form"
+              [label]="formObj.EduStartDate.headerName" [valueName]="'EduStartDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.EduStartDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'EduStartDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4" *ngIf="!formObj.EduEndDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.EduEndDate.type" [parentFormGroup]="form"
+              [label]="formObj.EduEndDate.headerName" [valueName]="'EduEndDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.EduEndDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'EduEndDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Insure_Code.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Insure_Code.type" [parentFormGroup]="form"
+              [label]="formObj.Insure_Code.headerName" [valueName]="'Insure_Code'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.Insure_Code.disableInput"
+              (change)="changeCheckbox($event.checked, 'Insure_Code')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.InsureIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4037'" [parentFormGroup]="form"
+              [label]="formObj.InsureID.headerName" [valueName]="'InsureID'" [descValue]="data.InsureIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.InsureID.disableInput"
+              (change)="changeCheckbox($event.checked, 'InsureID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Malol.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Malol.type" [parentFormGroup]="form" [label]="formObj.Malol.headerName"
+              [valueName]="'Malol'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.Malol.disableInput"
+              (change)="changeCheckbox($event.checked, 'Malol')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MalolDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.MalolDate.type" [parentFormGroup]="form"
+              [label]="formObj.MalolDate.headerName" [valueName]="'MalolDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.MalolDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'MalolDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Dead.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Dead.type" [parentFormGroup]="form" [label]="formObj.Dead.headerName"
+              [valueName]="'Dead'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.Dead.disableInput"
+              (change)="changeCheckbox($event.checked, 'Dead')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.DeadDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.DeadDate.type" [parentFormGroup]="form"
+              [label]="formObj.DeadDate.headerName" [valueName]="'DeadDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.DeadDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'DeadDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.HasJob.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.HasJob.type" [parentFormGroup]="form" [label]="formObj.HasJob.headerName"
+              [valueName]="'HasJob'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.HasJob.disableInput"
+              (change)="changeCheckbox($event.checked, 'HasJob')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.HasJobDate.ishidden">
+            <custom-input  [formObj]="formObj"  class="start_end_date" [type]="formObj.HasJobDate.type" [parentFormGroup]="form"
+              [label]="formObj.HasJobDate.headerName" [valueName]="'HasJobDate'">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.HasJobDate.disableInput"
+              (change)="changeCheckbox($event.checked, 'HasJobDate')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.RelationIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4555'" [parentFormGroup]="form"
+              [label]="formObj.RelationID.headerName" [valueName]="'RelationID'" [descValue]="data.RelationIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.RelationID.disableInput"
+              (change)="changeCheckbox($event.checked, 'RelationID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.GradeLicenseIDDesc.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'GradeLicense'" [parentFormGroup]="form"
+              [label]="formObj.GradeLicenseID.headerName" [valueName]="'GradeLicenseID'"
+              [descValue]="data.GradeLicenseIDDesc">
+            </custom-input>
+            <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.GradeLicenseID.disableInput"
+              (change)="changeCheckbox($event.checked, 'GradeLicenseID')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.IsPayroll.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form"
+              [label]="formObj.IsPayroll.headerName" [valueName]="'IsPayroll'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.IsPayroll.disableInput"
+              (change)="changeCheckbox($event.checked, 'IsPayroll')">
+            </mat-checkbox>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.Mashmol.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.Mashmol.type" [parentFormGroup]="form"
+              [label]="formObj.Mashmol.headerName" [valueName]="'Mashmol'">
+            </custom-input>
+            <mat-checkbox class="small-checkbox" *ngIf="multiEdit" [disabled]="formObj.Mashmol.disableInput"
+              (change)="changeCheckbox($event.checked, 'Mashmol')">
+            </mat-checkbox>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

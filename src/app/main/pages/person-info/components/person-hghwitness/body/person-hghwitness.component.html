@@ -1,0 +1,51 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+
+<mat-card appearance="outlined" style="min-height: 372px" *ngIf="showSelectPerson">
+  <mat-tab-group dir="rtl" (selectedTabChange)="closeForm()">
+
+    <mat-tab dir="rtl" label="گواهی حقوق و ضمانت هر فرد">
+      <ng-template matTabContent>
+        <!--select person-->
+        <select-personnel [personData]="personData" [controller]="controller" [setPersonPID]="setPID"
+          [hideFilter]="true" [multiple]="canAdd" (rowClicked)="onSelectPersonnel($event)"
+          (onSelectPersonnelDetail)="onSelectPersonnelDetail($event)" (rowSelectedList)="rowSelectedList($event)"
+          (selectedPersonelNF)="selectedPersonelNF = $event">
+        </select-personnel>
+        <div class="person-hghwitness-tab" *ngIf="showGrid" style="min-height: 329px">
+          <div class="row mt-2">
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <label style="color: brown;">جمع ضمانت های تسویه نشده: {{relatePrice}}</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <label style="color: brown;">جمع وام های تسویه نشده: {{debtPrice}}</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <label style="color: brown;">جمع مبالغ مازاد بر سقف وام: {{extradebtPrice}}</label>
+            </div>
+          </div>
+          <custom-ag-grid *ngIf="showGeneralPerson" [masterDetail]="false" [customGridOption]="gridOption">
+          </custom-ag-grid>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" style="min-height: 372px" label="کلیه اطلاعات گواهی حقوق و...">
+      <ng-template matTabContent>
+        <!--general-->
+        <general-person-info [filterData]="filterDto" [type]="controller" (edited)="onMultiEdit($event)"
+          [calEdit]="canEdit" [canDelete]="canDelete">
+        </general-person-info>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <person-hghwitness-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    [personList]="selectedPersonList" [PID]="PID" (closed)="closeForm()" 
+    [idList]="selectedIdList" [(HghWitnessType)]="HghWitnessType" [selectedPersonelNF]="selectedPersonelNF">
+  </person-hghwitness-form>
+</div>

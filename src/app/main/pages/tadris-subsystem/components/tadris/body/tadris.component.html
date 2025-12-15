@@ -1,0 +1,51 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+<mat-card appearance="outlined" style="min-height: 372px" *ngIf="showSelectPerson">
+  <mat-tab-group dir="rtl" (selectedTabChange)="closeForm()">
+    <mat-tab dir="rtl" label="حق التدریس هر فرد">
+      <ng-template matTabContent>
+        <select-personnel [personData]="personData" [hideFilter]="true" (rowClicked)="onSelectPersonnel($event)" [multiple]="canAdd"
+        (rowSelectedList)="rowSelectedList($event)" (selectedPersonelNF)="selectedPersonelNF = $event">
+        </select-personnel>
+        <mat-checkbox  (change)="changeCheckbox($event.checked)">کلیه اطلاعات
+        </mat-checkbox>
+        <div class="tadris-tab" *ngIf="showGrid" style="min-height: 329px">
+          <custom-ag-grid *ngIf="showGeneralPerson" [customGridOption]="gridOption"></custom-ag-grid>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" style="min-height: 372px" label="اطلاعات حق التدریس ماه جاری">
+      <ng-template matTabContent>
+        <div class="row">
+          <button *ngIf="canCalc" mat-flat-button class="mt-3 col-sm-2 close-button" color="accent" (click)="calcTadris()">محاسبه
+          </button>
+          <button *ngIf="canCalc" mat-raised-button class="mt-3 mr-12 col-sm-3 all-button" color="danger" (click)="taxFileOut()">خروجی فایل مالیاتی اقلام حقوق</button>
+          <label *ngIf="canCalc" class="mt-3 mr-12 col-sm-3 upload-button" style="align-content: center">
+            <input type="file" accept=".xls, .xlsx" (click)="$event.target.value=null" (change)="taxFileInp($event)">
+            دریافت فایل مالیاتی محاسبه شده
+          </label>
+        </div>  
+
+
+        
+        <general-person-info [filterData]="filterDto" [type]="controller" (edited)="onMultiEdit($event)"
+          [calEdit]="false" [canDelete]="canDelete">
+        </general-person-info>
+      </ng-template>
+    </mat-tab>
+    <mat-tab dir="rtl" style="min-height: 372px" label="اطلاعات حق التدریس سال جاری">
+      <ng-template matTabContent>
+        <general-person-info [filterData]="filterAllMonthDto" [type]="controller" (edited)="onMultiEdit($event)"
+          [calEdit]="false" [canDelete]="canDelete">
+        </general-person-info>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <tadris-form [formObj]="formObj" [ID]="ID" [PID]="PID" [personList]="selectedPersonList" [idList]="selectedIdList" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()" [selectedPersonelNF]="selectedPersonelNF" [TermEdu]="TermEdu" (TermEduChanged)="TermEduChanged($event)">
+  </tadris-form>
+</div>

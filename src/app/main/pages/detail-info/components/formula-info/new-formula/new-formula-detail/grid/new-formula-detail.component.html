@@ -1,0 +1,8 @@
+<custom-ag-grid [rowNumber]="17" class="new-formula-detail" *ngIf="showGrid" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <new-formula-detail-form [formObj]="formObj" [newFormulaId]="newFormulaId" [ID]="ID" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </new-formula-detail-form>
+</div>

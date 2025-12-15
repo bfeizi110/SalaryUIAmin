@@ -1,0 +1,72 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions"  [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="DynamicFormType == 100953 ? 'OtherDetail/10121/101216,101219' : 'OtherDetail/10121'" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld" (changeCombo)="changeType($event)">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.FormulaDesc_Fld.ishidden && form.controls.Type_Fld.value && form.controls.Type_Fld.value == 101216">
+        <custom-input  [formObj]="formObj" [type]="'multiCombo'" [comboArray]="EntityPropertyList" [multiple]="true" [parentFormGroup]="form" [label]="'فیلد/ها'"
+          [valueName]="'FormulaDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-2" *ngIf="!formObj.Message_Fld.ishidden && form.controls.Type_Fld.value && form.controls.Type_Fld.value == 101216">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="OrderList" [parentFormGroup]="form"
+          [label]="'نوع ترتیب'" [valueName]="'Message_Fld'" [descValue]="MessageDesc_Fld" >
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.Message_Fld.ishidden && form.controls.Type_Fld.value && (form.controls.Type_Fld.value == 101214 || form.controls.Type_Fld.value == 101215)">
+        <custom-input  [formObj]="formObj" [type]="formObj.Message_Fld.type" [parentFormGroup]="form" [label]="formObj.Message_Fld.headerName"
+          [valueName]="'Message_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12 textArea" *ngIf="!formObj.FormulaDesc_Fld.ishidden && (form.controls.Type_Fld.value >= 101211 && form.controls.Type_Fld.value <= 101215) || this.form.controls.Type_Fld.value == 101218 || this.form.controls.Type_Fld.value == 101219">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [ltr]="true" [parentFormGroup]="form" [descValue]="data.FormulaDesc_Fld"
+          [label]="formObj.FormulaDesc_Fld.headerName" [valueName]="'FormulaDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-4" *ngIf="!formObj.HasNotification_Fld.ishidden && form.controls.Type_Fld.value && form.controls.Type_Fld.value == 101217">
+        <custom-input  [formObj]="formObj" [type]="formObj.HasNotification_Fld.type" [parentFormGroup]="form" [label]="formObj.HasNotification_Fld.headerName"
+          [valueName]="'HasNotification_Fld'">
+        </custom-input>
+      </div>
+
+
+      <div class="col-sm-3" *ngIf="!formObj.NotificationTypes_Fld.ishidden && form.controls.Type_Fld.value >= 1012110 && form.controls.Type_Fld.value <= 1012112 || (form.controls.Type_Fld.value == 101217 && form.controls.HasNotification_Fld.value)">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="notificationList" [multiple]="true"
+          [parentFormGroup]="form " [label]="formObj.NotificationTypes_Fld.headerName" [valueName]="'NotificationTypes_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.SlackGroupID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1 
+      && form.controls.Type_Fld.value >= 1012110 && form.controls.Type_Fld.value <= 1012112 || (form.controls.Type_Fld.value == 101217 && form.controls.HasNotification_Fld.value && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1)">
+        <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="slackList" [parentFormGroup]="form" [label]="formObj.SlackGroupID_Fld.headerName" [multiple]="true"
+          [valueName]="'SlackGroupID_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SlackUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1 
+      && form.controls.Type_Fld.value >= 1012110 && form.controls.Type_Fld.value <= 1012112 || (form.controls.Type_Fld.value == 101217 && form.controls.HasNotification_Fld.value && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101273') !== -1)">
+        <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="slackUserList" [parentFormGroup]="form" [label]="formObj.SlackUserID_Fld.headerName" [multiple]="true"
+          [valueName]="'SlackUserID_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SmsUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101271') !== -1 
+      && form.controls.Type_Fld.value >= 1012110 && form.controls.Type_Fld.value <= 1012112 || (form.controls.Type_Fld.value == 101217 && form.controls.HasNotification_Fld.value && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101271') !== -1 )">
+        <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="smsUserList" [parentFormGroup]="form" [label]="formObj.SmsUserID_Fld.headerName" [multiple]="true"
+          [valueName]="'SmsUserID_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.EmailUserID_Fld.ishidden && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101272') !== -1 
+      && form.controls.Type_Fld.value >= 1012110 && form.controls.Type_Fld.value <= 1012112 || (form.controls.Type_Fld.value == 101217 && form.controls.HasNotification_Fld.value && form.controls.NotificationTypes_Fld.value && form.controls.NotificationTypes_Fld.value.toString().indexOf('101272') !== -1 )">
+        <custom-input [ltr]="true" [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="emailUserList" [parentFormGroup]="form" [label]="formObj.EmailUserID_Fld.headerName" [multiple]="true"
+          [valueName]="'EmailUserID_Fld'">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

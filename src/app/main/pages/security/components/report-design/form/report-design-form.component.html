@@ -1,0 +1,28 @@
+<div class="form">
+
+  <div class="form-buttons">
+
+    <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+    </button>
+
+    <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+  </div>
+
+  <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+    <div class="container-fluid">
+      <div class="row" *ngIf="showForm">
+
+        <div class="col-sm-5" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+          <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+            [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+          </custom-input>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,66 @@
+
+:host ::ng-deep .ngb-dp-header {
+  direction: ltr !important;
+}
+::ng-deep .ngb-dp-week {
+  font-family: 'iransans' !important;
+}
+input {
+  text-align: left !important;
+  // padding-bottom: 0.5rem;
+}
+
+// .example-form-field {
+//   margin-right: 0px;
+// }
+
+// :host ::ng-deep .mat-form-field-label-wrapper {
+//   top: -0.5em;
+// }
+
+// :host ::ng-deep .mat-form-field-wrapper {
+//  padding-bottom: 1rem !important;
+// }
+// .background-color{
+// :host ::ng-deep .mat-form-field-wrapper {
+//  padding-bottom: 1rem !important;
+// }
+// }
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+  padding-bottom: 0 !important;
+ }
+
+.top {
+  top: auto;
+  bottom: 41px;
+}
+
+.bottom {
+  top: 25px;
+}
+
+.unvis {
+  display: none !important;
+}
+.purple-icon {
+  color: purple;
+}
+
+::ng-deep date-picker {
+  width: 100% !important
+}
+:host ::ng-deep .dropdown-menu {
+  display: unset !important;
+}
+
+button.calender,
+button.calender:active {
+  width: 30px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+}
+
+

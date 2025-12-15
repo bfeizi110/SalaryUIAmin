@@ -1,0 +1,8 @@
+<custom-ag-grid *ngIf="showGrid" class="person-mission-info-detail-grid" [customGridOption]="gridOption"
+  [isModal]="true">
+</custom-ag-grid>
+
+<person-mission-info-detail-form *ngIf="showForm" [formObj]="formObj" [recordSelected]="recordSelected"
+  [recordIndex]="recordIndex" [parentId]="parentId" [formType]="formType" (done)="submited($event)"
+  (closed)="closeForm()" [rowData]="gridOption.rowData">
+</person-mission-info-detail-form>

@@ -1,0 +1,35 @@
+    <div class="inner-wrap">
+        <mat-form-field [formGroup]="parentFormGroup" *ngIf="showCombo" (click)="clickCombo()" class="mat-combo">
+        <mat-label dir="rtl" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+        <mat-select
+            [formControl]="comboCtrl"
+            placeholder="{{placeholder}}"
+            [multiple]="multiple"
+            [class.require]="required" 
+            dir="rtl"
+            (selectionChange)="changeValue($event)"
+            [(ngModel)]="comboCtrl.value"
+            [attr.disabled]="disabled ? '' : null"
+            #singleSelect
+        >
+            <mat-option>
+            <ngx-mat-select-search
+                [formControl]="comboFilterCtrl"
+                placeholderLabel="جستجو"
+                noEntriesFoundLabel="'موردی پیدا نشد'"
+                [showToggleAllCheckbox]="true"
+                toggleAllCheckboxTooltipMessage="انتخاب / عدم انتخاب همه"
+                [toggleAllCheckboxIndeterminate]="isIndeterminate"
+                [toggleAllCheckboxChecked]="isChecked" 
+                (toggleAll)="toggleSelectAll($event)"
+            >
+                <mat-icon ngxMatSelectSearchClear>حذف</mat-icon>
+            </ngx-mat-select-search>
+            </mat-option>
+
+            <mat-option *ngFor="let car of filteredCombos | async" [value]="car">
+            {{ car.CodeDesc_Fld }}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+    </div>

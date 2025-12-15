@@ -1,0 +1,55 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+
+<mat-card appearance="outlined" style="min-height: 372px" *ngIf="showSelectPerson">
+  <mat-tab-group dir="rtl" (selectedTabChange)="closeForm()">
+
+    <mat-tab dir="rtl" label="پرداخت مستمر هر فرد">
+      <ng-template matTabContent>
+        <!--select person-->
+        <select-personnel [personData]="personData" [controller]="controller" [setPersonPID]="setPID"
+          [hideFilter]="true" [multiple]="canAdd" (rowClicked)="onSelectPersonnel($event)"
+          (onSelectPersonnelDetail)="onSelectPersonnelDetail($event)" (rowSelectedList)="rowSelectedList($event)"
+          (selectedPersonelNF)="selectedPersonelNF = $event">
+        </select-personnel>
+        <div class="person-mostamar-tab" *ngIf="showGrid" style="min-height: 329px">
+          <mat-tab-group dir="rtl" (selectedTabChange)="closeForm()">
+
+            <mat-tab dir="rtl" label="اطلاعات پرداخت مستمر هر فرد">
+              <ng-template matTabContent>
+                <!--main grid-->
+                <custom-ag-grid *ngIf="showGeneralPerson" [masterDetail]="false" [customGridOption]="gridOption">
+                </custom-ag-grid>
+              </ng-template>
+            </mat-tab>
+
+            <mat-tab dir="rtl" label="کاردکس پرداخت مستمر">
+              <ng-template matTabContent>
+                <cardex-person [option]="cardexOptions"></cardex-person>
+              </ng-template>
+            </mat-tab>
+
+          </mat-tab-group>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" style="min-height: 372px" label="اطلاعات پرداخت مستمر ماه جاری">
+      <ng-template matTabContent>
+        <!--general-->
+        <general-person-info [filterData]="filterDto" [type]="controller" (edited)="onMultiEdit($event)"
+          [calEdit]="canEdit" [canDelete]="canDelete">
+        </general-person-info>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <person-mostamar-info-form [formObj]="formObj" [ID]="ID" [PID]="PID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()" [personList]="selectedPersonList" [idList]="selectedIdList"
+    [selectedPersonelNF]="selectedPersonelNF">
+  </person-mostamar-info-form>
+</div>

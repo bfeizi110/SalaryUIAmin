@@ -1,0 +1,10 @@
+<other-group (groupClicked)="groupClicked($event)"></other-group>
+
+  <custom-ag-grid class="other-detail-grid"  *ngIf="showGrid" [rowNumber]="20" [customGridOption]="gridOption" [disabledForm]="formType != ''">
+  </custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <other-detail-form [formObj]="formObj" [ID]="ID" [groupId]="groupId" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </other-detail-form>
+</div>

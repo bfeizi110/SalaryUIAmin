@@ -1,0 +1,98 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="row-12">
+            <div class="col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+              </custom-input>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-sm-6" *ngIf="!formObj.SmsText1_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.SmsText1_Fld.headerName"
+                  [valueName]="'SmsText1_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-6" *ngIf="!formObj.Type1Desc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10062'" [parentFormGroup]="form"
+                  [label]="formObj.Type1_Fld.headerName" [valueName]="'Type1_Fld'" [descValue]="data.Type1Desc_Fld">
+                </custom-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-sm-6" *ngIf="!formObj.SmsText2_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.SmsText2_Fld.headerName"
+                  [valueName]="'SmsText2_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-6" *ngIf="!formObj.Type2Desc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10062'" [parentFormGroup]="form"
+                  [label]="formObj.Type2_Fld.headerName" [valueName]="'Type2_Fld'" [descValue]="data.Type2Desc_Fld">
+                </custom-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-sm-6" *ngIf="!formObj.SmsText3_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.SmsText3_Fld.headerName"
+                  [valueName]="'SmsText3_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-6" *ngIf="!formObj.Type3Desc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10062'" [parentFormGroup]="form"
+                  [label]="formObj.Type3_Fld.headerName" [valueName]="'Type3_Fld'" [descValue]="data.Type3Desc_Fld">
+                </custom-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-sm-6" *ngIf="!formObj.SmsText4_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.SmsText4_Fld.headerName"
+                  [valueName]="'SmsText4_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-6" *ngIf="!formObj.Type4Desc_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10062'" [parentFormGroup]="form"
+                  [label]="formObj.Type4_Fld.headerName" [valueName]="'Type4_Fld'" [descValue]="data.Type4Desc_Fld">
+                </custom-input>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

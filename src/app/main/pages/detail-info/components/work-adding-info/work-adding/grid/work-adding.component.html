@@ -1,0 +1,25 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">نوع استخدام</mat-label>
+      <mat-select dir="rtl" (selectionChange)="hireTypeChange($event.value)">
+        <mat-option *ngIf="hireTypeList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="hireTypeList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of hireTypeList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <custom-ag-grid *ngIf="showGrid" class="work-adding-grid" [isModal]="true" [customGridOption]="gridOption"
+    [disabledForm]="formType != ''">
+  </custom-ag-grid>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <work-adding-form [formObj]="formObj" [ID]="ID" [hireTypeId]="hireTypeId" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </work-adding-form>
+</div>

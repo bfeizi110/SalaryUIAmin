@@ -1,0 +1,15 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngIf="!formObj.PayFractionGroupDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]= "IsMadeh29_Fld == 0 ? 'OtherDetail/10090' : 'OtherDetail/10112'" [descValue]="data.PayFractionGroupDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.PayFractionGroup_Fld.headerName" [valueName]="'PayFractionGroup_Fld'"></custom-input>
+      </div>
+      <div class="col-2" *ngIf="!formObj.Order_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Order_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.Order_Fld.headerName" [valueName]="'Order_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

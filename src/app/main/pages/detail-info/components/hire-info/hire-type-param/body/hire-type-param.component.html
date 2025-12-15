@@ -1,0 +1,31 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">نوع استخدام</mat-label>
+      <mat-select dir="rtl" [(ngModel)]="hireId" (selectionChange)="hireTypeChange()">
+        <mat-option *ngIf="comboList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="comboList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of comboList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <custom-ag-grid *ngIf="showGrid" class="hire-type-param-grid" [isModal]="true" [customGridOption]="gridOption"
+    [disabledForm]="formType != ''">
+  </custom-ag-grid>
+
+</mat-card>
+
+
+<div *ngIf="showForm" class="pre-form">
+  <hire-type-param-form [formObj]="formObj" [ID]="ID" [hireId]="hireId" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </hire-type-param-form>
+</div>
+
+<div *ngIf="showFormSetting" class="pre-form">
+  <hire-type-param-setting-form [paramId]="ID" (closed)="closeFormSetting()" (done)="submitedSetting()">
+  </hire-type-param-setting-form>
+</div>

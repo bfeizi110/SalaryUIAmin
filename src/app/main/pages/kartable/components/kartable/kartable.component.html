@@ -1,0 +1,211 @@
+<mat-card appearance="outlined" class="">
+  <mat-tab-group class="mt-2" dir="rtl" (selectedTabChange)="tabChange($event)" color="warn">
+
+    <mat-tab dir="rtl" label="فیش من">
+
+      <div class="row mt-2">
+        <div class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">سال و ماه</mat-label>
+            <mat-select [(ngModel)]="yearMonth" dir="rtl" (selectionChange)="yearMonthChange($event.value)">
+              <mat-option *ngIf="yearMonthList.length == 0">-</mat-option>
+              <mat-filter [(comboList)]="yearMonthList" [valueLabel]="'CodeDesc_Fld'"
+                (refreshChange)="refreshComboYearMonth()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of yearMonthList" [value]="item">{{ item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">انواع فیش</mat-label>
+            <mat-select [(ngModel)]="fishTypeItem" [disabled]="!yearMonth" dir="rtl">
+              <mat-option *ngIf="fishTypeList.length == 0">-</mat-option>
+              <mat-filter [(comboList)]="fishTypeList" [valueLabel]="'CodeDesc_Fld'"
+                (refreshChange)="refreshComboFishType()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of fishTypeList" [value]="item">{{item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-2">
+          <button *ngIf="yearMonth" [disabled]="fishTypeList.length == 0" mat-raised-button class="save-button"
+            color="primary" (click)="showStimul()">نمایش
+            فیش
+          </button>
+        </div>
+        <div style="display: block; ">
+          <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartClick)="onChartClick($event)"
+            >
+          </canvas>
+        </div>
+      </div>
+
+
+    </mat-tab>
+
+    <mat-tab *ngIf="PersonFishAccess" dir="rtl" label="فیش سایر پرسنل">
+      <div class="row mt-2">
+
+        <div class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">سال و ماه</mat-label>
+            <mat-select [(ngModel)]="yearMonth2" dir="rtl" (selectionChange)="yearMonthChange2($event.value)">
+              <mat-option *ngIf="yearMonthList2.length == 0">-</mat-option>
+              <mat-filter [(comboList)]="yearMonthList2" [valueLabel]="'CodeDesc_Fld'"
+                (refreshChange)="refreshComboYearMonth()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of yearMonthList2" [value]="item">{{ item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="personId" class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">انواع فیش</mat-label>
+            <mat-select [(ngModel)]="fishTypeItem2" [disabled]="!yearMonth2" dir="rtl"
+              (selectionChange)="fishTypeChange2()">
+              <mat-option *ngIf="fishTypeList2.length == 0">-</mat-option>
+              <mat-filter [(comboList)]="fishTypeList2" [valueLabel]="'CodeDesc_Fld'"
+                (refreshChange)="refreshComboFishType2()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of fishTypeList2" [value]="item">{{item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-2">
+          <button [disabled]="fishTypeList2.length == 0" *ngIf="yearMonth2 && personId" mat-raised-button
+            class="save-button" color="primary" (click)="showStimul2()">نمایش فیش
+          </button>
+        </div>
+
+      </div>
+
+      <div class="col-sm-12">
+        <custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [rowNumber]= "20">
+        </custom-ag-grid>
+      </div>
+      <div style="display: block; ">
+        <canvas baseChart
+          [datasets]="barChartDataElse"
+          [labels]="barChartLabelsElse"
+          [options]="barChartOptions"
+          [plugins]="barChartPluginsElse"
+          [legend]="barChartLegendElse"
+          [chartType]="barChartTypeElse"
+          >
+        </canvas>
+      </div>
+
+
+    </mat-tab>
+
+    <mat-tab *ngIf="PersonCommAccess" dir="rtl" label="احکام وارده جهت تایید">
+
+      <!-- <div class="row mt-2"> -->
+        <personnel-filter [expanded]="true" [controller]="'COMMISSIONACCEPTVIEW'" (onFilter)="onFilter($event)" >
+        </personnel-filter>
+
+
+        <button mat-raised-button [disabled]="!accesses.includes('EditPolicy')" class="save-button margin-10"
+          color="primary" (click)="openForm()">تایید(پرسنل انتخابی)
+        </button>
+
+        <button *ngIf="selectedCommissionList.length == 0" mat-raised-button class="btn btn-success  margin-10"  (click)="onPrintView()">مشاهده تصویر حکم</button>
+      <!-- </div>  -->
+
+      <div class="col-sm-12">
+        <custom-ag-grid *ngIf="showAcceptGrid"  [rowNumber]= "20" [customGridOption]="gridAcceptOption">
+        </custom-ag-grid>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab *ngIf="PersonRequestAccess" dir="rtl" [label]="TabRequestLabel" id="PersonRequest">
+      <div class="row" *ngIf="comboRequestList && this.comboRequestList.length > 0">
+        <div class="col-sm-3">
+          <mat-form-field dir="rtl">
+            <mat-label dir="rtl">ایجاد درخواست</mat-label>
+            <mat-select  dir="rtl" (selectionChange)="requestChange($event.value)">
+              <mat-filter [(comboList)]="comboRequestList" [valueLabel]="'CodeDesc_Fld'"
+                (refreshChange)="refreshComboRequest()">
+              </mat-filter>
+              <mat-option dir="rtl" *ngFor="let item of comboRequestList" [value]="item">{{ item.CodeDesc_Fld}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="mt-2 col-sm-3">
+          <button mat-raised-button *ngIf="ComboRequestFormID && ComboRequestWorkFlowID" class="add-button margin-10"
+          color="primary" (click)="openRequestForm('Add')">ایجاد
+          </button>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div dir="rtl" class="row">
+
+          <div dir="rtl" class="col-sm-3 "  style="padding: 0;">
+              <request-tree dir="rtl" (done)="RequestTreeChange($event)" (isMobile)="changewidth()">
+              </request-tree>
+          </div>
+
+          <div class="col-sm-9">
+            <custom-ag-grid *ngIf="showRequestGrid"  [rowNumber]= "10" [customGridOption]="gridSelectAllRequestOption" [hideLogs]="true">
+            </custom-ag-grid>
+          </div>
+
+        </div>
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>
+
+<stimulsoft-viewer-report *ngIf="showReport" (closeChange)="showReport = false" [url]="reportUrl" 
+[title]="this.modalOptions.modatTitle"  [data]="stimulsoftData">
+</stimulsoft-viewer-report>
+
+
+<person-request-form *ngIf="showRequestForm" [ID]="ID" [FormID]="RequestFormID" [WorkFlowID]="RequestWorkFlowID"
+  [RequestEntryInfo]="RequestEntryInfo" [WorkFlowDetailID]="RequestWorkFlowDetailID" [formType]="requestFormType"
+  (done)="submitedRequest($event)"  (closed)="closeRequestForm()" >
+</person-request-form>
+
+<request-refer-form *ngIf="showRequestReferForm" [RequestRefer]="RequestRefer" [isReferBack]="isReferBack" [RequestReject]="RequestReject" (done)="submitedRequestRefer($event)"
+  (closed)="closeRequestReferForm($event)" >
+</request-refer-form>
+
+<custom-modal *ngIf="showDetails" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div style="display: block; ">
+      <canvas baseChartDetails
+        [datasets]="barChartDataDetails"
+        [labels]="barChartLabelsDetails"
+        [options]="barChartOptions"
+        [plugins]="barChartPluginsDetails"
+        [legend]="barChartLegendDetails"
+        [chartType]="barChartTypeDetails"
+        >
+      </canvas>
+    </div>
+
+  </div>
+</custom-modal>
+<request-flow *ngIf="showFlow" [RequestId]="RequestID" (closed)="requestFlowClosed()"></request-flow>

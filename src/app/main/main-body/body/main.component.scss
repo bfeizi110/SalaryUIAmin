@@ -1,0 +1,72 @@
+.content-wrapper {
+  //padding: 5px 8px;
+}
+
+/*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+::ng-deep .mat-mdc-tab-body-wrapper {
+  padding: 0px 5px !important
+}
+
+@import './main-theme.scss';
+
+/*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+.mdc-tab {
+  border-right: 1px solid white !important;
+  border-bottom: 1px solid white !important;
+  border-left: 1px solid white !important;
+  padding-right: 0px;
+}
+
+::ng-deep mat-mdc-tab-header {
+  background: white;
+}
+
+.help-btn {
+  margin-top: -2px;
+  color: rgb(233, 250, 0);
+  margin-right: 0px;
+  width: 24px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.refresh-button {
+  //margin-right: 10px;
+  color: green;
+}
+
+.delete-button {
+  color: red;
+  width: 24px;
+  padding-left: 0px;
+  padding-right: 0px;  
+}
+
+/*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+:host ::ng-deep .mat-mdc-tab-labels  {
+  width: 187px !important;
+  height: 25px !important;
+}
+:host ::ng-deep .mat-mdc-tab.mdc-tab{
+  height: 25px !important;
+  // padding-right: 5px !important;  
+  // padding-left: 10px !important;  
+}
+
+
+.tab-label {
+  width: 120px;
+  margin-right: 5px;
+  overflow: hidden;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+:host ::ng-deep .mat-ink-bar {
+  width: 187px !important;
+}
+
+/*TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
+::ng-deep .mat-mdc-tab-label-active {
+  opacity: 1 !important;
+}

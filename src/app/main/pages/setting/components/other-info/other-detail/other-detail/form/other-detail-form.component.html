@@ -1,0 +1,32 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.PayFractionTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/0/100413,100414'" [parentFormGroup]="form"
+          [label]="formObj.PayFractionType_Fld.headerName" [valueName]="'PayFractionType_Fld'"
+          [descValue]="data.PayFractionTypeDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.KICode.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.KICode.type" [parentFormGroup]="form" [label]="formObj.KICode.headerName"
+          [valueName]="'KICode'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.SortOrder.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.SortOrder.type" [parentFormGroup]="form" [label]="formObj.SortOrder.headerName"
+          [valueName]="'SortOrder'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.HesIDCode.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.HesIDCode.type" [parentFormGroup]="form" [label]="formObj.HesIDCode.headerName"
+          [valueName]="'HesIDCode'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

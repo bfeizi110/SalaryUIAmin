@@ -1,0 +1,4 @@
+<div *ngIf="showForm" class="pre-form">
+  <list-no-form [formObj]="formObj" [ID]="ID" [isDirect]="true" [formType]="'Add'" (done)="submited($event)" (closed)="closeForm()">
+  </list-no-form>
+</div>

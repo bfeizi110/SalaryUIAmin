@@ -1,0 +1,26 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ShowTitle.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.ShowTitle.type" [parentFormGroup]="form" [label]="formObj.ShowTitle.headerName"
+          [valueName]="'ShowTitle'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Status.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Status.type" [parentFormGroup]="form" [label]="formObj.Status.headerName"
+          [valueName]="'Status'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.IsPayroll.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form" [label]="formObj.IsPayroll.headerName"
+          [valueName]="'IsPayroll'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

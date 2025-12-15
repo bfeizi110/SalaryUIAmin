@@ -1,0 +1,23 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field dir="rtl">
+          <mat-label dir="rtl">انتخاب سال</mat-label>
+          <mat-select dir="rtl" [(ngModel)]="selectedYear" (selectionChange)="getMonth($event.value, true)">
+            <mat-option dir="rtl" *ngFor="let item of yearList" [value]="item.Year_Fld">{{item.Year_Fld}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field dir="rtl">
+          <mat-label dir="rtl">انتخاب ماه</mat-label>
+          <mat-select dir="rtl" [(ngModel)]="selectedMonth" (selectionChange)="changeYear($event.value)">
+            <mat-option dir="rtl" *ngFor="let item of monthList" [value]="item.Month_Fld">{{item.MonthDesc_Fld}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</custom-modal>

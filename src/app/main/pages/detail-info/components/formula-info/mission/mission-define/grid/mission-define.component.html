@@ -1,0 +1,7 @@
+<custom-ag-grid [rowNumber]="10" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <mission-define-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </mission-define-form>
+</div>

@@ -1,0 +1,30 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field dir="rtl">
+      <mat-label dir="rtl">فرم</mat-label>
+      <mat-select [multiple]="false" dir="rtl" [(ngModel)]="entityValueList"
+        (selectionChange)="entityChange($event.value)">
+        <mat-option *ngIf="entityList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="entityList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of entityList" [value]="item">{{item.CodeDesc_Fld}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="entityValueList" class="col-sm-2">
+    <button mat-raised-button class="save-button" color="primary" (click)="reset()">بازگشت به تنظیمات اولیه</button>
+  </div>
+
+  <custom-ag-grid *ngIf="showGrid" class="entity-property-grid" [isModal]="true" [customGridOption]="gridOption">
+  </custom-ag-grid>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <entity-property-form [formObj]="formObj" [entityEng]="entityId" [ID]="ID" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </entity-property-form>
+</div>

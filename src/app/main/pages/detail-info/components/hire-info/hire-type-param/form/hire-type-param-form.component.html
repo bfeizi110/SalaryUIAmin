@@ -1,0 +1,10 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.ParamIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Parameter'" [parentFormGroup]="form" [descValue]="data.ParamIDDesc"
+          [label]="formObj.ParamID.headerName" [valueName]="'ParamID'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

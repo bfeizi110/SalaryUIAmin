@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <insure-form [formObj]="formObj" [typeInsId]="typeInsId" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </insure-form>
+</div>

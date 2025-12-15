@@ -1,0 +1,24 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-2">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">نوع استخدام</mat-label>
+      <mat-select dir="rtl" (selectionChange)="hireTypeChange($event.value)">
+        <mat-option *ngIf="hireTypeList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="hireTypeList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of hireTypeList" [value]="item.Id">{{item.CodeDesc_Fld}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <custom-ag-grid class="tabsareh21-setting-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption">
+  </custom-ag-grid>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <tabsareh21-setting-form [formObj]="formObj" [hireId]="hireId" [ID]="ID" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </tabsareh21-setting-form>
+</div>

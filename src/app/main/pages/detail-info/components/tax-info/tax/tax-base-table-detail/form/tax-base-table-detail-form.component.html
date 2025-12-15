@@ -1,0 +1,18 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.TaxLimitFrom_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.TaxLimitFrom_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.TaxLimitFrom_Fld.headerName" [valueName]="'TaxLimitFrom_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TaxLimitTo_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.TaxLimitTo_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.TaxLimitTo_Fld.headerName" [valueName]="'TaxLimitTo_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TaxPercent_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.TaxPercent_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.TaxPercent_Fld.headerName" [valueName]="'TaxPercent_Fld'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

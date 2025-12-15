@@ -1,0 +1,9 @@
+<custom-ag-grid *ngIf="showGrid" class="job-category-grid" [isModal]="true" [customGridOption]="gridOption"
+  [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <job-category-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </job-category-form>
+</div>

@@ -1,0 +1,41 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.LicenseIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4374'" [parentFormGroup]="form"
+          [label]="formObj.LicenseID.headerName" [valueName]="'LicenseID'" [descValue]="data.LicenseIDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.LicenseID1Desc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10071'" [parentFormGroup]="form"
+          [label]="formObj.License1ID.headerName" [valueName]="'License1ID'" [descValue]="data.LicenseID1Desc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.LicenseID2Desc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10072'" [parentFormGroup]="form"
+          [label]="formObj.License2ID.headerName" [valueName]="'License2ID'" [descValue]="data.LicenseID2Desc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.HesIDCode.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.HesIDCode.type" [parentFormGroup]="form" [label]="formObj.HesIDCode.headerName"
+          [valueName]="'HesIDCode'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.IsPayroll.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form" [label]="formObj.IsPayroll.headerName"
+          [valueName]="'IsPayroll'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.LicenseID401Desc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10083'" [parentFormGroup]="form"
+          [label]="formObj.License401ID.headerName" [valueName]="'License401ID'" [descValue]="data.LicenseID401Desc">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

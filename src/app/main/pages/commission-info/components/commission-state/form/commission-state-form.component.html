@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <mat-form-field dir="rtl">
+        <mat-label dir="rtl">نوع تغییر وضعیت</mat-label>
+        <mat-select dir="rtl" [(ngModel)]="NewStatus">
+          <mat-option *ngIf="comboArray.length == 0">-</mat-option>
+          <mat-filter [(comboList)]="comboArray" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+          </mat-filter>
+          <mat-option dir="rtl" *ngFor="let item of comboArray" [value]="item">
+            {{item.CodeDesc_Fld}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</custom-modal>

@@ -1,0 +1,135 @@
+:host ::ng-deep mat-label,
+p,
+label,
+input,
+textarea,
+h1,
+legend,
+.mat-mdc-select-placeholder,
+.mat-mdc-option-text,
+.mat-select-value-text,
+.mdc-list-item__primary-text,
+.mat-mdc-select-value-text,
+.mat-error,
+#swal2-content,
+button,
+select,
+.toast-title,
+.toast-message,
+.mat-list-text,
+.mat-tab-label-content,
+.mdc-tab,
+.mdc-tab__content,
+.mat-panel-title,
+.mat-tree-node,
+.mat-panel-description,
+.mat-expansion-panel-header-title,
+.nav-link {
+  font-size: 14px !important;
+}
+
+
+::ng-deep custom-input[formObj][valueName="PID"] .input-wrapper {
+  position: relative; 
+}
+
+::ng-deep custom-input[formObj][valueName="PID"] button.mat-icon-button {
+  position: absolute !important;
+  right: 4px; 
+  top: 50%;    
+  transform: translateY(-50%); 
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep custom-input[formObj][valueName="PID"] .mat-mdc-text-field-wrapper {
+  height: 24px !important;     
+  min-height: 24px !important;
+  padding-right: 28px !important; 
+  box-sizing: border-box;
+}
+
+
+.col-sm-3 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.button {
+  height: 20px !important;
+  min-width: 0 !important;
+  width: 20px !important;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px !important;
+}
+
+.button mat-icon {
+  font-size: 12px !important;
+  line-height: 1;
+}
+
+.disabled-datepicker-wrapper input {
+  background-color: #f5f5f5 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+:host ::ng-deep .mat-mdc-form-field-flex {
+  background-color: transparent;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+mat-mdc-checkbox {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+textarea {
+  // height: 85px;
+  line-height: 150%;
+  overflow-y: scroll !important;
+  // overflow-y: auto !important;
+}
+
+:host ::ng-deep .mat-mdc-ripple-element {
+  left: -12px !important;
+  top: -12px !important;
+}
+
+.number-input {
+  text-align: left;
+  height: 20px;
+}
+
+.custom-panel {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+  margin: 1em;
+}
+
+:host ::ng-deep .ngx-timepicker-control__input[_ngcontent-serverApp-c133] {
+  background: none !important;
+}

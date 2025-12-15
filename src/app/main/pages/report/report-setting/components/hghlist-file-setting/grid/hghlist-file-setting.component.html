@@ -1,0 +1,25 @@
+<mat-card appearance="outlined">
+
+  <div class="col-sm-3">
+    <mat-form-field (click)="clickCombo()" dir="rtl">
+      <mat-label dir="rtl">گروه استخدامی</mat-label>
+      <mat-select dir="rtl" (selectionChange)="emgGroupChange($event.value)">
+        <mat-option *ngIf="emgGroupList.length == 0">-</mat-option>
+        <mat-filter [(comboList)]="emgGroupList" [valueLabel]="'CodeDesc_Fld'" (refreshChange)="refreshCombo()">
+        </mat-filter>
+        <mat-option dir="rtl" *ngFor="let item of emgGroupList" [value]="item.Id">{{item.CodeDesc_Fld}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <custom-ag-grid class="hghlist-file-setting-grid" [isModal]="true" *ngIf="showGrid" [customGridOption]="gridOption">
+  </custom-ag-grid>
+
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <hghlist-file-setting-form [formObj]="formObj" [EmpGroup_Fld]="EmpGroup_Fld" [ID]="ID" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </hghlist-file-setting-form>
+</div>

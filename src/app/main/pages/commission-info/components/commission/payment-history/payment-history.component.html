@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+    <div *ngIf="showGridPay" class="col-md-6">
+      <p>سابقه پرداخت حقوق</p>
+      <custom-ag-grid [customGridOption]="gridOptionPay"></custom-ag-grid>
+    </div>
+    <div *ngIf="showGridBackPay" class="col-md-6">
+      <p>سابقه پرداخت معوقه و تفاوت</p>
+      <custom-ag-grid [customGridOption]="gridOptionBackPay"></custom-ag-grid>
+    </div>
+  </div>
+</div>

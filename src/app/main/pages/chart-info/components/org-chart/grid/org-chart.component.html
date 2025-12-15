@@ -1,0 +1,8 @@
+<custom-ag-grid *ngIf="showGrid" class="org-chart-grid" [isModal]="true" [customGridOption]="gridOption"
+  [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <org-chart-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </org-chart-form>
+</div>

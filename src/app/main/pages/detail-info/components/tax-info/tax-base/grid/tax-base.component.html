@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [rowNumber]="17" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form">
+  <tax-base-form *ngIf="showForm" [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </tax-base-form>
+</div>

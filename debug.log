@@ -1,0 +1,4 @@
+[0511/121549.654:ERROR:crashpad_client_win.cc(188)] crash server did not respond, self-terminating
+[0511/121556.078:ERROR:registration_protocol_win.cc(108)] CreateFile: The system cannot find the file specified. (0x2)
+[0511/121557.086:ERROR:registration_protocol_win.cc(108)] CreateFile: The system cannot find the file specified. (0x2)
+[0511/121644.477:ERROR:registration_protocol_win.cc(108)] CreateFile: The system cannot find the file specified. (0x2)

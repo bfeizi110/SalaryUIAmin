@@ -1,0 +1,37 @@
+<!--filter-->
+<personnel-filter [controller]="controller" (onFilter)="onFilter($event)">
+</personnel-filter>
+
+<mat-card appearance="outlined" style="min-height: 372px" *ngIf="showSelectPerson">
+  <mat-tab-group dir="rtl" (selectedTabChange)="closeForm()">
+    <mat-tab dir="rtl" label="کلیه اطلاعات فرزندان">
+      <ng-template matTabContent>
+        <!--select person-->
+        <select-personnel [personData]="personData" [setPersonPID]="setPID" [hideFilter]="true"
+          (rowClicked)="onSelectPersonnel($event)" (rowSelectedList)="rowSelectedList($event)"
+          (selectedPersonelNF)="selectedPersonelNF = $event">
+        </select-personnel>
+        <div class="history-child-tab" *ngIf="showGrid" style="min-height: 329px">
+          <!--main grid-->
+          <custom-ag-grid *ngIf="showGeneralPerson" [customGridOption]="gridOption"></custom-ag-grid>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab dir="rtl" style="min-height: 372px" label="اطلاعات فرزندان کلیه پرسنل">
+      <ng-template matTabContent>
+        <!--general-->
+        <general-person-info *ngIf="showGeneralTab" [filterData]="filterDto" [type]="controller"
+          (edited)="onMultiEdit($event)" [calEdit]="canEdit" [canDelete]="canDelete">
+        </general-person-info>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>
+
+<div class="pre-form" *ngIf="showForm">
+  <history-child-form [formObj]="formObj" [ID]="ID" [PID]="PID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()" [idList]="selectedIdList" [controller]="controller" [selectedPersonelNF]="selectedPersonelNF">
+  </history-child-form>
+</div>

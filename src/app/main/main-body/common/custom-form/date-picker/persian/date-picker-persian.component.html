@@ -1,0 +1,19 @@
+<form [formGroup]="frmUser">
+  <div style="display: flex; align-items: center;">
+    <mat-form-field dir="direction" *ngIf="showDate">
+      <mat-label  dir="ltr" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <input matInput [matDatepicker]="picker6"  #inp
+      formControlName="Date" (input)="formatDate($event)"
+      (dateChange)="onKeyup($event)" placeholder="yyyy/mm/dd"
+      dir="rtl" [disabled]="disabled"  class="w-100 {{ class }}"
+      [class.require]="required" [dropSpecialCharacters]="false" >
+        <mat-datepicker-toggle matSuffix [for]="picker6"  color="primary"  [disabled]="disabled"></mat-datepicker-toggle>
+        <mat-datepicker #picker6 color="primary" [disabled]="disabled" #dp></mat-datepicker>
+    </mat-form-field>
+    <button mat-button *ngIf="frmUser.get('Date').value && !disabled && (formtype == 'Edit' || formtype == 'Add')"
+    matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')" style="width: 10%;">
+    <span style="color:blueviolet">x</span>
+  </button>
+</div>
+</form>
+

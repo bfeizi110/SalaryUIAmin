@@ -1,0 +1,51 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.PostNO.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.PostNO.type" [parentFormGroup]="form" [label]="formObj.PostNO.headerName"
+          [valueName]="'PostNO'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Title.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Title.type" [parentFormGroup]="form" [label]="formObj.Title.headerName"
+          [valueName]="'Title'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.JobFieldIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'JobField'" [parentFormGroup]="form"
+          [label]="formObj.JobFieldID.headerName" [valueName]="'JobFieldID'" [descValue]="data.JobFieldIDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.IsPayroll.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPayroll.type" [parentFormGroup]="form" [label]="formObj.IsPayroll.headerName"
+          [valueName]="'IsPayroll'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ManagerPostTypeIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/4293'" [parentFormGroup]="form"
+          [label]="formObj.ManagerPostTypeID.headerName" [valueName]="'ManagerPostTypeID'"
+          [descValue]="data.ManagerPostTypeIDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.PostLevelHghIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10048'" [parentFormGroup]="form"
+          [label]="formObj.PostLevelHghID.headerName" [valueName]="'PostLevelHghID'"
+          [descValue]="data.PostLevelHghIDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.PostLevelHgh401IDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10082'" [parentFormGroup]="form"
+          [label]="formObj.PostLevelHgh401ID.headerName" [valueName]="'PostLevelHgh401ID'"
+          [descValue]="data.PostLevelHgh401IDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.PostTypeIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'PostType'" [parentFormGroup]="form"
+          [label]="formObj.PostTypeID.headerName" [valueName]="'PostTypeID'"
+          [descValue]="data.PostTypeIDDesc">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

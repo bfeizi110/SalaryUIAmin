@@ -1,0 +1,41 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div *ngIf="!formObj.CodeDesc_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div *ngIf="!formObj.KargahTitle_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="formObj.KargahTitle_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.KargahTitle_Fld.headerName" [valueName]="'KargahTitle_Fld'"></custom-input>
+      </div>
+
+      <div *ngIf="!formObj.BimehBranch_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="formObj.BimehBranch_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.BimehBranch_Fld.headerName" [valueName]="'BimehBranch_Fld'">
+        </custom-input>
+      </div>
+
+      <div *ngIf="!formObj.Farm_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Farm_Fld.type" [parentFormGroup]="form" [label]="formObj.Farm_Fld.headerName"
+          [valueName]="'Farm_Fld'">
+        </custom-input>
+      </div>
+
+      <div *ngIf="!formObj.KargahAddress_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.KargahAddress_Fld.headerName"
+          [valueName]="'KargahAddress_Fld'"></custom-input>
+      </div>
+
+      <div *ngIf="!formObj.InActive_Fld.ishidden" class="col-sm-6">
+        <custom-input  [formObj]="formObj"  [type]="formObj.InActive_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.InActive_Fld.headerName" [valueName]="'InActive_Fld'">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

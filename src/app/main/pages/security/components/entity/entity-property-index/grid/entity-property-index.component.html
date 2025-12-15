@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <entity-property-index-form [formObj]="formObj" [ID]="ID" [EntityName]="EntityName" 
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </entity-property-index-form>
+</div>

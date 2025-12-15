@@ -1,0 +1,17 @@
+::ng-deep .tadris-text-area textarea {
+    height: 39px !important
+}
+
+div > mat-checkbox {
+    position: absolute;
+    margin: 16px -3px 0px 0px
+  }
+  
+  .small-checkbox {
+    margin: 21px 1px 0px 0px !important
+  }
+  
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  mat-checkbox {
+    transform: scale(0.8) !important;
+  }

@@ -1,0 +1,5 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [disabledForm]="formType != ''"></custom-ag-grid>
+
+<city-form *ngIf="showForm" [cityType]="1" [parentId]="0" [formObj]="formObj" [ID]="ID" [formType]="formType"
+  (done)="submited($event)" (closed)="closeForm()">
+</city-form>

@@ -1,0 +1,226 @@
+::ng-deep :root {
+  --sidebar: unset;
+  --sidebar-text: unset;
+  --tab: unset;
+  --tab-text: unset;
+  --card: unset;
+  --main-content: unset;
+  --group-grid: unset;
+  --grid-group-text: unset;
+  --grid-header: unset;
+  --grid-header-text: unset;
+  --grid-header-active: unset;
+  --grid-header-active-text: unset;
+  --navbar: unset;
+  --navbar-text: unset;
+  --navbar-text-button: unset;
+  --personnel-filter: unset;
+  --personnel-filter-text: unset;
+  --select-personnel: unset;
+  --select-personnel-text: unset;
+  --select-personnel-selected: unset;
+  --grid-sidebar: unset;
+  --grid-sidebar-text: unset;
+  --grid-float-filter : unset;
+  --grid-row-hover: unset;
+  --grid-row-hover-text: unset;
+  --grid-selected-row: unset;
+  --grid-selected-row-text: unset;
+  --grid-click-row: unset;
+  --grid-row-hover-text: unset;
+  --save-button: unset;
+  --save-button-text: unset;
+  --active: unset
+}
+
+::ng-deep .navbar {
+  background: var(--navbar) !important;
+  color: var(--navbar-text) !important
+}
+
+::ng-deep .navbar ul li a i {
+  color: var(--navbar-text-button);
+}
+
+::ng-deep .mat-mdc-tab-header {
+  background: var(--tab) !important;
+}
+
+::ng-deep .tab-label {
+  color: var(--tab-text) !important;
+}
+
+::ng-deep .mat-mdc-card {
+  background: var(--card) !important;
+}
+
+::ng-deep personnel-filter .mat-expansion-panel {
+  background: var(--personnel-filter) !important
+}
+
+::ng-deep personnel-filter div {
+  color: var(--personnel-filter-text)
+}
+
+::ng-deep select-personnel > mat-accordion .mat-expansion-panel {
+  background: var(--select-personnel)
+}
+
+::ng-deep select-personnel mat-panel-title > div {
+  color: var(--select-personnel-text)
+}
+
+::ng-deep select-personnel .mat-expansion-panel-header-description {
+  color: var(--select-personnel-selected)
+}
+
+::ng-deep .ag-column-drop {
+  background: var(--group-grid) !important;
+}
+
+::ng-deep .ag-column-drop-empty-message, ::ng-deep .ag-column-drop-icon {
+  color: var(--grid-group-text) !important
+}
+
+.mat-mdc-tab-header {
+  background-color: var(--mat-tab-header-color) !important
+}
+
+.main-content {
+  background-color: var(--main-content)
+}
+
+::ng-deep .ag-header-row {
+  background: var(--grid-header) !important;
+  color: var(--grid-header-text) !important
+}
+
+::ng-deep .ag-theme-material .ag-header-active {
+  background-color: var(--grid-header-active) !important;
+  color: var(--grid-header-active-text) !important;
+}
+
+::ng-deep .ag-theme-material .ag-header-row-floating-filter {
+  background: var(--grid-float-filter) !important;
+}
+
+::ng-deep .ag-theme-material .ag-side-buttons {
+  padding-top: unset !important;
+  background-color: var(--grid-sidebar);
+  color: var(--grid-sidebar-text);
+}
+
+::ng-deep .ag-theme-material .ag-row-hover {
+  background-color: var(--grid-row-hover) !important;
+  color: var(--grid-row-hover-text) !important;
+  cursor: pointer;
+}
+
+::ng-deep .ag-theme-material .ag-row-focus {
+  background-color: var(--grid-click-row) !important;
+  color: var(--grid-click-row-text) !important;
+  font-weight: bold;
+  border: 1px solid #ffffff !important;
+}
+
+::ng-deep .ag-row-selected {
+  background-color: var(--grid-selected-row) !important;
+  color: var(--grid-selected-row-text) !important;
+}
+
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  background-color: var(--save-button) !important;
+  color: var(--save-button-text) !important
+}
+
+::ng-deep .form-body {
+  background-color: var(--form);
+  padding: 0 12px 0px;
+  overflow-y: auto; /* Ensure the container is scrollable */
+}
+
+::ng-deep .sidebar-background::after{
+  background: var(--sidebar);
+}
+
+::ng-deep .menu-title, ::ng-deep .fa-angle-left {
+  color: var(--sidebar-text) !important;
+}
+
+::ng-deep .app-sidebar .navigation > a {
+  color: var(--sidebar-text);
+}
+
+::ng-deep .mat-ink-bar {
+  background-color: var(--active) !important;
+}
+
+::ng-deep .ag-theme-material .ag-checkbox-input-wrapper.ag-checked::after {
+  color: var(--active) !important;
+}
+
+::ng-deep .ag-theme-material .ag-toggle-button-input-wrapper.ag-checked {
+  background-color: var(--active) !important;
+  border-color: black;
+}
+
+::ng-deep .ag-theme-material .ag-toggle-button-input-wrapper.ag-checked::before {
+  border-color: black;
+}
+
+::ng-deep theme-material input:focus[class^='ag-'][type='text'] {
+  border-bottom-color: var(--active) !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+::ng-deep .mat-focused .mat-form-field-ripple, ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, ::ng-deep .mat-radio-button.mat-warn .mat-radio-inner-circle {
+  background-color: var(--active) !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of radio that may no longer apply for the MDC version. */
+::ng-deep .mat-mdc-radio-button.mat-warn.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--active);
+}
+
+::ng-deep .form-buttons {
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--active) !important
+}
+
+::ng-deep fieldset {
+  border: 2px groove var(--active);
+  padding: 0px 3px 3px;
+}
+
+::ng-deep legend {
+  color: var(--active);
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  padding: 0;
+  float: none !important;
+  width: unset !important;
+}
+
+@mixin black-white-theme() {  
+  ::ng-deep .mat-mdc-tab-group.mat-primary .mat-ink-bar, .mat-mdc-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: black !important;
+  }
+}
+
+@mixin default-blue() {
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  :ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #1606ff;
+    color: white !important;
+  }
+  ::ng-deep .mat-mdc-tab-group.mat-primary .mat-ink-bar, .mat-mdc-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #0011a8 !important;
+  }
+
+}
+
+  /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+  :ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #057742;
+    color: white !important;
+  }

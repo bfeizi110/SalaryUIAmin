@@ -1,0 +1,56 @@
+<dynamic-form *ngIf="IsMaster" [Level]="0" [TabIndex]="0" [FormID]="MasterFormID" [ID]="ID" [FormType]="FormType" [WorkFlowID]="WorkFlowID" [ButtonList]="ButtonList"
+    [DynamicFormType]="DynamicMasterFormType" [IsMaster]="IsMaster" [RequestEntryInfo]="RequestEntryInfo" [IndexStr]="0"
+    [MainFormID]="FormID" (done)="submited($event)" (closed)="closeForm()" (clicked)="rowclicked($event)" (buttonListDone)="clickButtonList($event)">
+</dynamic-form>
+
+<ng-container *ngIf="TabDetailForm">
+    <ng-container *ngTemplateOutlet="FieldBlock; context: { TabDetailForm: TabDetailForm.TabDetailFormDto, ParentFormID: MasterFormID}">
+    </ng-container>
+</ng-container>
+
+<ng-template #FieldBlock let-TabDetailForm="TabDetailForm" let-ParentFormID="ParentFormID">
+    <ng-container *ngIf="TabDetailForm && TabDetailForm.length > 1">
+        <mat-tab-group class="mt-2" dir="rtl">
+        <div *ngFor="let tab of TabDetailForm; let tabIndex = index ">
+            <mat-tab  dir="rtl">
+                <ng-template mat-tab-label>
+                    {{ tab.TabName_Fld }}
+                </ng-template>            
+                <!-- <div class="row" style="color: blue;"> -->
+                    <dynamic-form [Level]="tab.Level_Fld" [TabIndex]="tabIndex + 1" [FormID]="tab.FormID_Fld"  [ID]="ID" [FormType]="FormType" [WorkFlowID]="WorkFlowID" [ButtonList]="ButtonList" [MasterDetailID]="tab.MasterDetailID_Fld"
+                        [DynamicFormType]="tab.FormType_Fld" [IsDetail]="true" [ParentFormID]="ParentFormID" [ParentID]="ParentID" [IndexStr]="tab.IndexStr_Fld"
+                        [RequestEntryInfo]="RequestEntryInfo" [MainFormID]="FormID" (done)="submited($event)" (closed)="closeForm()" (clicked)="rowclicked($event)" (buttonListDone)="clickButtonList($event)">
+                    </dynamic-form>
+                    <ng-container *ngTemplateOutlet="FieldBlock; context: { TabDetailForm: tab.TabDetailFormDto, ParentFormID: tab.FormID_Fld}">
+                    </ng-container>
+                <!-- </div> -->
+            </mat-tab>
+        </div>
+        </mat-tab-group>
+    </ng-container>
+    <ng-container *ngIf="TabDetailForm && TabDetailForm[0] && TabDetailForm.length <= 1">
+        <dynamic-form [Level]="TabDetailForm[0].Level_Fld" [TabIndex]="0" [FormID]="TabDetailForm[0].FormID_Fld"  [ID]="ID" [FormType]="FormType" [WorkFlowID]="WorkFlowID" [ButtonList]="ButtonList" [MasterDetailID]="TabDetailForm[0].MasterDetailID_Fld"
+            [DynamicFormType]="TabDetailForm[0].FormType_Fld" [IsDetail]="true" [ParentFormID]="MasterFormID" [ParentID]="ParentID" [IndexStr]="TabDetailForm[0].IndexStr_Fld"
+            [RequestEntryInfo]="RequestEntryInfo" [MainFormID]="FormID" (done)="submited($event)" (closed)="closeForm()" (clicked)="rowclicked($event)" (buttonListDone)="clickButtonList($event)">
+        </dynamic-form>
+        <ng-container *ngIf="TabDetailForm[0] && TabDetailForm[0].TabDetailFormDto">
+            <ng-container *ngTemplateOutlet="FieldBlock; context: { TabDetailForm: TabDetailForm[0].TabDetailFormDto, ParentFormID: TabDetailForm[0].FormID_Fld}">
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+
+
+
+
+<!-- <dynamic-form *ngIf="IsDetail" [FormID]="DetailFormID"  [ID]="ID" [FormType]="FormType" [WorkFlowID]="WorkFlowID" [ButtonList]="ButtonList"
+    [DynamicFormType]="DynamicDetailFormType" [IsDetail]="IsDetail" [ParentFormID]="MasterFormID" [ParentID]="ParentID"
+    [RequestEntryInfo]="RequestEntryInfo" [MainFormID]="FormID" (done)="submited($event)" (closed)="closeForm()" (clicked)="rowclicked($event)" (buttonListDone)="clickButtonList($event)">
+</dynamic-form>
+
+<dynamic-form *ngIf="IsDetail3" [FormID]="DetailFormID3"  [ID]="ID" [FormType]="FormType" [WorkFlowID]="WorkFlowID" [ButtonList]="ButtonList"
+    [DynamicFormType]="DynamicDetailFormType3" [IsDetail]="IsDetail3" [ParentFormID]="DetailFormID" [ParentID]="ParentID"
+    [RequestEntryInfo]="RequestEntryInfo" [MainFormID]="FormID" (done)="submited($event)" (closed)="closeForm()" (clicked)="rowclicked($event)" (buttonListDone)="clickButtonList($event)">
+</dynamic-form> -->
+

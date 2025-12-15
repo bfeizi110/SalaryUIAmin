@@ -1,0 +1,11 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <cost-center-group-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </cost-center-group-form>
+</div>
+
+<div class="pre-form" *ngIf="showTree">
+  <cost-center-tree [CostCenterGroupCode]="ID" (closed)="closeTree()"></cost-center-tree>
+</div>

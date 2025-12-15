@@ -1,0 +1,84 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-3" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4" *ngIf="!formObj.SavingType_fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.SavingType_fld.type" [parentFormGroup]="form"
+              [label]="formObj.SavingType_fld.headerName" [valueName]="'SavingType_fld'" (change)="changeSavingType()">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.DKarfarma.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DKarfarma.type" [parentFormGroup]="form"
+              [label]="formObj.DKarfarma.headerName" [valueName]="'DKarfarma'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.DKarmand.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.DKarmand.type" [parentFormGroup]="form" [label]="formObj.DKarmand.headerName"
+              [valueName]="'DKarmand'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.MashmoolTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10023'" [parentFormGroup]="form"
+              [label]="formObj.MashmoolType_Fld.headerName" [valueName]="'MashmoolType_Fld'"
+              [descValue]="data.MashmoolTypeDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.EmpCodes_Fld && !formObj.EmpCodes_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="empList" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.EmpCodes_Fld.headerName" [valueName]="'EmpCodes_Fld'"></custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.NotShowInFish_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NotShowInFish_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NotShowInFish_Fld.headerName" [valueName]="'NotShowInFish_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.RefahSaving_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.RefahSaving_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.RefahSaving_Fld.headerName" [valueName]="'RefahSaving_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.IsCopPrice_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.IsCopPrice_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.IsCopPrice_Fld.headerName" [valueName]="'IsCopPrice_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.NoTax_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.NoTax_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.NoTax_Fld.headerName" [valueName]="'NoTax_Fld'"></custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

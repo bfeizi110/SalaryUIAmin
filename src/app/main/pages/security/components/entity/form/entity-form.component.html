@@ -1,0 +1,51 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions" [customClass]="'pack-modal-custom900'">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.CodeDescFarsi_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDescFarsi_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDescFarsi_Fld.headerName" [valueName]="'CodeDescFarsi_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="formObj.DisplayType_Fld && !formObj.DisplayType_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [multiple]="true" [comboArray]="DisplayTypeArray" 
+        [comboUrl]="'OtherDetail/10092'" [parentFormGroup]="form"
+          [label]="formObj.DisplayType_Fld.headerName" [valueName]="'DisplayType_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.IsTransfer_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsTransfer_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IsTransfer_Fld.headerName" [valueName]="'IsTransfer_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.TransferOrder_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.TransferOrder_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.TransferOrder_Fld.headerName" [valueName]="'TransferOrder_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.IsPersonID_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsPersonID_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IsPersonID_Fld.headerName" [valueName]="'IsPersonID_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="formObj.PrimaryKeyFields_Fld && !formObj.PrimaryKeyFields_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [multiple]="true" [comboArray]="PrimaryKeyFieldsArray" 
+         [parentFormGroup]="form"
+          [label]="formObj.PrimaryKeyFields_Fld.headerName" [valueName]="'PrimaryKeyFields_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+
+</custom-modal>

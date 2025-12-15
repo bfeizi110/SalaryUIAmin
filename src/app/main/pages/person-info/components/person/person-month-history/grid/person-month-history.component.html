@@ -1,0 +1,7 @@
+<custom-ag-grid [rowNumber]="20" *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <person-month-history-form [formObj]="formObj" [ID]="ID" [personId]="personId" [formType]="formType"
+    (done)="submited($event)" (closed)="closeForm()">
+  </person-month-history-form>
+</div>

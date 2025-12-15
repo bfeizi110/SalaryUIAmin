@@ -1,0 +1,52 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="formObj.TaxPayTypeDesc_Fld && !formObj.TaxPayTypeDesc_Fld?.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10005'" [descValue]="data.TaxPayTypeDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.TaxPayType_Fld.headerName" [valueName]="'TaxPayType_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="formObj.TaxPayType1403Desc_Fld && !formObj.TaxPayType1403Desc_Fld?.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10114'" [descValue]="data.TaxPayType1403Desc_Fld"
+          [parentFormGroup]="form" [label]="formObj.TaxPayType1403_Fld.headerName" [valueName]="'TaxPayType1403_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.FixPrice_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.FixPrice_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.FixPrice_Fld.headerName" [valueName]="'FixPrice_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.NoTax_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.NoTax_Fld.type" [parentFormGroup]="form" [label]="formObj.NoTax_Fld.headerName"
+          [valueName]="'NoTax_Fld'"></custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!form.controls.NoTax_Fld.value && !formObj.TaxBaseTableDesc_Fld?.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'TaxBaseTable'" [descValue]="data.TaxBaseTableDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.TaxBaseTable_Fld.headerName"
+          [valueName]="'TaxBaseTable_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FormulaDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [descValue]="data.FormulaDesc_Fld"
+          [parentFormGroup]="form" [label]="formObj.Formula_Fld.headerName" [valueName]="'Formula_Fld'"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CalcInsure_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CalcInsure_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CalcInsure_Fld.headerName" [valueName]="'CalcInsure_Fld'" (change)="changeCalcInsure()">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.InsureCode_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="insureList" [multiple]="true" [parentFormGroup]="form"
+          [label]="formObj.InsureCode_Fld.headerName" [valueName]="'InsureCode_Fld'"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

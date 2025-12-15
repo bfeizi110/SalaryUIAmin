@@ -1,0 +1,57 @@
+<mat-card appearance="outlined">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="formType != 'View'" mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body" [ngClass]="{'disabled-form': formType == 'View'}">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="!formObj.PayTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10097'" [parentFormGroup]="form"
+              [label]="formObj.PayType_Fld.headerName" [valueName]="'PayType_Fld'"
+              [descValue]="data.PayTypeDesc_Fld">
+            </custom-input>
+          </div>
+          <div class="col-sm-3" *ngIf="!formObj.PayHokmTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10098'" [parentFormGroup]="form"
+              [label]="formObj.PayHokmType_Fld.headerName" [valueName]="'PayHokmType_Fld'"
+              [descValue]="data.PayHokmTypeDesc_Fld">
+            </custom-input>
+          </div>
+          <div class="col-sm-3" *ngIf="!formObj.PayNowOldTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10099'" [parentFormGroup]="form"
+              [label]="formObj.PayNowOldType_Fld.headerName" [valueName]="'PayNowOldType_Fld'"
+              [descValue]="data.PayNowOldTypeDesc_Fld">
+            </custom-input>
+          </div>
+          <div class="col-sm-3" *ngIf="!formObj.TaminLocationTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10100'" [parentFormGroup]="form"
+              [label]="formObj.TaminLocationType_Fld.headerName" [valueName]="'TaminLocationType_Fld'"
+              [descValue]="data.TaminLocationTypeDesc_Fld">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

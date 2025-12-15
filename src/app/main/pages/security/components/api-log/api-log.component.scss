@@ -1,0 +1,13 @@
+.buttons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  font-size: 45px;
+}
+
+p {
+  word-wrap: break-word;
+  max-height: 300px;
+  overflow: auto;
+}

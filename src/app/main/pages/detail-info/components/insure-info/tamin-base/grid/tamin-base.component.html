@@ -1,0 +1,9 @@
+<custom-ag-grid *ngIf="showGrid" class="tamin-base-grid" [isModal]="true" [customGridOption]="gridOption"
+  [disabledForm]="formType != ''">
+</custom-ag-grid>
+
+<div class="pre-form">
+  <tamin-base-form *ngIf="showForm" [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </tamin-base-form>
+</div>

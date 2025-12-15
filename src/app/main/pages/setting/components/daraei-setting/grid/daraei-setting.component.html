@@ -1,0 +1,7 @@
+<custom-ag-grid [rowNumber]="25" *ngIf="showGrid" [customGridOption]="gridOption" ></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <daraei-setting-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </daraei-setting-form>
+</div>

@@ -1,0 +1,8 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [disabledForm]="formType != ''"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <cost-center-unit-form [nodeId]="nodeId" [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)"
+    (closed)="closeForm()">
+  </cost-center-unit-form>
+
+</div>

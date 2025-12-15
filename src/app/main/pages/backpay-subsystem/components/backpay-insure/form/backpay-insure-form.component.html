@@ -1,0 +1,90 @@
+<mat-card appearance="outlined">
+
+  <div #myElem class="form">
+
+    <div class="form-buttons row mt-2">
+
+      <div class="col-sm-4 col-md-4 ">
+        <button mat-raised-button class="save-button" color="primary"
+        (click)="save()">ذخیره</button>
+        <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+      </div>
+      <div class="mt-2 col-sm-7 col-md-4" *ngIf="selectedPersonelNF && this.personList.length == 0">
+        <h3  style="text-align: center; color: blue;" >{{selectedPersonelNF}}</h3>
+      </div>
+
+    </div>
+    
+    <div class="form-body" *ngIf="showForm">
+
+      <div class="container-fluid">
+        <div class="row" >
+
+          <div class="col-sm-4" *ngIf="formObj.InsureCode_Fld && !formObj.InsureCode_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'Insure'"
+              [parentFormGroup]="form" [label]="formObj.InsureCode_Fld.headerName" [valueName]="'InsureCode_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.FromYearMonth_Fld && !formObj.FromYearMonth_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'YearMonth/1'"
+              [parentFormGroup]="form" [label]="formObj.FromYearMonth_Fld.headerName" [valueName]="'FromYearMonth_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-3" *ngIf="formObj.UntilYearMonth_Fld && !formObj.UntilYearMonth_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'YearMonth/1'"
+              [parentFormGroup]="form" [label]="formObj.UntilYearMonth_Fld.headerName" [valueName]="'UntilYearMonth_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-sm-2" *ngIf="formObj.No_Fld && !formObj.No_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+              [label]="formObj.No_Fld.headerName" [valueName]="'No_Fld'" >
+            </custom-input>
+          </div>
+
+          <fieldset class="mt-2">
+            <legend>محاسبه بر اساس</legend>
+            <div class="row">
+              <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3"
+              *ngIf="formObj.CalcNoOnNow_Fld && !formObj.CalcNoOnNow_Fld.ishidden">
+              <custom-input  [formObj]="formObj"  [type]="formObj.CalcNoOnNow_Fld.type" [parentFormGroup]="form"
+                [label]="formObj.CalcNoOnNow_Fld.headerName"
+                [valueName]="'CalcNoOnNow_Fld'">
+              </custom-input>
+              </div>
+
+              <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3" *ngIf="formObj.CalcMashmoolOnNow_Fld && !formObj.CalcMashmoolOnNow_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CalcMashmoolOnNow_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CalcMashmoolOnNow_Fld.headerName" [valueName]="'CalcMashmoolOnNow_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3" *ngIf="formObj.CalcBaseInfoOnNow_Fld && !formObj.CalcBaseInfoOnNow_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CalcBaseInfoOnNow_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CalcBaseInfoOnNow_Fld.headerName" [valueName]="'CalcBaseInfoOnNow_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3"
+                *ngIf="formObj.CalcM_Fld && !formObj.CalcM_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.CalcM_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.CalcM_Fld.headerName" [valueName]="'CalcM_Fld'">
+                </custom-input>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <semi-backpay-detail *ngIf="showDetail" [Id]="semiBackpaySelectedId" [PID]="IsMultiple ? personList : PID" [backPayType]="backPayType" [IsMultiple]="IsMultiple" 
+    (doneParam)="submitedParam($event)" (doneWorkAdding)="submitedWorkAdding($event)" (doneFraction)="submitedFraction($event)">
+    </semi-backpay-detail> -->
+  
+  </div>
+</mat-card>
+
+

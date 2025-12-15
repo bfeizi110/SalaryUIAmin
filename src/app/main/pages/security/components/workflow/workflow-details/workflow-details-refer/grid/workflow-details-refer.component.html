@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <workflow-details-refer-form *ngIf="showForm" [formObj]="formObj" [ID]="ID" [WorkFlowDetailID]="WorkFlowDetailID" [WorkFlowID]="WorkFlowID"
+    [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </workflow-details-refer-form>
+</div>

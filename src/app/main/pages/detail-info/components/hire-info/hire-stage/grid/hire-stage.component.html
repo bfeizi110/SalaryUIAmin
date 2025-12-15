@@ -1,0 +1,7 @@
+<custom-ag-grid *ngIf="showGrid" class="hire-stage-grid" [isModal]="true" [customGridOption]="gridOption">
+</custom-ag-grid>
+
+<div class="pre-form" *ngIf="showForm">
+  <hire-stage-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </hire-stage-form>
+</div>

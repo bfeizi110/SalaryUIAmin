@@ -1,0 +1,118 @@
+<mat-card appearance="outlined" style="min-height: 400px">
+
+  <div class="form">
+
+    <div class="form-buttons">
+
+      <button *ngIf="EditPolicy" mat-raised-button class="save-button" color="primary" (click)="save()">ذخیره
+      </button>
+
+      <button mat-raised-button class="close-button" color="warn" (click)="close()">بستن</button>
+
+    </div>
+
+    <div class="form-body">
+
+      <div class="container-fluid">
+        <div class="row" *ngIf="showForm">
+
+          <div class="col-lg-12 col-md-12" *ngIf="!formObj.CalcInJari_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="calcInJariList" [multiple]="true" [parentFormGroup]="form"
+              [label]="formObj.CalcInJari_Fld.headerName" [valueName]="'CalcInJari_Fld'">
+            </custom-input>
+          </div>
+
+          <fieldset class="col-xl-7 col-md-7 ">
+            <legend>تنظیمات گواهی حقوق و ضمانت</legend>
+            <div class="row">
+
+              <div class="col-xl-3 col-sm-3" *ngIf="!formObj.TopDebtPrice_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TopDebtPrice_Fld.type" [parentFormGroup]="form" (change)="changeTopDebtText($event)"
+                  [label]="formObj.TopDebtPrice_Fld.headerName" [valueName]="'TopDebtPrice_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-sm-3" *ngIf="!formObj.TopDebtFormulaIDDesc_Fld.ishidden" >
+                <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'NewFormula'" [parentFormGroup]="form" (changeCombo)="changeTopDebtCombo($event)"
+                  [descValue]="data.TopDebtFormulaIDDesc_Fld" [label]="formObj.TopDebtFormulaID_Fld.headerName"
+                  [valueName]="'TopDebtFormulaID_Fld'" >
+                </custom-input>
+              </div>
+    
+              <div class="col-xl-3 col-sm-3" *ngIf="!formObj.TopGovahi_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TopGovahi_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TopGovahi_Fld.headerName" [valueName]="'TopGovahi_Fld'">
+                </custom-input>
+              </div>
+
+              <div class="col-xl-3 col-sm-3" *ngIf="!formObj.TopZamen_Fld.ishidden">
+                <custom-input  [formObj]="formObj"  [type]="formObj.TopZamen_Fld.type" [parentFormGroup]="form"
+                  [label]="formObj.TopZamen_Fld.headerName" [valueName]="'TopZamen_Fld'">
+                </custom-input>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 mt-3" *ngIf="!formObj.ParamMinusDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="paramMinusUrl" [parentFormGroup]="form"
+              [label]="formObj.ParamMinus_Fld.headerName" [valueName]="'ParamMinus_Fld'"
+              [descValue]="data.ParamMinusDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-4 col-md-5 col-sm-7 mt-1" *ngIf="!formObj.DaraeiEmpTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10024'" [parentFormGroup]="form"
+              [label]="formObj.DaraeiEmpType_Fld.headerName" [valueName]="'DaraeiEmpType_Fld'"
+              [descValue]="data.DaraeiEmpTypeDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-3 col-sm-6 mt-1" *ngIf="!formObj.TaxEmpTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10025'" [parentFormGroup]="form"
+              [label]="formObj.TaxEmpType_Fld.headerName" [valueName]="'TaxEmpType_Fld'"
+              [descValue]="data.TaxEmpTypeDesc_Fld">
+            </custom-input>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-3 col-sm-6 mt-1" *ngIf="!formObj.TaxEmpType1403Desc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10115'" [parentFormGroup]="form"
+              [label]="formObj.TaxEmpType1403_Fld.headerName" [valueName]="'TaxEmpType1403_Fld'"
+              [descValue]="data.TaxEmpType1403Desc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 mt-1" *ngIf="!formObj.TaxInDaraei_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="formObj.TaxInDaraei_Fld.type" [parentFormGroup]="form"
+              [label]="formObj.TaxInDaraei_Fld.headerName" [valueName]="'TaxInDaraei_Fld'">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-3 col-xl-4 col-md-4 col-sm-6 mt-1" *ngIf="!formObj.EmpGroupDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10065'" [parentFormGroup]="form"
+              [label]="formObj.EmpGroup_Fld.headerName" [valueName]="'EmpGroup_Fld'"
+              [descValue]="data.EmpGroupDesc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-4 col-md-5 col-sm-7 mt-1" *ngIf="!formObj.EmpGroup401Desc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10084'" [parentFormGroup]="form"
+              [label]="formObj.EmpGroup401_Fld.headerName" [valueName]="'EmpGroup401_Fld'"
+              [descValue]="data.EmpGroup401Desc_Fld">
+            </custom-input>
+          </div>
+
+          <div class="col-xl-4 col-md-5 col-sm-7 mt-1" *ngIf="!formObj.YektaEmpTypeDesc_Fld.ishidden">
+            <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10096'" [parentFormGroup]="form"
+              [label]="formObj.YektaEmpType_Fld.headerName" [valueName]="'YektaEmpType_Fld'"
+              [descValue]="data.YektaEmpTypeDesc_Fld">
+            </custom-input>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-card>

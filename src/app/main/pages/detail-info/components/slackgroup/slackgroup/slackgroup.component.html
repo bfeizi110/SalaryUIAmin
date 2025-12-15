@@ -1,0 +1,6 @@
+<custom-ag-grid *ngIf="showGrid" [rowNumber]="22" [customGridOption]="gridOption"></custom-ag-grid>
+
+<div *ngIf="showForm" class="pre-form">
+  <slackgroup-form [formObj]="formObj" [ID]="ID" [formType]="formType" (done)="submited($event)" (closed)="closeForm()">
+  </slackgroup-form>
+</div>

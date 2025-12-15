@@ -1,0 +1,13 @@
+<div [formGroup]="parentFormGroup" *ngFor="let item of formlist" class="col-sm-3">
+
+  <ng-container [ngSwitch]="item.type">
+    <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10001'" [parentFormGroup]="parentFormGroup"
+      [label]="item['field'].headerName" [valueName]="item['field'].Name" [descValue]="item['field'].BankDesc_Fld">
+    </custom-input>
+
+    <custom-input  [formObj]="formObj"  [type]="item['field'].type" [parentFormGroup]="parentFormGroup" [label]="item['field'].headerName"
+      [valueName]="item['field'].Name">
+    </custom-input>
+  </ng-container>
+
+</div>

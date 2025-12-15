@@ -1,0 +1,49 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.HireTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="empList" [multiple]="isAdd" [parentFormGroup]="form"
+          [label]="formObj.HireType_Fld.headerName" [valueName]="'HireTypes_Fld'" [descValue]="data.HireTypeDesc_Fld"
+          (changeCombo)="hireTypeChange()">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TypeCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboArray]="comboArrayTypeCode" [parentFormGroup]="form"
+          [label]="formObj.TypeCode_Fld.headerName" [valueName]="'TypeCode_Fld'" [descValue]="data.TypeCodeDesc_Fld"
+          (changeCombo)="changeTypeCode()">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.CatDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*OtherDetail/GetCombo/0/100321,100324'"
+          [parentFormGroup]="form" [label]="formObj.Cat_Fld.headerName" [valueName]="'Cat_Fld'"
+          [descValue]="data.CatDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.PayCodeIDDesc.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="payList" [multiple]="isAdd" [parentFormGroup]="form"
+          [label]="formObj.PayCodeID.headerName" [valueName]="'PayCodesID'" [descValue]="data.PayCodeIDDesc">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ListNoDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'ListNo'" [parentFormGroup]="form"
+          [label]="formObj.ListNo_Fld.headerName" [valueName]="'ListNo_Fld'" [descValue]="data.ListNoDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Emp_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Emp_Fld.type" [parentFormGroup]="form" [label]="formObj.Emp_Fld.headerName"
+          [valueName]="'Emp_Fld'" (change)="changeEmpCop()">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.Cop_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Cop_Fld.type" [parentFormGroup]="form" [label]="formObj.Cop_Fld.headerName"
+          [valueName]="'Cop_Fld'" (change)="changeEmpCop()">
+        </custom-input>
+      </div>
+      <div class="col-sm-12" *ngIf="!formObj.ItemCodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [comboArray]="itemList" [multiple]="isAdd" [parentFormGroup]="form"
+          [label]="formObj.ItemCode_Fld.headerName" [valueName]="'ItemCodes_Fld'" [descValue]="data.ItemCodeDesc_Fld">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

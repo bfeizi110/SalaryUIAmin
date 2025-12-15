@@ -1,0 +1,7 @@
+<button *ngIf="selectedItemList.length > 0 && canDelete == true" mat-flat-button class="close-button" color="warn" (click)="delete()">حذف
+</button>
+<button *ngIf="selectedItemList.length > 0 && calEdit == true" mat-flat-button class="close-button" color="accent" (click)="edit()">ویرایش
+</button>
+
+<!-- <button mat-raised-button color="success" (click)="save()">اکسل</button> -->
+<custom-ag-grid *ngIf="showGrid" [customGridOption]="gridOption" [rowNumber]="rowNumber"></custom-ag-grid>

@@ -1,0 +1,41 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12" *ngIf="!formObj.SayerM_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.SayerM_Fld.type" [comboUrl]="'OtherDetail/10123'" [parentFormGroup]="form" [label]="formObj.SayerM_Fld.headerName"
+          [valueName]="'SayerM_Fld'" [descValue]="data.SayerMDesc_Fld">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.InJari_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.InJari_Fld.type" [parentFormGroup]="form" [label]="formObj.InJari_Fld.headerName"
+          [valueName]="'InJari_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.NotCalcBPay_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.NotCalcBPay_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.NotCalcBPay_Fld.headerName" [valueName]="'NotCalcBPay_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.InActive_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.InActive_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.InActive_Fld.headerName" [valueName]="'InActive_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ParamStatusDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10026'" [parentFormGroup]="form"
+          [label]="formObj.ParamStatus_Fld.headerName" [valueName]="'ParamStatus_Fld'"
+          [descValue]="data.ParamStatusDesc_Fld"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.ParamGroupIDDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10104'" [parentFormGroup]="form"
+          [label]="formObj.ParamGroupID_Fld.headerName" [valueName]="'ParamGroupID_Fld'"
+          [descValue]="data.ParamGroupIDDesc_Fld"></custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.TaxPayType1403Desc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/0/1011412,1011415,1011416,1011420,1011424,1011425,1011426,1011427'" [parentFormGroup]="form"
+          [label]="formObj.TaxPayType1403_Fld.headerName" [valueName]="'TaxPayType1403_Fld'"
+          [descValue]="data.TaxPayType1403Desc_Fld"></custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

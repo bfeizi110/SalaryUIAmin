@@ -1,0 +1,32 @@
+<custom-modal *ngIf="showForm" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12" *ngIf="!formObj.IdxName_Fld.ishidden">
+        <custom-input  [ltr]="true" [formObj]="formObj"  [type]="formObj.IdxName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IdxName_Fld.headerName" [valueName]="'IdxName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.IsUniqueIndex_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.IsUniqueIndex_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.IsUniqueIndex_Fld.headerName" [valueName]="'IsUniqueIndex_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.IndexPropertiesName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [multiple]="true" [comboArray]="fieldList" 
+         [parentFormGroup]="form"
+          [label]="formObj.IndexPropertiesName_Fld.headerName" [valueName]="'IndexPropertiesName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!formObj.IndexIncludePropertiesName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'multiCombo'" [multiple]="true" [comboArray]="fieldList" 
+         [parentFormGroup]="form"
+          [label]="formObj.IndexIncludePropertiesName_Fld.headerName" [valueName]="'IndexIncludePropertiesName_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>

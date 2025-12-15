@@ -1,0 +1,21 @@
+.buttons {
+    font-size: 45px;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.btn1 {
+    top: 35%;
+}
+
+.btn2 {
+    top: 85%;
+}
+
+.disable-icon {
+  pointer-events: none;
+  opacity: .5;
+}

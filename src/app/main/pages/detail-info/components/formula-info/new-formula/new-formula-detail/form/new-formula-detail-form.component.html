@@ -1,0 +1,53 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-6 input-name" *ngIf="!formObj.InputName_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.InputName_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.InputName_Fld.headerName" [valueName]="'InputName_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.TypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10042'" [parentFormGroup]="form"
+          [label]="formObj.Type_Fld.headerName" [valueName]="'Type_Fld'" [descValue]="data.TypeDesc_Fld"
+          (changeCombo)="changeType()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.SystemTypeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'OtherDetail/10043'" [parentFormGroup]="form"
+          [label]="formObj.SystemType_Fld.headerName" [valueName]="'SystemType_Fld'"
+          [descValue]="data.SystemTypeDesc_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FormNameFarsi_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="'*Entity/GetComboNew/100921,100922'" [parentFormGroup]="form"
+          [label]="formObj.FormName_Fld.headerName" [valueName]="'FormName_Fld'" [descValue]="data.FormNameFarsi_Fld"
+          (changeCombo)="changeEntity()">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FieldNameFarsi_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [comboUrl]="EntityPropertyUrl" [parentFormGroup]="form"
+          [label]="formObj.FieldName_Fld.headerName" [valueName]="'FieldName_Fld'"
+          [descValue]="data.FieldNameFarsi_Fld">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.Order_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.Order_Fld.type" [parentFormGroup]="form" [label]="formObj.Order_Fld.headerName"
+          [valueName]="'Order_Fld'">
+        </custom-input>
+      </div>
+
+      <div class="col-sm-6" *ngIf="!formObj.FixValue_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.FixValue_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.FixValue_Fld.headerName" [valueName]="'FixValue_Fld'">
+        </custom-input>
+      </div>
+
+    </div>
+  </div>
+</custom-modal>

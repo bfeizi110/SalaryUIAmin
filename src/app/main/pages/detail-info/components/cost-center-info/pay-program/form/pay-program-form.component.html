@@ -1,0 +1,17 @@
+<custom-modal *ngIf="showModal" [modalOptions]="modalOptions">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6" *ngIf="!formObj.CodeDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="formObj.CodeDesc_Fld.type" [parentFormGroup]="form"
+          [label]="formObj.CodeDesc_Fld.headerName" [valueName]="'CodeDesc_Fld'">
+        </custom-input>
+      </div>
+      <div class="col-sm-6" *ngIf="!formObj.DaraeiSettingDesc_Fld.ishidden">
+        <custom-input  [formObj]="formObj"  [type]="'combo'" [parentFormGroup]="form" [comboUrl]="'DaraeiSetting'"
+          [label]="formObj.DaraeiSetting_Fld.headerName" [descValue]="data.DaraeiSettingDesc_Fld"
+          [valueName]="'DaraeiSetting_Fld'">
+        </custom-input>
+      </div>
+    </div>
+  </div>
+</custom-modal>
