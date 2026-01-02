@@ -104,7 +104,7 @@
                 <custom-input  [formObj]="formObj"  [type]="formObj.NameFamily_Fld.type" [parentFormGroup]="form"
                   [label]="formObj.NameFamily_Fld.headerName" [valueName]="'NameFamily_Fld'">
                 </custom-input>
-                <i class="fa fa-user-circle fa-trash-button" (click)="onShowPerson()"></i>
+                <i class="fas fa-user-circle fa-trash-button" (click)="onShowPerson()"></i>
                 <mat-checkbox *ngIf="multiEdit" [disabled]="formObj.NameFamily_Fld.disableInput"
                   [disabled]="formObj.NameFamily_Fld.disableInput"
                   (change)="changeCheckbox($event.checked, 'NameFamily_Fld')">

@@ -8,7 +8,7 @@
             : {{personName}}
           </ng-container>
         </button>
-        <i *ngIf="form.controls.PersonID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+        <i *ngIf="form.controls.PersonID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearPerson()"></i>
       </div>
       <div class="col-sm-12 mt-2" *ngIf="!formObj.Desc_Fld.ishidden">
         <custom-input  [formObj]="formObj"  [type]="'textArea'" [parentFormGroup]="form" [label]="formObj.Desc_Fld.headerName"

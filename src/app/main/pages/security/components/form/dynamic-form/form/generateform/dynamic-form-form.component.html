@@ -80,7 +80,7 @@
       : {{personName}}
       </ng-container>
     </button>
-    <i *ngIf="form.controls.PersonID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearPerson()"></i>
+    <i *ngIf="form.controls.PersonID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearPerson()"></i>
   </div>
   <div [ngClass]="['col-sm-12']" *ngIf="this.formObj[field] && this.formObj[field].type == 'image' && !this.formObj[field].isnewhidden && !this.formObj[field].ishidden">
     <file-upload  [disabled]="this.formObj[field].disableInput || FormType == 'View'" [required]="this.formObj[field].require" [label]="this.formObj[field].headerName" [ltr]="this.formObj[field].ltr" 

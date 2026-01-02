@@ -1,18 +1,18 @@
 <ng-container *ngIf="params.data.Id != -999">
   <button mat-icon-button class="dot-btn" [matMenuTriggerFor]="menu" matTooltip="مشاهده دکمه های عملیات">
-    <i class="fa fa-ellipsis-h"></i>
+    <i class="fas fa-ellipsis-h"></i>
   </button>
   <mat-menu #menu="matMenu" dir="rtl">
     <button *ngIf="flowAction" mat-menu-item (click)="onClick(flowAction, $event)">
-      <i matTooltip="مراحل گردش طی شده قابل مشاهده است" matTooltipClass="green-tooltip" class="fa fa-refresh"></i>
+      <i matTooltip="مراحل گردش طی شده قابل مشاهده است" matTooltipClass="green-tooltip" class="fas fa-refresh"></i>
       <span class="mr-8">گردش</span>
     </button>
     <button *ngIf="referAction" mat-menu-item (click)="onClick(referAction, $event)">
-      <i matTooltip="ارجاع درخواست به مراحل بعدی طراحی شده" matTooltipClass="blue-tooltip" class="fa fa-paper-plane"></i>
+      <i matTooltip="ارجاع درخواست به مراحل بعدی طراحی شده" matTooltipClass="blue-tooltip" class="fas fa-paper-plane"></i>
       <span class="mr-8">تایید و ارجاع</span>
     </button>
     <button *ngIf="referBackAction" mat-menu-item (click)="onClick(referBackAction, $event)">
-      <i matTooltip="امکان ارجاع به مراحل قبلی" matTooltipClass="blue-tooltip" class="fa fa-undo"></i>
+      <i matTooltip="امکان ارجاع به مراحل قبلی" matTooltipClass="blue-tooltip" class="fas fa-undo"></i>
       <span class="mr-8">ارجاع به مراحل قبل</span>
     </button>
     <button *ngIf="rejectAction" mat-menu-item (click)="onClick(rejectAction, $event)">
@@ -20,7 +20,7 @@
       <span class="mr-8">رد درخواست</span>
     </button>
     <button *ngIf="cancelReferAction" mat-menu-item (click)="onClick(cancelReferAction, $event)">
-      <i matTooltip="لغو ارسال درخواست و بازگشت به کارتابل ارجاع دهنده" matTooltipClass="blue-tooltip" class="fa fa-paper-plane" style='color:red'></i>
+      <i matTooltip="لغو ارسال درخواست و بازگشت به کارتابل ارجاع دهنده" matTooltipClass="blue-tooltip" class="fas fa-paper-plane" style='color:red'></i>
       <span class="mr-8">لغو ارسال</span>
     </button>
     <button *ngIf="cancelRequestAction" mat-menu-item (click)="onClick(cancelRequestAction, $event)">
@@ -28,37 +28,37 @@
       <span class="mr-8">لغو درخواست</span>
     </button>
     <button *ngIf="editAction" mat-menu-item (click)="onClick(editAction, $event)">
-      <i matTooltip="ویرایش اطلاعات" matTooltipClass="blue-tooltip" class="fa fa-pen"></i>
+      <i matTooltip="ویرایش اطلاعات" matTooltipClass="blue-tooltip" class="fas fa-pen"></i>
       <span class="mr-8">ویرایش</span>
     </button>
     <button *ngIf="deleteAction" mat-menu-item (click)="onClick(deleteAction, $event)">
-      <i matTooltip="حذف اطلاعات" matTooltipClass="red-tooltip" class="fa fa-trash"></i>
+      <i matTooltip="حذف اطلاعات" matTooltipClass="red-tooltip" class="fas fa-trash"></i>
       <span class="mr-8">حذف</span>
     </button>
     <button *ngIf="printAction" mat-menu-item (click)="onClick(printAction, $event)">
-      <i matTooltip="گزارش" matTooltipClass="blue-tooltip" class="fa fa-print" style='color:rgb(75, 24, 28)'></i>
+      <i matTooltip="گزارش" matTooltipClass="blue-tooltip" class="fas fa-print" style='color:rgb(75, 24, 28)'></i>
       <span class="mr-8">گزارش</span>
     </button>
     <button *ngIf="accessAction" mat-menu-item (click)="onClick(accessAction, $event)">
       <!-- matTooltip="پاک کردن این سطر" matTooltipClass="red-tooltip" -->
-      <i class="fa fa-user-shield"></i>
+      <i class="fas fa-user-shield"></i>
       <span class="mr-8">تعیین دسترسی</span>
     </button>
     <button *ngIf="orgTreeAction" mat-menu-item (click)="onClick(orgTreeAction, $event)">
-      <i matTooltip="مشاهده درخت سازمانی" matTooltipClass="green-tooltip" class="fa fa-tree"></i>
+      <i matTooltip="مشاهده درخت سازمانی" matTooltipClass="green-tooltip" class="fas fa-tree"></i>
       <span class="mr-8">درخت سازمانی</span>
     </button>
     <button *ngIf="costCenterTreeAction" mat-menu-item (click)="onClick(costCenterTreeAction, $event)">
-      <i matTooltip="مشاهده درخت هزینه" matTooltipClass="green-tooltip" class="fa fa-tree"></i>
+      <i matTooltip="مشاهده درخت هزینه" matTooltipClass="green-tooltip" class="fas fa-tree"></i>
       <span class="mr-8">درخت هزینه</span>
     </button>
     <ng-container *ngIf="!params.hideLogs">
       <button mat-menu-item [matTooltip]="miniLog" (mouseenter)="getMiniLog()" matTooltipClass="orange-tooltip">
-        <i class="fa fa-info"></i>
+        <i class="fas fa-info"></i>
         <span class="mr-8">رویدادهای جزئی</span>
       </button>
       <button mat-menu-item (click)="onShowLog()">
-        <i matTooltipClass="purple-tooltip" matTooltip="مشاهده کلیه رویداد های این سطر" class="fa fa-receipt"></i>
+        <i matTooltipClass="purple-tooltip" matTooltip="مشاهده کلیه رویداد های این سطر" class="fas fa-receipt"></i>
         <span class="mr-8">رویدادهای کلی</span>
       </button>
     </ng-container>

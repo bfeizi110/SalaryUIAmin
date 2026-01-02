@@ -1,6 +1,7 @@
 .dot-btn {
   margin-top: -8px;
-  color: rgb(255, 255, 255);
+  color: red;
+  height: 5px ;
 }
 
 .mr-8 {
@@ -54,4 +55,8 @@ button > span:nth-child(2) {
 
 ::ng-deep app-button-renderer button {
   width: 0px !important;
+}
+
+:host ::ng-deep .mat-mdc-button-touch-target{
+  height: 10px !important;
 }

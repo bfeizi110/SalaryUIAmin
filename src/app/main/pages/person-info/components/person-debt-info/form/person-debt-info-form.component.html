@@ -59,7 +59,7 @@
             </mat-checkbox>
           </div>
 
-          <!-- <i *ngIf="formType != 'View' && form.controls.FirstPrice_Fld.value" class="fa fa-calculator fa3 text-primary"
+          <!-- <i *ngIf="formType != 'View' && form.controls.FirstPrice_Fld.value" class="fas fa-calculator fa3 text-primary"
             (click)="onMiniCalc('FirstPrice_Fld')"></i> -->
 
           <div class="col-sm-3" *ngIf="!formObj.NextPrice_Fld.ishidden">
@@ -445,7 +445,7 @@
                 : {{form.controls.CostCenterDesc_Fld.value}}
               </ng-container>
             </button>
-            <i *ngIf="form.controls.CostCenter_Fld.value" class="fa fa-trash fa-trash-button"
+            <i *ngIf="form.controls.CostCenter_Fld.value" class="fas fa-trash fa-trash-button"
               (click)="clearCostCenter()"></i>
             <mat-checkbox *ngIf="multiEdit" 
               [disabled]="formObj.CostCenter_Fld.disableInput"

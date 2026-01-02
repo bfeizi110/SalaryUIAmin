@@ -30,11 +30,33 @@ select,
   font-size: 14px !important;
 }
 
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 25px; 
+}
 
-/* This fully disables interaction and makes it look disabled */
-.disabled-datepicker-wrapper {
-  pointer-events: none;           /* Blocks all clicks on datepicker toggle */
-  opacity: 0.6;                   /* Visual feedback */
+.input-box {
+  height: 100%;   
+  padding: 0 6px; 
+  box-sizing: border-box;
+  line-height: 20px;
+}
+
+.button {
+  width: 30px;  
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  min-width: 30px; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.button mat-icon {
+  font-size:18px;
+  line-height: 1;
 }
 
 .disabled-datepicker-wrapper input {

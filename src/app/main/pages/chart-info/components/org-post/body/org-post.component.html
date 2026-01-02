@@ -29,7 +29,7 @@
 
               <mat-tree-node dir="rtl" *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
                 <i matTreeNodeToggle *ngIf="hasChild"
-                  [ngClass]="treeControl.isExpanded(node) ? 'fa fa-angle-down' : 'fa fa-angle-left'"></i>
+                  [ngClass]="treeControl.isExpanded(node) ? 'fas fa-angle-down' : 'fas fa-angle-left'"></i>
                 <mat-label [class.active-node]="activeNode == node.Id" (dblclick)="clickNode(node)"
                   [class.text-danger]="hasChild" dir="rtl" [class.last-child]="!hasChild">
                   {{node.name}}</mat-label>

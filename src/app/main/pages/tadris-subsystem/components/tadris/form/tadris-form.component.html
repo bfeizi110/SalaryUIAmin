@@ -79,7 +79,7 @@
                 : {{form.controls.CostcenterDesc_Fld.value}}
               </ng-container>
             </button>
-            <i *ngIf="form.controls.Costcenter_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearCost()"></i>
+            <i *ngIf="form.controls.Costcenter_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearCost()"></i>
             <mat-checkbox [disabled]="formObj.CostcenterDesc_Fld.disableInput" *ngIf="multiEdit"
               [disabled]="formObj.CostcenterDesc_Fld.disableInput" (change)="changeCheckbox($event.checked, 'Costcenter_Fld')">
             </mat-checkbox>
@@ -100,7 +100,7 @@
                 : {{form.controls.RuleIDDesc_Fld.value}}
               </ng-container>
             </button>
-            <i *ngIf="form.controls.RuleID_Fld.value" class="fa fa-trash fa-trash-button" (click)="clearHkm()"></i>
+            <i *ngIf="form.controls.RuleID_Fld.value" class="fas fa-trash fa-trash-button" (click)="clearHkm()"></i>
           </div>
 
           <div style="display: none">
@@ -151,11 +151,11 @@
             </custom-input>
             <div class="dropdown">
               <button class="btn" style="border-left:1px ">
-                <i class="fa fa-caret-down"></i>
+                <i class="fas fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                <a class="fa fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
-                <a class="fa fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
+                <a class="fas fa-eye" (click)="onGetLastList()" title="آخرین لیست انتخاب شده"></a>
+                <a class="fas fa-plus" (click)="onAddList()" title="ایجاد لیست جدید"></a>
               </div>
             </div>
             <mat-checkbox [disabled]="formObj.No_Fld.disableInput" *ngIf="multiEdit"

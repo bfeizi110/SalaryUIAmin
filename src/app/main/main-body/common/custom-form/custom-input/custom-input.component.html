@@ -2,12 +2,14 @@
 
   <ng-container *ngSwitchCase="'string'" [formGroup]="parentFormGroup">
     <mat-form-field [dir]="direction" >
-      <mat-label [dir]="direction"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
-      <input [attr.disabled]="disabled" [class.require]="required" style="height: 20px;" [type]="type" [dir]="direction" [(ngModel)]="control.value" matInput [ngClass]="{'number-input' : direction === 'ltr'}"
+      <mat-label [dir]="direction" style="height: 20px;" [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <div class="input-wrapper">
+      <input [attr.disabled]="disabled" [class.require]="required" class="input-box" [type]="type" [dir]="direction" [(ngModel)]="control.value" matInput [ngClass]="{'number-input' : direction === 'ltr'}"
         placeholder="{{placeholder}}" [formControl]="control" (ngModelChange)="changeValue($event)">
-        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+        <button class="button" mat-icon-button *ngIf="control.value && !disabled && (formtype === 'Edit' || formtype === 'Add')" matIconSuffix aria-label="Clear" (click)="clearText('')">
           <mat-icon style="color:blueviolet">×</mat-icon>
         </button>
+</div>
       <control-message  [control]="control" [label]="label"></control-message>
     </mat-form-field>
   </ng-container>
@@ -15,12 +17,14 @@
   <ng-container *ngIf="showStringNumber" [formGroup]="parentFormGroup">
     <mat-form-field dir="ltr">
       <mat-label dir="ltr"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
+      <div class="display:flex">
       <input class="number-input" type="text" mask="separator" [allowNegativeNumbers]="true" thousandSeparator="," 
         [class.require]="required" dir="ltr" matInput placeholder="{{placeholder}}" [formControl]="numberStringControl"
         (ngModelChange)="changeNumberStringValue($event)" (keyup)="keyUp($event)" [(ngModel)]="control.value">
-        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText(null)">
+        <button mat-icon-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearText(null)">
           <mat-icon style="color:blueviolet">×</mat-icon>
         </button>
+        </div>
       <control-message  [control]="numberStringControl" [label]="label"></control-message>
     </mat-form-field>
   </ng-container>
@@ -37,7 +41,7 @@
         <ngx-material-timepicker #picker [format]="24"   (timeSet)="updateTime($event, 'selectedTimeFreeInput')"></ngx-material-timepicker>
         <ngx-material-timepicker-toggle matSuffix [for]="picker" ></ngx-material-timepicker-toggle>
     </mat-form-field>
-    <button mat-button *ngIf="control.value&& !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+    <button mat-icon-button *ngIf="control.value&& !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearText('')">
       <mat-icon style="color:blueviolet">×</mat-icon>
     </button>
 </div>
@@ -58,7 +62,7 @@
       <mat-label dir="rtl"  [ngStyle]="labelColor ? {'color': labelColor } : null">{{label}}</mat-label>
       <input pattern="^\d*\.?\d+$" [attr.disabled]="disabled" [class.require]="required" type="text" dir="rtl" matInput style="height: 20px;"
         placeholder="{{placeholder}}" [formControl]="control" (ngModelChange)="changeValue($event)">
-        <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+        <button mat-icon-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearText('')">
           <mat-icon style="color:blueviolet">×</mat-icon>
         </button>
         <control-message [control]="control" [label]="label"></control-message>
@@ -71,7 +75,7 @@
       <textarea  [ngStyle]="{'text-align': direction === 'ltr' ? 'left' : '', 'height': (23 * multilineno) + 'px'}" [class.require]="required" [type]="type" [dir]="direction" matInput placeholder="{{placeholder}}"
         [formControl]="control" (ngModelChange)="changeValue($event)" [(ngModel)]="control.value">
       </textarea>
-      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearText('')">
+      <button mat-icon-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearText('')">
         <mat-icon style="color:blueviolet">×</mat-icon>
       </button>
     <control-message [control]="control" [label]="label"></control-message>
@@ -124,7 +128,7 @@
           {{ item.CodeDesc_Fld }}
         </mat-option>
       </mat-autocomplete>       -->
-      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearCombo()">
+      <button mat-icon-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearCombo()">
         <mat-icon style="color:blueviolet">×</mat-icon>
       </button>
       <control-message  [control]="control" [label]="label"></control-message>
@@ -141,7 +145,7 @@
         <mat-option style="font-size: 14px !important;" *ngIf="multiple" dir="rtl" style="color: brown;" #allSelected (click)="toggleAllSelection()" [value]="0">همه موارد</mat-option>
         <mat-option style="font-size: 14px !important;" dir="rtl" *ngFor="let filters of comboArray" [value]="filters.Id" (click)="togglePerOne(allSelected.viewValue)"> {{filters.CodeDesc_Fld}} </mat-option>
       </mat-select>
-      <button mat-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matSuffix mat-icon-button aria-label="Clear" (click)="clearCombo()">
+      <button mat-icon-button *ngIf="control.value && !disabled && (formtype == 'Edit' || formtype == 'Add')" matIconSuffix aria-label="Clear" (click)="clearCombo()">
         <mat-icon style="color:blueviolet">×</mat-icon>
       </button>
       <control-message  [control]="control" [label]="label"></control-message>
